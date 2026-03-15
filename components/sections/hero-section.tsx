@@ -1,0 +1,114 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import Image from "next/image"
+
+export function HeroSection() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const words = ["Delhi's", "private", "chef", "is", "coming", "home."]
+
+  return (
+    <section className="min-h-screen bg-dark relative overflow-hidden">
+      <div className="container mx-auto px-6 py-12 lg:py-0 min-h-screen flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        {/* Left Content */}
+        <div className="flex-1 flex flex-col justify-center z-10 pt-12 lg:pt-0">
+          {/* Logo */}
+          <h1 className="font-serif text-rose text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-8">
+            Savri
+          </h1>
+
+          {/* Headline with word-by-word animation */}
+          <h2 className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6">
+            {words.map((word, index) => (
+              <span
+                key={index}
+                className="inline-block mr-3 transition-all duration-500"
+                style={{
+                  opacity: mounted ? 1 : 0,
+                  transform: mounted ? "translateY(0)" : "translateY(20px)",
+                  transitionDelay: `${index * 100}ms`,
+                }}
+              >
+                {word}
+              </span>
+            ))}
+          </h2>
+
+          {/* Sub-headline */}
+          <p
+            className="text-cream/80 text-lg md:text-xl leading-relaxed mb-8 max-w-md transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: "700ms",
+            }}
+          >
+            A real trained chef.
+            <br />
+            Your kitchen. Fresh food.
+            <br />
+            Every time.
+          </p>
+
+          {/* CTA Button */}
+          <div
+            className="transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: "800ms",
+            }}
+          >
+            <a
+              href="#waitlist"
+              className="inline-block bg-rose text-cream px-8 py-4 rounded-lg text-lg font-medium transition-all duration-150 hover:bg-rose-dark hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-rose/20"
+            >
+              Join the waitlist
+            </a>
+          </div>
+
+          {/* Launch date */}
+          <p
+            className="text-gold text-sm mt-6 font-medium tracking-wide transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transitionDelay: "900ms",
+            }}
+          >
+            Launching Delhi NCR — June 2026
+          </p>
+        </div>
+
+        {/* Right Visual */}
+        <div
+          className="flex-1 relative w-full lg:h-screen flex items-center justify-center transition-all duration-700"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transitionDelay: "400ms",
+          }}
+        >
+          <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[80vh] max-w-2xl">
+            <Image
+              src="/images/hero-food.jpg"
+              alt="Chef's hands plating a beautifully prepared Indian dish on a dark marble surface"
+              fill
+              className="object-cover rounded-2xl lg:rounded-3xl"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            {/* Gradient overlay for better text contrast on mobile */}
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent lg:hidden rounded-2xl" />
+          </div>
+        </div>
+      </div>
+
+      {/* Subtle background glow */}
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-rose/5 rounded-full blur-[150px] pointer-events-none" />
+    </section>
+  )
+}
