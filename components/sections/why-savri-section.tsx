@@ -1,6 +1,7 @@
 "use client"
 
 import { useInView } from "@/hooks/use-in-view"
+import { useScroll3D } from "@/hooks/use-scroll-3d"
 import { ShieldCheck, Users2, MapPin, Heart, Sparkles } from "lucide-react"
 
 const pillars = [
@@ -38,35 +39,41 @@ const pillars = [
 
 export function WhySavriSection() {
   const { ref, isInView } = useInView({ threshold: 0.2 })
+  const { ref: scrollRef, isVisible } = useScroll3D({ threshold: 0.15 })
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-dark">
-      <div className="container mx-auto px-6">
-        {/* Headline */}
+    <section ref={ref} className="py-24 md:py-32 bg-dark overflow-hidden">
+      <div ref={scrollRef} className="container mx-auto px-6">
+        {/* Headline with 3D entrance */}
         <h2
-          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl text-center font-medium mb-16 md:mb-20 transition-all duration-600"
+          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl text-center font-medium mb-16 md:mb-20"
           style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible 
+              ? `perspective(1000px) rotateX(0deg) translateY(0) translateZ(0)` 
+              : `perspective(1000px) rotateX(-20deg) translateY(60px) translateZ(-80px)`,
+            transition: "all 0.9s cubic-bezier(0.23, 1, 0.32, 1)",
           }}
         >
           Built different.
         </h2>
 
-        {/* Trust Pillars */}
+        {/* Trust Pillars with 3D pop-in */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 max-w-7xl mx-auto perspective-container">
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="text-center transition-all duration-600 group"
+              className="text-center group touch-3d-active"
               style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? "translateY(0)" : "translateY(20px)",
-                transitionDelay: `${(index + 1) * 100}ms`,
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible 
+                  ? `perspective(1000px) rotateX(0deg) translateY(0) translateZ(0) scale(1)` 
+                  : `perspective(1000px) rotateX(25deg) translateY(80px) translateZ(-100px) scale(0.9)`,
+                transition: `all 0.7s cubic-bezier(0.23, 1, 0.32, 1) ${(index + 1) * 120}ms`,
               }}
             >
               <div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-cream/10 bg-cream/5 mb-6 icon-3d-flip cursor-pointer"
+                className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-cream/10 bg-cream/5 mb-6 icon-3d-flip cursor-pointer relative"
                 style={{
                   transformStyle: "preserve-3d",
                 }}
@@ -84,7 +91,7 @@ export function WhySavriSection() {
                   <pillar.icon className="w-7 h-7 text-cream" strokeWidth={1.5} />
                 </div>
               </div>
-              <h3 className="font-serif text-cream text-xl font-medium mb-3 group-hover:text-gold transition-colors duration-300">
+              <h3 className="font-serif text-cream text-xl font-medium mb-3 group-hover:text-gold group-active:text-gold transition-colors duration-300">
                 {pillar.title}
               </h3>
               <p className="text-cream/60 text-sm leading-relaxed max-w-xs mx-auto">

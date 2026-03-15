@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Instagram } from "lucide-react"
+import { useGyroscopeTilt } from "@/hooks/use-scroll-3d"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const { tilt, isSupported } = useGyroscopeTilt()
 
   useEffect(() => {
     setMounted(true)
+    // Check if mobile device
+    setIsMobile(window.matchMedia("(hover: none) and (pointer: coarse)").matches)
   }, [])
 
   const words = ["Delhi's", "private", "chef", "is", "coming", "home."]
@@ -130,9 +135,14 @@ export function HeroSection() {
           }}
         >
           <div 
-            className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[80vh] max-w-2xl animate-float-3d"
+            className={`relative w-full aspect-[4/3] lg:aspect-auto lg:h-[80vh] max-w-2xl ${!isMobile && !isSupported ? "animate-float-3d" : ""}`}
             style={{
               transformStyle: "preserve-3d",
+              // Use gyroscope tilt on mobile, or swing animation as fallback
+              transform: isMobile && isSupported 
+                ? `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)` 
+                : undefined,
+              transition: isMobile ? "transform 0.1s ease-out" : undefined,
             }}
           >
             <Image
@@ -151,6 +161,16 @@ export function HeroSection() {
             {/* Gradient overlay for better text contrast on mobile */}
             <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent lg:hidden rounded-2xl" />
           </div>
+          
+          {/* Mobile: Add swing animation if no gyroscope */}
+          {isMobile && !isSupported && (
+            <div 
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ pointerEvents: "none" }}
+            >
+              <div className="w-full aspect-[4/3] max-w-2xl animate-swing-3d" />
+            </div>
+          )}
         </div>
       </div>
 

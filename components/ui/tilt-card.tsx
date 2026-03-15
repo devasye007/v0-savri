@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useCallback } from "react"
 
 interface TiltCardProps {
   children: React.ReactNode
@@ -13,28 +13,47 @@ export function TiltCard({ children, className = "", tiltAmount = 10 }: TiltCard
   const [transform, setTransform] = useState("")
   const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 })
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const calculateTilt = useCallback((clientX: number, clientY: number) => {
     if (!cardRef.current) return
 
     const rect = cardRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
 
-    const mouseX = e.clientX - centerX
-    const mouseY = e.clientY - centerY
+    const posX = clientX - centerX
+    const posY = clientY - centerY
 
-    const rotateX = (mouseY / (rect.height / 2)) * -tiltAmount
-    const rotateY = (mouseX / (rect.width / 2)) * tiltAmount
+    const rotateX = (posY / (rect.height / 2)) * -tiltAmount
+    const rotateY = (posX / (rect.width / 2)) * tiltAmount
 
     // Calculate glare position
-    const glareX = ((e.clientX - rect.left) / rect.width) * 100
-    const glareY = ((e.clientY - rect.top) / rect.height) * 100
+    const glareX = ((clientX - rect.left) / rect.width) * 100
+    const glareY = ((clientY - rect.top) / rect.height) * 100
 
     setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`)
     setGlare({ x: glareX, y: glareY, opacity: 0.15 })
+  }, [tiltAmount])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    calculateTilt(e.clientX, e.clientY)
   }
 
-  const handleMouseLeave = () => {
+  // Touch support for mobile
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0]
+      calculateTilt(touch.clientX, touch.clientY)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0]
+      calculateTilt(touch.clientX, touch.clientY)
+    }
+  }
+
+  const resetTilt = () => {
     setTransform("")
     setGlare({ x: 50, y: 50, opacity: 0 })
   }
@@ -49,7 +68,10 @@ export function TiltCard({ children, className = "", tiltAmount = 10 }: TiltCard
         transition: transform ? "none" : "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)",
       }}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave={resetTilt}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={resetTilt}
     >
       {children}
       {/* Glare effect */}
