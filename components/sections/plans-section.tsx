@@ -19,10 +19,8 @@ const goldFeatures = [
   "Everything in Regular",
   "Priority chef matching",
   "Premium and luxury cuisines",
-  "Dedicated relationship manager",
   "Exclusive Gold member events",
   "Early access to new features",
-  "Gold member badge in app",
 ]
 
 export function PlansSection() {
