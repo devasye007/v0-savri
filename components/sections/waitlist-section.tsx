@@ -4,8 +4,7 @@ import { useState } from "react"
 import { useInView } from "@/hooks/use-in-view"
 import { Check } from "lucide-react"
 
-// Replace YOUR_FORM_ID with your actual Formspree form ID
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreyaowo"
 
 export function WaitlistSection() {
   const { ref, isInView } = useInView({ threshold: 0.2 })
