@@ -2,6 +2,9 @@
 
 import { useState } from "react"
 import { useInView } from "@/hooks/use-in-view"
+import { Check } from "lucide-react"
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreyaowo"
 
 export function WaitlistSection() {
   const { ref, isInView } = useInView({ threshold: 0.2 })
@@ -9,25 +12,54 @@ export function WaitlistSection() {
     name: "",
     phone: "",
     area: "",
-    useCase: "",
+    plan_interest: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    // In production, this would send to Formspree, Tally, or your backend
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          area: formData.area,
+          plan_interest: formData.plan_interest,
+          _replyto: "savrifounder@gmail.com",
+          _subject: "New Savri Waitlist Signup",
+        }),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      if (response.ok) {
+        setIsSubmitted(true)
+      } else {
+        throw new Error("Form submission failed")
+      }
+    } catch {
+      setError(
+        "Something went wrong. Please email us directly at savrifounder@gmail.com"
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <section ref={ref} id="waitlist" className="min-h-screen py-24 md:py-32 bg-dark flex items-center">
+    <section
+      ref={ref}
+      id="waitlist"
+      className="min-h-screen py-24 md:py-32 bg-dark flex items-center"
+    >
       <div className="container mx-auto px-6">
         <div className="max-w-xl mx-auto text-center">
           {/* Headline */}
@@ -78,33 +110,49 @@ export function WaitlistSection() {
                 transitionDelay: "300ms",
               }}
             >
+              {/* Hidden fields for Formspree */}
+              <input type="hidden" name="_replyto" value="savrifounder@gmail.com" />
+              <input type="hidden" name="_subject" value="New Savri Waitlist Signup" />
+
               <input
                 type="text"
+                name="name"
                 placeholder="Your name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream placeholder:text-cream/40 focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200"
               />
               <input
                 type="tel"
+                name="phone"
                 placeholder="Your phone number"
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream placeholder:text-cream/40 focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200"
               />
               <input
                 type="text"
-                placeholder="Your area in Delhi"
+                name="area"
+                placeholder="Your area in Delhi NCR"
                 value={formData.area}
-                onChange={(e) => setFormData({ ...formData, area: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, area: e.target.value })
+                }
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream placeholder:text-cream/40 focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200"
               />
               <select
-                value={formData.useCase}
-                onChange={(e) => setFormData({ ...formData, useCase: e.target.value })}
+                name="plan_interest"
+                value={formData.plan_interest}
+                onChange={(e) =>
+                  setFormData({ ...formData, plan_interest: e.target.value })
+                }
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200 appearance-none cursor-pointer"
                 style={{
@@ -115,18 +163,18 @@ export function WaitlistSection() {
                 }}
               >
                 <option value="" disabled className="text-cream/40">
-                  I want Savri for
+                  I am interested in
                 </option>
-                <option value="regular" className="bg-dark text-cream">
+                <option value="Regular Plan — daily meals" className="bg-dark text-cream">
                   Regular Plan — daily meals
                 </option>
-                <option value="gold" className="bg-dark text-cream">
+                <option value="Gold Plan — premium experience" className="bg-dark text-cream">
                   Gold Plan — premium experience
                 </option>
-                <option value="parties" className="bg-dark text-cream">
+                <option value="Party and events only" className="bg-dark text-cream">
                   Party and events only
                 </option>
-                <option value="unsure" className="bg-dark text-cream">
+                <option value="Not sure yet — tell me more" className="bg-dark text-cream">
                   Not sure yet — tell me more
                 </option>
               </select>
@@ -138,16 +186,41 @@ export function WaitlistSection() {
               >
                 {isSubmitting ? "Joining..." : "I want early access"}
               </button>
+
+              {/* Error message */}
+              {error && (
+                <p className="text-red-400 text-sm mt-4 animate-fade-in">
+                  {error}
+                </p>
+              )}
             </form>
           ) : (
-            <div
-              className="py-12 animate-fade-in"
-            >
-              <p className="font-serif text-cream text-2xl md:text-3xl mb-2">
+            /* Success Message */
+            <div className="py-12 animate-fade-in">
+              {/* Animated checkmark */}
+              <div
+                className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-rose mb-6"
+                style={{
+                  animation: "scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+                }}
+              >
+                <Check className="w-10 h-10 text-cream" strokeWidth={2.5} />
+              </div>
+
+              <p className="font-serif text-cream text-2xl md:text-3xl mb-4">
                 {"You're on the list."}
               </p>
-              <p className="text-cream/70 text-lg">
-                {"We'll see you in June."} <span className="text-rose">&#10084;</span>
+
+              <p className="text-cream/70 text-lg leading-relaxed mb-6">
+                We will reach out to you personally before
+                <br />
+                Savri launches in your area this June.
+              </p>
+
+              <p className="text-gold text-sm">
+                Check savrifounder@gmail.com is not in your spam —
+                <br />
+                that is where our reply comes from.
               </p>
             </div>
           )}
@@ -168,6 +241,20 @@ export function WaitlistSection() {
           )}
         </div>
       </div>
+
+      {/* Scale-in animation for checkmark */}
+      <style jsx>{`
+        @keyframes scale-in {
+          0% {
+            transform: scale(0);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   )
 }
