@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/sections/hero-section"
 import { ProblemSection } from "@/components/sections/problem-section"
+import { MemeSection } from "@/components/sections/meme-section"
 import { SolutionSection } from "@/components/sections/solution-section"
 import { OccasionsSection } from "@/components/sections/occasions-section"
 import { WhySavriSection } from "@/components/sections/why-savri-section"
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <HeroSection />
       <ProblemSection />
+      <MemeSection />
       <SolutionSection />
       <OccasionsSection />
       <WhySavriSection />
