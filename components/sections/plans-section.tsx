@@ -5,6 +5,7 @@ import { useScroll3D } from "@/hooks/use-scroll-3d"
 import { Check } from "lucide-react"
 
 const regularFeatures = [
+  "Lunch + Dinner daily",
   "Verified private chef",
   "Fresh cooked in your kitchen",
   "Customised to your taste",
@@ -14,6 +15,7 @@ const regularFeatures = [
 ]
 
 const goldFeatures = [
+  "Breakfast + Lunch + Dinner daily",
   "Everything in Regular",
   "Priority chef matching",
   "Premium and luxury cuisines",
@@ -39,7 +41,7 @@ export function PlansSection() {
       <div ref={scrollRef} className="container mx-auto px-6">
         {/* Headline */}
         <h2
-          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl text-center font-medium mb-4"
+          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl text-center font-medium mb-4 leading-tight"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible
@@ -48,25 +50,29 @@ export function PlansSection() {
             transition: "all 0.8s cubic-bezier(0.23, 1, 0.32, 1)",
           }}
         >
-          Two ways to experience Savri.
+          Two plans.
+          <br />
+          One promise.
         </h2>
 
         {/* Sub-headline */}
         <p
-          className="text-gold/60 text-base md:text-lg text-center mb-16 md:mb-20"
+          className="text-cream/60 text-base md:text-lg text-center mb-16 md:mb-20 max-w-md mx-auto"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(20px)",
             transition: "all 0.8s cubic-bezier(0.23, 1, 0.32, 1) 100ms",
           }}
         >
-          Pricing announced at launch.
+          Fresh home-cooked food — every single day.
+          <br />
+          Per month pricing announced at launch.
           <br />
           Join the waitlist to be first.
         </p>
 
         {/* Plan Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto perspective-container">
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 max-w-5xl mx-auto perspective-container">
           {/* Regular Plan Card */}
           <div
             className="bg-dark-light border border-rose/30 rounded-2xl p-8 transition-all duration-300 hover:border-rose hover:-translate-y-1 touch-3d-active group"
@@ -78,22 +84,33 @@ export function PlansSection() {
               transition: "all 0.7s cubic-bezier(0.23, 1, 0.32, 1) 200ms",
             }}
           >
+            {/* Meal badge - prominent on mobile */}
+            <div className="mb-4">
+              <span className="inline-block bg-rose/20 border border-rose/40 text-rose text-xs font-medium tracking-wide px-3 py-1.5 rounded-full">
+                2 meals/day
+              </span>
+            </div>
+
             {/* Label */}
             <span className="text-rose text-xs font-medium tracking-widest uppercase">
               REGULAR
             </span>
 
             {/* Headline */}
-            <h3 className="font-serif text-cream text-2xl md:text-3xl font-medium mt-4 mb-4 leading-tight">
-              Your chef.
+            <h3 className="font-serif text-cream text-2xl md:text-3xl font-medium mt-3 mb-2 leading-tight">
+              2 meals a day.
               <br />
               Every day.
             </h3>
 
+            {/* Meal detail */}
+            <p className="text-gold text-sm font-medium mb-4">
+              Lunch + Dinner
+            </p>
+
             {/* Description */}
             <p className="text-cream/65 text-sm leading-relaxed mb-8">
-              A verified Savri chef comes to your home and cooks fresh meals for your family.
-              Same chef. Same care. Every single day.
+              A verified Savri chef comes to your home and cooks lunch and dinner fresh every day. Same chef. Same kitchen. Same care — every single day.
             </p>
 
             {/* Features */}
@@ -106,11 +123,16 @@ export function PlansSection() {
               ))}
             </ul>
 
-            {/* Pricing tag */}
-            <div className="mb-6">
-              <span className="inline-block px-4 py-1.5 rounded-full border border-rose/50 text-cream text-xs font-medium">
-                Pricing announced soon
+            {/* Pricing area */}
+            <div className="mb-6 space-y-2">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-rose/15 border border-rose/30 text-rose text-xs font-medium">
+                2 meals/day
               </span>
+              <p className="text-cream/50 text-xs">
+                Per month pricing —
+                <br />
+                announced at launch
+              </p>
             </div>
 
             {/* CTA */}
@@ -120,6 +142,20 @@ export function PlansSection() {
             >
               Join waitlist
             </button>
+          </div>
+
+          {/* VS Divider - visible on large screens */}
+          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-dark border border-cream/20 text-cream/60 text-xs font-medium">
+              vs
+            </span>
+          </div>
+
+          {/* VS Divider - visible on mobile */}
+          <div className="flex lg:hidden items-center justify-center -my-1">
+            <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-dark border border-cream/20 text-cream/60 text-xs font-medium">
+              vs
+            </span>
           </div>
 
           {/* Gold Plan Card */}
@@ -144,25 +180,37 @@ export function PlansSection() {
               }}
             />
 
+            {/* Meal badge - prominent on mobile */}
+            <div className="mb-4 relative z-10">
+              <span className="inline-block bg-gold/20 border border-gold/50 text-gold text-xs font-medium tracking-wide px-3 py-1.5 rounded-full">
+                3 meals/day <span className="ml-0.5">&#10022;</span>
+              </span>
+            </div>
+
             {/* Label */}
-            <span className="inline-block bg-gold text-dark text-xs font-medium tracking-widest uppercase px-3 py-1 rounded">
+            <span className="inline-block bg-gold text-dark text-xs font-medium tracking-widest uppercase px-3 py-1 rounded relative z-10">
               <span className="mr-1">&#10022;</span> GOLD
             </span>
 
             {/* Headline */}
-            <h3 className="font-serif text-gold text-2xl md:text-3xl font-medium mt-4 mb-4 leading-tight">
-              The Savri
+            <h3 className="font-serif text-gold text-2xl md:text-3xl font-medium mt-3 mb-2 leading-tight relative z-10">
+              3 meals a day.
               <br />
-              Gold experience.
+              The Gold way.
             </h3>
 
+            {/* Meal detail */}
+            <p className="text-gold text-sm font-medium mb-4 relative z-10">
+              Breakfast + Lunch + Dinner
+            </p>
+
             {/* Description */}
-            <p className="text-cream/65 text-sm leading-relaxed mb-8">
-              Everything in Regular — elevated. For those who want the finest home dining experience Delhi has to offer.
+            <p className="text-cream/65 text-sm leading-relaxed mb-8 relative z-10">
+              Your entire day — handled. A Savri Gold chef arrives for breakfast, returns for lunch and dinner. The complete home dining experience — every single day.
             </p>
 
             {/* Features */}
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 relative z-10">
               {goldFeatures.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-gold mt-0.5 flex-shrink-0" strokeWidth={2} />
@@ -171,17 +219,22 @@ export function PlansSection() {
               ))}
             </ul>
 
-            {/* Pricing tag */}
-            <div className="mb-6">
-              <span className="inline-block px-4 py-1.5 rounded-full border border-gold/60 text-gold text-xs font-medium">
-                Pricing announced soon <span className="ml-1">&#10022;</span>
+            {/* Pricing area */}
+            <div className="mb-6 space-y-2 relative z-10">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-gold/15 border border-gold/40 text-gold text-xs font-medium">
+                3 meals/day <span className="ml-0.5">&#10022;</span>
               </span>
+              <p className="text-cream/50 text-xs">
+                Per month pricing —
+                <br />
+                announced at launch
+              </p>
             </div>
 
             {/* CTA */}
             <button
               onClick={scrollToWaitlist}
-              className="w-full bg-gold text-dark py-4 rounded-lg font-medium transition-all duration-150 hover:bg-gold-dark hover:scale-[1.01] active:scale-[0.99] hover:shadow-lg hover:shadow-gold/20"
+              className="w-full bg-gold text-dark py-4 rounded-lg font-medium transition-all duration-150 hover:bg-gold-dark hover:scale-[1.01] active:scale-[0.99] hover:shadow-lg hover:shadow-gold/20 relative z-10"
             >
               Join Gold waitlist
             </button>
@@ -189,26 +242,28 @@ export function PlansSection() {
         </div>
 
         {/* Bottom text */}
-        <div className="text-center mt-12 md:mt-16">
+        <div className="text-center mt-12 md:mt-16 max-w-xl mx-auto">
           <p
-            className="text-cream/50 text-sm mb-3"
+            className="text-cream/60 text-sm mb-4 leading-relaxed"
             style={{
               opacity: isVisible ? 1 : 0,
               transition: "opacity 0.6s ease 600ms",
             }}
           >
-            Not sure which plan is right?
+            Both plans include the same verified chef quality and substitute guarantee.
             <br />
-            Join the waitlist and we will help you choose at launch.
+            Gold adds breakfast and elevates the entire experience.
           </p>
           <p
-            className="text-gold/70 text-xs"
+            className="text-gold/80 text-xs"
             style={{
               opacity: isVisible ? 1 : 0,
               transition: "opacity 0.6s ease 700ms",
             }}
           >
-            Gold members get priority access on launch day.
+            Per month pricing for both plans announced at launch.
+            <br />
+            Gold members get priority access on launch day. <span className="ml-0.5">&#10022;</span>
           </p>
         </div>
       </div>
