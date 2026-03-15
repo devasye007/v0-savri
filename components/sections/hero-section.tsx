@@ -123,20 +123,30 @@ export function HeroSection() {
 
         {/* Right Visual */}
         <div
-          className="flex-1 relative w-full lg:h-screen flex items-center justify-center transition-all duration-700"
+          className="flex-1 relative w-full lg:h-screen flex items-center justify-center transition-all duration-700 perspective-container"
           style={{
             opacity: mounted ? 1 : 0,
             transitionDelay: "400ms",
           }}
         >
-          <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[80vh] max-w-2xl">
+          <div 
+            className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[80vh] max-w-2xl animate-float-3d"
+            style={{
+              transformStyle: "preserve-3d",
+            }}
+          >
             <Image
               src="/images/hero-food.jpg"
               alt="Chef's hands plating a beautifully prepared Indian dish on a dark marble surface"
               fill
-              className="object-cover rounded-2xl lg:rounded-3xl"
+              className="object-cover rounded-2xl lg:rounded-3xl shadow-2xl shadow-rose/10"
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            {/* 3D depth layer */}
+            <div 
+              className="absolute inset-0 rounded-2xl lg:rounded-3xl border border-rose/10"
+              style={{ transform: "translateZ(20px)" }}
             />
             {/* Gradient overlay for better text contrast on mobile */}
             <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent lg:hidden rounded-2xl" />

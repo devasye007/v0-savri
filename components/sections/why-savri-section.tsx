@@ -54,11 +54,11 @@ export function WhySavriSection() {
         </h2>
 
         {/* Trust Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 max-w-7xl mx-auto perspective-container">
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="text-center transition-all duration-600"
+              className="text-center transition-all duration-600 group"
               style={{
                 opacity: isInView ? 1 : 0,
                 transform: isInView ? "translateY(0)" : "translateY(20px)",
@@ -66,14 +66,25 @@ export function WhySavriSection() {
               }}
             >
               <div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-cream/10 bg-cream/5 mb-6 transition-transform duration-300"
+                className="inline-flex items-center justify-center w-16 h-16 rounded-full border border-cream/10 bg-cream/5 mb-6 icon-3d-flip cursor-pointer"
                 style={{
-                  animation: isInView ? `pulse-subtle 2s ease-in-out ${index * 0.2}s` : 'none',
+                  transformStyle: "preserve-3d",
                 }}
               >
-                <pillar.icon className="w-7 h-7 text-gold" strokeWidth={1.5} />
+                <div 
+                  className="absolute inset-0 flex items-center justify-center rounded-full"
+                  style={{ backfaceVisibility: "hidden" }}
+                >
+                  <pillar.icon className="w-7 h-7 text-gold" strokeWidth={1.5} />
+                </div>
+                <div 
+                  className="absolute inset-0 flex items-center justify-center rounded-full bg-rose"
+                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                >
+                  <pillar.icon className="w-7 h-7 text-cream" strokeWidth={1.5} />
+                </div>
               </div>
-              <h3 className="font-serif text-cream text-xl font-medium mb-3">
+              <h3 className="font-serif text-cream text-xl font-medium mb-3 group-hover:text-gold transition-colors duration-300">
                 {pillar.title}
               </h3>
               <p className="text-cream/60 text-sm leading-relaxed max-w-xs mx-auto">
@@ -83,17 +94,6 @@ export function WhySavriSection() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes pulse-subtle {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-        }
-      `}</style>
     </section>
   )
 }

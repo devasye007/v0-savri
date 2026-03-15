@@ -1,6 +1,7 @@
 "use client"
 
 import { useInView } from "@/hooks/use-in-view"
+import { TiltCard } from "@/components/ui/tilt-card"
 import { 
   Utensils, 
   PartyPopper, 
@@ -63,30 +64,41 @@ export function OccasionsSection() {
         </h2>
 
         {/* Occasion Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto perspective-container">
           {occasions.map((occasion, index) => (
-            <div
+            <TiltCard
               key={index}
-              className="group p-6 md:p-8 bg-cream border border-rose/20 rounded-xl transition-all duration-200 hover:bg-rose hover:border-rose hover:scale-[1.02] cursor-pointer"
-              style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? "translateY(0)" : "translateY(20px)",
-                transitionDelay: `${(index + 1) * 80}ms`,
-              }}
+              tiltAmount={8}
+              className="group rounded-xl cursor-pointer"
             >
-              <div className="mb-5">
-                <occasion.icon 
-                  className="w-8 h-8 text-rose group-hover:text-cream transition-colors duration-200" 
-                  strokeWidth={1.5} 
-                />
+              <div
+                className="p-6 md:p-8 bg-cream border border-rose/20 rounded-xl transition-all duration-300 hover:bg-rose hover:border-rose h-full"
+                style={{
+                  opacity: isInView ? 1 : 0,
+                  transform: isInView ? "translateY(0)" : "translateY(20px)",
+                  transitionDelay: `${(index + 1) * 80}ms`,
+                }}
+              >
+                <div className="mb-5 transform transition-transform duration-300 group-hover:scale-110" style={{ transformStyle: "preserve-3d", transform: "translateZ(30px)" }}>
+                  <occasion.icon 
+                    className="w-8 h-8 text-rose group-hover:text-cream transition-colors duration-200" 
+                    strokeWidth={1.5} 
+                  />
+                </div>
+                <h3 
+                  className="font-serif text-dark group-hover:text-cream text-xl md:text-2xl font-medium mb-2 transition-colors duration-200"
+                  style={{ transform: "translateZ(20px)" }}
+                >
+                  {occasion.title}
+                </h3>
+                <p 
+                  className="text-dark/60 group-hover:text-cream/80 text-sm leading-relaxed transition-colors duration-200"
+                  style={{ transform: "translateZ(10px)" }}
+                >
+                  {occasion.description}
+                </p>
               </div>
-              <h3 className="font-serif text-dark group-hover:text-cream text-xl md:text-2xl font-medium mb-2 transition-colors duration-200">
-                {occasion.title}
-              </h3>
-              <p className="text-dark/60 group-hover:text-cream/80 text-sm leading-relaxed transition-colors duration-200">
-                {occasion.description}
-              </p>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>
