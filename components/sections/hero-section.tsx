@@ -65,9 +65,10 @@ export function HeroSection() {
               transitionDelay: "750ms",
             }}
           >
-            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-rose/30 bg-cream/5 text-rose text-xs font-medium tracking-wide">
-              <span className="text-gold">✦</span>
-              AI-powered meal planning included
+            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-rose/30 bg-cream/5 text-rose text-xs font-medium tracking-wide relative overflow-hidden">
+              <span className="absolute inset-0 animate-shimmer" />
+              <span className="text-gold animate-star-pulse relative z-10">✦</span>
+              <span className="relative z-10">AI-powered meal planning included</span>
             </span>
           </div>
 
@@ -143,8 +144,8 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Subtle background glow */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-rose/5 rounded-full blur-[150px] pointer-events-none" />
+      {/* Animated background glow */}
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-rose/5 rounded-full blur-[150px] pointer-events-none animate-float-glow" />
     </section>
   )
 }
