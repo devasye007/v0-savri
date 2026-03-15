@@ -7,6 +7,7 @@ import { WhySavriSection } from "@/components/sections/why-savri-section"
 import { PlansSection } from "@/components/sections/plans-section"
 import { AiFeaturesSection } from "@/components/sections/ai-features-section"
 import { ChefSection } from "@/components/sections/chef-section"
+import { FaqSection } from "@/components/sections/faq-section"
 import { WaitlistSection } from "@/components/sections/waitlist-section"
 import { Footer } from "@/components/sections/footer"
 
@@ -22,6 +23,7 @@ export default function Home() {
       <AiFeaturesSection />
       <MemeSection />
       <ChefSection />
+      <FaqSection />
       <WaitlistSection />
       <Footer />
     </main>
