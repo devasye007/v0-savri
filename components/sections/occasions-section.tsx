@@ -1,6 +1,8 @@
 "use client"
 
 import { useInView } from "@/hooks/use-in-view"
+import { useScroll3D } from "@/hooks/use-scroll-3d"
+import { TiltCard } from "@/components/ui/tilt-card"
 import { 
   Utensils, 
   PartyPopper, 
@@ -45,16 +47,20 @@ const occasions = [
 
 export function OccasionsSection() {
   const { ref, isInView } = useInView({ threshold: 0.1 })
+  const { ref: scrollRef, isVisible, scrollProgress } = useScroll3D({ threshold: 0.1 })
 
   return (
     <section ref={ref} className="py-24 md:py-32 bg-cream">
-      <div className="container mx-auto px-6">
-        {/* Headline */}
+      <div ref={scrollRef} className="container mx-auto px-6">
+        {/* Headline with 3D scroll effect */}
         <h2
-          className="font-serif text-dark text-3xl md:text-4xl lg:text-5xl text-center font-medium leading-tight mb-16 md:mb-20 transition-all duration-600"
+          className="font-serif text-dark text-3xl md:text-4xl lg:text-5xl text-center font-medium leading-tight mb-16 md:mb-20"
           style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible 
+              ? `perspective(1000px) rotateX(0deg) translateY(0)` 
+              : `perspective(1000px) rotateX(15deg) translateY(40px)`,
+            transition: "all 0.8s cubic-bezier(0.23, 1, 0.32, 1)",
           }}
         >
           Every occasion.
@@ -62,31 +68,47 @@ export function OccasionsSection() {
           One chef.
         </h2>
 
-        {/* Occasion Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
+        {/* Occasion Cards Grid with 3D scroll reveal */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto perspective-container">
           {occasions.map((occasion, index) => (
-            <div
+            <TiltCard
               key={index}
-              className="group p-6 md:p-8 bg-cream border border-rose/20 rounded-xl transition-all duration-200 hover:bg-rose hover:border-rose hover:scale-[1.02] cursor-pointer"
-              style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? "translateY(0)" : "translateY(20px)",
-                transitionDelay: `${(index + 1) * 80}ms`,
-              }}
+              tiltAmount={8}
+              className="group rounded-xl cursor-pointer touch-3d-active"
             >
-              <div className="mb-5">
-                <occasion.icon 
-                  className="w-8 h-8 text-rose group-hover:text-cream transition-colors duration-200" 
-                  strokeWidth={1.5} 
-                />
+              <div
+                className="p-6 md:p-8 bg-cream border border-rose/20 rounded-xl transition-all duration-300 hover:bg-rose hover:border-rose active:bg-rose active:border-rose h-full"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible 
+                    ? `perspective(1000px) rotateX(0deg) translateY(0) translateZ(0)` 
+                    : `perspective(1000px) rotateX(20deg) translateY(50px) translateZ(-50px)`,
+                  transition: `all 0.6s cubic-bezier(0.23, 1, 0.32, 1) ${(index + 1) * 100}ms`,
+                }}
+              >
+                <div 
+                  className="mb-5 transform transition-transform duration-300 group-hover:scale-110 group-active:scale-110" 
+                  style={{ transformStyle: "preserve-3d", transform: "translateZ(30px)" }}
+                >
+                  <occasion.icon 
+                    className="w-8 h-8 text-rose group-hover:text-cream group-active:text-cream transition-colors duration-200" 
+                    strokeWidth={1.5} 
+                  />
+                </div>
+                <h3 
+                  className="font-serif text-dark group-hover:text-cream group-active:text-cream text-xl md:text-2xl font-medium mb-2 transition-colors duration-200"
+                  style={{ transform: "translateZ(20px)" }}
+                >
+                  {occasion.title}
+                </h3>
+                <p 
+                  className="text-dark/60 group-hover:text-cream/80 group-active:text-cream/80 text-sm leading-relaxed transition-colors duration-200"
+                  style={{ transform: "translateZ(10px)" }}
+                >
+                  {occasion.description}
+                </p>
               </div>
-              <h3 className="font-serif text-dark group-hover:text-cream text-xl md:text-2xl font-medium mb-2 transition-colors duration-200">
-                {occasion.title}
-              </h3>
-              <p className="text-dark/60 group-hover:text-cream/80 text-sm leading-relaxed transition-colors duration-200">
-                {occasion.description}
-              </p>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>

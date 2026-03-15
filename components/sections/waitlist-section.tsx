@@ -117,14 +117,17 @@ export function WaitlistSection() {
                 <option value="" disabled className="text-cream/40">
                   I want Savri for
                 </option>
-                <option value="daily" className="bg-dark text-cream">
-                  Daily meals
+                <option value="regular" className="bg-dark text-cream">
+                  Regular Plan — daily meals
+                </option>
+                <option value="gold" className="bg-dark text-cream">
+                  Gold Plan — premium experience
                 </option>
                 <option value="parties" className="bg-dark text-cream">
-                  Parties and events
+                  Party and events only
                 </option>
-                <option value="both" className="bg-dark text-cream">
-                  Both
+                <option value="unsure" className="bg-dark text-cream">
+                  Not sure yet — tell me more
                 </option>
               </select>
 
