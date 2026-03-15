@@ -5,7 +5,7 @@ import { useScroll3D } from "@/hooks/use-scroll-3d"
 import { Check } from "lucide-react"
 
 const regularFeatures = [
-  "Lunch + Dinner daily",
+  "Breakfast/Lunch + Dinner daily",
   "Verified private chef",
   "Fresh cooked in your kitchen",
   "Customised to your taste",
@@ -103,12 +103,12 @@ export function PlansSection() {
 
             {/* Meal detail */}
             <p className="text-gold text-sm font-medium mb-4">
-              Lunch + Dinner
+              Breakfast/Lunch + Dinner
             </p>
 
             {/* Description */}
             <p className="text-cream/65 text-sm leading-relaxed mb-8">
-              A verified Savri chef comes to your home and cooks lunch and dinner fresh every day. Same chef. Same kitchen. Same care — every single day.
+              A verified Savri chef comes to your home and cooks two meals fresh every day. Choose breakfast or lunch, plus dinner. Same chef. Same kitchen. Same care — every single day.
             </p>
 
             {/* Features */}
