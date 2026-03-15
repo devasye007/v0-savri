@@ -3,37 +3,37 @@
 import { useState, useRef, useEffect } from "react"
 import { Share2 } from "lucide-react"
 
-// Meme 1 - The Delivery Meme (Drake/Expectation vs Reality format)
-function DeliveryMeme() {
+// Meme 1 - Sunday Planning Meme
+function SundayMeme() {
   return (
     <div className="bg-cream border border-rose/20 rounded-2xl p-6 w-full max-w-[380px] mx-auto shadow-lg shadow-rose/5 flex-shrink-0 snap-center">
       {/* Two panel meme */}
       <div className="space-y-4">
         {/* Panel 1 */}
         <div className="bg-dark/5 rounded-xl p-4">
-          <p className="text-rose text-xs font-medium mb-2 uppercase tracking-wide">Every Sunday night</p>
+          <p className="text-rose text-xs font-medium mb-2 uppercase tracking-wide">Every Sunday</p>
           <p className="text-dark font-medium leading-relaxed">
-            {'"I\'ll cook this week.'}<br />
-            {'Meal prep. Eat healthy.'}<br />
-            {'Be that person."'}
+            {"\"Okay this week I'm cooking."}<br />
+            {"Going to buy sabzi from INA market."}<br />
+            {"Make dal chawal. Be healthy."}<br />
+            {"Ghar ka khana only. Final.\""}
           </p>
         </div>
         
         {/* Panel 2 */}
         <div className="bg-rose/10 rounded-xl p-4">
-          <p className="text-rose text-xs font-medium mb-2 uppercase tracking-wide">Also every Sunday night</p>
+          <p className="text-rose text-xs font-medium mb-2 uppercase tracking-wide">Tuesday 8PM</p>
           <p className="text-dark font-medium leading-relaxed">
-            {'"...so anyway here\'s'}<br />
-            {'my 4th delivery order'}<br />
-            {'this week."'}
+            {"\"Bhaiya ek butter chicken"}<br />
+            {"aur garlic naan bhej do."}<br />
+            {"Extra gravy. Jaldi karna.\""}
           </p>
         </div>
       </div>
       
       {/* Caption */}
       <p className="text-dark/60 text-sm text-center mt-5 italic">
-        {"We don't judge."}<br />
-        {"We just cook."}
+        The weekly cycle. We know.
       </p>
       
       {/* Footer */}
@@ -59,8 +59,12 @@ function TweetMeme() {
       
       {/* Tweet content */}
       <p className="text-cream text-lg leading-relaxed mb-5">
-        {"Me: I should really start eating home-cooked food."}<br /><br />
-        {"Also me: opens delivery app before I even finish that sentence."}
+        {"Delhi rent: ₹35,000/month"}<br />
+        {"Delhi metro: ₹50/trip"}<br />
+        {"Delhi parking: ₹200/hour"}<br /><br />
+        {"Also Delhi:"}<br />
+        {"bhai ₹50 delivery charge"}<br />
+        {"toh bohot zyada hai yaar 💀"}
       </p>
       
       {/* Fake engagement */}
@@ -85,22 +89,22 @@ function TweetMeme() {
 // Meme 3 - The Alignment Chart
 function AlignmentMeme() {
   const alignments = [
-    { label: "Lawful Good", text: "Cooks every day", highlight: false },
-    { label: "Neutral Good", text: "Meal preps Sunday", highlight: false },
-    { label: "Chaotic Good", text: "Has a Savri chef", highlight: true },
-    { label: "Lawful Neutral", text: "Dhaba regular", highlight: false },
-    { label: "True Neutral", text: "Whatever is in fridge", highlight: false },
-    { label: "Chaotic Neutral", text: "Maggi at 2AM", highlight: false },
-    { label: "Lawful Evil", text: "Orders healthy bowls", highlight: false },
-    { label: "Neutral Evil", text: "Delivery app regular", highlight: false },
-    { label: "Chaotic Evil", text: "Samosa for dinner", highlight: false },
+    { label: "Lawful Good", text: "Wakes up and makes poha from scratch", highlight: false },
+    { label: "Neutral Good", text: "Has a Savri chef", highlight: true },
+    { label: "Chaotic Good", text: "Calls mom and pretends to ask how she is but actually wants the recipe", highlight: false },
+    { label: "Lawful Neutral", text: "Dhaba near office every single day", highlight: false },
+    { label: "True Neutral", text: "Bread and whatever is in the fridge", highlight: false },
+    { label: "Chaotic Neutral", text: "Maggi at 2AM and zero regrets", highlight: false },
+    { label: "Lawful Evil", text: "Orders a salad bowl and then orders pizza 30 minutes later", highlight: false },
+    { label: "Neutral Evil", text: "Has Zomato Gold, Swiggy One, AND still complains about delivery charges", highlight: false },
+    { label: "Chaotic Evil", text: "Ate samosa chaat for dinner and told themselves it counts as a balanced meal", highlight: false },
   ]
 
   return (
     <div className="bg-cream border border-rose/20 rounded-2xl p-5 w-full max-w-[380px] mx-auto shadow-lg shadow-rose/5 flex-shrink-0 snap-center">
       {/* Title */}
       <h3 className="font-serif text-dark text-lg font-medium text-center mb-4">
-        Types of Delhi eaters
+        Delhi food personality types
       </h3>
       
       {/* 3x3 Grid */}
@@ -108,23 +112,26 @@ function AlignmentMeme() {
         {alignments.map((item, index) => (
           <div 
             key={index}
-            className={`p-2 rounded-lg text-center ${
+            className={`p-2 rounded-lg text-center flex flex-col justify-start ${
               item.highlight 
                 ? "bg-rose text-cream" 
                 : "bg-dark/5 text-dark"
             }`}
           >
-            <p className={`text-[10px] font-medium uppercase tracking-wide mb-1 ${
+            <p className={`text-[9px] font-medium uppercase tracking-wide mb-1 ${
               item.highlight ? "text-cream/80" : "text-dark/50"
             }`}>
               {item.label}
             </p>
-            <p className={`text-xs font-medium leading-tight ${
+            <p className={`text-[10px] font-medium leading-tight ${
               item.highlight ? "text-cream" : "text-dark/80"
             }`}>
               {item.text}
               {item.highlight && <span className="text-gold ml-1">★</span>}
             </p>
+            {item.highlight && (
+              <p className="text-[8px] text-cream/60 mt-1 italic">the smart ones</p>
+            )}
           </div>
         ))}
       </div>
@@ -135,44 +142,69 @@ function AlignmentMeme() {
   )
 }
 
-// Meme 4 - The Honest Truth (Distracted Boyfriend text version)
-function HonestMeme() {
+// Meme 4 - WhatsApp Chat Style
+function WhatsAppMeme() {
   return (
-    <div className="bg-rose rounded-2xl p-6 w-full max-w-[380px] mx-auto shadow-lg shadow-rose/20 flex-shrink-0 snap-center">
-      {/* Visual arrangement mimicking distracted boyfriend */}
-      <div className="relative h-48 mb-6">
-        {/* The thing being ignored (left/back) */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-cream/20 backdrop-blur-sm rounded-lg p-3 max-w-[100px] border border-cream/30">
-          <p className="text-cream/80 text-xs font-medium text-center">
-            Cooking at home
-          </p>
+    <div className="bg-dark rounded-2xl p-5 w-full max-w-[380px] mx-auto shadow-lg shadow-dark/20 flex-shrink-0 snap-center">
+      {/* Chat header */}
+      <div className="flex items-center gap-3 mb-5 pb-3 border-b border-cream/10">
+        <div className="w-10 h-10 rounded-full bg-rose flex items-center justify-center text-lg">
+          👨‍🍳
+        </div>
+        <div className="flex-1">
+          <p className="text-cream font-medium text-sm">Savri Chef</p>
+          <p className="text-green-400 text-xs">Online</p>
+        </div>
+      </div>
+      
+      {/* Chat messages */}
+      <div className="space-y-3 mb-5">
+        {/* User message */}
+        <div className="flex justify-end">
+          <div className="bg-rose rounded-2xl rounded-br-md px-4 py-2 max-w-[75%]">
+            <p className="text-cream text-sm">Bhai aaj kya banega?</p>
+          </div>
         </div>
         
-        {/* The distraction (right/front) */}
-        <div className="absolute right-0 top-4 bg-gold rounded-lg p-3 max-w-[140px] shadow-lg">
-          <p className="text-dark text-xs font-medium text-center">
-            Opening delivery app for the 5th time this week
-          </p>
+        {/* Chef message */}
+        <div className="flex justify-start">
+          <div className="bg-cream/10 rounded-2xl rounded-bl-md px-4 py-2 max-w-[75%]">
+            <p className="text-cream text-sm">Aap batao — dal makhani chalegi ya butter chicken?</p>
+          </div>
         </div>
         
-        {/* The boyfriend (center) */}
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-dark rounded-lg p-3 max-w-[120px]">
-          <p className="text-cream text-xs font-medium text-center">
-            You, every evening
-          </p>
+        {/* User message */}
+        <div className="flex justify-end">
+          <div className="bg-rose rounded-2xl rounded-br-md px-4 py-2 max-w-[75%]">
+            <p className="text-cream text-sm">Dono 🙏</p>
+          </div>
         </div>
         
-        {/* Connecting lines */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 300 180">
-          <path d="M 150 140 L 80 90" stroke="rgba(245,240,235,0.3)" strokeWidth="2" strokeDasharray="4 4" fill="none" />
-          <path d="M 150 140 L 220 50" stroke="rgba(212,175,55,0.5)" strokeWidth="2" fill="none" />
-        </svg>
+        {/* Chef message */}
+        <div className="flex justify-start">
+          <div className="bg-cream/10 rounded-2xl rounded-bl-md px-4 py-2 max-w-[75%]">
+            <p className="text-cream text-sm">Ji bilkul. Roti bhi?</p>
+          </div>
+        </div>
+        
+        {/* User message */}
+        <div className="flex justify-end">
+          <div className="bg-rose rounded-2xl rounded-br-md px-4 py-2 max-w-[75%]">
+            <p className="text-cream text-sm">Haan yaar aur thoda chawal bhi please 🥲</p>
+          </div>
+        </div>
+        
+        {/* Chef message with ticks */}
+        <div className="flex justify-start">
+          <div className="bg-cream/10 rounded-2xl rounded-bl-md px-4 py-2 max-w-[75%]">
+            <p className="text-cream text-sm">30 minutes mein ready ho jayega. <span className="text-blue-400">✓✓</span></p>
+          </div>
+        </div>
       </div>
       
       {/* Caption */}
-      <p className="text-cream text-center font-medium leading-relaxed">
-        {"We get it."}<br />
-        {"That's literally why we built this."}
+      <p className="text-cream/70 text-sm text-center mt-4 leading-relaxed">
+        This conversation could be yours.<br />Every day.
       </p>
       
       {/* Footer */}
@@ -253,10 +285,10 @@ export function MemeSection() {
         className="flex md:flex-row flex-col gap-6 md:gap-8 px-6 md:px-12 lg:px-20 md:overflow-x-auto md:snap-x md:snap-mandatory md:scrollbar-hide pb-4"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        <DeliveryMeme />
+        <SundayMeme />
         <TweetMeme />
         <AlignmentMeme />
-        <HonestMeme />
+        <WhatsAppMeme />
       </div>
 
       {/* Navigation dots - desktop only */}
@@ -277,8 +309,8 @@ export function MemeSection() {
 
       {/* Transition text */}
       <p className="text-rose text-center mt-12 md:mt-16 text-sm md:text-base font-medium px-6">
-        Okay but seriously —<br className="md:hidden" />
-        {" "}here is what we built.
+        Okay but in all seriousness —<br className="md:hidden" />
+        {" "}here is what we built for you.
       </p>
     </section>
   )

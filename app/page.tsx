@@ -15,12 +15,12 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <HeroSection />
       <ProblemSection />
-      <MemeSection />
       <SolutionSection />
       <OccasionsSection />
       <WhySavriSection />
       <PlansSection />
       <AiFeaturesSection />
+      <MemeSection />
       <ChefSection />
       <WaitlistSection />
       <Footer />
