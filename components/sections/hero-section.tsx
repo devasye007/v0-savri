@@ -42,7 +42,7 @@ export function HeroSection() {
 
           {/* Sub-headline */}
           <p
-            className="text-cream/80 text-lg md:text-xl leading-relaxed mb-8 max-w-md transition-all duration-500"
+            className="text-cream/80 text-lg md:text-xl leading-relaxed mb-6 max-w-md transition-all duration-500"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "translateY(0)" : "translateY(20px)",
@@ -55,6 +55,21 @@ export function HeroSection() {
             <br />
             Every time.
           </p>
+
+          {/* AI Feature Pill */}
+          <div
+            className="mb-8 transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: "750ms",
+            }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-rose/30 bg-cream/5 text-rose text-xs font-medium tracking-wide">
+              <span className="text-gold">✦</span>
+              AI-powered meal planning included
+            </span>
+          </div>
 
           {/* CTA Button */}
           <div

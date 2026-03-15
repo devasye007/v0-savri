@@ -1,7 +1,7 @@
 "use client"
 
 import { useInView } from "@/hooks/use-in-view"
-import { ShieldCheck, Users2, MapPin, Heart } from "lucide-react"
+import { ShieldCheck, Users2, MapPin, Heart, Sparkles } from "lucide-react"
 
 const pillars = [
   {
@@ -28,6 +28,12 @@ const pillars = [
     description:
       "Home-cooked food by a real chef costs less than you think. More affordable than your weekly delivery spend.",
   },
+  {
+    icon: Sparkles,
+    title: "Built with AI",
+    description:
+      "Savri learns your taste, plans your meals, and matches you with the right chef — automatically.",
+  },
 ]
 
 export function WhySavriSection() {
@@ -48,7 +54,7 @@ export function WhySavriSection() {
         </h2>
 
         {/* Trust Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 max-w-7xl mx-auto">
           {pillars.map((pillar, index) => (
             <div
               key={index}
