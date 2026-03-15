@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { Instagram } from "lucide-react"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -82,6 +83,26 @@ export function HeroSection() {
           >
             Launching Delhi NCR — June 2026
           </p>
+
+          {/* Social link */}
+          <div
+            className="mt-6 flex items-center gap-3 transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transitionDelay: "1000ms",
+            }}
+          >
+            <a
+              href="https://www.instagram.com/savri.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-cream/60 hover:text-cream transition-colors duration-200 group"
+              aria-label="Follow Savri on Instagram"
+            >
+              <Instagram className="w-5 h-5" strokeWidth={1.5} />
+              <span className="text-sm">@savri.in</span>
+            </a>
+          </div>
         </div>
 
         {/* Right Visual */}

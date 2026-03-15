@@ -131,6 +131,17 @@ export function ChefSection() {
                 >
                   Apply to be a Savri chef
                 </a>
+                
+                {/* Early application contact */}
+                <p className="text-dark/60 text-sm mt-4">
+                  Want to apply early? Drop us a message at{" "}
+                  <a 
+                    href="mailto:savrifounder@gmail.com" 
+                    className="text-rose hover:text-rose-dark underline underline-offset-2 transition-colors"
+                  >
+                    savrifounder@gmail.com
+                  </a>
+                </p>
               </div>
             </div>
 

@@ -1,17 +1,17 @@
 "use client"
 
-import { Instagram, Linkedin } from "lucide-react"
+import { Instagram, Mail } from "lucide-react"
 
 const navLinks = [
   { label: "About Savri", href: "#about" },
   { label: "For Chefs", href: "#chef-apply" },
   { label: "Join Waitlist", href: "#waitlist" },
-  { label: "Contact", href: "mailto:hello@savri.in" },
+  { label: "Contact", href: "mailto:savrifounder@gmail.com" },
 ]
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com/savri" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/savri" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/savri.in/", handle: "@savri.in" },
+  { icon: Mail, label: "Email", href: "mailto:savrifounder@gmail.com", handle: "savrifounder@gmail.com" },
 ]
 
 export function Footer() {
@@ -42,15 +42,15 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Social Links */}
-          <div className="flex flex-col items-start md:items-end">
+          {/* Social Links & Contact */}
+          <div className="flex flex-col items-start md:items-end gap-4">
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={social.label === "Instagram" ? "_blank" : undefined}
+                  rel={social.label === "Instagram" ? "noopener noreferrer" : undefined}
                   aria-label={social.label}
                   className="w-10 h-10 flex items-center justify-center rounded-full border border-cream/10 text-cream/60 hover:text-cream hover:border-cream/30 transition-all duration-200"
                 >
@@ -58,7 +58,22 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            <p className="text-cream/40 text-xs mt-4">@savri</p>
+            <div className="flex flex-col items-start md:items-end gap-1">
+              <a 
+                href="https://www.instagram.com/savri.in/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-cream/60 hover:text-cream text-sm transition-colors"
+              >
+                @savri.in
+              </a>
+              <a 
+                href="mailto:savrifounder@gmail.com"
+                className="text-cream/60 hover:text-cream text-sm transition-colors"
+              >
+                savrifounder@gmail.com
+              </a>
+            </div>
           </div>
         </div>
 
