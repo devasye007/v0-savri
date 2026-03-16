@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { IntroAnimation } from '@/components/intro-animation'
 import './globals.css'
 
 const inter = Inter({ 
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased bg-cream text-dark">
+        <IntroAnimation />
         {children}
         <Analytics />
       </body>
