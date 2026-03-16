@@ -1,33 +1,41 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export function IntroAnimation() {
-  const [showIntro, setShowIntro] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const played = sessionStorage.getItem("savri_intro")
-    if (!played) {
-      setShowIntro(true)
+    // Check if already played this session
+    const played = sessionStorage.getItem("savri_intro_played")
+    if (played) {
+      setIsPlaying(false)
     }
+    setMounted(true)
   }, [])
 
-  // Fallback timeout - auto dismiss after 5 seconds max
+  // Fallback timeout - dismiss after 5 seconds max
   useEffect(() => {
-    if (!showIntro) return
+    if (!mounted || !isPlaying) return
+    
     const fallback = setTimeout(() => {
-      sessionStorage.setItem("savri_intro", "true")
-      setShowIntro(false)
+      sessionStorage.setItem("savri_intro_played", "true")
+      setIsPlaying(false)
     }, 5000)
+    
     return () => clearTimeout(fallback)
-  }, [showIntro])
+  }, [mounted, isPlaying])
 
   const handleVideoEnd = () => {
-    sessionStorage.setItem("savri_intro", "true")
-    setShowIntro(false)
+    sessionStorage.setItem("savri_intro_played", "true")
+    setIsPlaying(false)
   }
 
-  if (!showIntro) return null
+  // Don't render anything until mounted to avoid hydration mismatch
+  // Then don't render if not playing
+  if (!mounted || !isPlaying) return null
 
   return (
     <div
@@ -36,9 +44,13 @@ export function IntroAnimation() {
         inset: 0,
         zIndex: 9999,
         background: "#F5F0EB",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <video
+        ref={videoRef}
         autoPlay
         muted
         playsInline
@@ -51,8 +63,8 @@ export function IntroAnimation() {
           objectFit: "cover",
         }}
       >
-        <source src="/videos/logo-animation.mov" type="video/mp4" />
         <source src="/videos/logo-animation.mov" type="video/quicktime" />
+        <source src="/videos/logo-animation.mov" type="video/mp4" />
       </video>
     </div>
   )
