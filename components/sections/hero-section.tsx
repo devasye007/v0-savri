@@ -45,6 +45,21 @@ export function HeroSection() {
             ))}
           </h2>
 
+          {/* AI Platform Pill */}
+          <div
+            className="mb-4 transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: "650ms",
+            }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[20px] border border-gold/40 bg-gold/15 text-gold text-[10px] font-medium tracking-widest uppercase">
+              <span>✦</span>
+              <span>AI-POWERED PRIVATE CHEF PLATFORM</span>
+            </span>
+          </div>
+
           {/* Sub-headline */}
           <p
             className="text-cream/80 text-lg md:text-xl leading-relaxed mb-6 max-w-md transition-all duration-500"
@@ -58,7 +73,7 @@ export function HeroSection() {
             <br />
             Your kitchen. Fresh food.
             <br />
-            Every time.
+            For daily meals and parties both.
           </p>
 
           {/* AI Feature Pill */}
@@ -94,9 +109,20 @@ export function HeroSection() {
             </a>
           </div>
 
+          {/* Made In India */}
+          <p
+            className="text-gold text-sm mt-4 font-medium tracking-wide transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transitionDelay: "850ms",
+            }}
+          >
+            <span className="opacity-90">🇮🇳</span> Proudly Made In India
+          </p>
+
           {/* Launch date */}
           <p
-            className="text-gold text-sm mt-6 font-medium tracking-wide transition-all duration-500"
+            className="text-gold/70 text-sm mt-2 font-medium tracking-wide transition-all duration-500"
             style={{
               opacity: mounted ? 1 : 0,
               transitionDelay: "900ms",

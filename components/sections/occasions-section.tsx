@@ -9,7 +9,9 @@ import {
   Heart, 
   Users, 
   Star, 
-  CalendarDays 
+  CalendarDays,
+  Home,
+  Sparkles
 } from "lucide-react"
 
 const occasions = [
@@ -54,7 +56,7 @@ export function OccasionsSection() {
       <div ref={scrollRef} className="container mx-auto px-6">
         {/* Headline with 3D scroll effect */}
         <h2
-          className="font-serif text-dark text-3xl md:text-4xl lg:text-5xl text-center font-medium leading-tight mb-16 md:mb-20"
+          className="font-serif text-dark text-3xl md:text-4xl lg:text-5xl text-center font-medium leading-tight mb-12 md:mb-16"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible 
@@ -63,10 +65,63 @@ export function OccasionsSection() {
             transition: "all 0.8s cubic-bezier(0.23, 1, 0.32, 1)",
           }}
         >
-          Every occasion.
-          <br />
           One chef.
+          <br />
+          Every occasion.
         </h2>
+
+        {/* Two Option Cards - Daily vs Party */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto mb-8"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(30px)",
+            transition: "all 0.7s cubic-bezier(0.23, 1, 0.32, 1) 100ms",
+          }}
+        >
+          {/* Daily Home Chef Card */}
+          <div className="bg-[#0A0A0A] border border-[#B5636A] rounded-xl p-6 md:p-8">
+            <div className="mb-5">
+              <Home className="w-8 h-8 text-[#B5636A]" strokeWidth={1.5} />
+            </div>
+            <h3 className="font-serif text-cream text-2xl md:text-[1.65rem] font-medium mb-3">
+              Daily Home Chef
+            </h3>
+            <p className="text-cream/65 text-sm leading-relaxed mb-6">
+              Same verified chef comes to your home every day. Cooks fresh lunch and dinner — or all three meals. Your taste. Your kitchen. Your routine.
+            </p>
+            <span className="inline-block bg-[#B5636A]/20 border border-[#B5636A]/40 text-[#B5636A] text-xs font-medium px-3 py-1.5 rounded-full">
+              Regular + Gold Plans Available
+            </span>
+          </div>
+
+          {/* Party Chef Card */}
+          <div className="bg-[#0A0A0A] border border-[#D4AF37] rounded-xl p-6 md:p-8">
+            <div className="mb-5">
+              <Sparkles className="w-8 h-8 text-[#D4AF37]" strokeWidth={1.5} />
+            </div>
+            <h3 className="font-serif text-[#D4AF37] text-2xl md:text-[1.65rem] font-medium mb-3">
+              Party Chef
+            </h3>
+            <p className="text-cream/65 text-sm leading-relaxed mb-6">
+              A professional chef for your kitty party, birthday, anniversary, date night, family gathering, or corporate dinner. Add bartender, waiters, and live cooking counter too.
+            </p>
+            <span className="inline-block bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-medium px-3 py-1.5 rounded-full">
+              One-time booking — no subscription
+            </span>
+          </div>
+        </div>
+
+        {/* Centered line below cards */}
+        <p 
+          className="text-center text-cream/50 text-sm mb-16 md:mb-20"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transition: "opacity 0.6s ease 300ms",
+          }}
+        >
+          Not sure which you need? Both are available on Savri.
+        </p>
 
         {/* Occasion Cards Grid with 3D scroll reveal */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto perspective-container">
@@ -83,7 +138,7 @@ export function OccasionsSection() {
                   transform: isVisible 
                     ? `perspective(1000px) rotateX(0deg) translateY(0) translateZ(0)` 
                     : `perspective(1000px) rotateX(20deg) translateY(50px) translateZ(-50px)`,
-                  transition: `all 0.6s cubic-bezier(0.23, 1, 0.32, 1) ${(index + 1) * 100}ms`,
+                  transition: `all 0.6s cubic-bezier(0.23, 1, 0.32, 1) ${(index + 3) * 100}ms`,
                 }}
               >
                 <div 

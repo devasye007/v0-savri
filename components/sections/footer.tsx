@@ -78,12 +78,29 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-cream/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-cream/5 flex flex-col items-center gap-6">
           <p className="text-cream/40 text-sm">
             &copy; 2026 Savri. Delhi NCR.
           </p>
-          <p className="text-cream/40 text-sm">
-            Made with care in India.
+
+          {/* Made In India Badge */}
+          <div className="flex flex-col items-center gap-3">
+            <div 
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-[40px] border border-[#D4AF37]/50 bg-transparent"
+            >
+              <span className="text-sm">🇮🇳</span>
+              <span className="text-cream text-sm font-medium tracking-wide">MADE IN INDIA</span>
+            </div>
+            <p className="text-cream/60 text-xs">
+              with <span className="text-rose">❤️</span> in Delhi
+            </p>
+          </div>
+
+          {/* Tagline */}
+          <p className="text-cream/40 text-xs text-center">
+            Proudly Indian. Built in Delhi.
+            <br />
+            For every Indian home.
           </p>
         </div>
       </div>

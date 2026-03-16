@@ -73,7 +73,7 @@ export function PlansSection() {
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 max-w-5xl mx-auto perspective-container">
           {/* Regular Plan Card */}
           <div
-            className="bg-dark-light border border-rose/30 rounded-2xl p-8 transition-all duration-300 hover:border-rose hover:-translate-y-1 touch-3d-active group"
+            className="bg-dark-light border border-rose/30 rounded-2xl p-8 transition-all duration-300 hover:border-rose hover:-translate-y-1 touch-3d-active group relative"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible
@@ -82,6 +82,13 @@ export function PlansSection() {
               transition: "all 0.7s cubic-bezier(0.23, 1, 0.32, 1) 200ms",
             }}
           >
+            {/* AI Included Badge */}
+            <div className="absolute top-4 right-4">
+              <span className="inline-block bg-[#D4AF37] text-dark text-[10px] font-semibold tracking-wide px-2.5 py-1 rounded">
+                ✦ AI Included
+              </span>
+            </div>
+
             {/* Meal badge - prominent on mobile */}
             <div className="mb-4">
               <span className="inline-block bg-rose/20 border border-rose/40 text-rose text-xs font-medium tracking-wide px-3 py-1.5 rounded-full">
@@ -170,6 +177,13 @@ export function PlansSection() {
               transition: "all 0.7s cubic-bezier(0.23, 1, 0.32, 1) 350ms",
             }}
           >
+            {/* AI Included Badge */}
+            <div className="absolute top-4 right-4 z-20">
+              <span className="inline-block bg-[#D4AF37] text-dark text-[10px] font-semibold tracking-wide px-2.5 py-1 rounded">
+                ✦ AI Included
+              </span>
+            </div>
+
             {/* Hover glow effect */}
             <div 
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"

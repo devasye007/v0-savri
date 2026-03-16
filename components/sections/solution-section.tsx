@@ -6,8 +6,8 @@ import { Calendar, UserCheck, ChefHat, Sparkles } from "lucide-react"
 const steps = [
   {
     icon: Calendar,
-    title: "Book",
-    description: "Open the app. Pick your date and time.",
+    title: "Book + AI Plans",
+    description: "Open the app and book your chef. Savri's AI instantly creates your personalised meal plan and briefs your chef before they arrive.",
   },
   {
     icon: UserCheck,

@@ -4,6 +4,32 @@ import { useInView } from "@/hooks/use-in-view"
 import { useScroll3D } from "@/hooks/use-scroll-3d"
 import { ShieldCheck, Users2, MapPin, Heart, Sparkles } from "lucide-react"
 
+// Custom Indian Flag/Chakra icon component
+function IndianIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      className={className}
+      strokeWidth={1.5}
+      stroke="currentColor"
+    >
+      {/* Ashoka Chakra inspired icon */}
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="3" />
+      {/* Spokes */}
+      <line x1="12" y1="3" x2="12" y2="9" />
+      <line x1="12" y1="15" x2="12" y2="21" />
+      <line x1="3" y1="12" x2="9" y2="12" />
+      <line x1="15" y1="12" x2="21" y2="12" />
+      <line x1="5.64" y1="5.64" x2="9.17" y2="9.17" />
+      <line x1="14.83" y1="14.83" x2="18.36" y2="18.36" />
+      <line x1="5.64" y1="18.36" x2="9.17" y2="14.83" />
+      <line x1="14.83" y1="9.17" x2="18.36" y2="5.64" />
+    </svg>
+  )
+}
+
 const pillars = [
   {
     icon: ShieldCheck,
@@ -35,6 +61,13 @@ const pillars = [
     description:
       "Savri learns your taste, plans your meals, and matches you with the right chef — automatically.",
   },
+  {
+    icon: IndianIcon,
+    title: "Proudly Indian",
+    description:
+      "Built in Delhi. For Delhi. By someone who lives here and understands this city. Not a foreign app entering India — this is ours.",
+    isCustomIcon: true,
+  },
 ]
 
 export function WhySavriSection() {
@@ -58,8 +91,8 @@ export function WhySavriSection() {
           Built different.
         </h2>
 
-        {/* Trust Pillars with 3D pop-in */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 max-w-7xl mx-auto perspective-container">
+        {/* Trust Pillars with 3D pop-in - 6 pillars now */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-5xl mx-auto perspective-container">
           {pillars.map((pillar, index) => (
             <div
               key={index}

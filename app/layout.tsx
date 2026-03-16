@@ -15,12 +15,12 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Savri — Private Chef Booking Launching Delhi NCR June 2026',
-  description: 'Book a verified private chef for your home in Delhi NCR. Daily meals, parties, special occasions. Coming June 2026.',
+  title: 'Savri — AI-Powered Private Chef Booking. Delhi NCR. June 2026.',
+  description: 'Book a verified private chef for your home in Delhi NCR. AI meal planning, smart chef matching, and taste learning built in. Daily meals and parties. Coming June 2026.',
   generator: 'v0.app',
   openGraph: {
-    title: 'Savri — Private Chef Booking',
-    description: 'Your chef. Your kitchen. Your table. Launching Delhi NCR June 2026.',
+    title: 'Savri — AI-Powered Private Chef Booking',
+    description: 'Book a verified private chef for your home in Delhi NCR. AI meal planning, smart chef matching, and taste learning built in. Daily meals and parties.',
     images: ['/images/hero-food.jpg'],
   },
   icons: {
