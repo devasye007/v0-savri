@@ -45,6 +45,22 @@ export function HeroSection() {
             ))}
           </h2>
 
+          {/* AI Platform Pill - First thing after headline */}
+          <div
+            className="mb-4 transition-all duration-500"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: "650ms",
+            }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gold/40 bg-gold/15 text-gold text-[10px] font-medium tracking-widest uppercase relative overflow-hidden">
+              <span className="absolute inset-0 animate-shimmer" />
+              <span className="animate-star-pulse relative z-10">✦</span>
+              <span className="relative z-10">AI-POWERED PRIVATE CHEF PLATFORM</span>
+            </span>
+          </div>
+
           {/* Sub-headline */}
           <p
             className="text-cream/80 text-lg md:text-xl leading-relaxed mb-6 max-w-md transition-all duration-500"
@@ -58,24 +74,8 @@ export function HeroSection() {
             <br />
             Your kitchen. Fresh food.
             <br />
-            Every time.
+            For daily meals and parties both.
           </p>
-
-          {/* AI Feature Pill */}
-          <div
-            className="mb-8 transition-all duration-500"
-            style={{
-              opacity: mounted ? 1 : 0,
-              transform: mounted ? "translateY(0)" : "translateY(20px)",
-              transitionDelay: "750ms",
-            }}
-          >
-            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-rose/30 bg-cream/5 text-rose text-xs font-medium tracking-wide relative overflow-hidden">
-              <span className="absolute inset-0 animate-shimmer" />
-              <span className="text-gold animate-star-pulse relative z-10">✦</span>
-              <span className="relative z-10">AI-powered meal planning included</span>
-            </span>
-          </div>
 
           {/* CTA Button */}
           <div
@@ -93,6 +93,17 @@ export function HeroSection() {
               Join the waitlist
             </a>
           </div>
+
+          {/* Made In India */}
+          <p
+            className="text-gold text-sm mt-4 font-medium tracking-wide transition-all duration-500 flex items-center gap-1.5"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transitionDelay: "850ms",
+            }}
+          >
+            <span className="text-base">🇮🇳</span> Proudly Made In India
+          </p>
 
           {/* Launch date */}
           <p
