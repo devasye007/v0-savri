@@ -24,20 +24,13 @@ export function HeroSection() {
         {/* Left Content */}
         <div className="flex-1 flex flex-col justify-center z-10 pt-12 lg:pt-0">
           {/* Logo */}
-          <div 
-            className="mb-8"
-            style={{ background: "transparent", display: "inline-flex", alignItems: "center" }}
-          >
+          <div className="mb-6">
             <Image
               src="/images/logo-savri.png"
               alt="Savri"
-              width={200}
-              height={48}
-              className="h-9 md:h-12 w-auto"
-              style={{ 
-                background: "transparent",
-                mixBlendMode: "screen",
-              }}
+              width={180}
+              height={54}
+              className="h-12 md:h-14 lg:h-16 w-auto"
               priority
             />
           </div>

@@ -22,19 +22,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
           {/* Logo & Tagline */}
           <div>
-            <div style={{ background: "transparent", display: "inline-flex", alignItems: "center" }}>
-              <Image
-                src="/images/logo-savri.png"
-                alt="Savri"
-                width={120}
-                height={40}
-                className="h-10 md:h-10 w-auto mb-3"
-                style={{ 
-                  background: "transparent",
-                  mixBlendMode: "screen",
-                }}
-              />
-            </div>
+            <Image
+              src="/images/logo-savri.png"
+              alt="Savri"
+              width={100}
+              height={30}
+              className="h-8 w-auto mb-3"
+            />
             <p className="text-cream/60 text-sm">
               Your chef. Your kitchen. Your table.
             </p>
