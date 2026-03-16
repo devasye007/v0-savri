@@ -413,13 +413,20 @@ function MemeFooter({ dark = false, hideBranding = false }: { dark?: boolean; hi
   return (
     <div className={`flex items-center justify-between mt-5 pt-4 border-t ${dark ? "border-cream/10" : "border-dark/10"}`}>
       {!hideBranding && (
-        <Image
-          src="/images/logo-savri.png"
-          alt="Savri"
-          width={60}
-          height={18}
-          className={`h-4 w-auto ${dark ? "opacity-40" : "opacity-50"}`}
-        />
+        <div style={{ background: "transparent", display: "inline-flex", alignItems: "center" }}>
+          <Image
+            src="/images/logo-savri.png"
+            alt="Savri"
+            width={60}
+            height={16}
+            className="h-4 w-auto"
+            style={{ 
+              background: "transparent",
+              mixBlendMode: dark ? "screen" : "multiply",
+              opacity: dark ? 0.4 : 0.5,
+            }}
+          />
+        </div>
       )}
       {hideBranding && <span />}
       <button 

@@ -1,71 +1,59 @@
-"use client";
+"use client"
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react"
 
 export function IntroAnimation() {
-  const [shouldShow, setShouldShow] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
-  const [isRemoved, setIsRemoved] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showIntro, setShowIntro] = useState(false)
 
   useEffect(() => {
-    // Check sessionStorage on mount
-    if (typeof window !== "undefined") {
-      const hasSeenIntro = sessionStorage.getItem("savri_intro");
-      if (hasSeenIntro) {
-        setIsRemoved(true);
-        return;
-      }
-      setShouldShow(true);
-      sessionStorage.setItem("savri_intro", "true");
+    const played = sessionStorage.getItem("savri_intro")
+    if (!played) {
+      setShowIntro(true)
     }
-  }, []);
+  }, [])
 
+  // Fallback timeout - auto dismiss after 5 seconds max
   useEffect(() => {
-    if (!shouldShow || !videoRef.current) return;
+    if (!showIntro) return
+    const fallback = setTimeout(() => {
+      sessionStorage.setItem("savri_intro", "true")
+      setShowIntro(false)
+    }, 5000)
+    return () => clearTimeout(fallback)
+  }, [showIntro])
 
-    const video = videoRef.current;
+  const handleVideoEnd = () => {
+    sessionStorage.setItem("savri_intro", "true")
+    setShowIntro(false)
+  }
 
-    // Handle video end
-    const handleVideoEnd = () => {
-      setIsExiting(true);
-      setTimeout(() => setIsRemoved(true), 400); // 400ms fade out
-    };
-
-    video.addEventListener("ended", handleVideoEnd);
-
-    // Play video
-    video.play().catch(() => {
-      // If autoplay fails, show for a brief moment then exit
-      setTimeout(handleVideoEnd, 2000);
-    });
-
-    return () => {
-      video.removeEventListener("ended", handleVideoEnd);
-    };
-  }, [shouldShow]);
-
-  if (isRemoved || !shouldShow) return null;
+  if (!showIntro) return null
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center"
       style={{
-        backgroundColor: "#F5F0EB",
-        opacity: isExiting ? 0 : 1,
-        transition: "opacity 0.4s ease-in",
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        background: "#F5F0EB",
       }}
     >
       <video
-        ref={videoRef}
-        className="w-full h-full object-contain max-w-[80vw] max-h-[80vh]"
+        autoPlay
         muted
         playsInline
         preload="auto"
+        onEnded={handleVideoEnd}
+        onError={handleVideoEnd}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
       >
-        <source src="/videos/logo-animation.mov" type="video/quicktime" />
         <source src="/videos/logo-animation.mov" type="video/mp4" />
+        <source src="/videos/logo-animation.mov" type="video/quicktime" />
       </video>
     </div>
-  );
+  )
 }
