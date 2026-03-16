@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import Image from "next/image"
 import { Share2 } from "lucide-react"
 
 // Meme 1 - The Annual Resolution
@@ -412,9 +413,13 @@ function MemeFooter({ dark = false, hideBranding = false }: { dark?: boolean; hi
   return (
     <div className={`flex items-center justify-between mt-5 pt-4 border-t ${dark ? "border-cream/10" : "border-dark/10"}`}>
       {!hideBranding && (
-        <span className={`text-xs ${dark ? "text-cream/40" : "text-dark/40"}`}>
-          @savri.in
-        </span>
+        <Image
+          src="/images/logo-savri.png"
+          alt="Savri"
+          width={60}
+          height={18}
+          className={`h-4 w-auto ${dark ? "opacity-40" : "opacity-50"}`}
+        />
       )}
       {hideBranding && <span />}
       <button 

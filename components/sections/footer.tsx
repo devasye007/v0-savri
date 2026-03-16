@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Instagram, Mail } from "lucide-react"
 
 const navLinks = [
@@ -21,7 +22,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
           {/* Logo & Tagline */}
           <div>
-            <h3 className="font-serif text-rose text-3xl font-semibold mb-3">Savri</h3>
+            <Image
+              src="/images/logo-savri.png"
+              alt="Savri"
+              width={120}
+              height={36}
+              className="h-10 w-auto mb-3"
+            />
             <p className="text-cream/60 text-sm">
               Your chef. Your kitchen. Your table.
             </p>

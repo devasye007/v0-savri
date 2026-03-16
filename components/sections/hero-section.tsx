@@ -24,8 +24,15 @@ export function HeroSection() {
         {/* Left Content */}
         <div className="flex-1 flex flex-col justify-center z-10 pt-12 lg:pt-0">
           {/* Logo */}
-          <h1 className="font-serif text-rose text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-8">
-            Savri
+          <h1 className="mb-8">
+            <Image
+              src="/images/logo-savri.png"
+              alt="Savri"
+              width={200}
+              height={60}
+              className="h-14 md:h-16 lg:h-20 w-auto"
+              priority
+            />
           </h1>
 
           {/* Headline with word-by-word animation */}
