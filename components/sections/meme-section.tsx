@@ -416,9 +416,9 @@ function MemeFooter({ dark = false, hideBranding = false }: { dark?: boolean; hi
         <Image
           src="/images/logo-savri.png"
           alt="Savri"
-          width={50}
-          height={15}
-          className={`h-3.5 w-auto ${dark ? "opacity-50 invert" : "opacity-60"}`}
+          width={60}
+          height={18}
+          className={`h-4 w-auto ${dark ? "brightness-0 invert opacity-60" : "opacity-70"}`}
         />
       )}
       {hideBranding && <span />}

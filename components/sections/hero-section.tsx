@@ -24,13 +24,13 @@ export function HeroSection() {
         {/* Left Content */}
         <div className="flex-1 flex flex-col justify-center z-10 pt-12 lg:pt-0">
           {/* Logo */}
-          <div className="mb-6">
+          <div className="mb-8">
             <Image
               src="/images/logo-savri.png"
               alt="Savri"
-              width={180}
-              height={54}
-              className="h-12 md:h-14 lg:h-16 w-auto"
+              width={240}
+              height={72}
+              className="h-10 md:h-12 lg:h-14 w-auto block"
               priority
             />
           </div>

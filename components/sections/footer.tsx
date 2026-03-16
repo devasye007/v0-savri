@@ -25,9 +25,9 @@ export function Footer() {
             <Image
               src="/images/logo-savri.png"
               alt="Savri"
-              width={100}
-              height={30}
-              className="h-8 w-auto mb-3"
+              width={180}
+              height={54}
+              className="h-10 md:h-13 w-auto mb-4 block brightness-0 invert"
             />
             <p className="text-cream/60 text-sm">
               Your chef. Your kitchen. Your table.
