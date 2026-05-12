@@ -239,6 +239,76 @@ export function PlansSection() {
           </div>
         </div>
 
+        {/* Event Pricing Table */}
+        <div
+          className="mt-20 md:mt-28 max-w-4xl mx-auto"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(30px)",
+            transition: "all 0.7s cubic-bezier(0.23, 1, 0.32, 1) 450ms",
+          }}
+        >
+          <div className="text-center mb-10">
+            <h3 className="font-serif text-cream text-2xl md:text-3xl font-medium mb-3">
+              One-time bookings & events
+            </h3>
+            <p className="text-cream/50 text-sm md:text-base">
+              Parties, dinners, celebrations — priced per booking by guest count.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { guests: "1–3 guests", price: "₹549", popular: false },
+              { guests: "4–6 guests", price: "₹799", popular: false },
+              { guests: "7–10 guests", price: "₹1,199", popular: true },
+              { guests: "11–15 guests", price: "₹1,699", popular: false },
+              { guests: "16–20 guests", price: "₹2,099", popular: false },
+              { guests: "20+ guests", price: "₹2,499+", popular: false },
+            ].map(({ guests, price, popular }) => (
+              <div
+                key={guests}
+                className="relative rounded-2xl p-5 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: "#222222",
+                  border: popular ? "1.5px solid #B5636A" : "1px solid rgba(245,240,235,0.08)",
+                  boxShadow: popular ? "0 0 30px rgba(181,99,106,0.12)" : "none",
+                }}
+              >
+                {popular && (
+                  <span
+                    className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap"
+                    style={{ backgroundColor: "#B5636A", color: "#F5F0EB" }}
+                  >
+                    Most Popular
+                  </span>
+                )}
+                <p className="text-cream font-semibold text-sm md:text-base leading-tight">
+                  {guests}
+                </p>
+                <p
+                  className="font-serif text-2xl md:text-3xl font-medium"
+                  style={{ color: "#B5636A" }}
+                >
+                  {price}
+                </p>
+                <p className="text-cream/40 text-xs">per booking · GST inclusive</p>
+                <a
+                  href="#waitlist"
+                  className="mt-1 block text-center py-2.5 rounded-lg text-sm font-medium transition-all duration-150 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{
+                    backgroundColor: popular ? "#B5636A" : "transparent",
+                    border: popular ? "none" : "1px solid rgba(181,99,106,0.35)",
+                    color: popular ? "#F5F0EB" : "#B5636A",
+                  }}
+                >
+                  Book Now
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom text */}
         <div className="text-center mt-12 md:mt-16 max-w-xl mx-auto">
           <p

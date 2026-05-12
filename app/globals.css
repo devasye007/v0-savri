@@ -434,3 +434,165 @@ html {
     transition: transform 0.1s ease-out;
   }
 }
+
+/* ========== PART 1: MOTION & INTERACTIONS ========== */
+
+/* Fade-in-up keyframe (stronger than existing fade-in) */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Stagger delays for fade-in-up children */
+.fade-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.fade-stagger > *:nth-child(2) { animation-delay: 100ms; }
+.fade-stagger > *:nth-child(3) { animation-delay: 200ms; }
+.fade-stagger > *:nth-child(4) { animation-delay: 300ms; }
+.fade-stagger > *:nth-child(5) { animation-delay: 400ms; }
+.fade-stagger > *:nth-child(6) { animation-delay: 500ms; }
+
+/* Navbar underline slide animation (left to right in Savri Rose) */
+.nav-link-underline {
+  position: relative;
+}
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #B5636A;
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-link-underline:hover::after,
+.nav-link-underline.active::after {
+  width: 100%;
+}
+
+/* Button hover micro-animation */
+.btn-savri {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.btn-savri:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+.btn-savri:active {
+  transform: scale(0.98);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* WhatsApp pulse animation */
+@keyframes pulse-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+.animate-pulse-whatsapp {
+  animation: pulse-whatsapp 2.5s ease-out infinite;
+}
+
+/* Careers CTA / primary button pulse */
+@keyframes pulse-cta {
+  0% {
+    box-shadow: 0 0 0 0 rgba(10, 10, 10, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(10, 10, 10, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(10, 10, 10, 0);
+  }
+}
+.animate-pulse-cta {
+  animation: pulse-cta 2.5s ease-out infinite;
+}
+
+/* Timeline connecting line grow animation */
+@keyframes grow-width {
+  from { width: 0; }
+  to { width: 100%; }
+}
+.animate-grow-width {
+  animation: grow-width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Hero sequential load delay utilities */
+.hero-delay-0  { animation-delay: 0ms; }
+.hero-delay-1  { animation-delay: 200ms; }
+.hero-delay-2  { animation-delay: 400ms; }
+.hero-delay-3  { animation-delay: 600ms; }
+.hero-delay-4  { animation-delay: 800ms; }
+
+/* Magnetic button — smooth return transition */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.2s ease;
+}
+
+/* Back-to-top button */
+.back-to-top-btn {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: #B5636A;
+  z-index: 9999;
+  transition: none;
+  transform-origin: left;
+}
+
+/* Live pulse dot for waitlist counter */
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+/* Ping ring for live dot (outer ring expanding) */
+@keyframes ping-dot {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.animate-ping-dot {
+  animation: ping-dot 1.6s ease-out infinite;
+}

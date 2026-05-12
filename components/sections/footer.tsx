@@ -1,10 +1,11 @@
 "use client"
 
+import Image from "next/image"
 import { Instagram, Mail, Linkedin } from "lucide-react"
 
 const navLinks = [
   { label: "About Savri", href: "#about" },
-  { label: "For Chefs", href: "https://bit.ly/savri-chef" },
+  { label: "For Chefs", href: "/careers" },
   { label: "Join Waitlist", href: "#waitlist" },
   { label: "Contact", href: "mailto:founder@savri.co.in" },
 ]
@@ -22,7 +23,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
           {/* Logo & Tagline */}
           <div>
-            <h3 className="font-serif text-rose text-3xl font-semibold mb-3">Savri</h3>
+            <Image src="/savri-logo-light.png" alt="Savri" width={120} height={36} className="h-9 w-auto mb-3" />
             <p className="text-cream/60 text-sm">
               Your chef. Your kitchen. Your table.
             </p>

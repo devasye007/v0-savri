@@ -2,9 +2,111 @@
 
 import { useState } from "react"
 import { useInView } from "@/hooks/use-in-view"
-import { Check } from "lucide-react"
+import { Check, Copy, MessageCircle } from "lucide-react"
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreyaowo"
+
+function generateReferralCode(name: string): string {
+  const first =
+    name.trim().split(/\s+/)[0].toLowerCase().replace(/[^a-z]/g, "") || "user"
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789"
+  const rand = Array.from({ length: 4 }, () =>
+    chars[Math.floor(Math.random() * chars.length)]
+  ).join("")
+  return `${first}-${rand}`
+}
+
+// ── Referral Section (shown after successful submission) ─────────────────────
+
+function ReferralSection({ referralCode }: { referralCode: string }) {
+  const [copied, setCopied] = useState(false)
+  const link = `savri.co.in/?ref=${referralCode}`
+  const fullLink = `https://savri.co.in/?ref=${referralCode}`
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(fullLink)
+    } catch {
+      // Fallback for older browsers
+      const el = document.createElement("input")
+      el.value = fullLink
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand("copy")
+      document.body.removeChild(el)
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const waText = encodeURIComponent(
+    `Hey! I just joined the waitlist for Savri — Delhi NCR's first private chef booking platform launching June 2026. Join using my link and we both get ₹100 off our first booking: ${link}`
+  )
+  const waLink = `https://wa.me/?text=${waText}`
+
+  return (
+    <div
+      className="mt-8 rounded-2xl p-6 text-left animate-fade-in"
+      style={{ backgroundColor: "#222222" }}
+    >
+      {/* Heading */}
+      <p className="text-cream font-semibold text-base mb-1">
+        Share Savri with a friend.
+      </p>
+      <p className="text-cream/60 text-sm leading-relaxed mb-5">
+        When they join using your link, you both get{" "}
+        <span className="text-rose font-medium">₹100 off</span> your first
+        booking at launch.
+      </p>
+
+      {/* Link input + copy */}
+      <div className="flex gap-2 mb-4">
+        <div
+          className="flex-1 px-4 py-3 rounded-lg border border-cream/10 text-cream/70 text-sm font-mono truncate select-all"
+          style={{ backgroundColor: "#1A1A1A" }}
+        >
+          {link}
+        </div>
+        <button
+          onClick={handleCopy}
+          className="shrink-0 flex items-center gap-1.5 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200"
+          style={{
+            backgroundColor: copied ? "rgba(181,99,106,0.15)" : "rgba(181,99,106,0.1)",
+            border: "1px solid rgba(181,99,106,0.3)",
+            color: copied ? "#B5636A" : "#F5F0EB",
+          }}
+        >
+          <Copy className="w-4 h-4" strokeWidth={1.8} />
+          {copied ? "Copied! ✓" : "Copy"}
+        </button>
+      </div>
+
+      {/* Share buttons */}
+      <div className="flex gap-3">
+        <a
+          href={waLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
+          style={{ backgroundColor: "#25D366", color: "#fff" }}
+        >
+          <MessageCircle className="w-4 h-4" strokeWidth={1.8} />
+          Share on WhatsApp
+        </a>
+        <button
+          onClick={handleCopy}
+          className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium border border-cream/10 text-cream/70 hover:text-cream hover:border-cream/30 transition-all duration-200"
+          style={{ backgroundColor: "#1A1A1A" }}
+        >
+          <Copy className="w-4 h-4" strokeWidth={1.8} />
+          {copied ? "Copied!" : "Copy Link"}
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// ── Main Section ─────────────────────────────────────────────────────────────
 
 export function WaitlistSection() {
   const { ref, isInView } = useInView({ threshold: 0.2 })
@@ -17,6 +119,7 @@ export function WaitlistSection() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [referralCode, setReferralCode] = useState("")
   const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,6 +146,7 @@ export function WaitlistSection() {
       })
 
       if (response.ok) {
+        setReferralCode(generateReferralCode(formData.name))
         setIsSubmitted(true)
       } else {
         throw new Error("Form submission failed")
@@ -101,7 +205,7 @@ export function WaitlistSection() {
             Join the waitlist and get early access before anyone else.
           </p>
 
-          {/* Form or Success Message */}
+          {/* Form or Success state */}
           {!isSubmitted ? (
             <form
               onSubmit={handleSubmit}
@@ -112,7 +216,6 @@ export function WaitlistSection() {
                 transitionDelay: "300ms",
               }}
             >
-              {/* Hidden fields for Formspree */}
               <input type="hidden" name="_replyto" value="founder@savri.co.in" />
               <input type="hidden" name="_subject" value="New Savri Waitlist Signup" />
 
@@ -121,9 +224,7 @@ export function WaitlistSection() {
                 name="name"
                 placeholder="Your name"
                 value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream placeholder:text-cream/40 focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200"
               />
@@ -132,9 +233,7 @@ export function WaitlistSection() {
                 name="phone"
                 placeholder="Your phone number"
                 value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream placeholder:text-cream/40 focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200"
               />
@@ -143,9 +242,7 @@ export function WaitlistSection() {
                 name="area"
                 placeholder="Your area in Delhi NCR"
                 value={formData.area}
-                onChange={(e) =>
-                  setFormData({ ...formData, area: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, area: e.target.value })}
                 required
                 className="w-full px-5 py-4 bg-dark-light border border-cream/10 rounded-lg text-cream placeholder:text-cream/40 focus:outline-none focus:border-rose focus:ring-1 focus:ring-rose/50 transition-all duration-200"
               />
@@ -205,41 +302,43 @@ export function WaitlistSection() {
                 {isSubmitting ? "Joining..." : "I want early access"}
               </button>
 
-              {/* Error message */}
               {error && (
-                <p className="text-red-400 text-sm mt-4 animate-fade-in">
-                  {error}
-                </p>
+                <p className="text-red-400 text-sm mt-4 animate-fade-in">{error}</p>
               )}
             </form>
           ) : (
-            /* Success Message */
-            <div className="py-12 animate-fade-in">
-              {/* Animated checkmark */}
-              <div
-                className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-rose mb-6"
-                style={{
-                  animation: "scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-                }}
-              >
-                <Check className="w-10 h-10 text-cream" strokeWidth={2.5} />
+            /* ── Success + Referral state ── */
+            <div className="animate-fade-in">
+              {/* Checkmark + confirmation */}
+              <div className="py-8">
+                <div
+                  className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-rose mb-6"
+                  style={{
+                    animation: "scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+                  }}
+                >
+                  <Check className="w-10 h-10 text-cream" strokeWidth={2.5} />
+                </div>
+
+                <p className="font-serif text-rose text-2xl md:text-3xl mb-3">
+                  You're on the list! 🎉
+                </p>
+
+                <p className="text-cream/70 text-base md:text-lg leading-relaxed mb-2">
+                  Savri launches in Delhi NCR, June 2026.
+                  <br />
+                  We'll reach out on WhatsApp when bookings open.
+                </p>
+
+                <p className="text-gold text-sm">
+                  Check founder@savri.co.in is not in your spam —
+                  <br />
+                  that is where our reply comes from.
+                </p>
               </div>
 
-              <p className="font-serif text-cream text-2xl md:text-3xl mb-4">
-                {"You're on the list."}
-              </p>
-
-              <p className="text-cream/70 text-lg leading-relaxed mb-6">
-                We will reach out to you personally before
-                <br />
-                Savri launches in your area this June.
-              </p>
-
-              <p className="text-gold text-sm">
-                Check founder@savri.co.in is not in your spam —
-                <br />
-                that is where our reply comes from.
-              </p>
+              {/* Referral section */}
+              <ReferralSection referralCode={referralCode} />
             </div>
           )}
 
@@ -260,17 +359,10 @@ export function WaitlistSection() {
         </div>
       </div>
 
-      {/* Scale-in animation for checkmark */}
       <style jsx>{`
         @keyframes scale-in {
-          0% {
-            transform: scale(0);
-            opacity: 0;
-          }
-          100% {
-            transform: scale(1);
-            opacity: 1;
-          }
+          0% { transform: scale(0); opacity: 0; }
+          100% { transform: scale(1); opacity: 1; }
         }
       `}</style>
     </section>

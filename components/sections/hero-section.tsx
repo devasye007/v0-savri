@@ -1,20 +1,53 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Instagram } from "lucide-react"
 import { useGyroscopeTilt } from "@/hooks/use-scroll-3d"
+import { useCounter } from "@/hooks/use-counter"
+
+// ↓ Update this single number to reflect the current waitlist size
+const WAITLIST_COUNT = 47
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
   const { tilt, isSupported } = useGyroscopeTilt()
+  const magneticRef = useRef<HTMLAnchorElement>(null)
+  const count = useCounter({ to: WAITLIST_COUNT, duration: 1500, isActive: mounted })
 
   useEffect(() => {
     setMounted(true)
-    // Check if mobile device
     setIsMobile(window.matchMedia("(hover: none) and (pointer: coarse)").matches)
   }, [])
+
+  // Parallax: track scroll position
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  // Magnetic CTA: remove CSS transition while tracking, restore on leave
+  const handleMagneticMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const btn = magneticRef.current
+    if (!btn || isMobile) return
+    const rect = btn.getBoundingClientRect()
+    const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.2
+    const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.2
+    btn.style.transition = "none"
+    btn.style.transform = `translate(${dx}px, ${dy}px) scale(1.03)`
+    btn.style.boxShadow = "0 12px 35px rgba(181,99,106,0.4)"
+  }
+
+  const handleMagneticLeave = () => {
+    const btn = magneticRef.current
+    if (!btn) return
+    btn.style.transition = "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease"
+    btn.style.transform = "translate(0,0) scale(1)"
+    btn.style.boxShadow = ""
+  }
 
   const words = ["Delhi's", "private", "chef", "is", "coming", "home."]
 
@@ -23,21 +56,61 @@ export function HeroSection() {
       <div className="container mx-auto px-6 py-12 lg:py-0 min-h-screen flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* Left Content */}
         <div className="flex-1 flex flex-col justify-center z-10 pt-12 lg:pt-0">
-          {/* Logo */}
-          <h1 className="font-serif text-rose text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-8">
+          {/* Logo — first to appear */}
+          <h1
+            className="font-serif text-rose text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-8"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
+              transitionDelay: "0ms",
+            }}
+          >
             Savri
           </h1>
 
-          {/* Headline with word-by-word animation */}
+          {/* Waitlist counter pill — appears just after the logo */}
+          <div
+            className="mb-6"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(16px)",
+              transition: "opacity 0.5s ease 150ms, transform 0.5s ease 150ms",
+            }}
+          >
+            <span
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-sm font-medium"
+              style={{ backgroundColor: "#222222" }}
+            >
+              {/* Pulsing live dot */}
+              <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <span
+                  className="animate-ping-dot absolute inline-flex h-full w-full rounded-full"
+                  style={{ backgroundColor: "#B5636A" }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2.5 w-2.5 animate-pulse-dot"
+                  style={{ backgroundColor: "#B5636A" }}
+                />
+              </span>
+              <span className="text-cream/80">
+                <span className="text-cream font-semibold">{count}</span>
+                {" people have joined the waitlist"}
+              </span>
+            </span>
+          </div>
+
+          {/* Headline with word-by-word stagger — second */}
           <h2 className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6 flex flex-wrap gap-x-3">
             {words.map((word, index) => (
               <span
                 key={index}
-                className="inline-block transition-all duration-500"
+                className="inline-block"
                 style={{
                   opacity: mounted ? 1 : 0,
                   transform: mounted ? "translateY(0)" : "translateY(20px)",
-                  transitionDelay: `${index * 100}ms`,
+                  transition: "opacity 0.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)",
+                  transitionDelay: `${200 + index * 80}ms`,
                 }}
               >
                 {word}
@@ -45,13 +118,14 @@ export function HeroSection() {
             ))}
           </h2>
 
-          {/* Sub-headline */}
+          {/* Sub-headline — third */}
           <p
-            className="text-cream/80 text-lg md:text-xl leading-relaxed mb-6 max-w-md transition-all duration-500"
+            className="text-cream/80 text-lg md:text-xl leading-relaxed mb-6 max-w-md"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "translateY(0)" : "translateY(20px)",
-              transitionDelay: "700ms",
+              transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
+              transitionDelay: "680ms",
             }}
           >
             A real trained chef.
@@ -63,11 +137,12 @@ export function HeroSection() {
 
           {/* AI Feature Pill */}
           <div
-            className="mb-8 transition-all duration-500"
+            className="mb-8"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "translateY(0)" : "translateY(20px)",
-              transitionDelay: "750ms",
+              transition: "opacity 0.5s ease, transform 0.5s ease",
+              transitionDelay: "760ms",
             }}
           >
             <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-rose/30 bg-cream/5 text-rose text-xs font-medium tracking-wide relative overflow-hidden">
@@ -77,18 +152,21 @@ export function HeroSection() {
             </span>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button — fourth (magnetic) */}
           <div
-            className="transition-all duration-500"
             style={{
               opacity: mounted ? 1 : 0,
-              transform: mounted ? "translateY(0)" : "translateY(20px)",
-              transitionDelay: "800ms",
+              transition: "opacity 0.5s ease",
+              transitionDelay: "900ms",
             }}
           >
             <a
+              ref={magneticRef}
               href="#waitlist"
-              className="inline-block bg-rose text-cream px-8 py-4 rounded-lg text-lg font-medium transition-all duration-150 hover:bg-rose-dark hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-rose/20"
+              onMouseMove={handleMagneticMove}
+              onMouseLeave={handleMagneticLeave}
+              className="inline-block bg-rose text-cream px-8 py-4 rounded-lg text-lg font-medium shadow-lg shadow-rose/20 magnetic-btn"
+              style={{ display: "inline-block" }}
             >
               Join the waitlist
             </a>
@@ -96,10 +174,11 @@ export function HeroSection() {
 
           {/* Launch date */}
           <p
-            className="text-gold text-sm mt-6 font-medium tracking-wide transition-all duration-500"
+            className="text-gold text-sm mt-6 font-medium tracking-wide"
             style={{
               opacity: mounted ? 1 : 0,
-              transitionDelay: "900ms",
+              transition: "opacity 0.5s ease",
+              transitionDelay: "1000ms",
             }}
           >
             Launching Delhi NCR — June 2026
@@ -107,10 +186,11 @@ export function HeroSection() {
 
           {/* Social link */}
           <div
-            className="mt-6 flex items-center gap-3 transition-all duration-500"
+            className="mt-6 flex items-center gap-3"
             style={{
               opacity: mounted ? 1 : 0,
-              transitionDelay: "1000ms",
+              transition: "opacity 0.5s ease",
+              transitionDelay: "1100ms",
             }}
           >
             <a
@@ -126,22 +206,24 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right Visual */}
+        {/* Right Visual — parallax applied to outer container */}
         <div
-          className="flex-1 relative w-full lg:h-screen flex items-center justify-center transition-all duration-700 perspective-container"
+          className="flex-1 relative w-full lg:h-screen flex items-center justify-center perspective-container"
           style={{
             opacity: mounted ? 1 : 0,
-            transitionDelay: "400ms",
+            transition: "opacity 0.7s ease 400ms",
+            // Parallax: image moves at ~0.3x scroll speed (slower than page)
+            transform: `translateY(${scrollY * 0.3}px)`,
           }}
         >
-          <div 
+          <div
             className={`relative w-full aspect-[4/3] lg:aspect-auto lg:h-[80vh] max-w-2xl ${!isMobile && !isSupported ? "animate-float-3d" : ""}`}
             style={{
               transformStyle: "preserve-3d",
-              // Use gyroscope tilt on mobile, or swing animation as fallback
-              transform: isMobile && isSupported 
-                ? `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)` 
-                : undefined,
+              transform:
+                isMobile && isSupported
+                  ? `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`
+                  : undefined,
               transition: isMobile ? "transform 0.1s ease-out" : undefined,
             }}
           >
@@ -154,17 +236,16 @@ export function HeroSection() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             {/* 3D depth layer */}
-            <div 
+            <div
               className="absolute inset-0 rounded-2xl lg:rounded-3xl border border-rose/10"
               style={{ transform: "translateZ(20px)" }}
             />
-            {/* Gradient overlay for better text contrast on mobile */}
+            {/* Gradient overlay for mobile */}
             <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent lg:hidden rounded-2xl" />
           </div>
-          
-          {/* Mobile: Add swing animation if no gyroscope */}
+
           {isMobile && !isSupported && (
-            <div 
+            <div
               className="absolute inset-0 flex items-center justify-center"
               style={{ pointerEvents: "none" }}
             >
