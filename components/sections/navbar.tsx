@@ -39,9 +39,9 @@ export function Navbar() {
           <Image
             src="/savri-logo-light.png"
             alt="Savri"
-            width={120}
-            height={40}
-            className="h-10 w-auto"
+            width={200}
+            height={80}
+            className="h-30 w-auto -my-10"
             priority
           />
         </Link>
