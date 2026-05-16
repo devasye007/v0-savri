@@ -16,11 +16,11 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Savri — Private Chef Booking | Delhi NCR',
-  description: 'Book a verified private chef for your home in Delhi NCR. Private dining, parties, daily meals, and special occasions. Launching June 2026.',
+  title: 'Savri — Premium Private Chef at Home',
+  description: 'Book a verified private chef for your home. Transparent pricing, premium dining, and trusted chefs for intimate dinners, family meals, and celebrations.',
   openGraph: {
-    title: 'Savri — Private Chef Booking',
-    description: 'Your chef. Your kitchen. Your table. Launching Delhi NCR June 2026.',
+    title: 'Savri — Premium Private Chef at Home',
+    description: 'Authentic. Fresh. Personal. Starting ₹549.',
     images: ['/images/hero-food.jpg'],
   },
   icons: {

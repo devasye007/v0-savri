@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useInView } from "@/hooks/use-in-view"
 import { Calendar, Users, Heart, Lightbulb } from "lucide-react"
 
@@ -103,6 +104,21 @@ export function AiFeaturesSection() {
           <br />
           Personal by nature.
         </p>
+
+        <div
+          className="mt-8 text-center transition-all duration-600"
+          style={{
+            opacity: isInView ? 1 : 0,
+            transitionDelay: "760ms",
+          }}
+        >
+          <Link
+            href="/ai"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-rose/20 px-6 py-3 text-sm font-semibold text-rose transition hover:border-rose/40 hover:bg-rose/5"
+          >
+            Explore Savri AI
+          </Link>
+        </div>
       </div>
     </section>
   )

@@ -1,41 +1,77 @@
 "use client"
 
 import Image from "next/image"
-import { Instagram, Mail, Linkedin } from "lucide-react"
+import { Instagram, Linkedin, Mail, Twitter } from "lucide-react"
 
-const navLinks = [
-  { label: "About Savri", href: "#about" },
-  { label: "For Chefs", href: "/careers" },
-  { label: "Join Waitlist", href: "#waitlist" },
-  { label: "Contact", href: "mailto:founder@savri.co.in" },
+import {
+  BOOKING_URL,
+  CONTACT_EMAIL,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+  TWITTER_URL,
+} from "@/lib/site-data"
+
+const aboutLinks = [
+  { label: "About Savri", href: "/about" },
+  { label: "Our Story", href: "/about" },
+  { label: "Team", href: "/about" },
+]
+
+const serviceLinks = [
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Savri AI", href: "/ai" },
+  { label: "Join Waitlist", href: "/#plans-notify" },
+  { label: "Careers", href: "/careers" },
+  { label: "Book Now", href: BOOKING_URL },
+]
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Contact", href: "/contact" },
 ]
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/savri.in/", handle: "@savri.in" },
-  { icon: Mail, label: "Email", href: "mailto:founder@savri.co.in", handle: "founder@savri.co.in" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/savri", handle: "Savri" },
+  { icon: Instagram, label: "Instagram", href: INSTAGRAM_URL, handle: "@savri.in" },
+  { icon: Twitter, label: "Twitter", href: TWITTER_URL, handle: "@savri_in" },
+  { icon: Linkedin, label: "LinkedIn", href: LINKEDIN_URL, handle: "Savri" },
+  { icon: Mail, label: "Email", href: `mailto:${CONTACT_EMAIL}`, handle: CONTACT_EMAIL },
 ]
 
 export function Footer() {
   return (
     <footer className="bg-dark border-t border-cream/5">
       <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
-          {/* Logo & Tagline */}
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr_1fr] md:gap-8 items-start">
           <div>
             <Image src="/savri-logo-light.png" alt="Savri" width={120} height={36} className="h-9 w-auto mb-3" />
-            <p className="text-cream/60 text-sm">
-              Your chef. Your kitchen. Your table.
+            <p className="text-cream/60 text-sm">Your chef. Your kitchen. Your table.</p>
+            <p className="mt-4 max-w-xs text-sm leading-7 text-cream/48">
+              Premium private dining for Indian homes. Freshly cooked, clearly priced, and designed to feel effortless.
             </p>
           </div>
 
-          {/* Navigation */}
-          <div className="flex flex-col items-start md:items-center">
-            <nav className="flex flex-col gap-3">
-              {navLinks.map((link) => (
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">About</p>
+            <nav className="mt-4 flex flex-col gap-3">
+              {aboutLinks.map((link) => (
+                <a key={link.label} href={link.href} className="text-cream/70 hover:text-cream text-sm transition-colors duration-200">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">Service</p>
+            <nav className="mt-4 flex flex-col gap-3">
+              {serviceLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="text-cream/70 hover:text-cream text-sm transition-colors duration-200"
                 >
                   {link.label}
@@ -44,8 +80,19 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Social Links & Contact */}
-          <div className="flex flex-col items-start md:items-end gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">Legal</p>
+            <nav className="mt-4 flex flex-col gap-3">
+              {legalLinks.map((link) => (
+                <a key={link.label} href={link.href} className="text-cream/70 hover:text-cream text-sm transition-colors duration-200">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex flex-col items-start gap-4 md:items-end">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">Social</p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
@@ -60,9 +107,9 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            <div className="flex flex-col items-start md:items-end gap-1">
+            <div className="flex flex-col items-start gap-1 md:items-end">
               <a 
-                href="https://www.instagram.com/savri.in/" 
+                href={INSTAGRAM_URL}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-cream/60 hover:text-cream text-sm transition-colors"
@@ -70,23 +117,18 @@ export function Footer() {
                 @savri.in
               </a>
               <a 
-                href="mailto:founder@savri.co.in"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-cream/60 hover:text-cream text-sm transition-colors"
               >
-                founder@savri.co.in
+                {CONTACT_EMAIL}
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-cream/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-cream/40 text-sm">
-            &copy; 2026 Savri. Delhi NCR.
-          </p>
-          <p className="text-cream/40 text-sm">
-            Made with care in India.
-          </p>
+          <p className="text-cream/40 text-sm">&copy; 2026 Savri. Made with care in India.</p>
+          <p className="text-cream/40 text-sm">Premium home dining, built around trust.</p>
         </div>
       </div>
     </footer>

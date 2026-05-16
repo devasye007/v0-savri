@@ -4,13 +4,15 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { Menu, X } from "lucide-react"
+
+import { BOOKING_URL, navLinks } from "@/lib/site-data"
 
 export function Navbar() {
   const pathname = usePathname()
-  const [activeSection, setActiveSection] = useState("")
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-  // Track scroll for slim border + bg transition
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener("scroll", onScroll, { passive: true })
@@ -18,82 +20,124 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Track active section on main page only
   useEffect(() => {
-    if (pathname !== "/") return
-
-    const sections = ["waitlist", "faq"]
-    const observers: IntersectionObserver[] = []
-
-    sections.forEach((id) => {
-      const el = document.getElementById(id)
-      if (!el) return
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id)
-        },
-        { threshold: 0.4, rootMargin: "-40% 0px -40% 0px" }
-      )
-      obs.observe(el)
-      observers.push(obs)
-    })
-
-    return () => observers.forEach((o) => o.disconnect())
+    setMobileOpen(false)
   }, [pathname])
 
   const isActive = (href: string) => {
-    if (href === "/careers") return pathname === "/careers"
-    if (href === "#waitlist") return activeSection === "waitlist"
-    return false
+    return pathname === href
   }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 backdrop-blur-md ${
-        scrolled
-          ? "bg-black/80 border-b border-white/10"
-          : "bg-dark/80 border-b border-transparent"
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+        scrolled ? "border-white/10 bg-black/82 backdrop-blur-xl" : "border-transparent bg-dark/72 backdrop-blur-md"
       }`}
     >
-      <Link href="/" className="hover:opacity-90 transition-opacity duration-200">
-        <Image
-          src="/savri-logo-light.png"
-          alt="Savri"
-          width={120}
-          height={40}
-          className="h-10 w-auto"
-          priority
-        />
-      </Link>
-
-      <div className="flex items-center gap-6">
-        <Link
-          href="/careers"
-          className={`nav-link-underline text-sm transition-colors duration-200 pb-0.5 ${
-            isActive("/careers") ? "text-rose active" : "text-cream/70 hover:text-cream"
-          }`}
-        >
-          Careers
+      <nav className="container mx-auto flex items-center justify-between px-4 py-4 md:px-6">
+        <Link href="/" className="hover:opacity-90 transition-opacity duration-200">
+          <Image
+            src="/savri-logo-light.png"
+            alt="Savri"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
-        <a
-          href={pathname === "/" ? "#waitlist" : "/#waitlist"}
-          className={`nav-link-underline text-sm transition-colors duration-200 pb-0.5 ${
-            isActive("#waitlist") ? "text-rose active" : "text-cream/70 hover:text-cream"
-          }`}
-        >
-          Join Waitlist
-        </a>
+        <div className="hidden items-center gap-6 lg:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-sm transition-colors duration-200 ${
+                isActive(link.href) ? "text-rose" : "text-cream/72 hover:text-cream"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/careers"
+            className={`text-sm transition-colors duration-200 ${
+              isActive("/careers") ? "text-rose" : "text-cream/72 hover:text-cream"
+            }`}
+          >
+            Careers
+          </Link>
+          <a href="/#plans-notify" className="text-sm text-cream/72 transition-colors duration-200 hover:text-cream">
+            Join Waitlist
+          </a>
+        </div>
 
-        <a
-          href="https://forms.gle/yp8yC2JTLmj9nQt7A"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-link-underline text-cream/70 hover:text-cream text-sm transition-colors duration-200 pb-0.5"
+        <div className="hidden items-center gap-3 lg:flex">
+          <Link href="/contact" className="text-sm text-cream/68 transition hover:text-cream">
+            Contact
+          </Link>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-rose px-5 py-2.5 text-sm font-semibold text-cream transition hover:bg-rose-dark"
+          >
+            Book Now
+          </a>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen((current) => !current)}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-cream lg:hidden"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
         >
-          Join as Chef
-        </a>
-      </div>
-    </nav>
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      {mobileOpen ? (
+        <div className="border-t border-white/10 bg-black/92 px-4 py-4 lg:hidden">
+          <div className="container mx-auto grid gap-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-2xl px-3 py-3 text-sm ${
+                  isActive(link.href) ? "bg-rose/14 text-rose" : "text-cream/80 hover:bg-white/6"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/careers"
+              className={`rounded-2xl px-3 py-3 text-sm ${
+                isActive("/careers") ? "bg-rose/14 text-rose" : "text-cream/80 hover:bg-white/6"
+              }`}
+            >
+              Careers
+            </Link>
+            <a href="/#plans-notify" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
+              Join Waitlist
+            </a>
+            <Link href="/contact" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
+              Contact
+            </Link>
+            <Link href="/about" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
+              About
+            </Link>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-5 py-3 text-sm font-semibold text-cream"
+            >
+              Book Now
+            </a>
+          </div>
+        </div>
+      ) : null}
+    </header>
   )
 }

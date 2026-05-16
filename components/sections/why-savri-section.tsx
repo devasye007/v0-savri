@@ -42,7 +42,7 @@ export function WhySavriSection() {
   const { ref: scrollRef, isVisible } = useScroll3D({ threshold: 0.15 })
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-dark overflow-hidden">
+    <section ref={ref} id="about" className="py-24 md:py-32 bg-dark overflow-hidden">
       <div ref={scrollRef} className="container mx-auto px-6">
         {/* Headline with 3D entrance */}
         <h2
