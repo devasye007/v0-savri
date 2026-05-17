@@ -46,7 +46,7 @@ export default function PricingPage() {
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
           <Reveal className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Pricing</p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl">Transparent pricing. No surprises.</h1>
+            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl">Affordable Enough to Make It a Habit.</h1>
             <p className="mt-6 text-base leading-8 text-dark/68 md:text-lg">
               Clear base tiers, fixed add-ons, and a straightforward explanation of what is included in every Savri booking.
             </p>

@@ -77,7 +77,7 @@ export const whySavriCards = [
     eyebrow: "Your Personal Chef",
   },
   {
-    title: "Transparent Pricing",
+    title: "Affordable Enough to Make It a Habit.",
     copy:
       "₹549 for 1-3 guests. ₹1,149 for 4-6. Add extra dishes at ₹149 each. No surprise markups.",
     eyebrow: "No Hidden Costs",

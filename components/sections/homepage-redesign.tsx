@@ -262,7 +262,7 @@ export function HomepageRedesign() {
             <Reveal>
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Pricing</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Simple, Transparent Pricing</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Affordable Enough to Make It a Habit.</h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-cream/70 md:text-lg">
                 Two booking tiers. Clear add-ons. No fuzzy packages. Ingredients are reimbursed separately so you know exactly what you are paying for.
               </p>
