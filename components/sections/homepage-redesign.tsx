@@ -147,8 +147,8 @@ export function HomepageRedesign() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3 text-sm text-cream/70">
-                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">Tier 1: 1-3 guests · ₹549</span>
-                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">Tier 2: 4-6 guests · ₹1,149</span>
+                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">Small Table: 1-3 guests · ₹549</span>
+                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">Full Table: 4-6 guests · ₹1,149</span>
                 <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">{bookingRule}</span>
               </div>
             </Reveal>
@@ -321,7 +321,7 @@ export function HomepageRedesign() {
                           : "border border-cream/18 text-cream hover:bg-white/8"
                       }`}
                     >
-                      {tier.name === "Tier 1" ? "Book Tier 1" : "Book Tier 2"}
+                      {tier.name === "Small Table" ? "Book Small Table" : "Book Full Table"}
                     </a>
                   </article>
                 ))}

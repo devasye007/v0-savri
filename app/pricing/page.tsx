@@ -12,25 +12,25 @@ import { BOOKING_URL, extraDishPrice, pricingFaqs, pricingTiers } from "@/lib/si
 export const metadata: Metadata = {
   title: "Pricing | Savri Private Chef at Home",
   description:
-    "See Savri's final pricing: Tier 1 at ₹549, Tier 2 at ₹1,149, extra dishes at ₹149, and exactly what is included in every booking.",
+    "See Savri's final pricing: Small Table at ₹549, Full Table at ₹1,149, extra dishes at ₹149, and exactly what is included in every booking.",
 }
 
 export default function PricingPage() {
   const examples = [
     {
-      title: "2 guests, Tier 1, no add-ons",
+      title: "2 guests, Small Table, no add-ons",
       lines: ["Base: ₹549"],
       total: "₹549 total",
       perPerson: "₹275 per person",
     },
     {
-      title: "4 guests, Tier 2, +2 extra dishes",
+      title: "4 guests, Full Table, +2 extra dishes",
       lines: ["Base: ₹1,149", "Add-ons: ₹298"],
       total: "₹1,447 total",
       perPerson: "₹361 per person",
     },
     {
-      title: "6 guests, Tier 2, +3 extra dishes",
+      title: "6 guests, Full Table, +3 extra dishes",
       lines: ["Base: ₹1,149", "Add-ons: ₹447"],
       total: "₹1,596 total",
       perPerson: "₹266 per person",
@@ -58,8 +58,8 @@ export default function PricingPage() {
             <Reveal className="overflow-hidden rounded-[2rem] border border-dark/8 bg-white shadow-[0_18px_50px_rgba(26,26,26,0.05)]">
               <div className="grid border-b border-dark/8 bg-dark px-6 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-cream/80 md:grid-cols-3">
                 <span>Feature</span>
-                <span>Tier 1</span>
-                <span>Tier 2</span>
+                <span>Small Table</span>
+                <span>Full Table</span>
               </div>
               {[
                 ["Guests", "1-3 guests", "4-6 guests"],

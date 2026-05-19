@@ -32,7 +32,7 @@ export const navLinks = [
 export const pricingTiers = [
   {
     id: "tier-1",
-    name: "Tier 1",
+    name: "Small Table",
     guests: "1-3 guests",
     price: 549,
     dishes: 2,
@@ -43,7 +43,7 @@ export const pricingTiers = [
   },
   {
     id: "tier-2",
-    name: "Tier 2",
+    name: "Full Table",
     guests: "4-6 guests",
     price: 1149,
     dishes: 4,
@@ -88,7 +88,7 @@ export const homeSteps = [
   {
     title: "Choose Your Guests & Tier",
     copy:
-      "Select your group size. Tier 1 covers 1-3 guests at ₹549. Tier 2 covers 4-6 guests at ₹1,149.",
+      "Select your group size. Small Table covers 1-3 guests at ₹549. Full Table covers 4-6 guests at ₹1,149.",
   },
   {
     title: "Pick Date, Time & Menu",
@@ -98,7 +98,7 @@ export const homeSteps = [
   {
     title: "Confirm & Enjoy",
     copy:
-      "You choose the serve time in the app. For Tier 1, your chef arrives 1 hour before service. For Tier 2, your chef arrives 2 hours before service. They cook fresh, plate beautifully, and clean up after.",
+      "You choose the serve time in the app. For Small Table, your chef arrives 1 hour before service. For Full Table, your chef arrives 2 hours before service. They cook fresh, plate beautifully, and clean up after.",
   },
 ]
 
@@ -156,28 +156,28 @@ export const chefProfiles = [
 export const testimonials = [
   {
     name: "Radhika M.",
-    location: "Defence Colony, Delhi",
+    location: "Pitampura, Delhi",
     useCase: "Anniversary Dinner",
     quote:
       "Best dinner we have hosted at home in years. Fresh food, professional service, and the table felt special without us lifting a finger.",
   },
   {
     name: "Amit & Neha",
-    location: "Vasant Vihar, Delhi",
+    location: "Rohini, Delhi",
     useCase: "Date Night",
     quote:
       "We were skeptical about a home chef. Savri made it easy. The chef arrived on time, cooked beautifully, cleaned up, and the whole evening felt worth every rupee.",
   },
   {
     name: "Sharma Family",
-    location: "Greater Kailash, Delhi",
+    location: "Shalimar Bagh, Delhi",
     useCase: "Family Gathering",
     quote:
       "Hosting extended family used to stress us out. With Savri, we actually enjoyed the evening and the food still felt personal.",
   },
   {
     name: "Priya S.",
-    location: "Golf Links, Delhi",
+    location: "Paschim Vihar, Delhi",
     useCase: "Dietary Preferences",
     quote:
       "As a vegan, finding a chef who understands my preferences is rare. Savri's chef was creative, respectful, and genuinely informed.",
@@ -219,9 +219,9 @@ export const homepageFaqs = [
 
 export const pricingFaqs = [
   {
-    question: "Why is Tier 2 better value for 6 guests?",
+    question: "Why is Full Table better value for 6 guests?",
     answer:
-      "Tier 2 spreads the chef's time and menu across more guests, so the effective per-person price drops significantly when the group is full.",
+      "Full Table spreads the chef's time and menu across more guests, so the effective per-person price drops significantly when the group is full.",
   },
   {
     question: "Do I pay extra for dietary restrictions?",
@@ -316,7 +316,7 @@ export const howItWorksSteps = [
     step: "02",
     title: "Choose Tier",
     timing: "1 min",
-    copy: "Pick Tier 1 for 1-3 guests at ₹549 or Tier 2 for 4-6 guests at ₹1,149.",
+    copy: "Pick Small Table for 1-3 guests at ₹549 or Full Table for 4-6 guests at ₹1,149.",
     icon: Target,
   },
   {
@@ -344,7 +344,7 @@ export const howItWorksSteps = [
     step: "06",
     title: "Chef Arrives",
     timing: "Service day",
-    copy: "You choose the serve time in the app. For Tier 1, your chef arrives 1 hour before that time. For Tier 2, your chef arrives 2 hours before that time, then cooks, plates, and cleans up before leaving.",
+    copy: "You choose the serve time in the app. For Small Table, your chef arrives 1 hour before that time. For Full Table, your chef arrives 2 hours before that time, then cooks, plates, and cleans up before leaving.",
     icon: ChefHat,
   },
 ]

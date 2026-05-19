@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
+import { IntroScreen } from '@/components/ui/intro-screen'
 import './globals.css'
 
 const inter = Inter({ 
@@ -65,6 +66,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased bg-cream text-dark">
+        <IntroScreen />
         {children}
         <Analytics />
       </body>
