@@ -13,8 +13,8 @@ import {
 
 const aboutLinks = [
   { label: "About Savri", href: "/about" },
-  { label: "Our Story", href: "/about" },
-  { label: "Team", href: "/about" },
+  { label: "Our Story", href: "/founder" },
+  { label: "The Founder", href: "/founder" },
 ]
 
 const serviceLinks = [

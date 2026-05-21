@@ -387,6 +387,30 @@ export function HomepageRedesign() {
         </div>
       </section>
 
+      <section className="py-20 md:py-24">
+        <div className="container mx-auto px-6">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <blockquote>
+              <p className="font-serif text-2xl font-semibold leading-snug text-dark md:text-3xl lg:text-4xl">
+                &ldquo;Every home in India deserves a proper meal. Savri is that way.&rdquo;
+              </p>
+              <footer className="mt-6">
+                <p className="font-semibold text-dark">— Devasye Sachdeva, Founder</p>
+                <p className="mt-1 text-sm text-dark/55">
+                  Started in a college apartment. Building for every home in India.
+                </p>
+              </footer>
+            </blockquote>
+            <Link
+              href="/founder"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-rose hover:text-rose-dark"
+            >
+              Read the full story →
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="bg-dark py-20 text-cream md:py-28">
         <div className="container mx-auto px-6">
           <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
