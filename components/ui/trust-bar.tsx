@@ -14,7 +14,7 @@ export function TrustBar() {
     >
       <p className="text-[#F5F0E8] text-xs font-medium tracking-wide">
         <span className="text-rose font-semibold">{count}+</span> verified chefs onboarded
-        {" · "}Launching Delhi NCR{" · "}June 2026
+        {" · "}Bookings Open
       </p>
     </div>
   )

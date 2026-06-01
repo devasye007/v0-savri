@@ -181,7 +181,7 @@ export function HeroSection() {
               transitionDelay: "1000ms",
             }}
           >
-            Launching Delhi NCR — June 2026
+            Bookings Open
           </p>
 
           {/* Social link */}
