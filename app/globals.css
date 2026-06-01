@@ -145,6 +145,17 @@ body {
 }
 
 /* Custom animations for Savri */
+@keyframes savri-launch-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.2);
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

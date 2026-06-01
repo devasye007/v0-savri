@@ -3,6 +3,8 @@ import { Inter, Cormorant_Garamond } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
+import { LaunchBanner } from '@/components/ui/launch-banner'
+import { LaunchPopup } from '@/components/ui/launch-popup'
 import './globals.css'
 
 const inter = Inter({ 
@@ -66,7 +68,9 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased bg-cream text-dark">
+        <LaunchBanner />
         <IntroScreen />
+        <LaunchPopup />
         {children}
         <Analytics />
       </body>
