@@ -21,7 +21,7 @@ export default function ContactPage() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="bg-cream pt-43 text-dark">
+      <main className="bg-cream pt-32 text-dark">
         <section className="container mx-auto px-6 pb-20">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">

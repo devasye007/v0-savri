@@ -4,7 +4,6 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
 import { ComingSoonBanner } from '@/components/ui/coming-soon-banner'
-import { LaunchBanner } from '@/components/ui/launch-banner'
 import { LaunchPopup } from '@/components/ui/launch-popup'
 import './globals.css'
 
@@ -70,7 +69,6 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased bg-cream text-dark">
         <ComingSoonBanner />
-        <LaunchBanner />
         <IntroScreen />
         <LaunchPopup />
         {children}

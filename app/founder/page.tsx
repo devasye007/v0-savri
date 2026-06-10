@@ -54,7 +54,7 @@ export default function FounderPage() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="bg-cream pt-43 text-dark">
+      <main className="bg-cream pt-32 text-dark">
 
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <section className="container mx-auto px-6 pb-20">
