@@ -1,12 +1,12 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useState } from "react"
-import { BOOKING_URL } from "@/lib/site-data"
 
 const SESSION_KEY = "savri_launch_popup_seen"
 const INTRO_DELAY_MS = 2800
-const AUTO_DISMISS_MS = 3000
-const FADE_DURATION_MS = 400
+const AUTO_DISMISS_MS = 1800
+const FADE_DURATION_MS = 500
 
 export function LaunchPopup() {
   const [visible, setVisible] = useState(false)
@@ -42,127 +42,88 @@ export function LaunchPopup() {
     setTimeout(() => setVisible(false), FADE_DURATION_MS)
   }
 
+  const goToSurprise = () => {
+    dismiss()
+    setTimeout(() => {
+      const el = document.getElementById("surprise")
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, FADE_DURATION_MS + 50)
+  }
+
   if (!visible) return null
 
   return (
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Savri bookings now open"
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 10001,
-        backgroundColor: "#B5636A",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "24px",
-        textAlign: "center",
-        opacity: fading ? 0 : 1,
-        transition: `opacity ${FADE_DURATION_MS}ms ease-in-out`,
-      }}
+      aria-label="A surprise is cooking at Savri"
+      className={`fixed inset-0 z-[10001] flex flex-col items-center justify-center overflow-hidden bg-[#0E0E0E] px-6 text-center transition-opacity duration-500 ease-in-out ${
+        fading ? "opacity-0" : "opacity-100"
+      }`}
     >
+      <Image
+        src="/images/hero-food.jpg"
+        alt=""
+        fill
+        aria-hidden="true"
+        priority
+        sizes="100vw"
+        className="object-cover opacity-30 savri-popup-zoom"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,14,14,0.92)_0%,rgba(14,14,14,0.7)_45%,rgba(14,14,14,0.95)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(181,99,106,0.28),transparent_50%),radial-gradient(circle_at_bottom,rgba(201,168,76,0.12),transparent_55%)]" />
+
+      <div className="relative z-10 flex w-full max-w-2xl flex-col items-center savri-popup-rise">
+        <p
+          className="font-serif text-2xl font-semibold tracking-wide text-white/95 md:text-3xl"
+          style={{ fontFamily: 'var(--font-cormorant), "Cormorant Garamond", Georgia, serif' }}
+        >
+          Savri
+        </p>
+
+        <div className="mt-8 flex flex-col items-center">
+          <span
+            aria-hidden="true"
+            className="text-4xl md:text-5xl savri-popup-eyes"
+          >
+            👀
+          </span>
+          <h2 className="mt-5 text-balance text-3xl font-bold uppercase leading-[1.08] tracking-tight text-white md:text-5xl">
+            Can You Guess
+            <br />
+            What&apos;s Cooking at Savri?
+          </h2>
+        </div>
+
+        <p className="mt-6 max-w-md text-sm leading-6 text-white/75 md:text-base">
+          <span className="font-semibold uppercase tracking-[0.18em] text-[#B5636A]">Hint:</span>{" "}
+          Your favourite home dining experience… just got bigger.
+        </p>
+
+        <button
+          type="button"
+          onClick={goToSurprise}
+          className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3 text-xs font-semibold uppercase tracking-[0.32em] text-white backdrop-blur transition hover:bg-white/12"
+        >
+          Answer
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
       <p
-        style={{
-          color: "#F5F0E8",
-          fontSize: "clamp(11px, 2.6vw, 13px)",
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
-          fontWeight: 500,
-          margin: 0,
-        }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 font-serif text-lg text-white/55 md:bottom-10 md:text-xl"
+        style={{ fontFamily: 'var(--font-cormorant), "Cormorant Garamond", Georgia, serif' }}
       >
-        Now Open
+        Savri
       </p>
-
-      <h2
-        style={{
-          fontFamily:
-            'var(--font-cormorant), "Cormorant Garamond", Georgia, serif',
-          color: "#F5F0E8",
-          fontSize: "clamp(40px, 9vw, 88px)",
-          fontWeight: 700,
-          lineHeight: 1.05,
-          margin: "20px 0 0",
-          maxWidth: "12ch",
-        }}
-      >
-        We&rsquo;re taking
-        <br />
-        bookings.
-      </h2>
-
-      <p
-        style={{
-          color: "#F5F0E8",
-          opacity: 0.8,
-          fontSize: "clamp(13px, 3vw, 16px)",
-          marginTop: 20,
-          marginBottom: 0,
-          letterSpacing: "0.02em",
-        }}
-      >
-        Private Chef · Ghar Pe · From ₹549
-      </p>
-
-      <a
-        href={BOOKING_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={dismiss}
-        style={{
-          marginTop: 36,
-          display: "inline-block",
-          padding: "16px 36px",
-          backgroundColor: "#F5F0E8",
-          color: "#B5636A",
-          fontWeight: 700,
-          fontSize: "clamp(15px, 3vw, 17px)",
-          letterSpacing: "0.02em",
-          textDecoration: "none",
-          borderRadius: 999,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
-          transition: "transform 0.2s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "scale(1.03)"
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "scale(1)"
-        }}
-      >
-        Book on WhatsApp
-      </a>
 
       <button
         type="button"
         onClick={dismiss}
-        aria-label="Skip launch announcement"
-        style={{
-          position: "absolute",
-          bottom: 28,
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "#F5F0E8",
-          opacity: 0.5,
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-          fontSize: 13,
-          letterSpacing: "0.05em",
-          padding: 8,
-          transition: "opacity 0.2s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.opacity = "0.85"
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.opacity = "0.5"
-        }}
+        aria-label="Skip surprise announcement"
+        className="absolute right-5 top-5 inline-flex h-9 items-center rounded-full border border-white/15 bg-white/5 px-3 text-xs text-white/70 transition hover:bg-white/12 md:right-8 md:top-8"
       >
-        Skip →
+        Skip
       </button>
     </div>
   )

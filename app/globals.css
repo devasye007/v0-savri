@@ -144,6 +144,53 @@ body {
   overflow-x: hidden;
 }
 
+/* Launch popup — slow zoom on backdrop image */
+@keyframes savri-popup-zoom {
+  0% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1.14);
+  }
+}
+
+.savri-popup-zoom {
+  animation: savri-popup-zoom 2.4s ease-out forwards;
+}
+
+/* Launch popup — content rise + fade in */
+@keyframes savri-popup-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.savri-popup-rise {
+  animation: savri-popup-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Launch popup — eyes emoji subtle blink */
+@keyframes savri-popup-eyes {
+  0%, 88%, 100% {
+    transform: scale(1);
+  }
+  92% {
+    transform: scale(0.6);
+  }
+}
+
+.savri-popup-eyes {
+  display: inline-block;
+  animation: savri-popup-eyes 1.6s ease-in-out infinite;
+}
+
 /* Coming Soon banner — soft glow + breathing pulse on the rose label */
 @keyframes savri-coming-soon-glow {
   0%, 100% {
