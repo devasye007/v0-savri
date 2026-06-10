@@ -5,8 +5,8 @@ import { useEffect, useState } from "react"
 
 const SESSION_KEY = "savri_launch_popup_seen"
 const INTRO_DELAY_MS = 2800
-const AUTO_DISMISS_MS = 1800
-const FADE_DURATION_MS = 500
+const AUTO_DISMISS_MS = 5000
+const FADE_DURATION_MS = 600
 
 export function LaunchPopup() {
   const [visible, setVisible] = useState(false)
