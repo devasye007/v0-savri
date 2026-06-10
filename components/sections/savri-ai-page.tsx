@@ -243,7 +243,7 @@ const faqs = [
 export function SavriAiPage() {
   return (
     <main className="overflow-x-hidden bg-cream text-dark">
-      <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#f5f0e8_0%,#f3e2df_46%,#b5636a_100%)] pt-32">
+      <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#f5f0e8_0%,#f3e2df_46%,#b5636a_100%)] pt-43">
         <div className="absolute inset-0 opacity-35">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(108,99,255,0.18),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(201,168,76,0.18),transparent_30%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(255,255,255,0.16)_49%,transparent_50%),linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.14)_49%,transparent_50%)] bg-[length:120px_120px] mix-blend-soft-light" />

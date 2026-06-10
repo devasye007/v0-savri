@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="bg-cream pt-32 text-dark">
+      <main className="bg-cream pt-43 text-dark">
         <section className="container mx-auto px-6 pb-20">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]} />
           <div className="max-w-4xl">

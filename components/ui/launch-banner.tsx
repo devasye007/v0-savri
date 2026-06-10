@@ -9,7 +9,7 @@ export function LaunchBanner() {
       aria-label="Savri bookings now open"
       style={{
         position: "fixed",
-        top: 0,
+        top: 44,
         left: 0,
         right: 0,
         height: 44,

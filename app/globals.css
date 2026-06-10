@@ -144,6 +144,33 @@ body {
   overflow-x: hidden;
 }
 
+/* Coming Soon banner — soft glow + breathing pulse on the rose label */
+@keyframes savri-coming-soon-glow {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(181, 99, 106, 0);
+    opacity: 0.9;
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(181, 99, 106, 0.7), 0 0 20px rgba(181, 99, 106, 0.35);
+    opacity: 1;
+  }
+}
+
+.savri-coming-soon-glow {
+  animation: savri-coming-soon-glow 2.4s ease-in-out infinite;
+}
+
+/* Stacked COMING SOON marquee text — slow horizontal drift */
+@keyframes savri-coming-soon-drift {
+  0% { transform: translateX(-2%); }
+  50% { transform: translateX(2%); }
+  100% { transform: translateX(-2%); }
+}
+
+.savri-coming-soon-drift {
+  animation: savri-coming-soon-drift 9s ease-in-out infinite;
+}
+
 /* Custom animations for Savri */
 @keyframes savri-launch-pulse {
   0%, 100% {

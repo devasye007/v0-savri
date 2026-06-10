@@ -30,6 +30,7 @@ import {
   whySavriCards,
 } from "@/lib/site-data"
 import { SavriAiNewsletter } from "@/components/sections/savri-ai-newsletter"
+import { ComingSoonSection } from "@/components/sections/coming-soon-section"
 import { Reveal } from "@/components/ui/reveal"
 
 function PricingCalculator() {
@@ -100,7 +101,7 @@ export function HomepageRedesign() {
     <main className="overflow-x-hidden bg-cream text-dark ambient-grid">
       <div className="ambient-orb left-[-6rem] top-[14rem] h-72 w-72 bg-rose/40" />
       <div className="ambient-orb right-[-8rem] top-[52rem] h-80 w-80 bg-gold/30" />
-      <section className="relative isolate min-h-screen overflow-hidden bg-dark pt-28 text-cream">
+      <section className="relative isolate min-h-screen overflow-hidden bg-dark pt-39 text-cream">
         <Image
           src="/images/hero-food.jpg"
           alt="Premium Indian dinner table with chef-plated dishes in a warm home setting"
@@ -112,7 +113,7 @@ export function HomepageRedesign() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,10,0.8)_0%,rgba(10,10,10,0.45)_50%,rgba(10,10,10,0.65)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,168,76,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(181,99,106,0.24),transparent_36%)]" />
 
-        <div className="container relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] items-center px-6 pb-16">
+        <div className="container relative z-10 mx-auto flex min-h-[calc(100vh-9.75rem)] items-center px-6 pb-16">
           <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <Reveal className="max-w-2xl" variant="left">
               <p className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-gold backdrop-blur">
@@ -186,6 +187,8 @@ export function HomepageRedesign() {
           </div>
         </div>
       </section>
+
+      <ComingSoonSection />
 
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-6">
