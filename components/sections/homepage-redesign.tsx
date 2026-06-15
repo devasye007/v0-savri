@@ -298,70 +298,71 @@ function DishesSection() {
   )
 }
 
-function PricingHeader() {
-  const ref = useOnEnter<HTMLParagraphElement>(0.5)
-  return (
-    <p
-      ref={ref}
-      className="savri-rise text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
-    >
-      Simple Pricing
-    </p>
-  )
-}
-
 function PricingSection() {
-  const tiers: Array<{ amount: number; label: string }> = [
-    { amount: 549, label: "Small Table • 1-3 guests • 2 dishes" },
-    { amount: 1149, label: "Full Table • 4-6 guests • 4 dishes" },
-    { amount: 6399, label: "Party Booking • Delhi • Custom menu" },
+  const tiers: Array<{
+    amount: string
+    label: string
+    /** view-timeline cover-phase % when this row activates */
+    ws: number
+    we: number
+    /** activation range for its trailing hairline */
+    lineWs?: number
+    lineWe?: number
+  }> = [
+    { amount: "₹549", label: "Small Table • 1-3 guests • 2 dishes", ws: 22, we: 30, lineWs: 30, lineWe: 38 },
+    { amount: "₹1,149", label: "Full Table • 4-6 guests • 4 dishes", ws: 40, we: 48, lineWs: 48, lineWe: 56 },
+    { amount: "₹5,999", label: "Party Booking • Delhi • Custom menu", ws: 58, we: 66 },
   ]
-  return (
-    <section className="relative z-[5] flex min-h-[100svh] w-full flex-col justify-center bg-[#F5F0E8] px-6 py-24 text-[#1A1A1A] md:px-16 md:py-32">
-      <div className="mx-auto w-full max-w-[1600px]">
-        <PricingHeader />
 
-        <div className="mt-16 flex flex-col md:mt-24">
-          {tiers.map((tier, idx) => (
-            <Reveal key={tier.amount} idx={idx} amount={tier.amount} label={tier.label} isLast={idx === tiers.length - 1} />
-          ))}
+  return (
+    <section className="savri-pricing-wrap text-[#1A1A1A]">
+      <div className="savri-pricing-pin">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-col">
+          <p
+            className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
+            style={{ "--ws": 8, "--we": 18 } as CSSProperties}
+          >
+            Simple Pricing
+          </p>
+
+          <div className="mt-6 flex flex-col gap-3 md:mt-10 md:gap-5">
+            {tiers.map((tier, idx) => (
+              <div key={tier.amount} className="w-full">
+                <div
+                  className="savri-price-amount font-sans font-extrabold leading-[0.9] text-[#C9A84C]"
+                  style={{
+                    fontSize: "clamp(60px, 9vw, 200px)",
+                    "--ws": tier.ws,
+                    "--we": tier.we,
+                  } as CSSProperties}
+                >
+                  {tier.amount}
+                </div>
+                <p
+                  className="savri-price-label mt-2 font-serif italic text-[#1A1A1A]"
+                  style={{
+                    fontSize: "clamp(16px, 1.6vw, 30px)",
+                    "--ws": tier.ws + 4,
+                    "--we": tier.we + 4,
+                  } as CSSProperties}
+                >
+                  {tier.label}
+                </p>
+                {idx < tiers.length - 1 ? (
+                  <div
+                    className="savri-price-line mt-3 h-px w-full bg-[#B5636A] md:mt-5"
+                    style={{
+                      "--ws": tier.lineWs ?? tier.we,
+                      "--we": tier.lineWe ?? tier.we + 6,
+                    } as CSSProperties}
+                  />
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  )
-}
-
-function Reveal({
-  amount,
-  label,
-  isLast,
-}: {
-  idx: number
-  amount: number
-  label: string
-  isLast: boolean
-}) {
-  const ref = useOnEnter<HTMLDivElement>(0.4)
-  return (
-    <div ref={ref} className="w-full">
-      <div
-        className="savri-rise font-sans font-extrabold leading-[0.9] text-[#C9A84C]"
-        style={{ fontSize: "clamp(80px, 15vw, 320px)" }}
-      >
-        <CountUp target={amount} />
-      </div>
-      <p
-        className="savri-rise mt-4 font-serif italic text-[#1A1A1A]"
-        style={{ fontSize: "clamp(18px, 2vw, 38px)", transitionDelay: "150ms" }}
-      >
-        {label}
-      </p>
-      {!isLast ? (
-        <div className="my-14 md:my-20">
-          <div className="savri-line-draw h-px w-full bg-[#B5636A]" />
-        </div>
-      ) : null}
-    </div>
   )
 }
 
@@ -408,7 +409,7 @@ function PartyTeaserSection() {
           className="savri-rise group mt-12 inline-flex items-center gap-3 text-white"
           style={{ fontSize: "clamp(18px, 2vw, 36px)", transitionDelay: "350ms" }}
         >
-          <span>From ₹6,399</span>
+          <span>From ₹5,999</span>
           <span className="transition-transform duration-500 group-hover:translate-x-2">→</span>
         </Link>
       </div>

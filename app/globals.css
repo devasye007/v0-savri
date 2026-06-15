@@ -1490,15 +1490,14 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   to   { opacity: 0; transform: translateY(20px); }
 }
 
-/* Words section — 400vh tall, sticky pin centers text, words activate one-by-one
-   via scroll-driven animations tied to root scroll */
+/* Words section — 420vh tall, sticky pin centers text, words activate one-by-one
+   via scroll-driven animations tied to root scroll. Gradient at top blends out
+   of the dark hero so there is no hard line at the seam. */
 .savri-words-wrap {
   position: relative;
   z-index: 2;
   height: 420vh;
-  background: #F5F0E8;
-  margin-top: -30vh;
-  padding-top: 30vh;
+  background: linear-gradient(180deg, #1A1A1A 0%, #1A1A1A 1%, #F5F0E8 18%);
 }
 .savri-words-pin {
   position: sticky;
@@ -1613,7 +1612,7 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   transform: scale(1.05);
 }
 
-/* Pricing — line draw separator (IO-triggered) */
+/* Pricing — line draw separator (IO-triggered, used as fallback) */
 .savri-line-draw {
   transform: scaleX(0);
   transform-origin: left center;
@@ -1622,6 +1621,77 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
 }
 .savri-line-draw.is-on {
   transform: scaleX(1);
+}
+
+/* Pricing — view-timeline driven sequential reveal (same feel as Words section) */
+.savri-pricing-wrap {
+  position: relative;
+  z-index: 5;
+  height: 300vh;
+  background: #F5F0E8;
+}
+.savri-pricing-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .savri-pricing-pin { padding: 4rem 5rem; }
+}
+
+.savri-price-amount,
+.savri-price-label,
+.savri-price-eyebrow {
+  opacity: 1;
+  will-change: opacity;
+}
+.savri-price-line {
+  transform: scaleX(1);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+@supports (animation-timeline: view()) {
+  .savri-pricing-wrap {
+    view-timeline-name: --savriPricingTL;
+    view-timeline-axis: block;
+  }
+  .savri-price-eyebrow,
+  .savri-price-amount,
+  .savri-price-label {
+    opacity: 0.12;
+    animation: savriWordReveal linear both;
+    animation-timeline: --savriPricingTL;
+    animation-range: cover calc(var(--ws, 0) * 1%) cover calc(var(--we, 100) * 1%);
+  }
+  .savri-price-line {
+    transform: scaleX(0);
+    animation: savriDrawLine linear both;
+    animation-timeline: --savriPricingTL;
+    animation-range: cover calc(var(--ws, 0) * 1%) cover calc(var(--we, 100) * 1%);
+  }
+}
+
+@keyframes savriDrawLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .savri-price-amount,
+  .savri-price-label,
+  .savri-price-eyebrow {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .savri-price-line {
+    transform: scaleX(1) !important;
+    animation: none !important;
+  }
 }
 
 /* Party teaser — words come in from opposite sides, bg ambient zoom */
