@@ -5,19 +5,12 @@ import Image from "next/image"
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
 
 import { BOOKING_URL } from "@/lib/site-data"
-import {
-  CookFlame,
-  CookKnife,
-  CookPanFlip,
-  CookSteam,
-  CookWhisk,
-  CookingScene,
-} from "@/components/ui/cooking-animations"
 
 const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
 const PARTY_IMG = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
 const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
+const KITCHEN_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
 
 const DISHES = [
   { src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=80", alt: "Hyderabadi biryani" },
@@ -174,9 +167,6 @@ function HeroSection() {
           </span>
           <span className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/55">↓ Scroll</span>
         </div>
-
-        {/* Live cooking accent — pan flipping food, bottom-left corner */}
-        <CookPanFlip className="absolute bottom-10 left-6 z-10 h-20 w-32 opacity-90 md:bottom-14 md:left-12 md:h-24 md:w-40" />
       </section>
     </div>
   )
@@ -224,32 +214,33 @@ function WordsSection() {
 
 function KitchenScene() {
   return (
-    <section className="relative z-[2] flex h-[100svh] w-full flex-col items-center justify-end overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
-      {/* The cooking illustration IS the page — fills the entire section */}
-      <CookingScene className="absolute inset-0 h-full w-full" />
+    <section className="relative z-[2] h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      {/* Real cooking photograph fills the screen */}
+      <Image
+        src={KITCHEN_IMG}
+        alt="Sizzling pan with food in a home kitchen"
+        fill
+        loading="lazy"
+        sizes="100vw"
+        className="object-cover"
+      />
+      {/* Edge-fade dark gradient — top and bottom blend into surrounding dark */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.55)_18%,rgba(26,26,26,0.4)_50%,rgba(26,26,26,0.85)_82%,#1A1A1A_100%)]" />
 
-      {/* Eyebrow at the top of viewport */}
-      <p className="reveal-up absolute left-1/2 top-[14vh] z-10 -translate-x-1/2 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
-        The Kitchen
-      </p>
-
-      {/* Headline above the pan (top third of viewport) */}
-      <h2
-        className="reveal-up absolute left-1/2 top-[22vh] z-10 -translate-x-1/2 px-6 text-center font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
-        style={{ fontSize: "clamp(56px, 9vw, 180px)" }}
-      >
-        Live cooking.
-        <br />
-        <span className="italic text-[#B5636A]">Your home.</span>
-      </h2>
-
-      {/* Tagline pinned at viewport bottom */}
-      <div className="relative z-10 mb-[6vh] px-6 text-center">
-        <p className="reveal-up mx-auto max-w-xl text-base leading-7 text-[#F5F0E8]/82 md:text-lg">
-          Pan on the flame. Food tossing. Steam rising. Right in front of you.
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+          The Kitchen
         </p>
-        <p className="reveal-up mt-4 text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]">
-          ↓ Keep scrolling
+        <h2
+          className="reveal-up mt-6 font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
+          style={{ fontSize: "clamp(56px, 9vw, 180px)" }}
+        >
+          Live cooking.
+          <br />
+          <span className="text-[#B5636A]">Your home.</span>
+        </h2>
+        <p className="reveal-up mt-8 max-w-xl text-base leading-7 text-[#F5F0E8]/82 md:text-lg">
+          Pan on the flame. Food tossing. Steam rising. Right in front of you.
         </p>
       </div>
     </section>
@@ -286,15 +277,12 @@ function BleedSection() {
           >
             Your kitchen.
           </p>
-          <div className="mt-1 flex items-end gap-4">
-            <p
-              className="block font-serif font-semibold text-[#B5636A]"
-              style={{ fontSize: "clamp(44px, 7.5vw, 136px)", lineHeight: 1 }}
-            >
-              Your rules.
-            </p>
-            <CookFlame className="mb-2 h-16 w-10 shrink-0 md:h-28 md:w-16" />
-          </div>
+          <p
+            className="mt-1 block font-serif font-semibold text-[#B5636A]"
+            style={{ fontSize: "clamp(44px, 7.5vw, 136px)", lineHeight: 1 }}
+          >
+            Your rules.
+          </p>
         </div>
       </div>
     </section>
@@ -305,17 +293,14 @@ function DishesSection() {
   return (
     <section className="savri-dishes-wrap text-[#F5F0E8]">
       <div className="savri-dishes-pin">
-        <div className="z-10 flex items-center gap-6 px-6 md:px-16">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
-            <h2
-              className="mt-4 font-serif font-semibold leading-[0.92]"
-              style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
-            >
-              90+ dishes to choose from.
-            </h2>
-          </div>
-          <CookWhisk className="hidden h-20 w-14 md:block" />
+        <div className="z-10 px-6 md:px-16">
+          <p className="text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
+          <h2
+            className="mt-4 font-serif font-semibold leading-[0.92]"
+            style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
+          >
+            90+ dishes to choose from.
+          </h2>
         </div>
 
         <div className="savri-dishes-track mt-12">
@@ -329,8 +314,6 @@ function DishesSection() {
                 sizes="(min-width: 768px) 30vw, 70vw"
                 className="object-cover"
               />
-              {/* Steam rising from each plate */}
-              <CookSteam className="absolute left-1/2 top-3 h-10 w-16 -translate-x-1/2" />
               <div className="absolute inset-x-0 bottom-0 flex items-end p-5">
                 <p className="font-serif font-semibold text-[#F5F0E8] text-lg md:text-xl">{dish.alt}</p>
               </div>
@@ -362,23 +345,22 @@ function PricingSection() {
     <section className="savri-pricing-wrap text-[#F5F0E8]">
       <div className="savri-pricing-pin">
         <div className="mx-auto flex w-full max-w-[1600px] flex-col">
-          <div className="flex items-center gap-5">
-            <p
-              className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
-              style={{ "--ws": 8, "--we": 18 } as CSSProperties}
-            >
-              Simple Pricing
-            </p>
-            <CookKnife className="h-10 w-14 md:h-12 md:w-16" />
-          </div>
+          <p
+            className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
+            style={{ "--ws": 8, "--we": 18 } as CSSProperties}
+          >
+            Simple Pricing
+          </p>
 
           <div className="mt-6 flex flex-col gap-3 md:mt-10 md:gap-5">
             {tiers.map((tier, idx) => (
               <div key={tier.amount} className="w-full">
                 <div
-                  className="savri-price-amount font-serif font-semibold leading-[0.9] text-[#C9A84C]"
+                  className="savri-price-amount font-sans font-extrabold leading-[0.9] text-[#C9A84C]"
                   style={{
-                    fontSize: "clamp(60px, 9vw, 200px)",
+                    fontSize: "clamp(64px, 10vw, 220px)",
+                    fontVariantNumeric: "lining-nums tabular-nums",
+                    letterSpacing: "-0.02em",
                     "--ws": tier.ws,
                     "--we": tier.we,
                   } as CSSProperties}
@@ -386,9 +368,9 @@ function PricingSection() {
                   {tier.amount}
                 </div>
                 <p
-                  className="savri-price-label mt-2 font-serif font-semibold text-[#F5F0E8]/85"
+                  className="savri-price-label mt-3 font-sans font-medium tracking-wide text-[#F5F0E8]/90"
                   style={{
-                    fontSize: "clamp(16px, 1.6vw, 30px)",
+                    fontSize: "clamp(15px, 1.4vw, 24px)",
                     "--ws": tier.ws + 4,
                     "--we": tier.we + 4,
                   } as CSSProperties}
@@ -494,18 +476,15 @@ function FinalCTASection() {
         >
           Book your private chef.
         </p>
-        <div className="savri-rise mt-14 flex items-center gap-6" style={{ transitionDelay: "400ms" }}>
-          <CookFlame className="h-16 w-10 md:h-20 md:w-12" />
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
-          >
-            Book on WhatsApp →
-          </a>
-          <CookFlame className="h-16 w-10 md:h-20 md:w-12" />
-        </div>
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="savri-rise mt-14 inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
+          style={{ transitionDelay: "400ms" }}
+        >
+          Book on WhatsApp →
+        </a>
       </div>
     </section>
   )
