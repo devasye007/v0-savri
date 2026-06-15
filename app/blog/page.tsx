@@ -61,60 +61,67 @@ export default function BlogIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
       />
-      <div className="min-h-screen bg-cream text-dark">
+      <div className="min-h-screen bg-[#1A1A1A] text-[#F5F0E8]">
         <Navbar />
 
         <main className="container mx-auto max-w-5xl px-6 pt-32 pb-20 lg:px-8 lg:pt-36">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rose">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#B5636A]">
             Savri Blog
           </p>
-          <h1 className="mt-4 font-serif text-4xl font-semibold leading-tight text-dark md:text-5xl reveal-up">
+          <h1
+            className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
+            style={{ fontSize: "clamp(48px, 9vw, 180px)" }}
+          >
             Private chef tips, home dining guides & party planning in Delhi NCR.
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-dark/65 md:text-lg">
+          <p className="mt-8 max-w-2xl text-base leading-7 text-[#F5F0E8]/72 md:text-lg">
             Practical, up-to-date writing from the Savri team on hiring private chefs in Delhi
             NCR, planning home parties and getting the most out of a Savri booking.
           </p>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-20 grid gap-14 md:grid-cols-2 md:gap-16">
             {blogPosts.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/blog/${p.slug}`}
-                className="immersive-card group flex h-full flex-col rounded-[1.75rem] border border-dark/8 bg-white p-7 shadow-[0_16px_40px_rgba(26,26,26,0.05)] transition hover:border-rose/40"
-              >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-rose">
-                  {new Date(p.datePublished).toLocaleDateString("en-IN", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })}{" "}
-                  · {p.readingTimeMin} min read
-                </p>
-                <h2 className="mt-4 font-serif text-2xl font-semibold leading-snug text-dark reveal-up">
-                  {p.title}
-                </h2>
-                <p className="mt-4 flex-1 text-sm leading-7 text-dark/68">{p.excerpt}</p>
-                <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-rose">
-                  Read article <ArrowRight className="h-4 w-4" />
-                </p>
-              </Link>
+              <article key={p.slug} className="reveal-up">
+                <Link
+                  href={`/blog/${p.slug}`}
+                  className="group flex h-full flex-col border-transparent"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C9A84C]">
+                    {new Date(p.datePublished).toLocaleDateString("en-IN", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}{" "}
+                    · {p.readingTimeMin} min read
+                  </p>
+                  <h2 className="reveal-up mt-5 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] transition group-hover:text-[#B5636A] md:text-4xl lg:text-5xl">
+                    {p.title}
+                  </h2>
+                  <p className="mt-5 flex-1 text-sm leading-7 text-[#F5F0E8]/68">{p.excerpt}</p>
+                  <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#B5636A]">
+                    Read article <ArrowRight className="h-4 w-4" />
+                  </p>
+                </Link>
+              </article>
             ))}
           </div>
 
-          <div className="mt-14 rounded-[1.75rem] border border-dark/8 bg-[#1c1714] p-7 text-cream shadow-[0_20px_60px_rgba(212,175,55,0.12)] md:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+          <div className="reveal-up mt-24 border-transparent p-0 md:p-0">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#C9A84C]">
               Party Bookings
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-cream md:text-4xl reveal-up">
+            <h2
+              className="reveal-up mt-4 font-serif italic leading-[0.95] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(40px, 7vw, 120px)" }}
+            >
               Private chef for your next party. ₹5,999 in Delhi.
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-cream/70 md:text-base">
+            <p className="mt-5 max-w-xl text-sm leading-7 text-[#F5F0E8]/70 md:text-base">
               12 dishes cooked live in your kitchen. Vetted chef. Cleanup included.
             </p>
             <Link
               href="/party"
-              className="immersive-button mt-7 inline-flex min-h-12 items-center gap-2 rounded-2xl bg-gold px-6 py-3 text-sm font-semibold text-dark hover:bg-gold-dark"
+              className="immersive-button mt-8 inline-flex min-h-12 items-center gap-2 rounded-2xl bg-[#C9A84C] px-6 py-3 text-sm font-semibold text-[#1A1A1A] hover:bg-gold-dark"
             >
               Book a Party Chef <ArrowRight className="h-4 w-4" />
             </Link>

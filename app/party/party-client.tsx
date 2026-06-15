@@ -141,7 +141,7 @@ export function PartyClient() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F5F0EB]">
+    <div className="min-h-screen bg-[#1A1A1A] text-[#F5F0E8]">
       {/* Page entrance veil — pure CSS opacity animation */}
       <PageVeil />
 
@@ -154,24 +154,24 @@ export function PartyClient() {
       <section className="reveal-up relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden pt-28">
         {/* Parallax background: CSS background-attachment: fixed, zero JS */}
         <div aria-hidden className="party-hero-parallax absolute inset-0 -z-10" />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0A0A0A]/82 via-[#0A0A0A]/72 to-[#0A0A0A]" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.2)_50%,rgba(26,26,26,0.7)_82%,#1A1A1A_100%)]" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_35%,rgba(212,175,55,0.18),transparent_55%)]" />
 
         {/* Visible breadcrumb (matches BreadcrumbList schema in page.tsx) */}
         <nav
           aria-label="Breadcrumb"
-          className="absolute left-0 right-0 top-[5.5rem] z-20 mx-auto max-w-7xl px-6 text-[11px] uppercase tracking-[0.32em] text-[#F5F0EB]/55 lg:px-8"
+          className="absolute left-0 right-0 top-[5.5rem] z-20 mx-auto max-w-7xl px-6 text-[11px] uppercase tracking-[0.32em] text-[#F5F0E8]/55 lg:px-8"
         >
           <ol className="flex flex-wrap items-center gap-2">
             <li>
-              <a href="/" className="transition hover:text-[#D4AF37]">
+              <a href="/" className="transition hover:text-[#C9A84C]">
                 Home
               </a>
             </li>
-            <li aria-hidden="true" className="text-[#F5F0EB]/30">
+            <li aria-hidden="true" className="text-[#F5F0E8]/30">
               /
             </li>
-            <li aria-current="page" className="text-[#D4AF37]">
+            <li aria-current="page" className="text-[#C9A84C]">
               Party Bookings
             </li>
           </ol>
@@ -180,18 +180,21 @@ export function PartyClient() {
         <HeroParticles />
 
         <div className="relative z-10 mx-auto max-w-5xl px-6 pb-24 text-center sm:pb-32">
-          <p className="party-eyebrow text-[11px] font-medium uppercase text-[#D4AF37] sm:text-xs">
+          <p className="party-eyebrow text-[11px] font-medium uppercase text-[#C9A84C] sm:text-xs">
             Introducing
           </p>
 
-          <h1 className="reveal-up party-title mt-6 font-serif text-[14vw] italic leading-[0.95] text-[#F5F0EB] sm:text-7xl md:text-8xl lg:text-[7.5rem]">
+          <h1
+            className="reveal-up party-title mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
+            style={{ fontSize: "clamp(48px, 9vw, 180px)" }}
+          >
             <span className="party-shimmer-text">party bookings</span>
           </h1>
 
-          <p className="party-punch mt-8 text-sm uppercase tracking-[0.42em] text-[#F5F0EB]/65">
+          <p className="party-punch mt-8 text-sm uppercase tracking-[0.42em] text-[#F5F0E8]/65">
             At just
           </p>
-          <p className="party-punch mt-3 font-sans text-[12vw] font-black leading-none text-[#F5F0EB] sm:text-7xl md:text-8xl">
+          <p className="party-punch mt-3 font-sans text-[12vw] font-black leading-none text-[#F5F0E8] sm:text-7xl md:text-8xl">
             ₹5,999
           </p>
 
@@ -200,14 +203,14 @@ export function PartyClient() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="immersive-button group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#B5636A] px-8 py-3.5 text-sm font-semibold tracking-wide text-[#F5F0EB] shadow-[0_18px_45px_rgba(181,99,106,0.45)] hover:bg-[#9A5158]"
+              className="immersive-button group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#B5636A] px-8 py-3.5 text-sm font-semibold tracking-wide text-[#F5F0E8] shadow-[0_18px_45px_rgba(181,99,106,0.45)] hover:bg-[#9A5158]"
             >
               Book Now
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a
               href="#whats-included"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#D4AF37]/45 px-8 py-3.5 text-sm font-medium text-[#F5F0EB]/85 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#C9A84C]/45 px-8 py-3.5 text-sm font-medium text-[#F5F0E8]/85 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
             >
               See what's included
             </a>
@@ -217,25 +220,25 @@ export function PartyClient() {
         <a
           href="#whats-included"
           aria-label="Scroll down"
-          className="party-scroll-bounce absolute bottom-8 left-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[#F5F0EB]/80 backdrop-blur"
+          className="party-scroll-bounce absolute bottom-8 left-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[#F5F0E8]/80 backdrop-blur"
         >
           <ArrowDown className="h-4 w-4" />
         </a>
       </section>
 
       {/* ============ WHAT YOU GET ============ */}
-      <section id="whats-included" className="reveal-up relative overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
+      <section id="whats-included" className="reveal-up relative overflow-hidden bg-[#1A1A1A] py-24 sm:py-32">
         <div aria-hidden className="ambient-orb left-[-10%] top-1/4 h-[420px] w-[420px] bg-[#B5636A]/30" />
-        <div aria-hidden className="ambient-orb right-[-12%] bottom-1/4 h-[380px] w-[380px] bg-[#D4AF37]/25" />
+        <div aria-hidden className="ambient-orb right-[-12%] bottom-1/4 h-[380px] w-[380px] bg-[#C9A84C]/25" />
 
         <div className="container relative mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
-            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">The Menu</p>
-            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0E8] sm:text-5xl md:text-6xl">
               Everything Included.{" "}
-              <em className="font-serif italic text-[#D4AF37]">Nothing Left Out.</em>
+              <em className="font-serif italic text-[#C9A84C]">Nothing Left Out.</em>
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#F5F0EB]/65">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#F5F0E8]/65">
               A full-spread party menu, cooked live at your home by a vetted private chef. Twelve dishes,
               one fixed price, zero stress.
             </p>
@@ -248,8 +251,8 @@ export function PartyClient() {
                 className="js-reveal party-included-card group"
                 data-delay={i.toString()}
               >
-                <div className="relative rounded-[1.75rem] border border-[#D4AF37]/22 bg-[#141414] shadow-[0_30px_80px_rgba(0,0,0,0.55)] ring-1 ring-white/[0.04]">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem]">
+                <div className="relative border-transparent bg-[#1A1A1A]">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <div className="party-included-img absolute inset-0">
                       <Image
                         src={item.img}
@@ -261,23 +264,22 @@ export function PartyClient() {
                       />
                     </div>
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent" />
-                    <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-[#D4AF37]/25" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.2)_50%,rgba(26,26,26,0.7)_82%,#1A1A1A_100%)]" />
 
                     <div className="absolute left-0 right-0 top-0 flex items-start justify-between p-5">
-                      <div className="flex items-center gap-2 rounded-full border border-[#D4AF37]/45 bg-black/40 px-3 py-1 text-[10px] uppercase tracking-[0.32em] text-[#D4AF37] backdrop-blur">
-                        <span className="h-1 w-1 rounded-full bg-[#D4AF37]" />
+                      <div className="flex items-center gap-2 rounded-full border border-[#C9A84C]/45 bg-black/40 px-3 py-1 text-[10px] uppercase tracking-[0.32em] text-[#C9A84C] backdrop-blur">
+                        <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
                         Included
                       </div>
-                      <div className="rounded-full border border-white/15 bg-black/40 p-2 text-[#D4AF37] backdrop-blur">
+                      <div className="rounded-full border border-white/15 bg-black/40 p-2 text-[#C9A84C] backdrop-blur">
                         <item.Icon className="h-4 w-4" />
                       </div>
                     </div>
 
                     <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="font-serif text-5xl italic leading-none text-[#D4AF37]">{item.count}</p>
-                      <h3 className="mt-2 font-serif text-2xl font-medium text-[#F5F0EB]">{item.title}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-[#F5F0EB]/65">{item.blurb}</p>
+                      <p className="font-serif text-5xl italic leading-none text-[#C9A84C]">{item.count}</p>
+                      <h3 className="mt-2 font-serif text-2xl font-medium text-[#F5F0E8]">{item.title}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-[#F5F0E8]/65">{item.blurb}</p>
                     </div>
                   </div>
                 </div>
@@ -288,17 +290,17 @@ export function PartyClient() {
       </section>
 
       {/* ============ PRICING ============ */}
-      <section className="reveal-up relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#101010] to-[#0A0A0A] py-24 sm:py-32">
+      <section className="reveal-up relative overflow-hidden bg-gradient-to-b from-[#1A1A1A] via-[#101010] to-[#1A1A1A] py-24 sm:py-32">
         <div aria-hidden className="absolute inset-0 ambient-grid opacity-40" />
 
         <div className="container relative mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
-            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">Pricing</p>
-            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#C9A84C]">Pricing</p>
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0E8] sm:text-5xl md:text-6xl">
               Simple,{" "}
               <em className="font-serif italic text-[#B5636A]">transparent</em> pricing
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#F5F0EB]/65">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#F5F0E8]/65">
               One flat fee. No hidden markups. Pick your city — we'll handle the rest.
             </p>
           </div>
@@ -324,20 +326,20 @@ export function PartyClient() {
             />
           </div>
 
-          <p className="js-reveal mt-10 text-center text-xs text-[#F5F0EB]/45">
+          <p className="js-reveal mt-10 text-center text-xs text-[#F5F0E8]/45">
             Inclusive of chef time, on-site cooking and post-cleanup. Ingredients & overtime billed separately.
           </p>
         </div>
       </section>
 
       {/* ============ TERMS ============ */}
-      <section className="reveal-up relative overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
+      <section className="reveal-up relative overflow-hidden bg-[#1A1A1A] py-24 sm:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
-            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">Fine Print</p>
-            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#C9A84C]">Fine Print</p>
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0E8] sm:text-5xl md:text-6xl">
               Good to know{" "}
-              <em className="font-serif italic text-[#D4AF37]">before you book.</em>
+              <em className="font-serif italic text-[#C9A84C]">before you book.</em>
             </h2>
           </div>
 
@@ -346,21 +348,21 @@ export function PartyClient() {
               <details
                 key={item.title}
                 open={i === 0}
-                className="js-reveal group overflow-hidden rounded-2xl border border-white/8 bg-[#141414]/80 backdrop-blur-sm open:border-[#D4AF37]/50"
+                className="js-reveal group overflow-hidden border-b border-[#F5F0E8]/10 bg-transparent open:border-[#C9A84C]/40"
                 data-delay={Math.min(i, 5).toString()}
               >
                 <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left">
                   <span className="flex items-center gap-4">
-                    <span className="font-serif text-base italic text-[#D4AF37]">0{i + 1}</span>
-                    <span className="font-serif text-lg text-[#F5F0EB] sm:text-xl">{item.title}</span>
+                    <span className="font-serif text-base italic text-[#C9A84C]">0{i + 1}</span>
+                    <span className="font-serif text-lg text-[#F5F0E8] sm:text-xl">{item.title}</span>
                   </span>
-                  <span className="party-accordion-chevron flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/40 text-[#D4AF37] group-open:bg-[#D4AF37]/10">
+                  <span className="party-accordion-chevron flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#C9A84C]/40 text-[#C9A84C] group-open:bg-[#C9A84C]/10">
                     <ChevronDown className="h-4 w-4" />
                   </span>
                 </summary>
                 <div className="party-accordion-body">
                   <div>
-                    <div className="px-6 pb-6 pl-[5.25rem] text-sm leading-relaxed text-[#F5F0EB]/72 sm:text-[15px]">
+                    <div className="px-6 pb-6 pl-[5.25rem] text-sm leading-relaxed text-[#F5F0E8]/72 sm:text-[15px]">
                       {item.body}
                     </div>
                   </div>
@@ -372,14 +374,14 @@ export function PartyClient() {
       </section>
 
       {/* ============ HOW IT WORKS ============ */}
-      <section className="reveal-up relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#111] to-[#0A0A0A] py-24 sm:py-32">
+      <section className="reveal-up relative overflow-hidden bg-gradient-to-b from-[#1A1A1A] via-[#111] to-[#1A1A1A] py-24 sm:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
-            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">The Flow</p>
-            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#C9A84C]">The Flow</p>
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0E8] sm:text-5xl md:text-6xl">
               How it <em className="font-serif italic text-[#B5636A]">works</em>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#F5F0EB]/65">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#F5F0E8]/65">
               From the first message to the last bite — four clean steps.
             </p>
           </div>
@@ -389,7 +391,7 @@ export function PartyClient() {
               {/* Desktop connector line */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute left-7 right-7 top-7 hidden h-px bg-gradient-to-r from-[#D4AF37]/60 via-[#D4AF37]/30 to-[#D4AF37]/60 md:block"
+                className="pointer-events-none absolute left-7 right-7 top-7 hidden h-px bg-gradient-to-r from-[#C9A84C]/60 via-[#C9A84C]/30 to-[#C9A84C]/60 md:block"
               />
               {steps.map((s, i) => (
                 <div
@@ -397,11 +399,11 @@ export function PartyClient() {
                   className="js-reveal relative flex flex-col items-start"
                   data-delay={i.toString()}
                 >
-                  <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#D4AF37]/50 bg-[#0A0A0A] font-serif text-xl italic text-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.25)]">
+                  <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#C9A84C]/50 bg-[#1A1A1A] font-serif text-xl italic text-[#C9A84C] shadow-[0_0_30px_rgba(212,175,55,0.25)]">
                     {s.num}
                   </div>
-                  <h3 className="mt-5 font-serif text-xl text-[#F5F0EB]">{s.title}</h3>
-                  <p className="mt-2 max-w-xs text-sm leading-relaxed text-[#F5F0EB]/65">{s.body}</p>
+                  <h3 className="mt-5 font-serif text-xl text-[#F5F0E8]">{s.title}</h3>
+                  <p className="mt-2 max-w-xs text-sm leading-relaxed text-[#F5F0E8]/65">{s.body}</p>
                 </div>
               ))}
             </div>
@@ -410,25 +412,25 @@ export function PartyClient() {
       </section>
 
       {/* ============ SEO LONG-FORM CONTENT ============ */}
-      <section className="relative overflow-hidden bg-[#0A0A0A] py-20 sm:py-24">
+      <section className="relative overflow-hidden bg-[#1A1A1A] py-20 sm:py-24">
         <div className="container mx-auto max-w-3xl px-6 lg:px-8">
           <div className="js-reveal">
-            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
+            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#C9A84C]">
               Why Savri
             </p>
-            <h2 className="mt-5 font-serif text-3xl leading-tight text-[#F5F0EB] sm:text-4xl">
+            <h2 className="mt-5 font-serif text-3xl leading-tight text-[#F5F0E8] sm:text-4xl">
               Private Chef for Your Party in Delhi NCR
             </h2>
-            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-[#F5F0EB]/72">
+            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-[#F5F0E8]/72">
               <p>
                 Savri is a{" "}
-                <a href="/" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                <a href="/" className="text-[#C9A84C] underline-offset-4 hover:underline">
                   private chef
                 </a>{" "}
                 booking service built for households across Delhi NCR. Whether you are throwing a
                 birthday at home, hosting in-laws over for dinner, or planning an anniversary brunch
                 for twelve, our party booking gets a vetted{" "}
-                <a href="/party" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                <a href="/party" className="text-[#C9A84C] underline-offset-4 hover:underline">
                   party booking chef
                 </a>{" "}
                 to your kitchen with the menu locked in, the ingredients sorted, and the cleanup
@@ -445,7 +447,7 @@ export function PartyClient() {
               </p>
               <p>
                 We bring the same{" "}
-                <a href="/" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                <a href="/" className="text-[#C9A84C] underline-offset-4 hover:underline">
                   chef at home Delhi NCR
                 </a>{" "}
                 experience across Noida, Gurugram, Faridabad and Ghaziabad. A flat ₹1,999 travel
@@ -458,7 +460,7 @@ export function PartyClient() {
               <p>
                 Want a Delhi-only quote, a custom menu for dietary restrictions, or a quick
                 availability check for a date next weekend? Message us on WhatsApp or open the{" "}
-                <a href="/party" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                <a href="/party" className="text-[#C9A84C] underline-offset-4 hover:underline">
                   party bookings
                 </a>{" "}
                 page above to confirm the menu. We will assign one of our verified chefs, share the
@@ -469,25 +471,25 @@ export function PartyClient() {
           </div>
 
           {/* Related links — internal linking for SEO */}
-          <div className="js-reveal mt-12 flex flex-wrap items-center gap-3 border-t border-white/8 pt-8 text-sm text-[#F5F0EB]/65">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#D4AF37]">
+          <div className="js-reveal mt-12 flex flex-wrap items-center gap-3 border-t border-[#F5F0E8]/10 pt-8 text-sm text-[#F5F0E8]/65">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#C9A84C]">
               Related
             </span>
             <a
               href="/"
-              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
             >
               Private Chef at Home →
             </a>
             <a
               href="/pricing"
-              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
             >
               Regular Pricing →
             </a>
             <a
               href="/how-it-works"
-              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
             >
               How It Works →
             </a>
@@ -496,7 +498,7 @@ export function PartyClient() {
       </section>
 
       {/* ============ FINAL CTA ============ */}
-      <section className="relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
+      <section className="relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden bg-[#1A1A1A] py-24 sm:py-32">
         <div aria-hidden className="absolute inset-0 -z-10">
           <Image
             src="/images/chef-cooking.jpg"
@@ -506,19 +508,19 @@ export function PartyClient() {
             loading="lazy"
             className="object-cover opacity-25"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/70 via-[#0A0A0A]/85 to-[#0A0A0A]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.2)_50%,rgba(26,26,26,0.7)_82%,#1A1A1A_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(181,99,106,0.22),transparent_60%)]" />
         </div>
 
         <div className="container mx-auto max-w-4xl px-6 text-center lg:px-8">
-          <p className="js-reveal text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
+          <p className="js-reveal text-[11px] font-medium uppercase tracking-[0.42em] text-[#C9A84C]">
             Your Party, Sorted
           </p>
-          <h2 className="js-reveal party-final-glow mt-6 font-serif text-5xl leading-[1.02] text-[#F5F0EB] sm:text-6xl md:text-7xl lg:text-[5.5rem]" data-delay="1">
+          <h2 className="js-reveal party-final-glow mt-6 font-serif text-5xl leading-[1.02] text-[#F5F0E8] sm:text-6xl md:text-7xl lg:text-[5.5rem]" data-delay="1">
             Ready to host{" "}
-            <em className="font-serif italic text-[#D4AF37]">without the stress?</em>
+            <em className="font-serif italic text-[#C9A84C]">without the stress?</em>
           </h2>
-          <p className="js-reveal mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#F5F0EB]/65" data-delay="2">
+          <p className="js-reveal mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#F5F0E8]/65" data-delay="2">
             Tell us your date. We'll send the chef, the menu, and the magic.
           </p>
 
@@ -527,14 +529,14 @@ export function PartyClient() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="immersive-button group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#B5636A] px-8 py-3.5 text-sm font-semibold tracking-wide text-[#F5F0EB] shadow-[0_18px_45px_rgba(181,99,106,0.5)] hover:bg-[#9A5158]"
+              className="immersive-button group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#B5636A] px-8 py-3.5 text-sm font-semibold tracking-wide text-[#F5F0E8] shadow-[0_18px_45px_rgba(181,99,106,0.5)] hover:bg-[#9A5158]"
             >
               Book on WhatsApp
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a
               href={SITE_URL}
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#D4AF37]/50 px-8 py-3.5 text-sm font-medium text-[#F5F0EB]/85 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#C9A84C]/50 px-8 py-3.5 text-sm font-medium text-[#F5F0E8]/85 transition hover:border-[#C9A84C] hover:text-[#C9A84C]"
             >
               Learn More
             </a>
@@ -549,7 +551,7 @@ export function PartyClient() {
               loading="lazy"
               className="h-14 w-auto opacity-90"
             />
-            <p className="font-serif text-xl italic text-[#F5F0EB]/72">Private Chef, Ghar Pe.</p>
+            <p className="font-serif text-xl italic text-[#F5F0E8]/72">Private Chef, Ghar Pe.</p>
           </div>
         </div>
       </section>
@@ -590,12 +592,12 @@ type PriceCardProps = {
 }
 
 function PricingCard({ variant, tagLabel, total, breakdown, subline, list, accent, badge }: PriceCardProps) {
-  const accentColor = accent === "rose" ? "#B5636A" : "#D4AF37"
+  const accentColor = accent === "rose" ? "#B5636A" : "#C9A84C"
 
   return (
     <div className={`js-reveal ${variant === "left" ? "js-reveal-left" : "js-reveal-right"}`}>
       <div
-        className={`party-pricing-card relative overflow-hidden rounded-[2rem] border border-white/8 bg-[#141414] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.45)] sm:p-10 ${
+        className={`party-pricing-card relative overflow-hidden border-transparent bg-transparent p-8 sm:p-10 ${
           variant === "right" ? "party-pricing-right" : ""
         }`}
       >
@@ -615,29 +617,29 @@ function PricingCard({ variant, tagLabel, total, breakdown, subline, list, accen
             {tagLabel}
           </span>
           {badge ? (
-            <span className="text-[10px] font-medium uppercase tracking-[0.32em] text-[#F5F0EB]/45">{badge}</span>
+            <span className="text-[10px] font-medium uppercase tracking-[0.32em] text-[#F5F0E8]/45">{badge}</span>
           ) : null}
         </div>
 
         <div className="relative mt-8 flex items-baseline gap-1">
-          <IndianRupee className="h-7 w-7 text-[#F5F0EB]/60" />
-          <span className="font-serif text-6xl font-medium leading-none text-[#F5F0EB] tabular-nums sm:text-7xl">
+          <IndianRupee className="h-7 w-7 text-[#F5F0E8]/60" />
+          <span className="font-serif text-6xl font-medium leading-none text-[#F5F0E8] tabular-nums sm:text-7xl">
             {total.toLocaleString("en-IN")}
           </span>
         </div>
 
         {breakdown ? (
-          <p className="mt-2 text-xs text-[#F5F0EB]/55">{breakdown}</p>
+          <p className="mt-2 text-xs text-[#F5F0E8]/55">{breakdown}</p>
         ) : (
-          <p className="mt-2 text-xs text-[#F5F0EB]/55">One-time party fee · all-in</p>
+          <p className="mt-2 text-xs text-[#F5F0E8]/55">One-time party fee · all-in</p>
         )}
-        <p className="mt-5 text-sm text-[#F5F0EB]/75">{subline}</p>
+        <p className="mt-5 text-sm text-[#F5F0E8]/75">{subline}</p>
 
         <div className="relative mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
         <ul className="relative mt-8 space-y-3">
           {list.map((line) => (
-            <li key={line} className="flex items-start gap-3 text-sm text-[#F5F0EB]/85">
+            <li key={line} className="flex items-start gap-3 text-sm text-[#F5F0E8]/85">
               <span
                 className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
                 style={{ backgroundColor: `${accentColor}22`, color: accentColor }}
@@ -653,7 +655,7 @@ function PricingCard({ variant, tagLabel, total, breakdown, subline, list, accen
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="immersive-button mt-10 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold tracking-wide text-[#F5F0EB] transition"
+          className="immersive-button mt-10 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold tracking-wide text-[#F5F0E8] transition"
           style={{ backgroundColor: accentColor }}
         >
           Book this plan
