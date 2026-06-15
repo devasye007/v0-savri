@@ -1093,66 +1093,128 @@ html {
   animation: party-hero-bg-zoom 14s ease-out forwards;
 }
 
-/* Scroll-zoom card image — toggled by IntersectionObserver class */
-.party-zoom-img {
-  transform: scale(1);
-  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.party-zoom-img.in-view {
-  transform: scale(1.18);
-}
-
-/* Pricing card hover lift + Rose glow */
-.party-price-card {
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.4s ease;
-}
-.party-price-card:hover {
-  transform: translateY(-12px);
-  box-shadow:
-    0 30px 80px rgba(181, 99, 106, 0.32),
-    0 0 0 1px rgba(212, 175, 55, 0.35),
-    inset 0 1px 0 rgba(212, 175, 55, 0.18);
-  border-color: rgba(212, 175, 55, 0.5);
-}
-
-/* Accordion content height transition */
-.party-accordion-content {
-  max-height: 0;
+/* ====== Reveal-on-scroll (IntersectionObserver flips .is-revealed) ======
+   GPU-only: animates opacity + transform. Zero scroll listeners. */
+.js-reveal {
   opacity: 0;
-  overflow: hidden;
+  transform: translate3d(0, 40px, 0);
   transition:
-    max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.4s ease,
-    padding 0.4s ease;
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
-.party-accordion-content.open {
-  max-height: 280px;
+.js-reveal-left { transform: translate3d(-40px, 0, 0); }
+.js-reveal-right { transform: translate3d(40px, 0, 0); }
+.js-reveal.is-revealed,
+.js-reveal-left.is-revealed,
+.js-reveal-right.is-revealed {
   opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
+.js-reveal[data-delay="1"] { transition-delay: 0.08s; }
+.js-reveal[data-delay="2"] { transition-delay: 0.16s; }
+.js-reveal[data-delay="3"] { transition-delay: 0.24s; }
+.js-reveal[data-delay="4"] { transition-delay: 0.32s; }
+.js-reveal[data-delay="5"] { transition-delay: 0.4s; }
 
-/* Timeline connector grow on view */
-.party-timeline-line {
+/* ====== Native scroll-driven progress bar (Chrome/Edge 115+) ======
+   Falls back to invisible bar on Safari/Firefox — no JS listener. */
+.party-progress-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: #B5636A;
   transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+  transform-origin: 0% 50%;
+  z-index: 80;
+  pointer-events: none;
 }
-.party-timeline-line.in-view {
-  transform: scaleX(1);
+@supports (animation-timeline: scroll()) {
+  .party-progress-bar {
+    animation: party-progress-grow linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes party-progress-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
-/* Timeline step pop */
-.party-step {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+/* ====== Hero parallax via background-attachment: fixed (zero JS) ====== */
+.party-hero-parallax {
+  background-image: url("/images/hero-food.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
-.party-step.in-view {
-  opacity: 1;
-  transform: translateY(0);
+/* iOS Safari ignores fixed background reliably — fall back to scroll */
+@media (max-width: 768px), (hover: none) {
+  .party-hero-parallax { background-attachment: scroll; }
+}
+
+/* ====== Included card hover zoom (GPU transform only) ====== */
+.party-included-img {
+  transform: scale(1);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.party-included-card:hover .party-included-img,
+.party-included-card:focus-within .party-included-img {
+  transform: scale(1.08);
+}
+
+/* ====== Pricing card 3D tilt — pure CSS :hover, no mouse tracking ====== */
+.party-pricing-card {
+  transform: perspective(1000px) rotateX(0) rotateY(0) translate3d(0, 0, 0);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.party-pricing-card:hover {
+  transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) translate3d(0, -8px, 0);
+  box-shadow:
+    0 30px 70px rgba(181, 99, 106, 0.32),
+    0 0 0 1px rgba(212, 175, 55, 0.25);
+}
+.party-pricing-card.party-pricing-right:hover {
+  transform: perspective(1000px) rotateX(3deg) rotateY(3deg) translate3d(0, -8px, 0);
+}
+
+/* ====== Native accordion using <details>; grid-rows trick for smooth open ====== */
+.party-accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.party-accordion-body > div { overflow: hidden; }
+details[open] .party-accordion-body { grid-template-rows: 1fr; }
+.party-accordion-chevron {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+details[open] .party-accordion-chevron { transform: rotate(180deg); }
+
+/* ====== How It Works — horizontal scroll-snap (no pinning) ====== */
+.party-steps-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .party-steps-scroll {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+  .party-steps-track {
+    grid-auto-columns: 80vw;
+  }
+  .party-steps-track > * {
+    scroll-snap-align: center;
+  }
 }
 
 /* Final CTA mega heading shimmer */
@@ -1189,20 +1251,26 @@ html {
   .party-scroll-bounce,
   .party-particle,
   .party-shimmer-text,
-  .party-hero-bg,
   .party-final-glow,
-  .party-float-btn {
+  .party-float-btn,
+  .party-progress-bar {
     animation: none !important;
   }
   .party-eyebrow,
   .party-title,
   .party-punch,
   .party-cta { opacity: 1 !important; transform: none !important; filter: none !important; }
-  .party-zoom-img,
-  .party-timeline-line,
-  .party-step {
+  .js-reveal,
+  .js-reveal-left,
+  .js-reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .party-included-img,
+  .party-pricing-card {
     transition: none !important;
     transform: none !important;
-    opacity: 1 !important;
   }
+  .party-hero-parallax { background-attachment: scroll !important; }
 }
