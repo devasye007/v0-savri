@@ -243,155 +243,142 @@ const faqs = [
 export function SavriAiPage() {
   return (
     <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
-      <section className="reveal-up relative isolate overflow-hidden bg-[#1A1A1A] pt-32">
-        <div className="container relative z-10 mx-auto px-6 pb-20 md:pb-28">
-          <div className="mb-8 flex items-center gap-2 text-sm text-[#F5F0E8]/60">
-            <Link href="/" className="hover:text-[#F5F0E8]">
-              Home
-            </Link>
-            <ChevronRight className="h-4 w-4" />
-            <span className="text-[#F5F0E8]">Savri AI</span>
-          </div>
+      {/* ─────────── 01 / HERO ─────────── */}
+      <section className="relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
+        {/* Ambient warm radial glow + grid lines */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(181,99,106,0.18),transparent_55%),radial-gradient(circle_at_72%_70%,rgba(201,168,76,0.14),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
 
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="max-w-2xl">
-              <div className="mb-6 inline-flex items-center gap-2 border-transparent px-0 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#C9A84C]">
-                <Sparkles className="h-4 w-4" />
-                Coming Soon
-              </div>
-              <h1
-                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
-                style={{ fontSize: "clamp(48px, 9vw, 180px)" }}
-              >
-                Meet Savri AI
-              </h1>
-              <p className="mt-8 max-w-xl text-xl text-[#F5F0E8]/80 md:text-2xl">
-                The future of private chef experiences. Coming soon.
-              </p>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
-                Savri AI learns your taste, predicts your cravings, and matches you with the perfect chef. Personalized dining, powered by intelligence.
-              </p>
+        <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+          <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
+          <ChevronRight className="mx-2 inline h-3 w-3" />
+          <span className="text-[#C9A84C]">Savri AI</span>
+        </div>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <a
-                  href="#notify"
-                  className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-[#B5636A] px-7 py-3 text-base font-semibold text-[#F5F0E8] transition hover:bg-rose-dark"
-                >
-                  Notify Me When It Launches
-                </a>
-                <a
-                  href="#roadmap"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-[#F5F0E8]/20 bg-transparent px-7 py-3 text-base font-semibold text-[#F5F0E8] transition hover:bg-[#F5F0E8]/5"
-                >
-                  See launch timeline
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
+        <p className="reveal-up relative z-10 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+          <Sparkles className="h-3 w-3" /> 01 — Coming Soon
+        </p>
+        <h1
+          className="reveal-up relative z-10 mt-10 font-serif italic leading-[0.86] text-[#F5F0E8]"
+          style={{ fontSize: "clamp(64px, 13vw, 260px)" }}
+        >
+          Meet Savri AI
+        </h1>
+        <p className="reveal-up relative z-10 mt-10 max-w-xl text-xl text-[#F5F0E8]/82 md:text-2xl">
+          The future of private chef experiences. Coming soon.
+        </p>
+        <p className="reveal-up relative z-10 mt-6 max-w-2xl text-base leading-8 text-[#F5F0E8]/68 md:text-lg">
+          Savri AI learns your taste, predicts your cravings, and matches you with the perfect chef. Personalized dining, powered by intelligence.
+        </p>
+        <div className="reveal-up relative z-10 mt-12 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="#notify"
+            className="inline-flex min-h-12 items-center justify-center bg-[#B5636A] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#F5F0E8] transition hover:bg-[#9A5158] md:text-[15px]"
+          >
+            Notify Me When It Launches
+          </a>
+          <a
+            href="#roadmap"
+            className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#F5F0E8]/30 bg-transparent px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#F5F0E8] transition hover:bg-[#F5F0E8]/8 md:text-[15px]"
+          >
+            See launch timeline
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
 
-            <div className="reveal-right relative">
-              <div className="relative overflow-hidden border-transparent">
-                <Image
-                  src="/images/hero-food.jpg"
-                  alt="Warm Indian meal plating with a premium private-chef feel"
-                  width={1200}
-                  height={900}
-                  className="h-full w-full object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.2)_50%,rgba(26,26,26,0.7)_82%,#1A1A1A_100%)]" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <div className="border-transparent p-0">
-                    <p className="text-sm uppercase tracking-[0.22em] text-[#C9A84C]">Savri AI Preview</p>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                      <div className="border-transparent p-0 text-[#F5F0E8]">
-                        <p className="text-xs uppercase tracking-[0.18em] text-[#F5F0E8]/60">Learns</p>
-                        <p className="mt-2 text-sm leading-6">Spice level, cuisine patterns, allergies, comfort-food moods.</p>
-                      </div>
-                      <div className="border-transparent p-0 text-[#F5F0E8]">
-                        <p className="text-xs uppercase tracking-[0.18em] text-[#F5F0E8]/60">Suggests</p>
-                        <p className="mt-2 text-sm leading-6">Menus, chefs, and occasions before booking feels like work.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 hidden border-transparent p-0 md:block">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#C9A84C]">Launch Goal</p>
-                <p className="mt-2 font-serif italic text-3xl text-[#F5F0E8]">95%+ match accuracy</p>
-                <p className="mt-1 text-sm text-[#F5F0E8]/60">By month 6 of active learning.</p>
-              </div>
-            </div>
-          </div>
+        <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.5em] text-[#F5F0E8]/55">
+          <span>↓ Scroll</span>
         </div>
       </section>
 
-      <section className="reveal-up bg-[#1A1A1A] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#B5636A]">Why AI</p>
+      {/* ─────────── 02 / WHY AI ─────────── */}
+      <section className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why AI</p>
             <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
+              className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
             >
               Why Every Meal Should Be Personal
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-10 lg:grid-cols-3 lg:gap-12">
-            {problemCards.map((card) => (
+          <div className="mt-24 md:mt-32">
+            {problemCards.map((card, i) => (
               <div
                 key={card.title}
-                className="reveal-up border-transparent p-0"
+                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
-                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#B5636A]/15 text-[#B5636A]">
-                  <card.icon className="h-6 w-6" />
+                <div className="flex items-start gap-6 md:flex-col md:items-start md:gap-4">
+                  <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <card.icon className="h-9 w-9 text-[#B5636A]" />
                 </div>
-                <h3 className="mt-6 font-serif italic text-2xl text-[#F5F0E8] md:text-3xl">{card.title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#F5F0E8]/70">{card.copy}</p>
+                <div>
+                  <h3
+                    className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(28px, 4.2vw, 72px)" }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-[#F5F0E8]/70 md:text-lg">
+                    {card.copy}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="reveal-up bg-[#1A1A1A] py-20 text-[#F5F0E8] md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#C9A84C]">Features</p>
+      {/* ─────────── 03 / FEATURES ─────────── */}
+      <section className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">03 — Features</p>
             <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
+              className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
             >
               What Savri AI Can Do
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-12 xl:grid-cols-3">
-            {featureCards.map((feature) => (
+          <div className="mt-24 md:mt-32">
+            {featureCards.map((feature, i) => (
               <article
                 key={feature.title}
-                className="reveal-up border-transparent p-0"
+                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
-                <div className="flex items-center justify-between">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#C9A84C]/18 text-[#C9A84C]">
-                    <feature.icon className="h-5 w-5" />
-                  </div>
-                  <span className="px-0 py-1 text-xs uppercase tracking-[0.16em] text-[#C9A84C]/90">
-                    Coming soon
+                <div className="flex items-center gap-6 md:flex-col md:items-start md:gap-4">
+                  <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
+                  <feature.icon className="h-8 w-8 text-[#C9A84C]" />
+                  <span className="text-[10px] uppercase tracking-[0.32em] text-[#C9A84C]/85">Coming soon</span>
                 </div>
-                <h3 className="mt-6 font-serif italic text-3xl text-[#F5F0E8]">{feature.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-[#F5F0E8]/72">{feature.description}</p>
-
-                <div className="mt-6 border-l border-[#F5F0E8]/15 p-0 pl-5">
-                  <p className="text-xs uppercase tracking-[0.18em] text-[#F5F0E8]/45">Visual</p>
-                  <p className="mt-2 text-sm text-[#F5F0E8]/82">{feature.visual}</p>
-                </div>
-
-                <div className="mt-4 flex gap-3 border-l border-[#B5636A]/40 p-0 pl-5">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#C9A84C]" />
-                  <p className="text-sm leading-6 text-[#F5F0E8]/86">{feature.example}</p>
+                <div>
+                  <h3
+                    className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(28px, 4.2vw, 64px)" }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                    {feature.description}
+                  </p>
+                  <div className="mt-8 grid gap-6 md:grid-cols-2">
+                    <div className="border-l border-[#F5F0E8]/18 pl-5">
+                      <p className="text-[10px] uppercase tracking-[0.32em] text-[#F5F0E8]/50">Visual</p>
+                      <p className="mt-2 text-base text-[#F5F0E8]/85">{feature.visual}</p>
+                    </div>
+                    <div className="flex gap-3 border-l border-[#B5636A]/55 pl-5">
+                      <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#C9A84C]" />
+                      <p className="text-base leading-7 text-[#F5F0E8]/85">{feature.example}</p>
+                    </div>
+                  </div>
                 </div>
               </article>
             ))}
@@ -399,64 +386,93 @@ export function SavriAiPage() {
         </div>
       </section>
 
-      <section className="reveal-up bg-[#1A1A1A] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#B5636A]">Experience</p>
-            <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
-            >
-              The Savri AI Experience
-            </h2>
-            <p className="mt-6 text-base leading-7 text-[#F5F0E8]/68 md:text-lg">
-              From the first taste quiz to the next better meal, the flow stays simple. The intelligence works quietly in the background.
-            </p>
+      {/* ─────────── 04 / EXPERIENCE ─────────── */}
+      <section className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">04 — Experience</p>
+            <div>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                The Savri AI Experience
+              </h2>
+              <p className="reveal-up mt-8 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                From the first taste quiz to the next better meal, the flow stays simple. The intelligence works quietly in the background.
+              </p>
+            </div>
           </div>
 
-          <div className="mt-16 grid gap-10 lg:grid-cols-5 lg:gap-8">
+          <div className="mt-24 md:mt-32">
             {steps.map((step) => (
-              <div key={step.number} className="reveal-up relative border-transparent p-0">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#C9A84C]/40 bg-transparent text-lg font-semibold text-[#C9A84C]">
+              <div
+                key={step.number}
+                className="reveal-up grid grid-cols-1 items-baseline gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.18fr_0.3fr_1fr] md:gap-12 md:py-18"
+              >
+                <div
+                  className="font-serif italic leading-none text-[#C9A84C]"
+                  style={{ fontSize: "clamp(72px, 9vw, 180px)" }}
+                >
                   {step.number}
                 </div>
-                <h3 className="mt-5 font-serif italic text-2xl text-[#F5F0E8]">{step.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-[#F5F0E8]/68">{step.copy}</p>
+                <h3
+                  className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(28px, 3.4vw, 56px)" }}
+                >
+                  {step.title}
+                </h3>
+                <p className="max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                  {step.copy}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="reveal-up bg-[#1A1A1A] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#B5636A]">Use Cases</p>
+      {/* ─────────── 05 / USE CASES ─────────── */}
+      <section className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">05 — Use Cases</p>
             <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
+              className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
             >
               Savri AI in Real Life
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-12 xl:grid-cols-2">
-            {stories.map((story) => (
+          <div className="mt-24 md:mt-32">
+            {stories.map((story, i) => (
               <article
                 key={story.profile}
-                className="reveal-up border-transparent p-0"
+                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#B5636A]">Profile</p>
-                <h3 className="mt-3 font-serif italic text-3xl text-[#F5F0E8]">{story.profile}</h3>
-                <div className="mt-6 space-y-4 text-sm leading-7 text-[#F5F0E8]/72">
+                <div className="flex flex-col gap-3">
+                  <span className="text-[11px] uppercase tracking-[0.4em] text-[#B5636A]">
+                    Profile {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3
+                    className="font-serif italic leading-[1.05] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(24px, 2.6vw, 44px)" }}
+                  >
+                    {story.profile}
+                  </h3>
+                </div>
+                <div className="space-y-7 text-base leading-8 text-[#F5F0E8]/78 md:text-lg">
                   <p>
-                    <span className="font-semibold text-[#F5F0E8]">Challenge:</span> {story.challenge}
+                    <span className="block text-[10px] uppercase tracking-[0.32em] text-[#C9A84C]">Challenge</span>
+                    <span className="mt-2 block">{story.challenge}</span>
                   </p>
                   <p>
-                    <span className="font-semibold text-[#F5F0E8]">Savri AI Solution:</span> {story.solution}
+                    <span className="block text-[10px] uppercase tracking-[0.32em] text-[#C9A84C]">Savri AI Solution</span>
+                    <span className="mt-2 block">{story.solution}</span>
                   </p>
                   <p>
-                    <span className="font-semibold text-[#F5F0E8]">Outcome:</span> {story.outcome}
+                    <span className="block text-[10px] uppercase tracking-[0.32em] text-[#C9A84C]">Outcome</span>
+                    <span className="mt-2 block font-serif italic text-[#F5F0E8]">{story.outcome}</span>
                   </p>
                 </div>
               </article>
@@ -465,36 +481,44 @@ export function SavriAiPage() {
         </div>
       </section>
 
-      <section id="roadmap" className="reveal-up bg-[#1A1A1A] py-20 text-[#F5F0E8] md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#C9A84C]">Timeline</p>
-            <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
-            >
-              When Is Savri AI Coming?
-            </h2>
-            <p className="mt-6 text-base leading-7 text-[#F5F0E8]/68 md:text-lg">
-              We&apos;re building Savri AI thoughtfully. Quality over speed. Every feature ships only when it improves the experience for real homes.
-            </p>
+      {/* ─────────── 06 / TIMELINE ─────────── */}
+      <section id="roadmap" className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">06 — Timeline</p>
+            <div>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                When Is Savri AI Coming?
+              </h2>
+              <p className="reveal-up mt-8 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                We&apos;re building Savri AI thoughtfully. Quality over speed. Every feature ships only when it improves the experience for real homes.
+              </p>
+            </div>
           </div>
 
-          <div className="mx-auto mt-16 grid max-w-5xl gap-12">
+          <div className="mt-24 md:mt-32">
             {roadmap.map((item) => (
               <div
                 key={item.month}
-                className="reveal-up grid gap-6 border-l border-[#F5F0E8]/15 p-0 pl-6 md:grid-cols-[220px_1fr]"
+                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C9A84C]">{item.month}</p>
-                  <h3 className="mt-2 font-serif italic text-3xl text-[#F5F0E8] md:text-4xl">{item.phase}</h3>
+                  <p className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">{item.month}</p>
+                  <h3
+                    className="mt-4 font-serif italic leading-[0.95] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(28px, 4vw, 64px)" }}
+                  >
+                    {item.phase}
+                  </h3>
                 </div>
-                <div className="grid gap-3">
+                <div className="grid gap-4">
                   {item.items.map((detail) => (
-                    <div key={detail} className="flex items-start gap-3 border-transparent px-0 py-2">
-                      <CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-[#C9A84C]" />
-                      <span className="text-sm text-[#F5F0E8]/86">{detail}</span>
+                    <div key={detail} className="flex items-start gap-4">
+                      <CalendarDays className="mt-1 h-4 w-4 shrink-0 text-[#C9A84C]" />
+                      <span className="text-base leading-7 text-[#F5F0E8]/86 md:text-lg">{detail}</span>
                     </div>
                   ))}
                 </div>
@@ -504,105 +528,125 @@ export function SavriAiPage() {
         </div>
       </section>
 
-      <section className="reveal-up bg-[#1A1A1A] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#B5636A]">Privacy</p>
-            <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
-            >
-              Your Privacy. Our Priority.
-            </h2>
-            <p className="mt-6 text-base leading-7 text-[#F5F0E8]/68 md:text-lg">
-              We believe AI should enhance privacy, not invade it. Every feature is designed with your trust in mind.
-            </p>
+      {/* ─────────── 07 / PRIVACY ─────────── */}
+      <section className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">07 — Privacy</p>
+            <div>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                Your Privacy. Our Priority.
+              </h2>
+              <p className="reveal-up mt-8 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                We believe AI should enhance privacy, not invade it. Every feature is designed with your trust in mind.
+              </p>
+            </div>
           </div>
 
-          <div className="mt-16 grid gap-10 lg:grid-cols-3 lg:gap-12">
-            {privacyPoints.map((point) => (
+          <div className="mt-24 md:mt-32">
+            {privacyPoints.map((point, i) => (
               <div
                 key={point.title}
-                className="reveal-up border-transparent p-0"
+                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
-                <ShieldCheck className="h-7 w-7 text-[#B5636A]" />
-                <h3 className="mt-5 font-serif italic text-2xl text-[#F5F0E8] md:text-3xl">{point.title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#F5F0E8]/68">{point.copy}</p>
+                <div className="flex items-center gap-6 md:flex-col md:items-start md:gap-4">
+                  <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <ShieldCheck className="h-9 w-9 text-[#B5636A]" />
+                </div>
+                <div>
+                  <h3
+                    className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(28px, 4vw, 64px)" }}
+                  >
+                    {point.title}
+                  </h3>
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                    {point.copy}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="reveal-up bg-[#1A1A1A] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#B5636A]">FAQ</p>
+      {/* ─────────── 08 / FAQ ─────────── */}
+      <section className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">08 — FAQ</p>
             <h2
-              className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
+              className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
             >
               Questions About Savri AI
             </h2>
           </div>
 
-          <div className="mx-auto mt-16 max-w-4xl divide-y divide-[#F5F0E8]/15 border-transparent">
+          <div className="mt-20 divide-y divide-[#F5F0E8]/15 md:mt-28">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group px-0 py-2">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-lg font-semibold text-[#F5F0E8] marker:content-none">
-                  {faq.question}
-                  <span className="text-2xl text-[#B5636A] transition group-open:rotate-45">+</span>
+              <details key={faq.question} className="group py-2">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-left marker:content-none">
+                  <span className="font-serif italic text-xl text-[#F5F0E8] md:text-2xl">{faq.question}</span>
+                  <span className="text-3xl text-[#B5636A] transition group-open:rotate-45">+</span>
                 </summary>
-                <p className="pb-5 pr-8 text-sm leading-7 text-[#F5F0E8]/68">{faq.answer}</p>
+                <p className="pb-6 pr-8 text-base leading-8 text-[#F5F0E8]/72 md:text-lg">{faq.answer}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="notify" className="reveal-up bg-[#1A1A1A] py-20 text-[#F5F0E8] md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-5xl border-transparent p-0 md:p-0">
-            <div className="grid items-start gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#C9A84C]">Waitlist</p>
-                <h2
-                  className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-                  style={{ fontSize: "clamp(40px, 6vw, 110px)" }}
-                >
-                  Be First to Know When Savri AI Launches
-                </h2>
-                <p className="mt-6 text-base leading-7 text-[#F5F0E8]/72 md:text-lg">
-                  Join the waitlist and get exclusive early access, special pricing, and insider updates.
-                </p>
-
-                <div className="mt-8 space-y-4">
-                  {[
-                    "Early notice when AI features go live",
-                    "Special launch pricing updates",
-                    "Insider product progress from August to December 2026",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-3 text-sm text-[#F5F0E8]/82">
-                      <HeartHandshake className="mt-0.5 h-4 w-4 shrink-0 text-[#C9A84C]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <SavriAiNewsletter />
+      {/* ─────────── 09 / WAITLIST ─────────── */}
+      <section id="notify" className="relative w-full overflow-hidden py-32 md:py-48">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+          <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">09 — Waitlist</p>
+            <div>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                Be First to Know When Savri AI Launches
+              </h2>
+              <p className="reveal-up mt-8 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                Join the waitlist and get exclusive early access, special pricing, and insider updates.
+              </p>
             </div>
+          </div>
+
+          <div className="mt-20 grid items-start gap-12 md:mt-28 md:grid-cols-[0.95fr_1.05fr]">
+            <div className="space-y-5">
+              {[
+                "Early notice when AI features go live",
+                "Special launch pricing updates",
+                "Insider product progress from August to December 2026",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-4 text-base text-[#F5F0E8]/86 md:text-lg">
+                  <HeartHandshake className="mt-1 h-5 w-5 shrink-0 text-[#C9A84C]" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <SavriAiNewsletter />
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[#F5F0E8]/10 bg-[#1A1A1A] py-10">
-        <div className="container mx-auto flex flex-col gap-4 px-6 text-sm text-[#F5F0E8]/62 md:flex-row md:items-center md:justify-between">
+      {/* ─────────── Footer note ─────────── */}
+      <section className="relative w-full overflow-hidden border-t border-[#F5F0E8]/12 py-12">
+        <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-6 text-sm text-[#F5F0E8]/62 md:flex-row md:items-center md:justify-between md:px-16">
           <p className="flex items-center gap-2">
             <UtensilsCrossed className="h-4 w-4 text-[#B5636A]" />
             Savri AI is being built to support real private-chef bookings, not replace the human experience.
           </p>
-          <Link href="/" className="inline-flex items-center gap-2 font-semibold text-[#B5636A] hover:text-rose-dark">
+          <Link href="/" className="inline-flex items-center gap-2 font-semibold text-[#B5636A] hover:text-[#F5F0E8]">
             Explore Savri home page
             <ArrowRight className="h-4 w-4" />
           </Link>
