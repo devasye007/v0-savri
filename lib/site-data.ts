@@ -187,6 +187,21 @@ export const testimonials = [
 
 export const homepageFaqs = [
   {
+    question: "Do you do party bookings?",
+    answer:
+      "Yes! Savri now offers party bookings starting at ₹5,999 for Delhi. We handle everything — chef, cooking, and cleanup. Visit our Party Bookings page to know more.",
+  },
+  {
+    question: "How many guests can you accommodate for a party?",
+    answer:
+      "Our party bookings are designed for gatherings in Delhi NCR. The menu includes 4 snacks, 4 main course dishes, 2 sides, and 2 desserts — perfect for 10-20 guests.",
+  },
+  {
+    question: "Is there an extra charge for NCR areas?",
+    answer:
+      "Yes, bookings in Noida, Gurugram, Faridabad, and Ghaziabad have an additional ₹1,999 travel surcharge, bringing the total to ₹8,398.",
+  },
+  {
     question: "How far in advance do I need to book?",
     answer:
       "Minimum 24 hours. If you book today at 5pm, the earliest service is tomorrow at 5pm. That gives us time for chef assignment and ingredient planning.",

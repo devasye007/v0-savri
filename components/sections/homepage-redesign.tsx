@@ -11,6 +11,7 @@ import {
   ChefHat,
   CircleDollarSign,
   Clock3,
+  PartyPopper,
   Quote,
   ShieldCheck,
   Sparkles,
@@ -125,6 +126,15 @@ export function HomepageRedesign() {
               <p className="mt-6 max-w-xl text-xl text-cream/82 md:text-2xl">
                 Authentic. Fresh. Personal. Starting ₹549.
               </p>
+              <Link
+                href="/party"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-gold transition hover:text-cream md:text-[15px]"
+              >
+                Party Bookings Now Available
+                <span aria-hidden="true" className="text-cream/60 transition group-hover:text-cream">
+                  → Learn More
+                </span>
+              </Link>
               <p className="mt-6 max-w-2xl text-base leading-8 text-cream/72 md:text-lg">
                 Savri brings trained private chefs into Indian homes for intimate dinners, family meals, and celebrations that feel polished without feeling performative.
               </p>
@@ -215,6 +225,30 @@ export function HomepageRedesign() {
               )
             })}
           </div>
+
+          {/* Party Bookings — featured offering */}
+          <Reveal delayMs={whySavriCards.length * 90} variant="up">
+            <article className="immersive-card interactive-spotlight mt-8 grid gap-6 rounded-[2rem] border border-gold/35 bg-gradient-to-br from-[#1c1714] via-[#141414] to-[#100f0f] p-7 text-cream shadow-[0_20px_60px_rgba(212,175,55,0.18)] md:grid-cols-[auto_1fr_auto] md:items-center md:p-8">
+              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/15 text-gold">
+                <PartyPopper className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Now Available</p>
+                <h3 className="mt-2 font-serif text-2xl font-semibold md:text-3xl">Party Bookings</h3>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-cream/72 md:text-base">
+                  Private chef for your next party or gathering. 12 dishes cooked live in your kitchen.
+                  Starting at <span className="font-semibold text-cream">₹5,999</span> for Delhi.
+                </p>
+              </div>
+              <Link
+                href="/party"
+                className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-3 text-sm font-semibold text-dark transition hover:bg-gold-dark md:self-center"
+              >
+                Book a Party
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+          </Reveal>
         </div>
       </section>
 
@@ -329,6 +363,50 @@ export function HomepageRedesign() {
                   </article>
                 ))}
               </div>
+
+              {/* Party Bookings — premium gold tier */}
+              <article className="immersive-card hover-shine mt-6 rounded-[2rem] border-2 border-gold/45 bg-gradient-to-br from-[#1c1714] via-[#141414] to-[#100f0f] p-7 shadow-[0_30px_80px_rgba(212,175,55,0.18)]">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold">
+                      <PartyPopper className="h-4 w-4" />
+                      Party
+                    </div>
+                    <h3 className="mt-3 font-serif text-3xl font-semibold text-cream">Party Bookings</h3>
+                    <p className="mt-2 text-sm text-cream/62">Private chef for your next gathering</p>
+                  </div>
+                  <span className="rounded-full bg-gold px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-dark">
+                    New
+                  </span>
+                </div>
+
+                <p className="mt-6 text-5xl font-semibold text-cream">₹5,999</p>
+                <p className="mt-2 text-sm text-cream/62">Delhi · NCR ₹8,398 (Noida / Gurugram / Faridabad / Ghaziabad)</p>
+
+                <ul className="mt-6 grid gap-3 text-sm text-cream/80 sm:grid-cols-2">
+                  {[
+                    "4 Snacks",
+                    "4 Main Course",
+                    "2 Sides (Breads / Rice)",
+                    "2 Desserts + 1 Salad",
+                    "Private chef at your home",
+                    "Kitchen cleaned after",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/party"
+                  className="immersive-button mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-3 text-base font-semibold text-dark transition hover:bg-gold-dark"
+                >
+                  Book Party
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
 
               <div className="mt-6 rounded-[2rem] border border-white/10 bg-white/6 p-6">
                 <div className="flex items-start gap-4">
@@ -537,14 +615,23 @@ export function HomepageRedesign() {
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-cream/72 md:text-lg">
             Book your first chef in 3 minutes. Just remember the 24+ hour lead time.
           </p>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="immersive-button hover-shine mt-8 inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-8 py-3 text-base font-semibold text-cream transition hover:bg-rose-dark"
-          >
-            Book a Chef Now
-          </a>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-8 py-3 text-base font-semibold text-cream transition hover:bg-rose-dark"
+            >
+              Book a Chef Now
+            </a>
+            <Link
+              href="/party"
+              className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gold px-8 py-3 text-base font-semibold text-dark transition hover:bg-gold-dark"
+            >
+              Book a Party
+              <span aria-hidden="true">🎉</span>
+            </Link>
+          </div>
           <p className="mt-4 text-sm text-cream/55">First booking? We&apos;ll walk you through every step.</p>
         </Reveal>
       </section>
