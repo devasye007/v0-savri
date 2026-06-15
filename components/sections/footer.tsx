@@ -21,6 +21,7 @@ const serviceLinks = [
   { label: "How It Works", href: "/how-it-works" },
   { label: "Party Bookings", href: "/party" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
   { label: "Savri AI", href: "/ai" },
   { label: "Join Waitlist", href: "/#plans-notify" },
   { label: "Careers", href: "/careers" },

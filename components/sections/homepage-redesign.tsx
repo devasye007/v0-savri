@@ -237,7 +237,7 @@ export function HomepageRedesign() {
                 <h3 className="mt-2 font-serif text-2xl font-semibold md:text-3xl">Party Bookings</h3>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-cream/72 md:text-base">
                   Private chef for your next party or gathering. 12 dishes cooked live in your kitchen.
-                  Starting at <span className="font-semibold text-cream">₹5,999</span> for Delhi.
+                  Starting at <span className="font-semibold text-cream">₹6,399</span> for Delhi.
                 </p>
               </div>
               <Link
@@ -380,7 +380,7 @@ export function HomepageRedesign() {
                   </span>
                 </div>
 
-                <p className="mt-6 text-5xl font-semibold text-cream">₹5,999</p>
+                <p className="mt-6 text-5xl font-semibold text-cream">₹6,399</p>
                 <p className="mt-2 text-sm text-cream/62">Delhi · NCR ₹8,398 (Noida / Gurugram / Faridabad / Ghaziabad)</p>
 
                 <ul className="mt-6 grid gap-3 text-sm text-cream/80 sm:grid-cols-2">

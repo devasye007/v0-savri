@@ -16,11 +16,11 @@ export function ComingSoonBanner() {
           <span className="hidden sm:inline">
             Introducing{" "}
             <span className="font-semibold text-white">Party Bookings</span> — Private chef for your next party at just{" "}
-            <span className="font-semibold text-white">₹5,999</span>
+            <span className="font-semibold text-white">₹6,399</span>
           </span>
           <span className="sm:hidden">
             Party Bookings — chef at home from{" "}
-            <span className="font-semibold text-white">₹5,999</span>
+            <span className="font-semibold text-white">₹6,399</span>
           </span>
         </p>
 

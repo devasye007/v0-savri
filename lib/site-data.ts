@@ -25,6 +25,7 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Party", href: "/party" },
+  { label: "Blog", href: "/blog" },
   { label: "Savri AI", href: "/ai" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
@@ -187,9 +188,34 @@ export const testimonials = [
 
 export const homepageFaqs = [
   {
+    question: "How much does a private chef cost in Delhi?",
+    answer:
+      "Private chef services in Delhi start at ₹549 with Savri for 1-3 guests. Full table for 4-6 guests is ₹1,149. Party bookings with a private chef start at ₹6,399 in Delhi.",
+  },
+  {
+    question: "Can I book a chef for my home in Delhi NCR?",
+    answer:
+      "Yes. Savri lets you book a verified private chef for your home in Delhi, Noida, Gurugram, Faridabad, and Ghaziabad. The chef brings fresh ingredients, cooks your choice of dishes, and cleans up after.",
+  },
+  {
+    question: "Is there a private chef app in India?",
+    answer:
+      "Savri is India's private chef booking platform available via the website at savri.co.in (Android and iOS apps rolling out). You can book a chef for everyday meals or special party occasions directly.",
+  },
+  {
+    question: "What is the best way to hire a chef for a birthday party in Delhi?",
+    answer:
+      "The easiest way is to book through Savri — choose your date, select your menu from 90+ dishes, and a verified chef arrives at your home. Party bookings start at ₹6,399 for Delhi.",
+  },
+  {
+    question: "Do private chefs in Delhi bring their own ingredients?",
+    answer:
+      "Yes, Savri chefs bring all fresh ingredients for your chosen dishes. You just need to provide your kitchen — the chef handles everything from cooking to cleanup.",
+  },
+  {
     question: "Do you do party bookings?",
     answer:
-      "Yes! Savri now offers party bookings starting at ₹5,999 for Delhi. We handle everything — chef, cooking, and cleanup. Visit our Party Bookings page to know more.",
+      "Yes! Savri now offers party bookings starting at ₹6,399 for Delhi. We handle everything — chef, cooking, and cleanup. Visit our Party Bookings page to know more.",
   },
   {
     question: "How many guests can you accommodate for a party?",

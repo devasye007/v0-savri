@@ -8,9 +8,9 @@ import { BOOKING_URL } from "@/lib/site-data"
 
 export type CityLandingProps = {
   city: string
-  /** "₹5,999" or "₹7,998" — displayed prominently. */
+  /** "₹6,399" or "₹8,398" — displayed prominently. */
   priceLabel: string
-  /** "₹5,999" or "₹5,999 + ₹1,999 NCR travel" — shown below price. */
+  /** "₹6,399" or "₹6,399 + ₹1,999 NCR travel" — shown below price. */
   priceBreakdown: string
   heroBlurb: string
   neighborhoods: string[]
