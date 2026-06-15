@@ -981,3 +981,228 @@ html {
   from { opacity: 0; }
   to   { opacity: 0.85; }
 }
+
+/* ========== PARTY PAGE — CINEMATIC ANIMATIONS ========== */
+
+/* Page entrance veil that fades the whole page in */
+@keyframes party-veil-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+.party-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #0A0A0A;
+  pointer-events: none;
+  animation: party-veil-out 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
+/* Hero word reveal — letter-spaced uppercase eyebrow */
+@keyframes party-eyebrow-in {
+  0% { opacity: 0; letter-spacing: 0.05em; transform: translateY(8px); }
+  100% { opacity: 1; letter-spacing: 0.42em; transform: translateY(0); }
+}
+.party-eyebrow {
+  opacity: 0;
+  animation: party-eyebrow-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+}
+
+/* Hero title — italic serif slide up */
+@keyframes party-title-rise {
+  0% { opacity: 0; transform: translateY(48px); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.party-title {
+  opacity: 0;
+  animation: party-title-rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
+}
+
+/* Hero price — punch in */
+@keyframes party-punch-in {
+  0% { opacity: 0; transform: scale(1.35); filter: blur(8px); }
+  60% { opacity: 1; transform: scale(0.96); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.party-punch {
+  opacity: 0;
+  animation: party-punch-in 0.95s cubic-bezier(0.34, 1.56, 0.64, 1) 1.55s forwards;
+}
+
+/* CTA fade up */
+@keyframes party-cta-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.party-cta {
+  opacity: 0;
+  animation: party-cta-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 2.05s forwards;
+}
+
+/* Scroll indicator bounce */
+@keyframes party-scroll-bounce {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.85; }
+  50% { transform: translate(-50%, 10px); opacity: 0.4; }
+}
+.party-scroll-bounce {
+  animation: party-scroll-bounce 1.8s ease-in-out infinite;
+}
+
+/* Hero shimmer particles — floating dots */
+@keyframes party-particle-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translate3d(0, -120px, 0) scale(0.4); opacity: 0; }
+}
+.party-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(212,175,55,0.9), rgba(212,175,55,0));
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: party-particle-drift 7s ease-in-out infinite;
+}
+
+/* Hero gold shimmer sweep over title */
+@keyframes party-shimmer-sweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.party-shimmer-text {
+  background: linear-gradient(
+    100deg,
+    rgba(245,240,235,0.95) 0%,
+    rgba(245,240,235,0.95) 40%,
+    rgba(212,175,55,1) 50%,
+    rgba(245,240,235,0.95) 60%,
+    rgba(245,240,235,0.95) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: party-shimmer-sweep 4.5s ease-in-out infinite;
+}
+
+/* Slow zoom-in on hero background image */
+@keyframes party-hero-bg-zoom {
+  0% { transform: scale(1.18); }
+  100% { transform: scale(1.05); }
+}
+.party-hero-bg {
+  animation: party-hero-bg-zoom 14s ease-out forwards;
+}
+
+/* Scroll-zoom card image — toggled by IntersectionObserver class */
+.party-zoom-img {
+  transform: scale(1);
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.party-zoom-img.in-view {
+  transform: scale(1.18);
+}
+
+/* Pricing card hover lift + Rose glow */
+.party-price-card {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+.party-price-card:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 30px 80px rgba(181, 99, 106, 0.32),
+    0 0 0 1px rgba(212, 175, 55, 0.35),
+    inset 0 1px 0 rgba(212, 175, 55, 0.18);
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+/* Accordion content height transition */
+.party-accordion-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease,
+    padding 0.4s ease;
+}
+.party-accordion-content.open {
+  max-height: 280px;
+  opacity: 1;
+}
+
+/* Timeline connector grow on view */
+.party-timeline-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.party-timeline-line.in-view {
+  transform: scaleX(1);
+}
+
+/* Timeline step pop */
+.party-step {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.party-step.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Final CTA mega heading shimmer */
+@keyframes party-final-glow {
+  0%, 100% { text-shadow: 0 0 0 rgba(212,175,55,0); }
+  50% { text-shadow: 0 0 28px rgba(212,175,55,0.5), 0 0 60px rgba(181,99,106,0.35); }
+}
+.party-final-glow {
+  animation: party-final-glow 4s ease-in-out infinite;
+}
+
+/* Floating Book Party button on homepage — gentle bob + ring */
+@keyframes party-float-pulse {
+  0%, 100% {
+    box-shadow: 0 14px 38px rgba(181, 99, 106, 0.45),
+                0 0 0 0 rgba(181, 99, 106, 0.55);
+  }
+  70% { box-shadow: 0 14px 38px rgba(181, 99, 106, 0.45),
+                    0 0 0 18px rgba(181, 99, 106, 0); }
+}
+.party-float-btn {
+  animation: party-float-pulse 2.6s ease-out infinite;
+}
+.party-float-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .party-veil,
+  .party-eyebrow,
+  .party-title,
+  .party-punch,
+  .party-cta,
+  .party-scroll-bounce,
+  .party-particle,
+  .party-shimmer-text,
+  .party-hero-bg,
+  .party-final-glow,
+  .party-float-btn {
+    animation: none !important;
+  }
+  .party-eyebrow,
+  .party-title,
+  .party-punch,
+  .party-cta { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .party-zoom-img,
+  .party-timeline-line,
+  .party-step {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

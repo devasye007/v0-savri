@@ -24,6 +24,7 @@ export const LINKEDIN_URL = "https://www.linkedin.com/company/savri"
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "How It Works", href: "/how-it-works" },
+  { label: "Party", href: "/party" },
   { label: "Savri AI", href: "/ai" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
