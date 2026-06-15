@@ -1290,6 +1290,277 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   .party-hero-parallax { background-attachment: scroll !important; }
 }
 
+/* ========== HOMEPAGE — TRAVELLING-THROUGH REDESIGN ========== */
+
+/* Travelling stack wrapper — clip horizontal overflow, allow vertical for sticky */
+.savri-travel-stack {
+  position: relative;
+  overflow-x: clip;
+  background: #1A1A1A;
+}
+
+/* Hero — sticky 100vh inside its own 100vh wrap; scroll-driven zoom + text fade */
+.savri-hero-wrap {
+  position: relative;
+  height: 100svh;
+  z-index: 1;
+}
+.savri-hero-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+.savri-hero-img {
+  transform: scale(1.05);
+  will-change: transform;
+}
+.savri-hero-text {
+  will-change: opacity, transform, filter;
+}
+
+@supports (animation-timeline: scroll()) {
+  .savri-hero-img {
+    animation: savriHeroZoom linear both;
+    animation-timeline: scroll();
+    animation-range: 0vh 80vh;
+  }
+  .savri-hero-text {
+    animation: savriHeroTextFade linear both;
+    animation-timeline: scroll();
+    animation-range: 0vh 60vh;
+  }
+  .savri-hero-foot {
+    animation: savriHeroFootFade linear both;
+    animation-timeline: scroll();
+    animation-range: 0vh 40vh;
+  }
+}
+
+@keyframes savriHeroZoom {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.3); }
+}
+@keyframes savriHeroTextFade {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.06);
+    filter: blur(4px);
+  }
+}
+@keyframes savriHeroFootFade {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(20px); }
+}
+
+/* Words section — 400vh tall, sticky pin centers text, words activate one-by-one
+   via scroll-driven animations tied to root scroll */
+.savri-words-wrap {
+  position: relative;
+  z-index: 2;
+  height: 420vh;
+  background: #F5F0E8;
+  margin-top: -30vh;
+  padding-top: 30vh;
+}
+.savri-words-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+@media (min-width: 768px) {
+  .savri-words-pin { padding: 0 5rem; }
+}
+
+.savri-word {
+  opacity: 1;
+  display: inline-block;
+  margin-right: 0.28em;
+  will-change: opacity;
+}
+
+@supports (animation-timeline: scroll()) {
+  .savri-word {
+    opacity: 0.12;
+    animation: savriWordReveal linear both;
+    animation-timeline: scroll();
+    animation-range: calc(var(--ws, 0) * 1vh) calc(var(--we, 100) * 1vh);
+  }
+}
+
+@keyframes savriWordReveal {
+  from { opacity: 0.12; }
+  to   { opacity: 1; }
+}
+
+/* Full-bleed image — image reverse-zooms in, overlay lightens, text rises */
+.savri-bleed-wrap {
+  position: relative;
+  z-index: 3;
+  height: 100svh;
+  overflow: hidden;
+  background: #1A1A1A;
+}
+.savri-bleed-img {
+  transform: scale(1.12);
+  will-change: transform;
+}
+.savri-bleed-overlay {
+  opacity: 0.9;
+  will-change: opacity;
+}
+.savri-bleed-text {
+  opacity: 0;
+  transform: translateY(60px);
+  will-change: opacity, transform;
+}
+
+@supports (animation-timeline: view()) {
+  .savri-bleed-img {
+    animation: savriBleedZoom linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+  .savri-bleed-overlay {
+    animation: savriBleedOverlay linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+  }
+  .savri-bleed-text {
+    animation: savriBleedText linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 45%;
+  }
+}
+
+/* Fallback for non-supporting browsers — show text */
+@supports not (animation-timeline: view()) {
+  .savri-bleed-text { opacity: 1; transform: none; }
+  .savri-bleed-overlay { opacity: 0.55; }
+  .savri-bleed-img { transform: scale(1); }
+}
+
+@keyframes savriBleedZoom {
+  from { transform: scale(1.12); }
+  to   { transform: scale(1); }
+}
+@keyframes savriBleedOverlay {
+  from { opacity: 0.9; }
+  to   { opacity: 0.5; }
+}
+@keyframes savriBleedText {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Dishes — staggered slide-in via IO class */
+.savri-dish {
+  opacity: 0;
+  transform: translateX(100px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.savri-dish.is-on {
+  opacity: 1;
+  transform: translateX(0);
+}
+.savri-dish-img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.savri-dish:hover .savri-dish-img {
+  transform: scale(1.05);
+}
+
+/* Pricing — line draw separator (IO-triggered) */
+.savri-line-draw {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.savri-line-draw.is-on {
+  transform: scaleX(1);
+}
+
+/* Party teaser — words come in from opposite sides, bg ambient zoom */
+.savri-from-left {
+  opacity: 0;
+  transform: translateX(-120px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.savri-from-right {
+  opacity: 0;
+  transform: translateX(120px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.savri-from-left.is-on,
+.savri-from-right.is-on {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes savriAmbientZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+.savri-ambient-zoom {
+  animation: savriAmbientZoom 9s ease-in-out infinite alternate;
+}
+
+/* Generic fade-up reveal (used for final CTA, headings) */
+.savri-rise {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.savri-rise.is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .savri-hero-img,
+  .savri-hero-text,
+  .savri-hero-foot,
+  .savri-word,
+  .savri-bleed-img,
+  .savri-bleed-overlay,
+  .savri-bleed-text,
+  .savri-ambient-zoom {
+    animation: none !important;
+  }
+  .savri-word,
+  .savri-bleed-text,
+  .savri-rise,
+  .savri-from-left,
+  .savri-from-right,
+  .savri-dish {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .savri-bleed-overlay { opacity: 0.55 !important; }
+  .savri-line-draw { transform: scaleX(1) !important; }
+}
+
 /* ========== HOMEPAGE — CINEMATIC REDESIGN ========== */
 
 /* Hero — staggered line rise on load */
