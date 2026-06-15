@@ -1422,84 +1422,153 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   .savri-scroll-progress { transform: scaleX(0); }
 }
 
-/* ========== COOKING ANIMATIONS — live kitchen accents ========== */
+/* ========== COOKING ANIMATIONS — premium multi-layer scenes ========== */
 
-/* Pan flipping food: pan tilts, food lifts and somersaults, lands back */
-@keyframes savriPanFlip {
-  0%, 100% { transform: rotate(-3deg); }
-  20%      { transform: rotate(-26deg); }
-  35%      { transform: rotate(-30deg); }
-  55%      { transform: rotate(14deg); }
-  75%      { transform: rotate(-2deg); }
+/* PAN — gentle rock, animates the whole composition not the pan alone */
+@keyframes savriPanRock {
+  0%, 100% { transform: rotate(-2deg); }
+  25%      { transform: rotate(-18deg); }
+  50%      { transform: rotate(-22deg); }
+  75%      { transform: rotate(10deg); }
 }
-@keyframes savriFoodToss {
+.savri-cook-pan { animation: savriPanRock 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: 78% 60%; will-change: transform; }
+
+/* FOOD pieces — each piece tosses independently with stagger */
+@keyframes savriFoodTossA {
   0%   { transform: translate(0, 0) rotate(0deg); }
-  18%  { transform: translate(2px, -2px) rotate(-10deg); }
-  35%  { transform: translate(-4px, -42px) rotate(180deg); }
-  55%  { transform: translate(10px, -28px) rotate(360deg); }
-  75%  { transform: translate(2px, -6px) rotate(380deg); }
+  18%  { transform: translate(0, -3px) rotate(-12deg); }
+  38%  { transform: translate(-6px, -46px) rotate(220deg); }
+  58%  { transform: translate(8px, -32px) rotate(420deg); }
+  80%  { transform: translate(2px, -6px) rotate(440deg); }
   100% { transform: translate(0, 0) rotate(360deg); }
 }
-.savri-cook-pan { animation: savriPanFlip 2.4s ease-in-out infinite; transform-origin: 78% 60%; will-change: transform; }
-.savri-cook-pan .pan-food { animation: savriFoodToss 2.4s ease-in-out infinite; transform-origin: center; will-change: transform; }
+@keyframes savriFoodTossB {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  20%  { transform: translate(2px, -4px) rotate(8deg); }
+  42%  { transform: translate(6px, -52px) rotate(-180deg); }
+  62%  { transform: translate(-4px, -36px) rotate(-380deg); }
+  82%  { transform: translate(-2px, -8px) rotate(-360deg); }
+  100% { transform: translate(0, 0) rotate(-360deg); }
+}
+@keyframes savriFoodTossC {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  22%  { transform: translate(-2px, -6px) rotate(-6deg); }
+  46%  { transform: translate(-2px, -40px) rotate(160deg); }
+  66%  { transform: translate(4px, -22px) rotate(300deg); }
+  86%  { transform: translate(0, -4px) rotate(320deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+.savri-cook-pan .food-a { animation: savriFoodTossA 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: center; }
+.savri-cook-pan .food-b { animation: savriFoodTossB 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: center; animation-delay: 0.15s; }
+.savri-cook-pan .food-c { animation: savriFoodTossC 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: center; animation-delay: 0.3s; }
 
-/* Steam wisps rising and dissipating, staggered */
-@keyframes savriSteam {
-  0%   { transform: translateY(8px) scale(0.6, 0.6); opacity: 0; }
-  20%  { opacity: 0.75; }
-  60%  { transform: translateY(-30px) scale(1, 1.4); opacity: 0.4; }
-  100% { transform: translateY(-58px) scale(1.4, 1.8); opacity: 0; }
+/* FLAME — 3 layers, each flickering at slightly different rate */
+@keyframes savriFlameOuter {
+  0%, 100% { transform: scale(1, 1) translateY(0); opacity: 0.65; }
+  33%      { transform: scale(1.08, 0.92) translateY(-2px); opacity: 0.78; }
+  66%      { transform: scale(0.94, 1.08) translateY(2px); opacity: 0.6; }
+}
+@keyframes savriFlameMid {
+  0%, 100% { transform: scale(1, 1) translateY(0) rotate(0deg); opacity: 0.85; }
+  25%      { transform: scale(1.05, 0.95) translateY(-1px) rotate(-1deg); opacity: 1; }
+  50%      { transform: scale(0.95, 1.06) translateY(1px) rotate(1deg); opacity: 0.9; }
+  75%      { transform: scale(1.02, 0.98) translateY(-1px) rotate(0deg); opacity: 0.95; }
+}
+@keyframes savriFlameInner {
+  0%, 100% { transform: scale(1, 1) translateY(0); opacity: 0.95; }
+  20%      { transform: scale(1.04, 0.96) translateY(-1px); opacity: 1; }
+  60%      { transform: scale(0.96, 1.04) translateY(1px); opacity: 0.88; }
+}
+.savri-cook-flame .flame-outer { animation: savriFlameOuter 1.2s ease-in-out infinite; transform-origin: 50% 100%; }
+.savri-cook-flame .flame-mid   { animation: savriFlameMid   0.9s ease-in-out infinite; transform-origin: 50% 100%; }
+.savri-cook-flame .flame-inner { animation: savriFlameInner 0.7s ease-in-out infinite; transform-origin: 50% 100%; }
+
+/* SPARKS — rising particles around the flame */
+@keyframes savriSpark {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { transform: translate(var(--sx, 0), -60px) scale(0.6); opacity: 0.5; }
+  100% { transform: translate(var(--sx, 0), -110px) scale(0.2); opacity: 0; }
+}
+.savri-cook-flame .spark {
+  animation: savriSpark 2.4s ease-out infinite;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+.savri-cook-flame .spark-1 { animation-delay: 0s;    --sx: -8px; }
+.savri-cook-flame .spark-2 { animation-delay: 0.5s;  --sx: 6px;  }
+.savri-cook-flame .spark-3 { animation-delay: 1.0s;  --sx: -3px; }
+.savri-cook-flame .spark-4 { animation-delay: 1.6s;  --sx: 10px; }
+.savri-cook-flame .spark-5 { animation-delay: 2.0s;  --sx: -12px;}
+
+/* STEAM — wisps with horizontal drift and gradient fade */
+@keyframes savriSteamDrift {
+  0%   { transform: translate(0, 8px) scale(0.55); opacity: 0; }
+  18%  { opacity: 0.75; }
+  55%  { transform: translate(var(--dx, 4px), -34px) scale(1.05); opacity: 0.45; }
+  100% { transform: translate(calc(var(--dx, 4px) * 1.7), -68px) scale(1.5); opacity: 0; }
 }
 .savri-cook-steam { position: relative; display: inline-block; }
 .savri-cook-steam .steam {
   position: absolute;
   bottom: 0;
-  width: 6px;
-  height: 18px;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(245, 240, 232, 0.95), rgba(245, 240, 232, 0));
-  animation: savriSteam 2.8s ease-in-out infinite;
+  background: radial-gradient(ellipse at center, rgba(245,240,232,0.95) 0%, rgba(245,240,232,0.55) 35%, rgba(245,240,232,0) 78%);
+  animation: savriSteamDrift 3.2s ease-in-out infinite;
   will-change: transform, opacity;
+  filter: blur(1px);
 }
-.savri-cook-steam .steam-1 { left: 12%; animation-delay: 0s; }
-.savri-cook-steam .steam-2 { left: 45%; animation-delay: 0.55s; }
-.savri-cook-steam .steam-3 { left: 78%; animation-delay: 1.1s; }
+.savri-cook-steam .steam-1 { left: 10%; width: 8px;  height: 20px; --dx:  4px; animation-delay: 0s;    }
+.savri-cook-steam .steam-2 { left: 30%; width: 6px;  height: 18px; --dx: -3px; animation-delay: 0.45s; }
+.savri-cook-steam .steam-3 { left: 50%; width: 9px;  height: 22px; --dx:  6px; animation-delay: 0.9s;  }
+.savri-cook-steam .steam-4 { left: 70%; width: 7px;  height: 19px; --dx: -4px; animation-delay: 1.3s;  }
+.savri-cook-steam .steam-5 { left: 88%; width: 5px;  height: 16px; --dx:  3px; animation-delay: 1.8s;  }
 
-/* Flame flicker: scaleX/scaleY breathing + tiny rotate */
-@keyframes savriFlame {
-  0%, 100% { transform: scale(1, 1) translateY(0) rotate(0deg); }
-  25%      { transform: scale(1.06, 0.94) translateY(-1px) rotate(-2deg); }
-  50%      { transform: scale(0.94, 1.08) translateY(1px) rotate(2deg); }
-  75%      { transform: scale(1.02, 0.98) translateY(-1px) rotate(-1deg); }
+/* WHISK — whisk arm sweeps in arc; ambient batter ripple */
+@keyframes savriWhiskArc {
+  0%   { transform: rotate(-22deg); }
+  50%  { transform: rotate(22deg); }
+  100% { transform: rotate(-22deg); }
 }
-.savri-cook-flame { animation: savriFlame 0.9s ease-in-out infinite; transform-origin: 50% 100%; will-change: transform; }
+@keyframes savriBatterRipple {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.04); opacity: 0.85; }
+}
+.savri-cook-whisk .whisk-arm    { animation: savriWhiskArc 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: 50% 6%; will-change: transform; }
+.savri-cook-whisk .batter-pool  { animation: savriBatterRipple 1.4s ease-in-out infinite; transform-origin: center; }
 
-/* Whisk spinning around a small radius */
-@keyframes savriWhisk {
-  0%   { transform: rotate(0deg) translateX(3px) rotate(0deg); }
-  25%  { transform: rotate(90deg) translateX(3px) rotate(-90deg); }
-  50%  { transform: rotate(180deg) translateX(3px) rotate(-180deg); }
-  75%  { transform: rotate(270deg) translateX(3px) rotate(-270deg); }
-  100% { transform: rotate(360deg) translateX(3px) rotate(-360deg); }
+/* KNIFE — full chopping motion with shadow compress */
+@keyframes savriKnifeChop {
+  0%, 100% { transform: translate(0, -10px) rotate(28deg); }
+  30%      { transform: translate(0, -2px)  rotate(34deg); }
+  44%      { transform: translate(0, 0)     rotate(34deg); }
+  60%      { transform: translate(0, -16px) rotate(26deg); }
 }
-.savri-cook-whisk { animation: savriWhisk 1.6s linear infinite; transform-origin: center; will-change: transform; }
+@keyframes savriKnifeShadow {
+  0%, 100% { transform: scaleX(1)   translateX(0); opacity: 0.55; }
+  30%      { transform: scaleX(0.7) translateX(0); opacity: 0.85; }
+  44%      { transform: scaleX(0.6) translateX(0); opacity: 0.9;  }
+  60%      { transform: scaleX(1.1) translateX(0); opacity: 0.5;  }
+}
+.savri-cook-knife .knife          { animation: savriKnifeChop   1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: 100% 100%; will-change: transform; }
+.savri-cook-knife .knife-shadow   { animation: savriKnifeShadow 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; transform-origin: center; }
 
-/* Knife chopping: rocks down + slight rotate */
-@keyframes savriChop {
-  0%, 100% { transform: rotate(28deg) translate3d(0, 0, 0); }
-  30%      { transform: rotate(28deg) translate3d(0, -10px, 0); }
-  45%      { transform: rotate(34deg) translate3d(0, 0, 0); }
-  55%      { transform: rotate(28deg) translate3d(0, -2px, 0); }
+/* AMBIENT GLOW — pulses around the master cooking scene */
+@keyframes savriAmbientPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 0.7;  transform: scale(1.04); }
 }
-.savri-cook-knife { animation: savriChop 1.4s ease-in-out infinite; transform-origin: 80% 100%; will-change: transform; }
+.savri-cooking-scene .ambient-glow { animation: savriAmbientPulse 2.4s ease-in-out infinite; transform-origin: center; }
 
 @media (prefers-reduced-motion: reduce) {
   .savri-cook-pan,
-  .savri-cook-pan .pan-food,
+  .savri-cook-pan .food-a, .savri-cook-pan .food-b, .savri-cook-pan .food-c,
+  .savri-cook-flame .flame-outer, .savri-cook-flame .flame-mid, .savri-cook-flame .flame-inner,
+  .savri-cook-flame .spark,
   .savri-cook-steam .steam,
-  .savri-cook-flame,
-  .savri-cook-whisk,
-  .savri-cook-knife {
+  .savri-cook-whisk .whisk-arm, .savri-cook-whisk .batter-pool,
+  .savri-cook-knife .knife, .savri-cook-knife .knife-shadow,
+  .savri-cooking-scene .ambient-glow {
     animation: none !important;
     transform: none !important;
   }

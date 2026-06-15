@@ -11,6 +11,7 @@ import {
   CookPanFlip,
   CookSteam,
   CookWhisk,
+  CookingScene,
 } from "@/components/ui/cooking-animations"
 
 const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
@@ -147,19 +148,19 @@ function HeroSection() {
         <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
           <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
             <span
-              className="block font-serif italic text-[#F5F0E8]"
+              className="block font-serif font-semibold text-[#F5F0E8]"
               style={{ fontSize: "clamp(72px, 12vw, 220px)" }}
             >
               Private
             </span>
             <span
-              className="block font-serif italic text-[#B5636A]"
+              className="block font-serif font-semibold text-[#B5636A]"
               style={{ fontSize: "clamp(96px, 16vw, 300px)", lineHeight: 0.82 }}
             >
               Chef.
             </span>
             <span
-              className="block font-serif italic text-[#F5F0E8]"
+              className="block font-serif font-semibold text-[#F5F0E8]"
               style={{ fontSize: "clamp(60px, 10vw, 184px)" }}
             >
               Ghar Pe.
@@ -221,6 +222,37 @@ function WordsSection() {
   )
 }
 
+function KitchenScene() {
+  return (
+    <section className="relative z-[2] w-full overflow-hidden bg-[#1A1A1A] py-28 text-[#F5F0E8] md:py-40">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 items-center gap-12 px-6 md:grid-cols-[0.95fr_1.05fr] md:gap-20 md:px-16">
+        <div>
+          <p className="reveal-up text-[11px] uppercase tracking-[0.45em] text-[#C9A84C] md:text-[13px]">
+            The Kitchen
+          </p>
+          <h2
+            className="reveal-up mt-6 font-serif font-semibold leading-[0.94] text-[#F5F0E8]"
+            style={{ fontSize: "clamp(40px, 5.6vw, 112px)" }}
+          >
+            Live. Right
+            <br />
+            in your home.
+          </h2>
+          <p className="reveal-up mt-8 max-w-md text-base leading-7 text-[#F5F0E8]/68 md:text-lg">
+            Pan on the flame. Food tossing. Steam rising. Your chef cooks in front of you — not in some far-off restaurant kitchen behind a swinging door.
+          </p>
+          <p className="reveal-up mt-6 text-[12px] uppercase tracking-[0.35em] text-[#B5636A] md:text-[13px]">
+            Watch it happen ↘
+          </p>
+        </div>
+        <div className="reveal-right">
+          <CookingScene className="h-[360px] w-full md:h-[520px]" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function BleedSection() {
   return (
     <section className="savri-bleed-wrap text-[#F5F0E8]">
@@ -240,20 +272,20 @@ function BleedSection() {
       <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-16 md:px-20 md:pb-24">
         <div className="savri-bleed-text max-w-[1200px]">
           <p
-            className="block font-serif italic"
+            className="block font-serif font-semibold"
             style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
           >
             Your menu.
           </p>
           <p
-            className="mt-1 block font-serif italic"
+            className="mt-1 block font-serif font-semibold"
             style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
           >
             Your kitchen.
           </p>
           <div className="mt-1 flex items-end gap-4">
             <p
-              className="block font-serif italic text-[#B5636A]"
+              className="block font-serif font-semibold text-[#B5636A]"
               style={{ fontSize: "clamp(44px, 7.5vw, 136px)", lineHeight: 1 }}
             >
               Your rules.
@@ -274,7 +306,7 @@ function DishesSection() {
           <div>
             <p className="text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
             <h2
-              className="mt-4 font-serif italic leading-[0.92]"
+              className="mt-4 font-serif font-semibold leading-[0.92]"
               style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
             >
               90+ dishes to choose from.
@@ -297,7 +329,7 @@ function DishesSection() {
               {/* Steam rising from each plate */}
               <CookSteam className="absolute left-1/2 top-3 h-10 w-16 -translate-x-1/2" />
               <div className="absolute inset-x-0 bottom-0 flex items-end p-5">
-                <p className="font-serif italic text-[#F5F0E8] text-lg md:text-xl">{dish.alt}</p>
+                <p className="font-serif font-semibold text-[#F5F0E8] text-lg md:text-xl">{dish.alt}</p>
               </div>
             </div>
           ))}
@@ -351,7 +383,7 @@ function PricingSection() {
                   {tier.amount}
                 </div>
                 <p
-                  className="savri-price-label mt-2 font-serif italic text-[#F5F0E8]/85"
+                  className="savri-price-label mt-2 font-serif font-semibold text-[#F5F0E8]/85"
                   style={{
                     fontSize: "clamp(16px, 1.6vw, 30px)",
                     "--ws": tier.ws + 4,
@@ -405,13 +437,13 @@ function PartyTeaserSection() {
           Introducing
         </p>
         <h2
-          className="savri-from-left mt-6 font-serif italic leading-[0.88] text-[#F5F0E8]"
+          className="savri-from-left mt-6 font-serif font-semibold leading-[0.88] text-[#F5F0E8]"
           style={{ fontSize: "clamp(80px, 15vw, 280px)" }}
         >
           party
         </h2>
         <h2
-          className="savri-from-right font-serif italic leading-[0.88] text-[#B5636A]"
+          className="savri-from-right font-serif font-semibold leading-[0.88] text-[#B5636A]"
           style={{ fontSize: "clamp(80px, 15vw, 280px)", transitionDelay: "150ms" }}
         >
           bookings.
@@ -448,7 +480,7 @@ function FinalCTASection() {
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
         <h2
-          className="savri-rise font-serif italic leading-[0.85]"
+          className="savri-rise font-serif font-semibold leading-[0.85]"
           style={{ fontSize: "clamp(120px, 20vw, 400px)" }}
         >
           Ready?
@@ -481,6 +513,7 @@ export function HomepageRedesign() {
     <main className="savri-travel-stack">
       <HeroSection />
       <WordsSection />
+      <KitchenScene />
       <BleedSection />
       <DishesSection />
       <PricingSection />
