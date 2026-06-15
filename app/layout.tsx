@@ -4,7 +4,6 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
 import { ComingSoonBanner } from '@/components/ui/coming-soon-banner'
-import { LaunchPopup } from '@/components/ui/launch-popup'
 import './globals.css'
 
 const inter = Inter({ 
@@ -25,7 +24,35 @@ export const metadata: Metadata = {
     template: '%s | Savri',
   },
   description:
-    'Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹5,999. Ghar Ka Khana, Ghar Pe.',
+    'Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹6,399. Ghar Ka Khana, Ghar Pe.',
+  keywords: [
+    'private chef Delhi',
+    'private chef booking Delhi NCR',
+    'chef at home Delhi',
+    'party chef Delhi',
+    'home chef service Delhi',
+    'on demand chef Delhi NCR',
+    'personal chef Delhi',
+    'chef booking app Delhi',
+    'private chef for party Delhi',
+    'home dining Delhi NCR',
+    'chef service Gurugram',
+    'chef service Noida',
+    'chef on demand Gurgaon',
+    'book chef online Delhi',
+    'personal chef at home Delhi NCR',
+    'private chef service India',
+    'home chef booking app India',
+    'chef booking Delhi',
+    'luxury home dining Delhi',
+    'private dining experience Delhi',
+  ],
+  other: {
+    'geo.region': 'IN-DL',
+    'geo.placename': 'Delhi',
+    'geo.position': '28.6139;77.2090',
+    ICBM: '28.6139, 77.2090',
+  },
   applicationName: 'Savri',
   authors: [{ name: 'Savri', url: 'https://savri.co.in' }],
   creator: 'Savri',
@@ -39,13 +66,13 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://savri.co.in',
     title: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
-    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999.',
+    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹6,399.',
     images: [
       {
         url: '/images/hero-food.jpg',
         width: 1200,
         height: 630,
-        alt: 'Savri private chef at home — premium Indian dining in Delhi NCR',
+        alt: 'Savri verified private chef cooking at home in Delhi NCR',
       },
     ],
   },
@@ -54,7 +81,7 @@ export const metadata: Metadata = {
     site: '@savri_in',
     creator: '@savri_in',
     title: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
-    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999.',
+    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹6,399.',
     images: ['/images/hero-food.jpg'],
   },
   robots: {
@@ -109,7 +136,6 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-cream text-dark">
         <ComingSoonBanner />
         <IntroScreen />
-        <LaunchPopup />
         {children}
         <Analytics />
       </body>
