@@ -19,27 +19,66 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Savri — Premium Private Chef at Home',
-  description: 'Book a verified private chef for your home. Transparent pricing, premium dining, and trusted chefs for intimate dinners, family meals, and celebrations.',
+  metadataBase: new URL('https://savri.co.in'),
+  title: {
+    default: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
+    template: '%s | Savri',
+  },
+  description:
+    'Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹5,999. Ghar Ka Khana, Ghar Pe.',
+  applicationName: 'Savri',
+  authors: [{ name: 'Savri', url: 'https://savri.co.in' }],
+  creator: 'Savri',
+  publisher: 'Savri',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Savri — Premium Private Chef at Home',
-    description: 'Authentic. Fresh. Personal. Starting ₹549.',
+    type: 'website',
+    siteName: 'Savri',
+    locale: 'en_IN',
+    url: 'https://savri.co.in',
+    title: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
+    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999.',
+    images: [
+      {
+        url: '/images/hero-food.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Savri private chef at home — premium Indian dining in Delhi NCR',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@savri_in',
+    creator: '@savri_in',
+    title: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
+    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999.',
     images: ['/images/hero-food.jpg'],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  verification: {
+    // TODO: Replace with the verification code from Google Search Console
+    // (Settings → Ownership verification → HTML tag → copy the content value).
+    google: 'REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_CODE',
+  },
+  category: 'food',
   icons: {
     icon: [
-      {
-        url: '/savri-logo-dark.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/savri-logo-light.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/savri-logo-dark.png',
-        type: 'image/png',
-      },
+      { url: '/savri-logo-dark.png', media: '(prefers-color-scheme: light)' },
+      { url: '/savri-logo-light.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/savri-logo-dark.png', type: 'image/png' },
     ],
     apple: '/savri-logo-dark.png',
   },

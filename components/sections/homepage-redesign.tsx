@@ -633,6 +633,37 @@ export function HomepageRedesign() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-cream/55">First booking? We&apos;ll walk you through every step.</p>
+
+          {/* Internal linking — surfaces /party + city pages for SEO */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-cream/60">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
+              Related
+            </span>
+            <Link
+              href="/party"
+              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
+            >
+              Party Bookings →
+            </Link>
+            <Link
+              href="/delhi"
+              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
+            >
+              Private Chef in Delhi →
+            </Link>
+            <Link
+              href="/gurugram"
+              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
+            >
+              Private Chef in Gurugram →
+            </Link>
+            <Link
+              href="/noida"
+              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
+            >
+              Private Chef in Noida →
+            </Link>
+          </div>
         </Reveal>
       </section>
     </main>

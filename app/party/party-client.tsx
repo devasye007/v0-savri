@@ -157,6 +157,26 @@ export function PartyClient() {
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0A0A0A]/82 via-[#0A0A0A]/72 to-[#0A0A0A]" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_35%,rgba(212,175,55,0.18),transparent_55%)]" />
 
+        {/* Visible breadcrumb (matches BreadcrumbList schema in page.tsx) */}
+        <nav
+          aria-label="Breadcrumb"
+          className="absolute left-0 right-0 top-[5.5rem] z-20 mx-auto max-w-7xl px-6 text-[11px] uppercase tracking-[0.32em] text-[#F5F0EB]/55 lg:px-8"
+        >
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <a href="/" className="transition hover:text-[#D4AF37]">
+                Home
+              </a>
+            </li>
+            <li aria-hidden="true" className="text-[#F5F0EB]/30">
+              /
+            </li>
+            <li aria-current="page" className="text-[#D4AF37]">
+              Party Bookings
+            </li>
+          </ol>
+        </nav>
+
         <HeroParticles />
 
         <div className="relative z-10 mx-auto max-w-5xl px-6 pb-24 text-center sm:pb-32">
@@ -385,6 +405,92 @@ export function PartyClient() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ SEO LONG-FORM CONTENT ============ */}
+      <section className="relative overflow-hidden bg-[#0A0A0A] py-20 sm:py-24">
+        <div className="container mx-auto max-w-3xl px-6 lg:px-8">
+          <div className="js-reveal">
+            <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
+              Why Savri
+            </p>
+            <h2 className="mt-5 font-serif text-3xl leading-tight text-[#F5F0EB] sm:text-4xl">
+              Private Chef for Your Party in Delhi NCR
+            </h2>
+            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-[#F5F0EB]/72">
+              <p>
+                Savri is a{" "}
+                <a href="/" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                  private chef
+                </a>{" "}
+                booking service built for households across Delhi NCR. Whether you are throwing a
+                birthday at home, hosting in-laws over for dinner, or planning an anniversary brunch
+                for twelve, our party booking gets a vetted{" "}
+                <a href="/party" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                  party booking chef
+                </a>{" "}
+                to your kitchen with the menu locked in, the ingredients sorted, and the cleanup
+                handled. You stay the host. The chef does the cooking.
+              </p>
+              <p>
+                A Savri party booking in Delhi costs ₹5,999 and includes 4 snacks, 4 main course
+                dishes, 2 sides of breads or fragrant rice, 2 desserts and a fresh salad — twelve
+                dishes in total, all freshly cooked at your home. There are no hidden markups, no
+                surprise convenience fees and no minimum guest count. It is built to be the
+                stress-free upgrade to traditional party catering Delhi families have been asking
+                for: cleaner plating, fewer leftovers, and food that arrives hot from your own
+                stove instead of sitting in a chafing dish from a banquet truck.
+              </p>
+              <p>
+                We bring the same{" "}
+                <a href="/" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                  chef at home Delhi NCR
+                </a>{" "}
+                experience across Noida, Gurugram, Faridabad and Ghaziabad. A flat ₹1,999 travel
+                surcharge applies for NCR locations, taking the total to ₹7,998. Our home party
+                chef Gurugram Noida service covers everything from condo kitchens in DLF Cyber City
+                to family floors in Sector 50 — the chef arrives with their own knives, sets up in
+                your kitchen, cooks live, plates the food at your requested time and leaves the
+                counters cleaner than they found them.
+              </p>
+              <p>
+                Want a Delhi-only quote, a custom menu for dietary restrictions, or a quick
+                availability check for a date next weekend? Message us on WhatsApp or open the{" "}
+                <a href="/party" className="text-[#D4AF37] underline-offset-4 hover:underline">
+                  party bookings
+                </a>{" "}
+                page above to confirm the menu. We will assign one of our verified chefs, share the
+                ingredient plan, and lock in the timing so the food is ready exactly when your
+                guests sit down.
+              </p>
+            </div>
+          </div>
+
+          {/* Related links — internal linking for SEO */}
+          <div className="js-reveal mt-12 flex flex-wrap items-center gap-3 border-t border-white/8 pt-8 text-sm text-[#F5F0EB]/65">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#D4AF37]">
+              Related
+            </span>
+            <a
+              href="/"
+              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+            >
+              Private Chef at Home →
+            </a>
+            <a
+              href="/pricing"
+              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+            >
+              Regular Pricing →
+            </a>
+            <a
+              href="/how-it-works"
+              className="rounded-full border border-white/10 px-3 py-1 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+            >
+              How It Works →
+            </a>
           </div>
         </div>
       </section>
