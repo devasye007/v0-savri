@@ -14,174 +14,223 @@
  * signature kitchen moment.
  * ────────────────────────────────────────────────────────────────────── */
 export function CookingScene({ className = "" }: { className?: string }) {
+  // Composition lives in a 1200 × 900 viewBox, centred around y=560 (pan top
+  // edge). Flame lives below pan (y ≈ 600–880), steam rises above pan
+  // (y ≈ 120–420). All food pieces stay within the pan's ellipse so they
+  // never escape during the rock + toss animation.
   return (
     <div className={`savri-cooking-scene pointer-events-none ${className}`} aria-hidden="true">
-      <svg viewBox="0 0 800 520" className="h-full w-full" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 1200 900" className="h-full w-full" preserveAspectRatio="xMidYMid meet">
         <defs>
-          {/* Warm ambient glow behind everything */}
-          <radialGradient id="csAmbient" cx="50%" cy="78%" r="55%">
-            <stop offset="0%" stopColor="#B5636A" stopOpacity="0.45" />
-            <stop offset="55%" stopColor="#C9A84C" stopOpacity="0.15" />
+          <radialGradient id="csAmbient" cx="50%" cy="72%" r="48%">
+            <stop offset="0%" stopColor="#B5636A" stopOpacity="0.55" />
+            <stop offset="45%" stopColor="#C9A84C" stopOpacity="0.18" />
             <stop offset="100%" stopColor="#B5636A" stopOpacity="0" />
           </radialGradient>
-
-          {/* Pan metal — top-lit gradient */}
           <linearGradient id="csPanBody" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#2a2a2a" />
+            <stop offset="0%" stopColor="#3a3a3a" />
             <stop offset="55%" stopColor="#161616" />
             <stop offset="100%" stopColor="#0a0a0a" />
           </linearGradient>
-          <linearGradient id="csPanInside" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1a1a1a" />
-            <stop offset="100%" stopColor="#0a0a0a" />
-          </linearGradient>
+          <radialGradient id="csPanInside" cx="50%" cy="30%" r="65%">
+            <stop offset="0%" stopColor="#2a2a2a" />
+            <stop offset="100%" stopColor="#050505" />
+          </radialGradient>
           <linearGradient id="csHandle" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#3a2a1f" />
-            <stop offset="100%" stopColor="#1a0f08" />
+            <stop offset="0%" stopColor="#4a3022" />
+            <stop offset="100%" stopColor="#1a0a04" />
           </linearGradient>
-
-          {/* Food gradient — roasted vegetable look */}
-          <radialGradient id="csFoodA" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stopColor="#FFB872" />
-            <stop offset="55%" stopColor="#D4915A" />
-            <stop offset="100%" stopColor="#7A3E1F" />
+          <radialGradient id="csFoodA" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#FFC890" />
+            <stop offset="60%" stopColor="#D4915A" />
+            <stop offset="100%" stopColor="#5A2A12" />
           </radialGradient>
-          <radialGradient id="csFoodB" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stopColor="#E7869B" />
+          <radialGradient id="csFoodB" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#F296AC" />
             <stop offset="55%" stopColor="#B5636A" />
-            <stop offset="100%" stopColor="#6B2A33" />
+            <stop offset="100%" stopColor="#5A1F26" />
           </radialGradient>
-          <radialGradient id="csFoodC" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stopColor="#F1D27A" />
+          <radialGradient id="csFoodC" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#FBE08E" />
             <stop offset="55%" stopColor="#C9A84C" />
-            <stop offset="100%" stopColor="#7A6125" />
+            <stop offset="100%" stopColor="#5C4416" />
           </radialGradient>
-
-          {/* Flame gradients — 3 layers from outer to core */}
+          <radialGradient id="csFoodD" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#8FD89A" />
+            <stop offset="55%" stopColor="#4F9A6A" />
+            <stop offset="100%" stopColor="#1F3F2A" />
+          </radialGradient>
+          <radialGradient id="csFoodE" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#FFB872" />
+            <stop offset="55%" stopColor="#B5636A" />
+            <stop offset="100%" stopColor="#5A2A2A" />
+          </radialGradient>
           <linearGradient id="csFlameOuter" x1="50%" y1="100%" x2="50%" y2="0%">
             <stop offset="0%" stopColor="#B5636A" stopOpacity="0" />
-            <stop offset="35%" stopColor="#B5636A" stopOpacity="0.7" />
+            <stop offset="35%" stopColor="#B5636A" stopOpacity="0.85" />
             <stop offset="100%" stopColor="#B5636A" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="csFlameMid" x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#FF8344" />
-            <stop offset="50%" stopColor="#F1A24C" />
-            <stop offset="100%" stopColor="#B5636A" stopOpacity="0" />
+            <stop offset="0%" stopColor="#FF7A30" />
+            <stop offset="50%" stopColor="#FFA24C" />
+            <stop offset="100%" stopColor="#FF8344" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="csFlameInner" x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#FFE69C" />
-            <stop offset="60%" stopColor="#FFB54C" />
-            <stop offset="100%" stopColor="#F08344" stopOpacity="0" />
+            <stop offset="0%" stopColor="#FFF1B5" />
+            <stop offset="55%" stopColor="#FFC465" />
+            <stop offset="100%" stopColor="#FF8344" stopOpacity="0" />
           </linearGradient>
-
-          {/* Steam gradient — soft cream wisp */}
           <radialGradient id="csSteam" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#F5F0E8" stopOpacity="0.95" />
-            <stop offset="55%" stopColor="#F5F0E8" stopOpacity="0.45" />
+            <stop offset="0%" stopColor="#F5F0E8" stopOpacity="0.92" />
+            <stop offset="55%" stopColor="#F5F0E8" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#F5F0E8" stopOpacity="0" />
           </radialGradient>
-
-          {/* Drop-shadow filter for the pan */}
           <filter id="csShadow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
-            <feOffset dx="0" dy="4" result="offsetblur" />
-            <feFlood floodColor="#000000" floodOpacity="0.55" />
+            <feGaussianBlur in="SourceAlpha" stdDeviation="10" />
+            <feOffset dx="0" dy="14" result="offsetblur" />
+            <feFlood floodColor="#000000" floodOpacity="0.75" />
             <feComposite in2="offsetblur" operator="in" />
             <feMerge>
               <feMergeNode />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-
-          {/* Soft blur for steam */}
           <filter id="csSteamBlur" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" />
+            <feGaussianBlur stdDeviation="6" />
+          </filter>
+          <filter id="csFlameGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="14" />
+            <feComposite in="SourceGraphic" operator="over" />
           </filter>
         </defs>
 
         {/* Warm ambient glow */}
-        <ellipse className="ambient-glow" cx="400" cy="380" rx="320" ry="140" fill="url(#csAmbient)" />
+        <ellipse className="ambient-glow" cx="600" cy="650" rx="520" ry="240" fill="url(#csAmbient)" />
 
-        {/* Steam wisps (behind pan) */}
-        <g filter="url(#csSteamBlur)" className="savri-cook-steam" style={{ position: "absolute" }}>
-          <g style={{ animation: "savriSteamDrift 3.2s ease-in-out infinite", animationDelay: "0s",  transformOrigin: "320px 240px" }}>
-            <ellipse cx="320" cy="240" rx="18" ry="32" fill="url(#csSteam)" />
-          </g>
-          <g style={{ animation: "savriSteamDrift 3.2s ease-in-out infinite", animationDelay: "0.5s", transformOrigin: "380px 230px" }}>
-            <ellipse cx="380" cy="230" rx="14" ry="28" fill="url(#csSteam)" />
-          </g>
-          <g style={{ animation: "savriSteamDrift 3.2s ease-in-out infinite", animationDelay: "1s",   transformOrigin: "440px 250px" }}>
-            <ellipse cx="440" cy="250" rx="20" ry="34" fill="url(#csSteam)" />
-          </g>
-          <g style={{ animation: "savriSteamDrift 3.2s ease-in-out infinite", animationDelay: "1.5s", transformOrigin: "300px 260px" }}>
-            <ellipse cx="300" cy="260" rx="10" ry="22" fill="url(#csSteam)" />
-          </g>
-          <g style={{ animation: "savriSteamDrift 3.2s ease-in-out infinite", animationDelay: "1.9s", transformOrigin: "470px 240px" }}>
-            <ellipse cx="470" cy="240" rx="12" ry="24" fill="url(#csSteam)" />
-          </g>
+        {/* Steam wisps — 10 wisps spanning width above pan, drifting */}
+        <g filter="url(#csSteamBlur)">
+          {[
+            { cx: 440, cy: 320, rx: 22, ry: 50, d: 0,    dx:  6 },
+            { cx: 520, cy: 280, rx: 18, ry: 44, d: 0.35, dx: -5 },
+            { cx: 600, cy: 260, rx: 24, ry: 56, d: 0.7,  dx:  8 },
+            { cx: 680, cy: 290, rx: 20, ry: 48, d: 1.0,  dx: -6 },
+            { cx: 760, cy: 320, rx: 22, ry: 52, d: 1.3,  dx:  4 },
+            { cx: 480, cy: 380, rx: 14, ry: 32, d: 1.6,  dx: -3 },
+            { cx: 720, cy: 380, rx: 16, ry: 36, d: 1.9,  dx:  5 },
+            { cx: 560, cy: 360, rx: 12, ry: 28, d: 0.2,  dx: -4 },
+            { cx: 640, cy: 380, rx: 18, ry: 40, d: 0.55, dx:  6 },
+            { cx: 600, cy: 220, rx: 26, ry: 60, d: 0.9,  dx:  0 },
+          ].map((w, i) => (
+            <g
+              key={i}
+              style={{
+                animation: "savriSteamDrift 3.4s ease-in-out infinite",
+                animationDelay: `${w.d}s`,
+                transformOrigin: `${w.cx}px ${w.cy}px`,
+                ["--dx" as string]: `${w.dx}px`,
+              }}
+            >
+              <ellipse cx={w.cx} cy={w.cy} rx={w.rx} ry={w.ry} fill="url(#csSteam)" />
+            </g>
+          ))}
         </g>
 
-        {/* Pan + food group (rocks together) */}
-        <g className="savri-cook-pan" style={{ transformOrigin: "560px 350px" }}>
-          {/* Handle */}
-          <rect x="520" y="332" width="180" height="22" rx="10" fill="url(#csHandle)" filter="url(#csShadow)" />
-          <rect x="520" y="332" width="180" height="6" rx="3" fill="#5a3f29" opacity="0.6" />
-          <circle cx="690" cy="343" r="4" fill="#C9A84C" opacity="0.7" />
+        {/* Pan + food, rocks together */}
+        <g className="savri-cook-pan" style={{ transformOrigin: "880px 580px" }}>
+          {/* Handle — extends right */}
+          <rect x="820" y="552" width="260" height="32" rx="14" fill="url(#csHandle)" filter="url(#csShadow)" />
+          <rect x="820" y="552" width="260" height="10" rx="5" fill="#6a4a32" opacity="0.55" />
+          <circle cx="1062" cy="568" r="7" fill="#C9A84C" opacity="0.85" />
+          <circle cx="1062" cy="568" r="3" fill="#FFE69C" opacity="0.9" />
 
-          {/* Pan body (back lip) */}
-          <ellipse cx="400" cy="340" rx="180" ry="46" fill="url(#csPanBody)" filter="url(#csShadow)" />
+          {/* Pan body outer ring (back lip + outer) */}
+          <ellipse cx="600" cy="572" rx="280" ry="74" fill="url(#csPanBody)" filter="url(#csShadow)" />
 
-          {/* Pan rim ring */}
-          <ellipse cx="400" cy="332" rx="180" ry="46" fill="none" stroke="#3a3a3a" strokeWidth="3" />
+          {/* Pan rim */}
+          <ellipse cx="600" cy="552" rx="280" ry="74" fill="none" stroke="#4a4a4a" strokeWidth="4" />
 
-          {/* Pan interior */}
-          <ellipse cx="400" cy="332" rx="170" ry="40" fill="url(#csPanInside)" />
+          {/* Pan interior (deep dish) */}
+          <ellipse cx="600" cy="552" rx="265" ry="66" fill="url(#csPanInside)" />
 
           {/* Gold rim highlight */}
-          <ellipse cx="400" cy="332" rx="172" ry="40" fill="none" stroke="#C9A84C" strokeWidth="1.4" opacity="0.45" />
+          <ellipse cx="600" cy="550" rx="268" ry="66" fill="none" stroke="#C9A84C" strokeWidth="2" opacity="0.5" />
 
-          {/* Food pieces inside pan */}
-          <g className="food-a" style={{ transformOrigin: "350px 320px" }}>
-            <circle cx="350" cy="320" r="20" fill="url(#csFoodA)" />
-            <circle cx="345" cy="313" r="6" fill="#FFE0B5" opacity="0.55" />
+          {/* Inner shadow for depth */}
+          <ellipse cx="600" cy="546" rx="240" ry="56" fill="none" stroke="#000" strokeWidth="6" opacity="0.4" />
+
+          {/* Food pieces — five different colours, each tossing independently */}
+          <g className="food-a" style={{ transformOrigin: "455px 540px" }}>
+            <circle cx="455" cy="540" r="32" fill="url(#csFoodA)" />
+            <ellipse cx="445" cy="528" rx="10" ry="6" fill="#FFE0B5" opacity="0.6" />
           </g>
-          <g className="food-b" style={{ transformOrigin: "400px 318px" }}>
-            <circle cx="400" cy="318" r="22" fill="url(#csFoodB)" />
-            <circle cx="394" cy="310" r="6.5" fill="#FFC8D5" opacity="0.55" />
+          <g className="food-b" style={{ transformOrigin: "545px 535px" }}>
+            <circle cx="545" cy="535" r="36" fill="url(#csFoodB)" />
+            <ellipse cx="534" cy="523" rx="11" ry="7" fill="#FFD0DC" opacity="0.6" />
           </g>
-          <g className="food-c" style={{ transformOrigin: "455px 322px" }}>
-            <circle cx="455" cy="322" r="18" fill="url(#csFoodC)" />
-            <circle cx="450" cy="316" r="5" fill="#FFF1B5" opacity="0.6" />
+          <g className="food-c" style={{ transformOrigin: "640px 540px" }}>
+            <circle cx="640" cy="540" r="30" fill="url(#csFoodC)" />
+            <ellipse cx="630" cy="528" rx="9" ry="5" fill="#FFF1B5" opacity="0.7" />
+          </g>
+          <g className="food-a" style={{ transformOrigin: "730px 535px", animationDelay: "0.4s" }}>
+            <circle cx="730" cy="535" r="32" fill="url(#csFoodD)" />
+            <ellipse cx="720" cy="523" rx="10" ry="6" fill="#D4F0CC" opacity="0.6" />
+          </g>
+          <g className="food-c" style={{ transformOrigin: "820px 540px", animationDelay: "0.55s" }}>
+            <circle cx="820" cy="540" r="28" fill="url(#csFoodE)" />
+            <ellipse cx="811" cy="529" rx="8" ry="5" fill="#FFD2B0" opacity="0.65" />
           </g>
         </g>
 
-        {/* Flame underneath the pan */}
-        <g transform="translate(400, 420)" className="savri-cook-flame">
-          {/* Outer flame envelope */}
-          <path
-            className="flame-outer"
-            d="M0 0 C-72 -32 -82 -100 -52 -150 C-60 -110 -28 -106 -22 -136 C-12 -180 -42 -218 -2 -250 C2 -208 56 -198 50 -148 C46 -90 60 -50 0 0 Z"
-            fill="url(#csFlameOuter)"
-          />
-          {/* Middle flame */}
+        {/* Flame underneath the pan — sits at viewport y 600 → 880 */}
+        <g transform="translate(600, 870)" className="savri-cook-flame">
+          {/* Outer flame envelope — wide, dim rose halo */}
+          <g filter="url(#csFlameGlow)">
+            <path
+              className="flame-outer"
+              d="M0 0
+                 C-160 -50 -180 -180 -110 -280
+                 C-128 -200 -52 -190 -42 -240
+                 C-22 -330 -82 -400 0 -460
+                 C82 -400 22 -330 42 -240
+                 C52 -190 128 -200 110 -280
+                 C180 -180 160 -50 0 0 Z"
+              fill="url(#csFlameOuter)"
+            />
+          </g>
+          {/* Middle flame — orange body */}
           <path
             className="flame-mid"
-            d="M0 -4 C-50 -28 -56 -84 -34 -126 C-40 -94 -18 -94 -16 -118 C-10 -156 -32 -188 -2 -218 C4 -184 38 -176 36 -134 C32 -82 42 -50 0 -4 Z"
+            d="M0 -10
+               C-100 -56 -114 -160 -64 -240
+               C-78 -180 -32 -180 -28 -224
+               C-18 -296 -56 -360 0 -410
+               C56 -360 18 -296 28 -224
+               C32 -180 78 -180 64 -240
+               C114 -160 100 -56 0 -10 Z"
             fill="url(#csFlameMid)"
           />
-          {/* Inner core */}
+          {/* Inner core — bright yellow */}
           <path
             className="flame-inner"
-            d="M0 -10 C-26 -28 -28 -62 -16 -94 C-20 -78 -8 -82 -6 -100 C-2 -130 -16 -150 0 -180 C6 -154 24 -148 20 -110 C16 -76 22 -50 0 -10 Z"
+            d="M0 -28
+               C-52 -56 -56 -128 -32 -184
+               C-40 -150 -16 -160 -14 -200
+               C-6 -250 -32 -290 0 -340
+               C32 -290 6 -250 14 -200
+               C16 -160 40 -150 32 -184
+               C56 -128 52 -56 0 -28 Z"
             fill="url(#csFlameInner)"
           />
 
-          {/* Rising sparks */}
-          <circle className="spark spark-1" cx="-30" cy="-20" r="2.5" fill="#FFD27A" />
-          <circle className="spark spark-2" cx="25"  cy="-10" r="2"   fill="#C9A84C" />
-          <circle className="spark spark-3" cx="-12" cy="-30" r="1.6" fill="#FFE69C" />
-          <circle className="spark spark-4" cx="40"  cy="-22" r="2.2" fill="#FFB54C" />
-          <circle className="spark spark-5" cx="-44" cy="-12" r="1.8" fill="#F1A24C" />
+          {/* Rising sparks scattered around the flame */}
+          <circle className="spark spark-1" cx="-70" cy="-40"  r="4"   fill="#FFD27A" />
+          <circle className="spark spark-2" cx="60"  cy="-30"  r="3.5" fill="#C9A84C" />
+          <circle className="spark spark-3" cx="-30" cy="-70"  r="2.5" fill="#FFE69C" />
+          <circle className="spark spark-4" cx="90"  cy="-60"  r="3"   fill="#FFB54C" />
+          <circle className="spark spark-5" cx="-100" cy="-30" r="3"   fill="#F1A24C" />
+          <circle className="spark spark-1" cx="40"  cy="-100" r="2.5" fill="#FFE69C" style={{ animationDelay: "0.3s" }} />
+          <circle className="spark spark-3" cx="-50" cy="-110" r="2"   fill="#FFD27A" style={{ animationDelay: "0.8s" }} />
+          <circle className="spark spark-4" cx="110" cy="-30"  r="2.2" fill="#C9A84C" style={{ animationDelay: "1.4s" }} />
         </g>
       </svg>
     </div>

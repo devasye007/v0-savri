@@ -224,30 +224,33 @@ function WordsSection() {
 
 function KitchenScene() {
   return (
-    <section className="relative z-[2] w-full overflow-hidden bg-[#1A1A1A] py-28 text-[#F5F0E8] md:py-40">
-      <div className="mx-auto grid max-w-[1600px] grid-cols-1 items-center gap-12 px-6 md:grid-cols-[0.95fr_1.05fr] md:gap-20 md:px-16">
-        <div>
-          <p className="reveal-up text-[11px] uppercase tracking-[0.45em] text-[#C9A84C] md:text-[13px]">
-            The Kitchen
-          </p>
-          <h2
-            className="reveal-up mt-6 font-serif font-semibold leading-[0.94] text-[#F5F0E8]"
-            style={{ fontSize: "clamp(40px, 5.6vw, 112px)" }}
-          >
-            Live. Right
-            <br />
-            in your home.
-          </h2>
-          <p className="reveal-up mt-8 max-w-md text-base leading-7 text-[#F5F0E8]/68 md:text-lg">
-            Pan on the flame. Food tossing. Steam rising. Your chef cooks in front of you — not in some far-off restaurant kitchen behind a swinging door.
-          </p>
-          <p className="reveal-up mt-6 text-[12px] uppercase tracking-[0.35em] text-[#B5636A] md:text-[13px]">
-            Watch it happen ↘
-          </p>
-        </div>
-        <div className="reveal-right">
-          <CookingScene className="h-[360px] w-full md:h-[520px]" />
-        </div>
+    <section className="relative z-[2] flex h-[100svh] w-full flex-col items-center justify-end overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      {/* The cooking illustration IS the page — fills the entire section */}
+      <CookingScene className="absolute inset-0 h-full w-full" />
+
+      {/* Eyebrow at the top of viewport */}
+      <p className="reveal-up absolute left-1/2 top-[14vh] z-10 -translate-x-1/2 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+        The Kitchen
+      </p>
+
+      {/* Headline above the pan (top third of viewport) */}
+      <h2
+        className="reveal-up absolute left-1/2 top-[22vh] z-10 -translate-x-1/2 px-6 text-center font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
+        style={{ fontSize: "clamp(56px, 9vw, 180px)" }}
+      >
+        Live cooking.
+        <br />
+        <span className="italic text-[#B5636A]">Your home.</span>
+      </h2>
+
+      {/* Tagline pinned at viewport bottom */}
+      <div className="relative z-10 mb-[6vh] px-6 text-center">
+        <p className="reveal-up mx-auto max-w-xl text-base leading-7 text-[#F5F0E8]/82 md:text-lg">
+          Pan on the flame. Food tossing. Steam rising. Right in front of you.
+        </p>
+        <p className="reveal-up mt-4 text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]">
+          ↓ Keep scrolling
+        </p>
       </div>
     </section>
   )
