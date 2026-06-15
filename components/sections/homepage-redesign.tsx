@@ -5,6 +5,13 @@ import Image from "next/image"
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
 
 import { BOOKING_URL } from "@/lib/site-data"
+import {
+  CookFlame,
+  CookKnife,
+  CookPanFlip,
+  CookSteam,
+  CookWhisk,
+} from "@/components/ui/cooking-animations"
 
 const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
@@ -146,7 +153,7 @@ function HeroSection() {
               Private
             </span>
             <span
-              className="block font-sans font-extrabold text-[#B5636A]"
+              className="block font-serif italic text-[#B5636A]"
               style={{ fontSize: "clamp(96px, 16vw, 300px)", lineHeight: 0.82 }}
             >
               Chef.
@@ -166,6 +173,9 @@ function HeroSection() {
           </span>
           <span className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/55">↓ Scroll</span>
         </div>
+
+        {/* Live cooking accent — pan flipping food, bottom-left corner */}
+        <CookPanFlip className="absolute bottom-10 left-6 z-10 h-20 w-32 opacity-90 md:bottom-14 md:left-12 md:h-24 md:w-40" />
       </section>
     </div>
   )
@@ -241,12 +251,15 @@ function BleedSection() {
           >
             Your kitchen.
           </p>
-          <p
-            className="mt-1 block font-sans font-extrabold text-[#B5636A]"
-            style={{ fontSize: "clamp(44px, 7.5vw, 136px)", lineHeight: 1 }}
-          >
-            Your rules.
-          </p>
+          <div className="mt-1 flex items-end gap-4">
+            <p
+              className="block font-serif italic text-[#B5636A]"
+              style={{ fontSize: "clamp(44px, 7.5vw, 136px)", lineHeight: 1 }}
+            >
+              Your rules.
+            </p>
+            <CookFlame className="mb-2 h-16 w-10 shrink-0 md:h-28 md:w-16" />
+          </div>
         </div>
       </div>
     </section>
@@ -257,14 +270,17 @@ function DishesSection() {
   return (
     <section className="savri-dishes-wrap text-[#F5F0E8]">
       <div className="savri-dishes-pin">
-        <div className="z-10 px-6 md:px-16">
-          <p className="text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
-          <h2
-            className="mt-4 font-serif italic leading-[0.92]"
-            style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
-          >
-            90+ dishes to choose from.
-          </h2>
+        <div className="z-10 flex items-center gap-6 px-6 md:px-16">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
+            <h2
+              className="mt-4 font-serif italic leading-[0.92]"
+              style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
+            >
+              90+ dishes to choose from.
+            </h2>
+          </div>
+          <CookWhisk className="hidden h-20 w-14 md:block" />
         </div>
 
         <div className="savri-dishes-track mt-12">
@@ -278,6 +294,8 @@ function DishesSection() {
                 sizes="(min-width: 768px) 30vw, 70vw"
                 className="object-cover"
               />
+              {/* Steam rising from each plate */}
+              <CookSteam className="absolute left-1/2 top-3 h-10 w-16 -translate-x-1/2" />
               <div className="absolute inset-x-0 bottom-0 flex items-end p-5">
                 <p className="font-serif italic text-[#F5F0E8] text-lg md:text-xl">{dish.alt}</p>
               </div>
@@ -309,18 +327,21 @@ function PricingSection() {
     <section className="savri-pricing-wrap text-[#F5F0E8]">
       <div className="savri-pricing-pin">
         <div className="mx-auto flex w-full max-w-[1600px] flex-col">
-          <p
-            className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
-            style={{ "--ws": 8, "--we": 18 } as CSSProperties}
-          >
-            Simple Pricing
-          </p>
+          <div className="flex items-center gap-5">
+            <p
+              className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
+              style={{ "--ws": 8, "--we": 18 } as CSSProperties}
+            >
+              Simple Pricing
+            </p>
+            <CookKnife className="h-10 w-14 md:h-12 md:w-16" />
+          </div>
 
           <div className="mt-6 flex flex-col gap-3 md:mt-10 md:gap-5">
             {tiers.map((tier, idx) => (
               <div key={tier.amount} className="w-full">
                 <div
-                  className="savri-price-amount font-sans font-extrabold leading-[0.9] text-[#C9A84C]"
+                  className="savri-price-amount font-serif font-semibold leading-[0.9] text-[#C9A84C]"
                   style={{
                     fontSize: "clamp(60px, 9vw, 200px)",
                     "--ws": tier.ws,
@@ -438,15 +459,18 @@ function FinalCTASection() {
         >
           Book your private chef.
         </p>
-        <a
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="savri-rise mt-14 inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
-          style={{ transitionDelay: "400ms" }}
-        >
-          Book on WhatsApp →
-        </a>
+        <div className="savri-rise mt-14 flex items-center gap-6" style={{ transitionDelay: "400ms" }}>
+          <CookFlame className="h-16 w-10 md:h-20 md:w-12" />
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
+          >
+            Book on WhatsApp →
+          </a>
+          <CookFlame className="h-16 w-10 md:h-20 md:w-12" />
+        </div>
       </div>
     </section>
   )

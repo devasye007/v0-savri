@@ -1422,6 +1422,89 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   .savri-scroll-progress { transform: scaleX(0); }
 }
 
+/* ========== COOKING ANIMATIONS — live kitchen accents ========== */
+
+/* Pan flipping food: pan tilts, food lifts and somersaults, lands back */
+@keyframes savriPanFlip {
+  0%, 100% { transform: rotate(-3deg); }
+  20%      { transform: rotate(-26deg); }
+  35%      { transform: rotate(-30deg); }
+  55%      { transform: rotate(14deg); }
+  75%      { transform: rotate(-2deg); }
+}
+@keyframes savriFoodToss {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  18%  { transform: translate(2px, -2px) rotate(-10deg); }
+  35%  { transform: translate(-4px, -42px) rotate(180deg); }
+  55%  { transform: translate(10px, -28px) rotate(360deg); }
+  75%  { transform: translate(2px, -6px) rotate(380deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+.savri-cook-pan { animation: savriPanFlip 2.4s ease-in-out infinite; transform-origin: 78% 60%; will-change: transform; }
+.savri-cook-pan .pan-food { animation: savriFoodToss 2.4s ease-in-out infinite; transform-origin: center; will-change: transform; }
+
+/* Steam wisps rising and dissipating, staggered */
+@keyframes savriSteam {
+  0%   { transform: translateY(8px) scale(0.6, 0.6); opacity: 0; }
+  20%  { opacity: 0.75; }
+  60%  { transform: translateY(-30px) scale(1, 1.4); opacity: 0.4; }
+  100% { transform: translateY(-58px) scale(1.4, 1.8); opacity: 0; }
+}
+.savri-cook-steam { position: relative; display: inline-block; }
+.savri-cook-steam .steam {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(245, 240, 232, 0.95), rgba(245, 240, 232, 0));
+  animation: savriSteam 2.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.savri-cook-steam .steam-1 { left: 12%; animation-delay: 0s; }
+.savri-cook-steam .steam-2 { left: 45%; animation-delay: 0.55s; }
+.savri-cook-steam .steam-3 { left: 78%; animation-delay: 1.1s; }
+
+/* Flame flicker: scaleX/scaleY breathing + tiny rotate */
+@keyframes savriFlame {
+  0%, 100% { transform: scale(1, 1) translateY(0) rotate(0deg); }
+  25%      { transform: scale(1.06, 0.94) translateY(-1px) rotate(-2deg); }
+  50%      { transform: scale(0.94, 1.08) translateY(1px) rotate(2deg); }
+  75%      { transform: scale(1.02, 0.98) translateY(-1px) rotate(-1deg); }
+}
+.savri-cook-flame { animation: savriFlame 0.9s ease-in-out infinite; transform-origin: 50% 100%; will-change: transform; }
+
+/* Whisk spinning around a small radius */
+@keyframes savriWhisk {
+  0%   { transform: rotate(0deg) translateX(3px) rotate(0deg); }
+  25%  { transform: rotate(90deg) translateX(3px) rotate(-90deg); }
+  50%  { transform: rotate(180deg) translateX(3px) rotate(-180deg); }
+  75%  { transform: rotate(270deg) translateX(3px) rotate(-270deg); }
+  100% { transform: rotate(360deg) translateX(3px) rotate(-360deg); }
+}
+.savri-cook-whisk { animation: savriWhisk 1.6s linear infinite; transform-origin: center; will-change: transform; }
+
+/* Knife chopping: rocks down + slight rotate */
+@keyframes savriChop {
+  0%, 100% { transform: rotate(28deg) translate3d(0, 0, 0); }
+  30%      { transform: rotate(28deg) translate3d(0, -10px, 0); }
+  45%      { transform: rotate(34deg) translate3d(0, 0, 0); }
+  55%      { transform: rotate(28deg) translate3d(0, -2px, 0); }
+}
+.savri-cook-knife { animation: savriChop 1.4s ease-in-out infinite; transform-origin: 80% 100%; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .savri-cook-pan,
+  .savri-cook-pan .pan-food,
+  .savri-cook-steam .steam,
+  .savri-cook-flame,
+  .savri-cook-whisk,
+  .savri-cook-knife {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* ========== HOMEPAGE — TRAVELLING-THROUGH REDESIGN ========== */
 
 /* Travelling stack wrapper — clip horizontal overflow, allow vertical for sticky */
