@@ -2,670 +2,591 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useMemo, useState } from "react"
-import {
-  ArrowRight,
-  Brain,
-  CalendarDays,
-  Check,
-  ChefHat,
-  CircleDollarSign,
-  Clock3,
-  PartyPopper,
-  Quote,
-  ShieldCheck,
-  Sparkles,
-  Star,
-  UtensilsCrossed,
-} from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
-import {
-  aiFeaturePreview,
-  BOOKING_URL,
-  bookingRule,
-  extraDishPrice,
-  homepageFaqs,
-  homeSteps,
-  pricingTiers,
-  testimonials,
-  whySavriCards,
-} from "@/lib/site-data"
-import { SavriAiNewsletter } from "@/components/sections/savri-ai-newsletter"
-import { ComingSoonSection } from "@/components/sections/coming-soon-section"
-import { Reveal } from "@/components/ui/reveal"
+import { BOOKING_URL } from "@/lib/site-data"
 
-function PricingCalculator() {
-  const [tierId, setTierId] = useState(pricingTiers[0].id)
-  const [extraDishes, setExtraDishes] = useState(0)
-  const tier = pricingTiers.find((item) => item.id === tierId) ?? pricingTiers[0]
+const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=2400&q=80"
+const CHEF_IMG = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=80"
+const PARTY_BG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=2400&q=80"
+const FINAL_BG = "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=2400&q=80"
 
-  const total = useMemo(() => tier.price + extraDishes * extraDishPrice, [tier.price, extraDishes])
+const GALLERY = [
+  { src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=900&q=80", alt: "Hyderabadi biryani" },
+  { src: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80", alt: "Hand-rolled pasta" },
+  { src: "https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=900&q=80", alt: "Indian thali spread" },
+  { src: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=900&q=80", alt: "Asian noodles" },
+  { src: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80", alt: "Wood-fired pizza" },
+  { src: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80", alt: "Plated fine dining" },
+  { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80", alt: "Restaurant plate" },
+  { src: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80", alt: "Breakfast spread" },
+]
+
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null)
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const root = entry.target as HTMLElement
+            root.classList.add("is-on")
+            root.querySelectorAll<HTMLElement>(".savri-line, .savri-fade").forEach((el) => el.classList.add("is-on"))
+            io.unobserve(root)
+          }
+        })
+      },
+      { threshold: 0.25, rootMargin: "0px 0px -10% 0px" },
+    )
+    io.observe(node)
+    return () => io.disconnect()
+  }, [])
+  return ref
+}
+
+function CountUp({ target, prefix = "₹", duration = 1400 }: { target: number; prefix?: string; duration?: number }) {
+  const ref = useRef<HTMLSpanElement | null>(null)
+  const [value, setValue] = useState(0)
+  const started = useRef(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started.current) {
+            started.current = true
+            const start = performance.now()
+            const run = (now: number) => {
+              const t = Math.min(1, (now - start) / duration)
+              const eased = 1 - Math.pow(1 - t, 3)
+              setValue(Math.round(target * eased))
+              if (t < 1) requestAnimationFrame(run)
+            }
+            requestAnimationFrame(run)
+            io.unobserve(node)
+          }
+        })
+      },
+      { threshold: 0.4 },
+    )
+    io.observe(node)
+    return () => io.disconnect()
+  }, [target, duration])
 
   return (
-    <div className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-6 shadow-[0_20px_60px_rgba(26,26,26,0.08)] md:p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose">Pricing Calculator</p>
-      <h3 className="mt-3 font-serif text-3xl font-semibold text-dark">See your booking total</h3>
+    <span ref={ref}>
+      {prefix}
+      {value.toLocaleString("en-IN")}
+    </span>
+  )
+}
 
-      <div className="mt-6 grid gap-4">
-        <div className="grid gap-3 sm:grid-cols-2">
-          {pricingTiers.map((option) => (
-            <button
-              key={option.id}
-              type="button"
-              onClick={() => setTierId(option.id)}
-              className={`immersive-card rounded-[1.5rem] border px-4 py-4 text-left transition ${
-                tierId === option.id
-                  ? "border-rose bg-rose/8 shadow-[0_8px_24px_rgba(181,99,106,0.12)]"
-                  : "border-dark/10 bg-[#fffaf4] hover:border-rose/35"
-              }`}
-            >
-              <p className="text-sm font-semibold text-dark">{option.name}</p>
-              <p className="mt-1 text-2xl font-semibold text-rose">₹{option.price}</p>
-              <p className="mt-1 text-sm text-dark/60">{option.guests}</p>
-            </button>
-          ))}
+function MinimalNav() {
+  return (
+    <header className="absolute left-0 right-0 top-0 z-30">
+      <nav className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-7 md:px-10 md:py-9">
+        <Link href="/" className="font-serif text-2xl italic tracking-tight text-[#F5F0E8] md:text-3xl">
+          Savri
+        </Link>
+        <div className="flex items-center gap-5 text-[12px] uppercase tracking-[0.22em] text-[#F5F0E8]/85 md:gap-9 md:text-[13px]">
+          <Link href="/party" className="savri-nav-link hidden sm:inline-flex">
+            Party Bookings
+          </Link>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="savri-nav-link text-[#C9A84C]"
+          >
+            Book Now
+          </a>
+        </div>
+      </nav>
+    </header>
+  )
+}
+
+function HeroSection() {
+  return (
+    <section className="relative h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <div className="absolute inset-0">
+        <Image
+          src={HERO_IMG}
+          alt="Indian feast plated for a private chef dinner at home"
+          fill
+          priority
+          sizes="100vw"
+          className="savri-kenburns object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0.35)_38%,rgba(10,10,10,0.85)_100%)]" />
+      </div>
+
+      <MinimalNav />
+
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <h1 className="leading-[0.85] tracking-tight">
+          <span
+            className="savri-hero-rise block font-serif italic text-[#F5F0E8]"
+            data-delay="1"
+            style={{ fontSize: "clamp(64px, 10vw, 168px)" }}
+          >
+            Private Chef
+          </span>
+          <span
+            className="savri-hero-rise mt-2 block font-sans font-extrabold text-[#B5636A]"
+            data-delay="2"
+            style={{ fontSize: "clamp(80px, 14vw, 240px)", lineHeight: 0.86 }}
+          >
+            Ghar Pe.
+          </span>
+        </h1>
+      </div>
+
+      <div
+        className="savri-hero-rise absolute bottom-8 left-6 z-10 text-[11px] uppercase tracking-[0.34em] text-[#C9A84C] md:bottom-10 md:left-10 md:text-[12px]"
+        data-delay="3"
+      >
+        Delhi NCR • Bookings Open
+      </div>
+
+      <div
+        className="savri-hero-rise absolute bottom-8 right-6 z-10 flex flex-col items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-[#F5F0E8]/70 md:bottom-10 md:right-10 md:text-[11px]"
+        data-delay="4"
+      >
+        Scroll
+        <span className="block h-12 w-px overflow-hidden bg-[#F5F0E8]/20">
+          <span className="savri-scroll-line block h-full w-full bg-[#F5F0E8]" />
+        </span>
+      </div>
+    </section>
+  )
+}
+
+function FullBleedQuote() {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="relative h-[80vh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <Image
+        src={CHEF_IMG}
+        alt="Private chef plating a dish in a home kitchen"
+        fill
+        sizes="100vw"
+        loading="lazy"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,10,0.05)_0%,rgba(10,10,10,0.15)_40%,rgba(10,10,10,0.78)_100%)]" />
+      <div className="absolute inset-0 flex items-center justify-end px-6 md:px-16">
+        <div className="max-w-[680px] text-right">
+          <p
+            className="font-serif italic leading-[0.92] text-[#F5F0E8]"
+            style={{ fontSize: "clamp(40px, 7vw, 112px)" }}
+          >
+            <span className="savri-line block" data-stagger="1">Restaurant quality.</span>
+            <span className="savri-line block" data-stagger="2">Zero effort.</span>
+            <span className="savri-line block text-[#C9A84C]" data-stagger="3">Ghar pe.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function StatementText() {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="relative w-full bg-[#F5F0E8] px-6 py-32 text-[#1A1A1A] md:px-16 md:py-48">
+      <div className="mx-auto max-w-[1400px]">
+        <p
+          className="font-serif leading-[1.05] tracking-tight"
+          style={{ fontSize: "clamp(34px, 5vw, 88px)" }}
+        >
+          <span className="savri-line block" data-stagger="1">A verified chef arrives at your home.</span>
+          <span className="savri-line block" data-stagger="2">Cooks exactly what you want.</span>
+          <span className="savri-line block" data-stagger="3">Cleans up after.</span>
+          <span className="savri-line block italic text-[#B5636A]" data-stagger="4">You just eat.</span>
+        </p>
+        <p
+          className="savri-line mt-14 text-[12px] uppercase tracking-[0.32em] text-[#1A1A1A]/55 md:text-[13px]"
+          data-stagger="5"
+        >
+          Starting ₹549 • Delhi NCR • Book in 2 minutes
+        </p>
+      </div>
+    </section>
+  )
+}
+
+function MenuGallery() {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="relative w-full overflow-hidden bg-[#1A1A1A] py-24 text-[#F5F0E8] md:py-32">
+      <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.9fr_1.4fr]">
+        <div className="px-6 md:px-16 lg:sticky lg:top-1/3">
+          <p className="savri-fade mb-6 text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">The Menu</p>
+          <h2
+            className="savri-fade font-serif italic leading-[0.92]"
+            style={{ fontSize: "clamp(44px, 6vw, 104px)" }}
+          >
+            Your menu.
+            <br />
+            Your choice.
+          </h2>
+          <p className="savri-fade mt-8 max-w-md text-base leading-7 text-[#F5F0E8]/65 md:text-lg">
+            Pick from 90+ dishes across Indian, Italian, Chinese and more. Your chef brings the
+            ingredients and cooks it fresh in your kitchen.
+          </p>
         </div>
 
-        <label className="grid gap-2">
-          <span className="text-sm font-medium text-dark">Extra dishes</span>
-          <input
-            type="range"
-            min={0}
-            max={6}
-            value={extraDishes}
-            onChange={(event) => setExtraDishes(Number(event.target.value))}
-            className="accent-rose"
-          />
-          <div className="flex items-center justify-between text-sm text-dark/60">
-            <span>0</span>
-            <span>{extraDishes} selected</span>
-            <span>6</span>
+        <div className="savri-fade overflow-hidden">
+          <div className="savri-h-scroll pb-4">
+            {GALLERY.map((item) => (
+              <div
+                key={item.src}
+                className="relative h-[460px] w-[280px] overflow-hidden md:h-[560px] md:w-[360px]"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  loading="lazy"
+                  sizes="(min-width: 768px) 360px, 280px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 flex items-end p-5">
+                  <p className="font-serif text-lg italic text-[#F5F0E8] md:text-xl">{item.alt}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        </label>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function PricingFloating() {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="relative w-full overflow-hidden bg-[#1A1A1A] py-28 text-[#F5F0E8] md:py-36">
+      <Image
+        src={HERO_IMG}
+        alt=""
+        fill
+        loading="lazy"
+        aria-hidden
+        sizes="100vw"
+        className="object-cover opacity-25 blur-[8px]"
+      />
+      <div className="absolute inset-0 bg-[#1A1A1A]/70" />
+
+      <div className="relative mx-auto max-w-[1500px] px-6 md:px-16">
+        <p className="savri-fade text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">Pricing</p>
+
+        <div className="mt-10 grid grid-cols-1 items-center gap-12 md:grid-cols-[1fr_auto_1fr]">
+          <div className="savri-fade text-left">
+            <div
+              className="font-sans font-bold leading-none text-[#C9A84C]"
+              style={{ fontSize: "clamp(80px, 10vw, 200px)" }}
+            >
+              <CountUp target={549} />
+            </div>
+            <p className="mt-6 max-w-xs font-serif text-xl italic text-[#F5F0E8]/85 md:text-2xl">
+              Small Table
+            </p>
+            <p className="mt-2 text-[13px] uppercase tracking-[0.28em] text-[#F5F0E8]/55">
+              1–3 guests • 2 dishes
+            </p>
+          </div>
+
+          <div className="savri-fade mx-auto hidden h-48 w-px bg-[#B5636A]/60 md:block" />
+          <div className="savri-fade mx-auto block h-px w-32 bg-[#B5636A]/60 md:hidden" />
+
+          <div className="savri-fade text-left md:text-right">
+            <div
+              className="font-sans font-bold leading-none text-[#C9A84C]"
+              style={{ fontSize: "clamp(80px, 10vw, 200px)" }}
+            >
+              <CountUp target={1149} />
+            </div>
+            <p className="mt-6 font-serif text-xl italic text-[#F5F0E8]/85 md:ml-auto md:max-w-xs md:text-2xl">
+              Full Table
+            </p>
+            <p className="mt-2 text-[13px] uppercase tracking-[0.28em] text-[#F5F0E8]/55">
+              4–6 guests • 4 dishes
+            </p>
+          </div>
+        </div>
+
+        <div className="savri-fade mt-20 flex flex-wrap items-center gap-6 text-base md:text-lg">
+          <Link
+            href="/party"
+            className="group inline-flex items-center gap-3 text-[#B5636A] hover:text-[#C9A84C]"
+          >
+            <span className="font-serif italic">Party Bookings from ₹5,999</span>
+            <span className="transition-transform duration-500 group-hover:translate-x-2">→</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function PartyTeaser() {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="relative h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <Image
+        src={PARTY_BG}
+        alt="A celebratory dinner spread plated for a party booking"
+        fill
+        loading="lazy"
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-[#1A1A1A]/70" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(181,99,106,0.18),transparent_60%)]" />
+
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <p className="savri-fade text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+          Introducing
+        </p>
+        <h2
+          className="savri-fade mt-6 font-serif italic leading-[0.85] text-[#F5F0E8]"
+          style={{ fontSize: "clamp(64px, 12vw, 200px)" }}
+        >
+          party bookings
+        </h2>
+        <p
+          className="savri-fade mt-8 font-sans font-bold tracking-tight text-white"
+          style={{ fontSize: "clamp(20px, 2.6vw, 36px)" }}
+        >
+          AT JUST ₹6,399
+        </p>
+        <Link
+          href="/party"
+          className="savri-fade group mt-12 inline-flex items-center gap-3 bg-[#B5636A] px-9 py-5 text-sm font-semibold uppercase tracking-[0.24em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158]"
+        >
+          Book Your Party
+          <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+function HowItWorksRow({
+  img,
+  alt,
+  text,
+  index,
+  reverse,
+}: {
+  img: string
+  alt: string
+  text: string
+  index: number
+  reverse: boolean
+}) {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section
+      ref={ref}
+      className={`grid w-full grid-cols-1 items-center gap-10 px-6 py-20 md:grid-cols-2 md:gap-20 md:px-16 md:py-32 ${
+        reverse ? "md:[&>*:first-child]:order-2" : ""
+      }`}
+    >
+      <div className="savri-fade relative aspect-[4/5] w-full overflow-hidden md:aspect-[5/6]">
+        <Image
+          src={img}
+          alt={alt}
+          fill
+          loading="lazy"
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+        />
+      </div>
+      <div className="savri-fade">
+        <p className="font-serif text-[12px] uppercase tracking-[0.42em] text-[#B5636A]">
+          {String(index + 1).padStart(2, "0")}
+        </p>
+        <p
+          className="mt-5 font-serif italic leading-[1] text-[#1A1A1A]"
+          style={{ fontSize: "clamp(36px, 5vw, 88px)" }}
+        >
+          {text}
+        </p>
+      </div>
+    </section>
+  )
+}
+
+function HowItWorks() {
+  const items = [
+    {
+      img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80",
+      alt: "Chef arriving with fresh ingredients",
+      text: "Book in 2 minutes. Choose your menu.",
+      reverse: false,
+    },
+    {
+      img: CHEF_IMG,
+      alt: "Chef cooking in a home kitchen",
+      text: "Chef arrives. Fresh ingredients, your kitchen.",
+      reverse: true,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1400&q=80",
+      alt: "Beautifully plated dishes",
+      text: "Just eat. We clean up after.",
+      reverse: false,
+    },
+  ]
+
+  return (
+    <section className="relative w-full bg-[#F5F0E8] text-[#1A1A1A]">
+      <div className="px-6 pt-28 md:px-16 md:pt-40">
+        <p className="text-[11px] uppercase tracking-[0.42em] text-[#B5636A]">How It Works</p>
       </div>
 
-      <div className="mt-6 rounded-[1.5rem] bg-dark px-5 py-5 text-cream">
-        <p className="text-sm text-cream/60">
-          {tier.name} base + {extraDishes} extra dish{extraDishes === 1 ? "" : "es"}
+      {items.map((item, idx) => (
+        <HowItWorksRow
+          key={idx}
+          img={item.img}
+          alt={item.alt}
+          text={item.text}
+          reverse={item.reverse}
+          index={idx}
+        />
+      ))}
+    </section>
+  )
+}
+
+function FinalCTA() {
+  const ref = useReveal<HTMLElement>()
+  return (
+    <section ref={ref} className="relative h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <Image
+        src={FINAL_BG}
+        alt="A warm home dining moment"
+        fill
+        loading="lazy"
+        sizes="100vw"
+        className="object-cover opacity-55"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.5),rgba(10,10,10,0.9))]" />
+
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <h2
+          className="savri-fade font-serif italic leading-[0.92] text-[#F5F0E8]"
+          style={{ fontSize: "clamp(48px, 8vw, 140px)" }}
+        >
+          Ready for ghar ka khana?
+        </h2>
+        <p className="savri-fade mt-8 text-base uppercase tracking-[0.38em] text-[#C9A84C] md:text-lg">
+          Private Chef. Your Home. Your Menu.
         </p>
-        <p className="mt-2 text-4xl font-semibold">₹{total}</p>
-        <p className="mt-2 text-sm text-cream/70">
-          {extraDishPrice > 0 ? `Extra dishes charged at ₹${extraDishPrice} each.` : null}
+
+        <div className="savri-fade mt-14 flex flex-col items-center gap-4 sm:flex-row sm:gap-5">
+          <a
+            href="https://wa.me/919810641941"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex min-w-[240px] items-center justify-center gap-3 bg-[#B5636A] px-8 py-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158]"
+          >
+            Book on WhatsApp
+            <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
+          </a>
+          <Link
+            href="/ai"
+            className="group inline-flex min-w-[240px] items-center justify-center gap-3 border border-[#F5F0E8]/55 bg-transparent px-8 py-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#F5F0E8] transition-colors duration-300 hover:border-[#F5F0E8] hover:bg-[#F5F0E8]/8"
+          >
+            Download App
+            <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function MinimalFooter() {
+  return (
+    <footer className="w-full bg-[#1A1A1A] text-[#F5F0E8]">
+      <div className="mx-auto max-w-[1500px] px-6 py-24 md:px-16 md:py-32">
+        <p
+          className="font-serif italic leading-none text-[#F5F0E8]"
+          style={{ fontSize: "clamp(56px, 10vw, 180px)" }}
+        >
+          Savri
+        </p>
+        <p className="mt-6 text-[12px] uppercase tracking-[0.42em] text-[#C9A84C]">
+          Private Chef, Ghar Pe.
+        </p>
+
+        <div className="mt-20 grid grid-cols-1 gap-12 md:grid-cols-2">
+          <div className="flex flex-col gap-4 text-base">
+            <Link href="/" className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]">
+              Home
+            </Link>
+            <Link href="/party" className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]">
+              Party Bookings
+            </Link>
+            <Link href="/blog" className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]">
+              Blog
+            </Link>
+            <Link href="/compare" className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]">
+              Compare
+            </Link>
+          </div>
+          <div className="flex flex-col gap-4 text-base md:items-end md:text-right">
+            <a
+              href="mailto:founder@savri.co.in"
+              className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]"
+            >
+              founder@savri.co.in
+            </a>
+            <a
+              href="https://www.instagram.com/savri.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]"
+            >
+              Instagram @savri.in
+            </a>
+            <a
+              href="https://savri.co.in"
+              className="savri-nav-link w-fit text-[#F5F0E8]/80 hover:text-[#F5F0E8]"
+            >
+              savri.co.in
+            </a>
+          </div>
+        </div>
+
+        <p className="mt-24 text-[11px] uppercase tracking-[0.36em] text-[#F5F0E8]/40">
+          © 2026 Savri • Delhi NCR • All Rights Reserved
         </p>
       </div>
-    </div>
+    </footer>
   )
 }
 
 export function HomepageRedesign() {
   return (
-    <main className="overflow-x-hidden bg-cream text-dark ambient-grid">
-      <div className="ambient-orb left-[-6rem] top-[14rem] h-72 w-72 bg-rose/40" />
-      <div className="ambient-orb right-[-8rem] top-[52rem] h-80 w-80 bg-gold/30" />
-      <section className="relative isolate min-h-screen overflow-hidden bg-dark pt-28 text-cream">
-        <Image
-          src="/images/hero-food.jpg"
-          alt="Premium Indian dinner table with chef-plated dishes in a warm home setting"
-          fill
-          priority
-          className="object-cover opacity-45"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,10,0.8)_0%,rgba(10,10,10,0.45)_50%,rgba(10,10,10,0.65)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,168,76,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(181,99,106,0.24),transparent_36%)]" />
-
-        <div className="container relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] items-center px-6 pb-16">
-          <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-            <Reveal className="max-w-2xl" variant="left">
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-gold backdrop-blur">
-                Premium Home Dining
-              </p>
-              <h1 className="mt-6 font-serif text-5xl font-semibold leading-none md:text-6xl lg:text-7xl">
-                Private Chef, Ghar pe
-              </h1>
-              <p className="mt-6 max-w-xl text-xl text-cream/82 md:text-2xl">
-                Authentic. Fresh. Personal. Starting ₹549.
-              </p>
-              <Link
-                href="/party"
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-gold transition hover:text-cream md:text-[15px]"
-              >
-                Party Bookings Now Available
-                <span aria-hidden="true" className="text-cream/60 transition group-hover:text-cream">
-                  → Learn More
-                </span>
-              </Link>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-cream/72 md:text-lg">
-                Savri brings trained private chefs into Indian homes for intimate dinners, family meals, and celebrations that feel polished without feeling performative.
-              </p>
-
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-7 py-3 text-base font-semibold text-cream transition hover:bg-rose-dark"
-                >
-                  Book a Chef Now
-                </a>
-                <Link
-                  href="/how-it-works"
-                  className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/14 bg-white/8 px-7 py-3 text-base font-semibold text-cream transition hover:bg-white/12"
-                >
-                  Learn How It Works
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-3 text-sm text-cream/70">
-                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">Small Table: 1-3 guests · ₹549</span>
-                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">Full Table: 4-6 guests · ₹1,149</span>
-                <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2">{bookingRule}</span>
-              </div>
-            </Reveal>
-
-            <Reveal className="grid gap-4" delayMs={160} variant="right">
-              <div className="parallax-panel interactive-spotlight rounded-[2rem] border border-white/12 bg-white/10 p-6 backdrop-blur-md">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">What you get</p>
-                <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                  {[
-                    "Fresh cooking in your kitchen",
-                    "Trained, vetted private chefs",
-                    "Menu personalization before service",
-                    "Kitchen cleanup after the meal",
-                  ].map((item) => (
-                    <div key={item} className="immersive-card rounded-[1.5rem] bg-black/12 px-4 py-4 flex items-start gap-3">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                      <span className="text-sm text-cream/84">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="glass-surface immersive-card rounded-[1.75rem] p-5">
-                  <p className="text-sm text-cream/60">Starting at</p>
-                  <p className="mt-2 text-4xl font-semibold text-cream">₹549</p>
-                  <p className="mt-2 text-sm text-cream/72">1 hour · 2 dishes · 1-3 guests</p>
-                </div>
-                <div className="immersive-card rounded-[1.75rem] border border-[#6C63FF]/24 bg-[#6C63FF]/12 p-5 backdrop-blur">
-                  <p className="text-sm text-[#d9d7ff]">Savri AI</p>
-                  <p className="mt-2 text-2xl font-semibold text-white">Coming August 2026</p>
-                  <p className="mt-2 text-sm text-[#ecebff]">Taste learning, chef matching, and smarter recommendations.</p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <ComingSoonSection />
-
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Why Savri</p>
-            <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Why Choose Savri?</h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {whySavriCards.map((card, index) => {
-              const icons = [CircleDollarSign, UtensilsCrossed, ShieldCheck, Sparkles]
-              const Icon = icons[index]
-              return (
-                <Reveal key={card.title} delayMs={index * 90} variant="up">
-                <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7 shadow-[0_16px_40px_rgba(26,26,26,0.05)]">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-rose/10 text-rose">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-rose">{card.eyebrow}</p>
-                  <h3 className="mt-3 font-serif text-2xl font-semibold text-dark">{card.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-dark/68">{card.copy}</p>
-                </article>
-                </Reveal>
-              )
-            })}
-          </div>
-
-          {/* Party Bookings — featured offering */}
-          <Reveal delayMs={whySavriCards.length * 90} variant="up">
-            <article className="immersive-card interactive-spotlight mt-8 grid gap-6 rounded-[2rem] border border-gold/35 bg-gradient-to-br from-[#1c1714] via-[#141414] to-[#100f0f] p-7 text-cream shadow-[0_20px_60px_rgba(212,175,55,0.18)] md:grid-cols-[auto_1fr_auto] md:items-center md:p-8">
-              <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/15 text-gold">
-                <PartyPopper className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Now Available</p>
-                <h3 className="mt-2 font-serif text-2xl font-semibold md:text-3xl">Party Bookings</h3>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-cream/72 md:text-base">
-                  Private chef for your next party or gathering. 12 dishes cooked live in your kitchen.
-                  Starting at <span className="font-semibold text-cream">₹5,999</span> for Delhi.
-                </p>
-              </div>
-              <Link
-                href="/party"
-                className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-3 text-sm font-semibold text-dark transition hover:bg-gold-dark md:self-center"
-              >
-                Book a Party
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </article>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="how-it-works-preview" className="bg-[#fffaf4] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">How It Works</p>
-            <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Book Your Chef in 3 Steps</h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {homeSteps.map((step, index) => {
-              const icons = [ChefHat, CalendarDays, Sparkles]
-              const Icon = icons[index]
-              return (
-                <Reveal key={step.title} delayMs={index * 100}>
-                <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-dark text-sm font-semibold text-cream">
-                    0{index + 1}
-                  </div>
-                  <div className="mt-5 flex items-center gap-3">
-                    <Icon className="h-5 w-5 text-rose" />
-                    <h3 className="font-serif text-2xl font-semibold text-dark">{step.title}</h3>
-                  </div>
-                  <p className="mt-4 text-sm leading-7 text-dark/68">{step.copy}</p>
-                </article>
-                </Reveal>
-              )
-            })}
-          </div>
-
-          <div className="mt-10 text-center">
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-7 py-3 text-base font-semibold text-cream transition hover:bg-rose-dark"
-            >
-              Book a Chef Now
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-dark py-20 text-cream md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <Reveal>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Pricing</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Affordable Enough to Make It a Habit.</h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-cream/70 md:text-lg">
-                Two booking tiers. Clear add-ons. No fuzzy packages. Ingredients are reimbursed separately so you know exactly what you are paying for.
-              </p>
-
-              <div className="mt-10 grid gap-6 xl:grid-cols-2">
-                {pricingTiers.map((tier) => (
-                  <article
-                    key={tier.id}
-                    className={`immersive-card hover-shine rounded-[2rem] border p-7 ${
-                      tier.badge
-                        ? "border-gold/35 bg-gradient-to-b from-[#1c1714] to-[#100f0f]"
-                        : "border-white/10 bg-white/6"
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">{tier.name}</p>
-                        <h3 className="mt-3 font-serif text-3xl font-semibold">{tier.guests}</h3>
-                      </div>
-                      {tier.badge ? (
-                        <span className="rounded-full bg-gold px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-dark">
-                          {tier.badge}
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <p className="mt-6 text-5xl font-semibold text-cream">₹{tier.price}</p>
-                    <p className="mt-2 text-sm text-cream/62">{tier.perPerson}</p>
-
-                    <ul className="mt-6 space-y-3 text-sm text-cream/80">
-                      {[
-                        `${tier.hours} hour${tier.hours > 1 ? "s" : ""} of cooking`,
-                        `${tier.dishes} curated dishes`,
-                        "Professional chef",
-                        "Kitchen cleanup",
-                        "Beverage advisory",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-3">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <p className="mt-6 text-sm text-cream/62">
-                      <span className="font-semibold text-cream">Best for:</span> {tier.bestFor}
-                    </p>
-
-                    <a
-                      href={BOOKING_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`immersive-button mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-2xl px-6 py-3 text-base font-semibold transition ${
-                        tier.badge
-                          ? "bg-rose text-cream hover:bg-rose-dark"
-                          : "border border-cream/18 text-cream hover:bg-white/8"
-                      }`}
-                    >
-                      {tier.name === "Small Table" ? "Book Small Table" : "Book Full Table"}
-                    </a>
-                  </article>
-                ))}
-              </div>
-
-              {/* Party Bookings — premium gold tier */}
-              <article className="immersive-card hover-shine mt-6 rounded-[2rem] border-2 border-gold/45 bg-gradient-to-br from-[#1c1714] via-[#141414] to-[#100f0f] p-7 shadow-[0_30px_80px_rgba(212,175,55,0.18)]">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold">
-                      <PartyPopper className="h-4 w-4" />
-                      Party
-                    </div>
-                    <h3 className="mt-3 font-serif text-3xl font-semibold text-cream">Party Bookings</h3>
-                    <p className="mt-2 text-sm text-cream/62">Private chef for your next gathering</p>
-                  </div>
-                  <span className="rounded-full bg-gold px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-dark">
-                    New
-                  </span>
-                </div>
-
-                <p className="mt-6 text-5xl font-semibold text-cream">₹5,999</p>
-                <p className="mt-2 text-sm text-cream/62">Delhi · NCR ₹7,998 (Noida / Gurugram / Faridabad / Ghaziabad)</p>
-
-                <ul className="mt-6 grid gap-3 text-sm text-cream/80 sm:grid-cols-2">
-                  {[
-                    "4 Snacks",
-                    "4 Main Course",
-                    "2 Sides (Breads / Rice)",
-                    "2 Desserts + 1 Salad",
-                    "Private chef at your home",
-                    "Kitchen cleaned after",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/party"
-                  className="immersive-button mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gold px-6 py-3 text-base font-semibold text-dark transition hover:bg-gold-dark"
-                >
-                  Book Party
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </article>
-
-              <div className="mt-6 rounded-[2rem] border border-white/10 bg-white/6 p-6">
-                <div className="flex items-start gap-4">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-rose/18 text-rose">
-                    <UtensilsCrossed className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">Add-ons</p>
-                    <h3 className="mt-2 font-serif text-2xl font-semibold">Want more? Add extra dishes</h3>
-                    <p className="mt-3 text-sm leading-7 text-cream/70">
-                      Add butter chicken, biryani, dessert, or a signature specialty for ₹149 per dish. Each extra dish adds roughly 30 minutes of cooking time.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <Link href="/pricing" className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-cream">
-                  See full pricing details
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-            </Reveal>
-
-            <Reveal delayMs={120} variant="right">
-              <PricingCalculator />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fffaf4] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Testimonials</p>
-            <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Loved by Homes Across Delhi</h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 xl:grid-cols-4">
-            {testimonials.map((testimonial, index) => (
-              <Reveal key={testimonial.name} delayMs={index * 80} variant="scale">
-              <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-6">
-                <Quote className="h-7 w-7 text-rose" />
-                <div className="mt-4 flex items-center gap-1 text-gold">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star key={index} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <p className="mt-5 text-sm leading-7 text-dark/72">{testimonial.quote}</p>
-                <p className="mt-6 font-semibold text-dark">
-                  {testimonial.name} <span className="font-normal text-dark/55">| {testimonial.location}</span>
-                </p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-rose">{testimonial.useCase}</p>
-              </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-24">
-        <div className="container mx-auto px-6">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <blockquote>
-              <p className="font-serif text-2xl font-semibold leading-snug text-dark md:text-3xl lg:text-4xl">
-                &ldquo;Every home in India deserves a proper meal. Savri is that way.&rdquo;
-              </p>
-              <footer className="mt-6">
-                <p className="font-semibold text-dark">— Devasye Sachdeva, Founder</p>
-                <p className="mt-1 text-sm text-dark/55">
-                  Started in a college apartment. Building for every home in India.
-                </p>
-              </footer>
-            </blockquote>
-            <Link
-              href="/founder"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-rose hover:text-rose-dark"
-            >
-              Read the full story →
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-dark py-20 text-cream md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal variant="left">
-            <div className="parallax-panel interactive-spotlight rounded-[2rem] border border-[#6C63FF]/24 bg-[linear-gradient(160deg,rgba(108,99,255,0.18),rgba(26,26,26,0.3))] p-8 shadow-[0_20px_70px_rgba(0,0,0,0.22)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#d6d2ff]">Savri AI Preview</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold text-white md:text-5xl">
-                The Future of Private Dining
-              </h2>
-              <p className="mt-5 text-base leading-7 text-cream/72 md:text-lg">
-                Imagine a chef experience that already understands your taste, your usual spice level, your dietary needs, and the kind of evenings you like to host.
-              </p>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {aiFeaturePreview.map((item) => (
-                  <div key={item.title} className="flex items-center gap-3 rounded-[1.25rem] border border-white/10 bg-white/8 px-4 py-4">
-                    <item.icon className="h-5 w-5 text-[#d6d2ff]" />
-                    <span className="text-sm text-cream/86">{item.title}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            </Reveal>
-
-            <Reveal variant="right" delayMs={140}>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Coming August 2026</p>
-              <h3 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Personalized experiences powered by intelligence.</h3>
-              <p className="mt-5 text-base leading-7 text-cream/70 md:text-lg">
-                Savri AI will learn your taste profile, predict what you are likely to want next, and match you with the right chef without making the experience feel robotic.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/ai"
-                  className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-7 py-3 text-base font-semibold text-cream transition hover:bg-rose-dark"
-                >
-                  Explore Savri AI
-                </Link>
-                <a
-                  href="#plans-notify"
-                  className="immersive-button inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/14 px-7 py-3 text-base font-semibold text-cream transition hover:bg-white/8"
-                >
-                  Get notified when it launches
-                </a>
-              </div>
-            </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">FAQ</p>
-            <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Got Questions? We&apos;ve Got Answers.</h2>
-          </Reveal>
-
-          <Reveal delayMs={100}>
-          <div className="mx-auto mt-14 max-w-4xl divide-y divide-dark/10 rounded-[2rem] border border-dark/8 bg-white interactive-spotlight">
-            {homepageFaqs.map((faq) => (
-              <details key={faq.question} className="group px-6 py-2">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-lg font-semibold text-dark">
-                  {faq.question}
-                  <span className="text-2xl text-rose transition group-open:rotate-45">+</span>
-                </summary>
-                <p className="pb-5 pr-8 text-sm leading-7 text-dark/68">{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-          </Reveal>
-
-          <div className="mt-8 text-center">
-            <Link href="/faq" className="inline-flex items-center gap-2 text-sm font-semibold text-rose hover:text-rose-dark">
-              See full FAQ
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section id="plans-notify" className="bg-[#fffaf4] py-20 md:py-28">
-        <div className="container mx-auto px-6">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <Reveal variant="left">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Monthly Plans</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Monthly Plans Are Coming Soon</h2>
-              <p className="mt-5 text-base leading-7 text-dark/68 md:text-lg">
-                Daily chef plans are not available yet. Join the newsletter to be notified when plans launch and when Savri AI updates start rolling out.
-              </p>
-              <div className="mt-8 grid gap-3">
-                {[
-                  "Be notified when monthly plans launch",
-                  "Get Savri AI rollout updates",
-                  "Stay ahead on launch pricing and availability",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm text-dark/68">
-                    <Brain className="mt-0.5 h-4 w-4 shrink-0 text-rose" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            </Reveal>
-
-            <Reveal variant="right" delayMs={120}>
-              <SavriAiNewsletter />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-dark py-20 text-cream md:py-24">
-        <Reveal className="container mx-auto px-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Ready When You Are</p>
-          <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">
-            Ready to Experience Premium Home Dining?
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-cream/72 md:text-lg">
-            Book your first chef in 3 minutes. Just remember the 24+ hour lead time.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-8 py-3 text-base font-semibold text-cream transition hover:bg-rose-dark"
-            >
-              Book a Chef Now
-            </a>
-            <Link
-              href="/party"
-              className="immersive-button hover-shine inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gold px-8 py-3 text-base font-semibold text-dark transition hover:bg-gold-dark"
-            >
-              Book a Party
-              <span aria-hidden="true">🎉</span>
-            </Link>
-          </div>
-          <p className="mt-4 text-sm text-cream/55">First booking? We&apos;ll walk you through every step.</p>
-
-          {/* Internal linking — surfaces /party + city pages for SEO */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-cream/60">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.32em] text-gold">
-              Related
-            </span>
-            <Link
-              href="/party"
-              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
-            >
-              Party Bookings →
-            </Link>
-            <Link
-              href="/delhi"
-              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
-            >
-              Private Chef in Delhi →
-            </Link>
-            <Link
-              href="/gurugram"
-              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
-            >
-              Private Chef in Gurugram →
-            </Link>
-            <Link
-              href="/noida"
-              className="rounded-full border border-cream/14 px-4 py-1.5 transition hover:border-gold hover:text-gold"
-            >
-              Private Chef in Noida →
-            </Link>
-          </div>
-        </Reveal>
-      </section>
+    <main className="bg-[#1A1A1A] text-[#F5F0E8]">
+      <HeroSection />
+      <FullBleedQuote />
+      <StatementText />
+      <MenuGallery />
+      <PricingFloating />
+      <PartyTeaser />
+      <HowItWorks />
+      <FinalCTA />
+      <MinimalFooter />
     </main>
   )
 }
