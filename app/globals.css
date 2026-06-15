@@ -1422,6 +1422,166 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   .savri-scroll-progress { transform: scaleX(0); }
 }
 
+/* ========== /AI PAGE — PREMIUM POLISH LAYER ==========
+   Adds depth, ambient gradients, frosted row hover states, refined
+   CTAs and stagger reveals — no content or colour changes. */
+
+/* Hero ambient orb — large blurred rose+gold radial that pulses */
+.savri-ai-orb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(181, 99, 106, 0.32) 0%, transparent 48%),
+    radial-gradient(circle at 70% 70%, rgba(201, 168, 76, 0.22) 0%, transparent 48%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  animation: savriAiOrb 9s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  will-change: transform, opacity;
+}
+@keyframes savriAiOrb {
+  0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg);  opacity: 0.65; }
+  100% { transform: translate(-50%, -50%) scale(1.08) rotate(6deg); opacity: 1;   }
+}
+
+/* Per-section ambient glow at the top — alternating rose/gold tint */
+.savri-ai-glow-rose,
+.savri-ai-glow-gold {
+  position: absolute;
+  top: -10vh;
+  left: 50%;
+  width: 90vw;
+  max-width: 1500px;
+  height: 60vh;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.savri-ai-glow-rose {
+  background: radial-gradient(ellipse at center top, rgba(181, 99, 106, 0.16) 0%, transparent 60%);
+}
+.savri-ai-glow-gold {
+  background: radial-gradient(ellipse at center top, rgba(201, 168, 76, 0.14) 0%, transparent 60%);
+}
+
+/* Frosted content row — hover lift + border accent + faint tint */
+.savri-ai-row {
+  position: relative;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.5s ease,
+    border-top-color 0.5s ease;
+  will-change: transform;
+}
+.savri-ai-row:hover {
+  transform: translateY(-3px);
+  background-color: rgba(245, 240, 232, 0.015);
+  border-top-color: rgba(201, 168, 76, 0.45);
+}
+
+/* Premium primary CTA — rose with shine sweep + glow lift on hover */
+.savri-ai-btn-primary {
+  position: relative;
+  background: #B5636A;
+  color: #F5F0E8;
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s;
+}
+.savri-ai-btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+  transform: translateX(-110%);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.savri-ai-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 42px rgba(181, 99, 106, 0.45);
+  background: #C46F77;
+}
+.savri-ai-btn-primary:hover::after { transform: translateX(110%); }
+.savri-ai-btn-primary:active { transform: translateY(-1px); }
+
+/* Secondary CTA — outline that warms to gold on hover */
+.savri-ai-btn-secondary {
+  background: transparent;
+  color: #F5F0E8;
+  border: 1px solid rgba(245, 240, 232, 0.3);
+  transition:
+    border-color 0.35s,
+    background-color 0.35s,
+    color 0.35s,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.savri-ai-btn-secondary:hover {
+  border-color: rgba(201, 168, 76, 0.7);
+  background-color: rgba(201, 168, 76, 0.08);
+  color: #C9A84C;
+  transform: translateY(-3px);
+}
+
+/* Staggered children inside a reveal-up container — appear at 100ms intervals */
+.savri-ai-stagger > *.reveal-up:nth-child(1),
+.savri-ai-stagger > *.reveal-fade:nth-child(1) { transition-delay: 0.05s; }
+.savri-ai-stagger > *.reveal-up:nth-child(2),
+.savri-ai-stagger > *.reveal-fade:nth-child(2) { transition-delay: 0.15s; }
+.savri-ai-stagger > *.reveal-up:nth-child(3),
+.savri-ai-stagger > *.reveal-fade:nth-child(3) { transition-delay: 0.25s; }
+.savri-ai-stagger > *.reveal-up:nth-child(4),
+.savri-ai-stagger > *.reveal-fade:nth-child(4) { transition-delay: 0.35s; }
+.savri-ai-stagger > *.reveal-up:nth-child(5),
+.savri-ai-stagger > *.reveal-fade:nth-child(5) { transition-delay: 0.45s; }
+.savri-ai-stagger > *.reveal-up:nth-child(6),
+.savri-ai-stagger > *.reveal-fade:nth-child(6) { transition-delay: 0.55s; }
+
+/* FAQ — question turns gold on hover/open, smooth chevron rotate */
+.savri-ai-faq details > summary {
+  transition: color 0.3s ease;
+}
+.savri-ai-faq details:hover > summary,
+.savri-ai-faq details[open] > summary {
+  color: #C9A84C;
+}
+.savri-ai-faq details > summary > span:last-child {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+.savri-ai-faq details[open] > summary > span:last-child {
+  color: #C9A84C;
+}
+
+/* Frosted glass surround for the waitlist form */
+.savri-ai-glass {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(245, 240, 232, 0.035) 0%, rgba(245, 240, 232, 0.01) 100%);
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .savri-ai-orb,
+  .savri-ai-row,
+  .savri-ai-btn-primary,
+  .savri-ai-btn-primary::after,
+  .savri-ai-btn-secondary {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* ========== COOKING ANIMATIONS — premium multi-layer scenes ========== */
 
 /* PAN — gentle rock, animates the whole composition not the pan alone */

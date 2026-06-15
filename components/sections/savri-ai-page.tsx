@@ -245,8 +245,8 @@ export function SavriAiPage() {
     <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
       {/* ─────────── 01 / HERO ─────────── */}
       <section className="relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
-        {/* Ambient warm radial glow + grid lines */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_35%,rgba(181,99,106,0.18),transparent_55%),radial-gradient(circle_at_72%_70%,rgba(201,168,76,0.14),transparent_55%)]" />
+        {/* Pulsing ambient orb (rose + gold radial, blurred) */}
+        <div className="savri-ai-orb" aria-hidden="true" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
 
         <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
@@ -273,13 +273,13 @@ export function SavriAiPage() {
         <div className="reveal-up relative z-10 mt-12 flex flex-col gap-4 sm:flex-row">
           <a
             href="#notify"
-            className="inline-flex min-h-12 items-center justify-center bg-[#B5636A] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#F5F0E8] transition hover:bg-[#9A5158] md:text-[15px]"
+            className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
           >
             Notify Me When It Launches
           </a>
           <a
             href="#roadmap"
-            className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#F5F0E8]/30 bg-transparent px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#F5F0E8] transition hover:bg-[#F5F0E8]/8 md:text-[15px]"
+            className="savri-ai-btn-secondary inline-flex min-h-12 items-center justify-center gap-2 px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
           >
             See launch timeline
             <ArrowRight className="h-4 w-4" />
@@ -293,7 +293,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 02 / WHY AI ─────────── */}
       <section className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-rose" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why AI</p>
             <h2
@@ -304,11 +305,11 @@ export function SavriAiPage() {
             </h2>
           </div>
 
-          <div className="mt-24 md:mt-32">
+          <div className="savri-ai-stagger mt-24 md:mt-32">
             {problemCards.map((card, i) => (
               <div
                 key={card.title}
-                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
                 <div className="flex items-start gap-6 md:flex-col md:items-start md:gap-4">
                   <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
@@ -335,7 +336,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 03 / FEATURES ─────────── */}
       <section className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-gold" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">03 — Features</p>
             <h2
@@ -346,11 +348,11 @@ export function SavriAiPage() {
             </h2>
           </div>
 
-          <div className="mt-24 md:mt-32">
+          <div className="savri-ai-stagger mt-24 md:mt-32">
             {featureCards.map((feature, i) => (
               <article
                 key={feature.title}
-                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
                 <div className="flex items-center gap-6 md:flex-col md:items-start md:gap-4">
                   <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
@@ -388,7 +390,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 04 / EXPERIENCE ─────────── */}
       <section className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-rose" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">04 — Experience</p>
             <div>
@@ -404,11 +407,11 @@ export function SavriAiPage() {
             </div>
           </div>
 
-          <div className="mt-24 md:mt-32">
+          <div className="savri-ai-stagger mt-24 md:mt-32">
             {steps.map((step) => (
               <div
                 key={step.number}
-                className="reveal-up grid grid-cols-1 items-baseline gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.18fr_0.3fr_1fr] md:gap-12 md:py-18"
+                className="savri-ai-row reveal-up grid grid-cols-1 items-baseline gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.18fr_0.3fr_1fr] md:gap-12 md:py-18"
               >
                 <div
                   className="font-serif italic leading-none text-[#C9A84C]"
@@ -433,7 +436,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 05 / USE CASES ─────────── */}
       <section className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-gold" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">05 — Use Cases</p>
             <h2
@@ -444,11 +448,11 @@ export function SavriAiPage() {
             </h2>
           </div>
 
-          <div className="mt-24 md:mt-32">
+          <div className="savri-ai-stagger mt-24 md:mt-32">
             {stories.map((story, i) => (
               <article
                 key={story.profile}
-                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
                 <div className="flex flex-col gap-3">
                   <span className="text-[11px] uppercase tracking-[0.4em] text-[#B5636A]">
@@ -483,7 +487,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 06 / TIMELINE ─────────── */}
       <section id="roadmap" className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-rose" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">06 — Timeline</p>
             <div>
@@ -499,11 +504,11 @@ export function SavriAiPage() {
             </div>
           </div>
 
-          <div className="mt-24 md:mt-32">
+          <div className="savri-ai-stagger mt-24 md:mt-32">
             {roadmap.map((item) => (
               <div
                 key={item.month}
-                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">{item.month}</p>
@@ -530,7 +535,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 07 / PRIVACY ─────────── */}
       <section className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-gold" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">07 — Privacy</p>
             <div>
@@ -546,11 +552,11 @@ export function SavriAiPage() {
             </div>
           </div>
 
-          <div className="mt-24 md:mt-32">
+          <div className="savri-ai-stagger mt-24 md:mt-32">
             {privacyPoints.map((point, i) => (
               <div
                 key={point.title}
-                className="reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
               >
                 <div className="flex items-center gap-6 md:flex-col md:items-start md:gap-4">
                   <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
@@ -577,7 +583,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 08 / FAQ ─────────── */}
       <section className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-rose" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">08 — FAQ</p>
             <h2
@@ -588,7 +595,7 @@ export function SavriAiPage() {
             </h2>
           </div>
 
-          <div className="mt-20 divide-y divide-[#F5F0E8]/15 md:mt-28">
+          <div className="savri-ai-faq mt-20 divide-y divide-[#F5F0E8]/15 md:mt-28">
             {faqs.map((faq) => (
               <details key={faq.question} className="group py-2">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-left marker:content-none">
@@ -604,7 +611,8 @@ export function SavriAiPage() {
 
       {/* ─────────── 09 / WAITLIST ─────────── */}
       <section id="notify" className="relative w-full overflow-hidden py-32 md:py-48">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="savri-ai-glow-gold" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">09 — Waitlist</p>
             <div>
@@ -634,7 +642,9 @@ export function SavriAiPage() {
               ))}
             </div>
 
-            <SavriAiNewsletter />
+            <div className="savri-ai-glass p-6 md:p-10">
+              <SavriAiNewsletter />
+            </div>
           </div>
         </div>
       </section>
