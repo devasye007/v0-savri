@@ -19,7 +19,7 @@ import { Navbar } from "@/components/sections/navbar"
 import { BackToTop } from "@/components/ui/back-to-top"
 
 const WHATSAPP_URL =
-  "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%20want%20to%20book%20a%20party%20for%20%E2%82%B96%2C399."
+  "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%20want%20to%20book%20a%20party%20for%20%E2%82%B95%2C999."
 const SITE_URL = "https://savri.co.in"
 
 /* ============================================================
@@ -192,7 +192,7 @@ export function PartyClient() {
             At just
           </p>
           <p className="party-punch mt-3 font-sans text-[12vw] font-black leading-none text-[#F5F0EB] sm:text-7xl md:text-8xl">
-            ₹6,399
+            ₹5,999
           </p>
 
           <div className="party-cta mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -307,7 +307,7 @@ export function PartyClient() {
             <PricingCard
               variant="left"
               tagLabel="Delhi"
-              total={6399}
+              total={5999}
               subline="Everything you need to host."
               list={delhiList}
               accent="rose"
@@ -316,8 +316,8 @@ export function PartyClient() {
             <PricingCard
               variant="right"
               tagLabel="NCR"
-              total={8398}
-              breakdown="₹6,399 + ₹1,999 NCR travel"
+              total={7998}
+              breakdown="₹5,999 + ₹1,999 NCR travel"
               subline="Noida · Gurugram · Faridabad · Ghaziabad"
               list={ncrList}
               accent="gold"
@@ -435,7 +435,7 @@ export function PartyClient() {
                 handled. You stay the host. The chef does the cooking.
               </p>
               <p>
-                A Savri party booking in Delhi costs ₹6,399 and includes 4 snacks, 4 main course
+                A Savri party booking in Delhi costs ₹5,999 and includes 4 snacks, 4 main course
                 dishes, 2 sides of breads or fragrant rice, 2 desserts and a fresh salad — twelve
                 dishes in total, all freshly cooked at your home. There are no hidden markups, no
                 surprise convenience fees and no minimum guest count. It is built to be the
@@ -449,7 +449,7 @@ export function PartyClient() {
                   chef at home Delhi NCR
                 </a>{" "}
                 experience across Noida, Gurugram, Faridabad and Ghaziabad. A flat ₹1,999 travel
-                surcharge applies for NCR locations, taking the total to ₹8,398. Our home party
+                surcharge applies for NCR locations, taking the total to ₹7,998. Our home party
                 chef Gurugram Noida service covers everything from condo kitchens in DLF Cyber City
                 to family floors in Sector 50 — the chef arrives with their own knives, sets up in
                 your kitchen, cooks live, plates the food at your requested time and leaves the

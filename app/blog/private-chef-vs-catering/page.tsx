@@ -55,7 +55,7 @@ export default function Page() {
           Traditional party catering Delhi starts at around ₹500–₹800 per head for a basic spread
           and climbs fast if you want anything beyond the standard set menu. For 12 guests
           that&apos;s ₹6,000–₹9,600 before service charges. A Savri home chef service Delhi NCR
-          party booking is ₹6,399 flat in Delhi and ₹8,398 across NCR — with no per-head scaling
+          party booking is ₹5,999 flat in Delhi and ₹7,998 across NCR — with no per-head scaling
           and no service fee. For most 10–20 guest gatherings, the private chef route comes out
           cheaper or matches it, while delivering a meaningfully better experience.
         </p>

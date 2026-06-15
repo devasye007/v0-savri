@@ -77,7 +77,7 @@ export default function Page() {
           starts at ₹549 for a 1–3 guest table with 2 dishes, and ₹1,149 for a full table of 4–6
           guests with 4 dishes. Ingredients are billed separately and transparently at real
           market rates — no fuzzy multipliers. Party-sized bookings (10–20 guests with 12 dishes)
-          start at ₹6,399 in Delhi, with a flat ₹1,999 surcharge across NCR.
+          start at ₹5,999 in Delhi, with a flat ₹1,999 surcharge across NCR.
         </p>
 
         <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">

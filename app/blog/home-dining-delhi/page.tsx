@@ -94,7 +94,7 @@ export default function Page() {
         </h2>
         <p>
           The same chef at home Delhi NCR pipeline that handles a weeknight dinner for 3 also
-          handles a 12-dish party for 15. A Savri party booking is ₹6,399 in Delhi (₹8,398
+          handles a 12-dish party for 15. A Savri party booking is ₹5,999 in Delhi (₹7,998
           across NCR) — twelve dishes cooked live, full cleanup. For most households that means
           the same trusted service for everyday meals, in-law lunches, milestone birthdays and
           office dinners.

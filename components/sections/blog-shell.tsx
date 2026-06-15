@@ -75,7 +75,7 @@ export function BlogShell({ slug, title, datePublished, readingTimeMin, children
             Get a verified private chef to your door
           </p>
           <p className="mt-3 text-sm leading-7 text-dark/65">
-            Regular bookings from ₹549. Party bookings from ₹6,399 in Delhi.
+            Regular bookings from ₹549. Party bookings from ₹5,999 in Delhi.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link

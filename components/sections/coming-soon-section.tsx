@@ -40,7 +40,7 @@ export function ComingSoonSection() {
         <Reveal delayMs={240}>
           <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-white/72 md:text-lg">
             A private chef at your home. Your menu. Your guest list. Starting at{" "}
-            <span className="font-semibold text-white">₹6,399</span>.
+            <span className="font-semibold text-white">₹5,999</span>.
           </p>
         </Reveal>
 

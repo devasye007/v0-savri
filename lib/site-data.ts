@@ -190,7 +190,7 @@ export const homepageFaqs = [
   {
     question: "How much does a private chef cost in Delhi?",
     answer:
-      "Private chef services in Delhi start at ₹549 with Savri for 1-3 guests. Full table for 4-6 guests is ₹1,149. Party bookings with a private chef start at ₹6,399 in Delhi.",
+      "Private chef services in Delhi start at ₹549 with Savri for 1-3 guests. Full table for 4-6 guests is ₹1,149. Party bookings with a private chef start at ₹5,999 in Delhi.",
   },
   {
     question: "Can I book a chef for my home in Delhi NCR?",
@@ -205,7 +205,7 @@ export const homepageFaqs = [
   {
     question: "What is the best way to hire a chef for a birthday party in Delhi?",
     answer:
-      "The easiest way is to book through Savri — choose your date, select your menu from 90+ dishes, and a verified chef arrives at your home. Party bookings start at ₹6,399 for Delhi.",
+      "The easiest way is to book through Savri — choose your date, select your menu from 90+ dishes, and a verified chef arrives at your home. Party bookings start at ₹5,999 for Delhi.",
   },
   {
     question: "Do private chefs in Delhi bring their own ingredients?",
@@ -215,7 +215,7 @@ export const homepageFaqs = [
   {
     question: "Do you do party bookings?",
     answer:
-      "Yes! Savri now offers party bookings starting at ₹6,399 for Delhi. We handle everything — chef, cooking, and cleanup. Visit our Party Bookings page to know more.",
+      "Yes! Savri now offers party bookings starting at ₹5,999 for Delhi. We handle everything — chef, cooking, and cleanup. Visit our Party Bookings page to know more.",
   },
   {
     question: "How many guests can you accommodate for a party?",
@@ -225,7 +225,7 @@ export const homepageFaqs = [
   {
     question: "Is there an extra charge for NCR areas?",
     answer:
-      "Yes, bookings in Noida, Gurugram, Faridabad, and Ghaziabad have an additional ₹1,999 travel surcharge, bringing the total to ₹8,398.",
+      "Yes, bookings in Noida, Gurugram, Faridabad, and Ghaziabad have an additional ₹1,999 travel surcharge, bringing the total to ₹7,998.",
   },
   {
     question: "How far in advance do I need to book?",

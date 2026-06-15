@@ -5,7 +5,7 @@ import { PartyClient } from "./party-client"
 export const metadata: Metadata = {
   title: "Party Bookings | Private Chef for Your Party in Delhi NCR",
   description:
-    "Book a private chef for your next party or gathering in Delhi. 4 snacks, 4 main course, 2 sides, 2 desserts. Starting ₹6,399 for Delhi, ₹8,398 for NCR (Noida/Gurugram/Faridabad/Ghaziabad). No stress. Just food.",
+    "Book a private chef for your next party or gathering in Delhi. 4 snacks, 4 main course, 2 sides, 2 desserts. Starting ₹5,999 for Delhi, ₹7,998 for NCR (Noida/Gurugram/Faridabad/Ghaziabad). No stress. Just food.",
   keywords: [
     "party chef Delhi",
     "private chef for party Delhi NCR",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: "Party Bookings | Private Chef for Your Party in Delhi NCR | Savri",
     description:
-      "12 dishes, one fixed price, live cooking at home. Party bookings from ₹6,399 in Delhi NCR.",
+      "12 dishes, one fixed price, live cooking at home. Party bookings from ₹5,999 in Delhi NCR.",
     images: [
       {
         url: "/images/party-mains.jpg",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Party Bookings | Private Chef for Your Party in Delhi NCR",
-    description: "12 dishes. One chef. Zero stress. From ₹6,399 in Delhi NCR.",
+    description: "12 dishes. One chef. Zero stress. From ₹5,999 in Delhi NCR.",
     images: ["/images/party-mains.jpg"],
   },
 }
@@ -68,7 +68,7 @@ const partyServiceSchema = {
     {
       "@type": "Offer",
       name: "Delhi Party Booking",
-      price: "6399",
+      price: "5999",
       priceCurrency: "INR",
       description: "Delhi party booking — 4 snacks, 4 mains, 2 sides, 2 desserts + salad. Chef and cleanup included.",
       availability: "https://schema.org/InStock",
@@ -77,7 +77,7 @@ const partyServiceSchema = {
     {
       "@type": "Offer",
       name: "NCR Party Booking",
-      price: "8398",
+      price: "7998",
       priceCurrency: "INR",
       description: "NCR party booking (Noida, Gurugram, Faridabad, Ghaziabad). Includes ₹1,999 travel surcharge over the Delhi base.",
       availability: "https://schema.org/InStock",
@@ -95,7 +95,7 @@ const faqSchema = {
       name: "How much does a party chef booking cost in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Savri party bookings start at ₹6,399 for Delhi. For NCR areas (Noida, Gurugram, Faridabad, Ghaziabad) there is an additional ₹1,999 travel surcharge, making it ₹8,398 total.",
+        text: "Savri party bookings start at ₹5,999 for Delhi. For NCR areas (Noida, Gurugram, Faridabad, Ghaziabad) there is an additional ₹1,999 travel surcharge, making it ₹7,998 total.",
       },
     },
     {

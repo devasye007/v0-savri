@@ -124,7 +124,7 @@ export function IntroScreen() {
               "splash-punch 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards",
           }}
         >
-          AT JUST ₹6,399
+          AT JUST ₹5,999
         </p>
 
         <p

@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     slug: "party-chef-delhi",
     title: "How to Hire a Private Chef for Your Party in Delhi — 2026 Guide",
     excerpt:
-      "Why a home party chef is almost always the better move over restaurant catering — what to expect, what to plan, and how Savri's ₹6,399 party booking actually works.",
+      "Why a home party chef is almost always the better move over restaurant catering — what to expect, what to plan, and how Savri's ₹5,999 party booking actually works.",
     description:
       "A practical 2026 guide to hiring a private chef for your party in Delhi NCR — menu planning, pricing, timing, dietary planning and what's actually included in a Savri party booking.",
     keywords: [

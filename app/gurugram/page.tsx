@@ -3,9 +3,9 @@ import type { Metadata } from "next"
 import { CityLanding } from "@/components/sections/city-landing"
 
 export const metadata: Metadata = {
-  title: "Private Chef in Gurugram | Party Bookings from ₹8,398",
+  title: "Private Chef in Gurugram | Party Bookings from ₹7,998",
   description:
-    "Hire a verified private chef at home in Gurugram. Party bookings ₹8,398 (₹6,399 + ₹1,999 NCR travel). 4 snacks, 4 mains, 2 sides, 2 desserts cooked live in your kitchen. DLF, Sushant Lok, Golf Course Road and more.",
+    "Hire a verified private chef at home in Gurugram. Party bookings ₹7,998 (₹5,999 + ₹1,999 NCR travel). 4 snacks, 4 mains, 2 sides, 2 desserts cooked live in your kitchen. DLF, Sushant Lok, Golf Course Road and more.",
   keywords: [
     "private chef Gurugram",
     "private chef Gurgaon",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: "Private Chef in Gurugram | Savri Party Bookings",
     description:
-      "Verified private chefs at home in Gurugram. Party bookings at ₹8,398 across DLF, Sushant Lok, Golf Course Road and the rest of Gurugram.",
+      "Verified private chefs at home in Gurugram. Party bookings at ₹7,998 across DLF, Sushant Lok, Golf Course Road and the rest of Gurugram.",
     images: [{ url: "/images/party-mains.jpg", width: 1200, height: 630, alt: "Savri private chef Gurugram" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Private Chef in Gurugram | Savri Party Bookings",
-    description: "Party bookings from ₹8,398. Verified chefs across Gurugram.",
+    description: "Party bookings from ₹7,998. Verified chefs across Gurugram.",
     images: ["/images/party-mains.jpg"],
   },
 }
@@ -46,7 +46,7 @@ const cityFaqSchema = {
       name: "How much does a private chef cost in Gurugram?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "A Savri party booking in Gurugram costs ₹8,398 in total — ₹6,399 base plus a ₹1,999 NCR travel surcharge. The price covers the chef, on-site cooking of 12 dishes, and full kitchen cleanup.",
+        text: "A Savri party booking in Gurugram costs ₹7,998 in total — ₹5,999 base plus a ₹1,999 NCR travel surcharge. The price covers the chef, on-site cooking of 12 dishes, and full kitchen cleanup.",
       },
     },
     {
@@ -99,8 +99,8 @@ export default function GurugramPage() {
       />
       <CityLanding
         city="Gurugram"
-        priceLabel="₹8,398"
-        priceBreakdown="₹6,399 base + ₹1,999 NCR travel surcharge"
+        priceLabel="₹7,998"
+        priceBreakdown="₹5,999 base + ₹1,999 NCR travel surcharge"
         heroBlurb="Verified private chefs across Gurugram — for the dinner you would rather host than order in. From DLF high-rises to Sohna Road floors, we get a chef to your kitchen on the date and time you confirm."
         neighborhoods={[
           "DLF Phase 1",
@@ -119,7 +119,7 @@ export default function GurugramPage() {
           "Nirvana Country",
         ]}
         intro="Gurugram homes work hard for a single weekend evening — between high-rise security, building service lifts and the predictable Friday traffic on Golf Course Road, getting good food on the table for ten guests is its own logistics puzzle. Savri removes the puzzle. Tell us the date, confirm the menu, and a vetted chef is in your kitchen with knives, induction prep and a clean apron well before the first guest arrives."
-        body="Our Gurugram party booking is ₹8,398 — ₹6,399 base and a ₹1,999 NCR travel surcharge that covers the chef's commute from our central Delhi base. Twelve dishes are cooked live: 4 snacks, 4 main course, 2 sides of breads or rice, 2 desserts and a fresh salad. We have regulars across DLF Phase 4 apartments, Sushant Lok floors and the newer sectors near Sohna Road who book us for birthdays, in-law lunches, anniversaries and small office dinners. Need a custom menu? Vegetarian only? Jain? Gluten-light? Mention it in the WhatsApp thread and we will build the plan around it before the chef leaves."
+        body="Our Gurugram party booking is ₹7,998 — ₹5,999 base and a ₹1,999 NCR travel surcharge that covers the chef's commute from our central Delhi base. Twelve dishes are cooked live: 4 snacks, 4 main course, 2 sides of breads or rice, 2 desserts and a fresh salad. We have regulars across DLF Phase 4 apartments, Sushant Lok floors and the newer sectors near Sohna Road who book us for birthdays, in-law lunches, anniversaries and small office dinners. Need a custom menu? Vegetarian only? Jain? Gluten-light? Mention it in the WhatsApp thread and we will build the plan around it before the chef leaves."
         occasions={[
           "Apartment birthdays across DLF Phase 4 and Phase 5",
           "In-law lunches on Golf Course Road",

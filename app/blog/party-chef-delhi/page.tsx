@@ -70,12 +70,12 @@ export default function Page() {
           What a Savri party booking actually includes
         </h2>
         <p>
-          A Savri party booking in Delhi is ₹6,399 flat and includes a 12-dish spread cooked live
+          A Savri party booking in Delhi is ₹5,999 flat and includes a 12-dish spread cooked live
           in your kitchen: 4 snacks, 4 main course dishes, 2 sides of breads or fragrant rice, 2
           desserts and a fresh salad. The chef brings their knives, sets up in your kitchen, plates
           everything at the time you confirmed, and leaves the counters as clean as they were when
           they arrived. Across NCR (Noida, Gurugram, Faridabad, Ghaziabad) the same booking is
-          ₹8,398 — Delhi base plus a flat ₹1,999 NCR travel surcharge.
+          ₹7,998 — Delhi base plus a flat ₹1,999 NCR travel surcharge.
         </p>
 
         <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">

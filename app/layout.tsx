@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Savri',
   },
   description:
-    'Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹6,399. Ghar Ka Khana, Ghar Pe.',
+    'Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹5,999. Ghar Ka Khana, Ghar Pe.',
   keywords: [
     'private chef Delhi',
     'private chef booking Delhi NCR',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://savri.co.in',
     title: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
-    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹6,399.',
+    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999.',
     images: [
       {
         url: '/images/hero-food.jpg',
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     site: '@savri_in',
     creator: '@savri_in',
     title: 'Savri | Private Chef at Home & Party Bookings in Delhi NCR',
-    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹6,399.',
+    description: 'Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999.',
     images: ['/images/hero-food.jpg'],
   },
   robots: {

@@ -10,7 +10,7 @@ import { FloatingPartyCTA } from "@/components/ui/floating-party-cta"
 export const metadata: Metadata = {
   title: "Savri | Private Chef at Home & Party Bookings in Delhi NCR",
   description:
-    "Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹6,399. Ghar Ka Khana, Ghar Pe.",
+    "Book a verified private chef at your home in Delhi NCR. Fresh food, your recipes, kitchen cleaned. Regular bookings from ₹549. Party bookings from ₹5,999. Ghar Ka Khana, Ghar Pe.",
   keywords: [
     "private chef Delhi",
     "private chef booking Delhi NCR",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: "Savri | Private Chef at Home & Party Bookings in Delhi NCR",
     description:
-      "Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹6,399. Verified private chefs across Delhi, Noida, Gurugram, Faridabad and Ghaziabad.",
+      "Authentic. Fresh. Personal. Regular dining from ₹549. Party bookings from ₹5,999. Verified private chefs across Delhi, Noida, Gurugram, Faridabad and Ghaziabad.",
     images: [
       {
         url: "/images/hero-food.jpg",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Savri | Private Chef at Home & Party Bookings in Delhi NCR",
-    description: "Private chefs at your home. Regular dining ₹549. Party bookings ₹6,399.",
+    description: "Private chefs at your home. Regular dining ₹549. Party bookings ₹5,999.",
     images: ["/images/hero-food.jpg"],
   },
 }
@@ -117,7 +117,7 @@ const serviceSchema = {
     {
       "@type": "Offer",
       name: "Party Booking",
-      price: "6399",
+      price: "5999",
       priceCurrency: "INR",
       description: "Party booking with private chef in Delhi — 4 snacks, 4 main course, 2 sides, 2 desserts + salad",
       availability: "https://schema.org/InStock",
@@ -136,7 +136,7 @@ const homepageFaqSchema = {
       name: "How much does a private chef cost in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Private chef services in Delhi start at ₹549 with Savri for 1-3 guests. Full table for 4-6 guests is ₹1,149. Party bookings with a private chef start at ₹6,399 in Delhi.",
+        text: "Private chef services in Delhi start at ₹549 with Savri for 1-3 guests. Full table for 4-6 guests is ₹1,149. Party bookings with a private chef start at ₹5,999 in Delhi.",
       },
     },
     {
@@ -160,7 +160,7 @@ const homepageFaqSchema = {
       name: "What is the best way to hire a chef for a birthday party in Delhi?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The easiest way is to book through Savri — choose your date, select your menu from 90+ dishes, and a verified chef arrives at your home. Party bookings start at ₹6,399 for Delhi.",
+        text: "The easiest way is to book through Savri — choose your date, select your menu from 90+ dishes, and a verified chef arrives at your home. Party bookings start at ₹5,999 for Delhi.",
       },
     },
     {

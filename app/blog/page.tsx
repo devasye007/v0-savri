@@ -107,7 +107,7 @@ export default function BlogIndexPage() {
               Party Bookings
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-cream md:text-4xl">
-              Private chef for your next party. ₹6,399 in Delhi.
+              Private chef for your next party. ₹5,999 in Delhi.
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-cream/70 md:text-base">
               12 dishes cooked live in your kitchen. Vetted chef. Cleanup included.

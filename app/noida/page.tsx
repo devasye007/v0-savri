@@ -3,9 +3,9 @@ import type { Metadata } from "next"
 import { CityLanding } from "@/components/sections/city-landing"
 
 export const metadata: Metadata = {
-  title: "Private Chef in Noida | Party Bookings from ₹8,398",
+  title: "Private Chef in Noida | Party Bookings from ₹7,998",
   description:
-    "Hire a verified private chef at home in Noida. Party bookings ₹8,398 (₹6,399 + ₹1,999 NCR travel). 12 dishes cooked live in your kitchen. We serve Sector 18, Sector 50, Sector 137, Greater Noida and Noida Extension.",
+    "Hire a verified private chef at home in Noida. Party bookings ₹7,998 (₹5,999 + ₹1,999 NCR travel). 12 dishes cooked live in your kitchen. We serve Sector 18, Sector 50, Sector 137, Greater Noida and Noida Extension.",
   keywords: [
     "private chef Noida",
     "party chef Noida",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title: "Private Chef in Noida | Savri Party Bookings",
     description:
-      "Verified private chefs at home in Noida. Party bookings at ₹8,398 across Sector 18, Sector 50, Sector 137, Greater Noida and Noida Extension.",
+      "Verified private chefs at home in Noida. Party bookings at ₹7,998 across Sector 18, Sector 50, Sector 137, Greater Noida and Noida Extension.",
     images: [{ url: "/images/party-mains.jpg", width: 1200, height: 630, alt: "Savri private chef Noida" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Private Chef in Noida | Savri Party Bookings",
-    description: "Party bookings from ₹8,398. Verified chefs across Noida.",
+    description: "Party bookings from ₹7,998. Verified chefs across Noida.",
     images: ["/images/party-mains.jpg"],
   },
 }
@@ -46,7 +46,7 @@ const cityFaqSchema = {
       name: "How much does a private chef cost in Noida?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "A Savri party booking in Noida costs ₹8,398 in total — ₹6,399 base plus a ₹1,999 NCR travel surcharge. That covers the chef, on-site cooking of 12 dishes, and a clean kitchen after.",
+        text: "A Savri party booking in Noida costs ₹7,998 in total — ₹5,999 base plus a ₹1,999 NCR travel surcharge. That covers the chef, on-site cooking of 12 dishes, and a clean kitchen after.",
       },
     },
     {
@@ -99,8 +99,8 @@ export default function NoidaPage() {
       />
       <CityLanding
         city="Noida"
-        priceLabel="₹8,398"
-        priceBreakdown="₹6,399 base + ₹1,999 NCR travel surcharge"
+        priceLabel="₹7,998"
+        priceBreakdown="₹5,999 base + ₹1,999 NCR travel surcharge"
         heroBlurb="Verified private chefs across Noida — for the kind of party where you actually sit with your guests instead of ferrying chafing dishes from the dining table to the kitchen. Sector apartments and Greater Noida floors equally welcome."
         neighborhoods={[
           "Sector 18",
@@ -119,7 +119,7 @@ export default function NoidaPage() {
           "ATS One Hamlet",
         ]}
         intro="Noida households are great party hosts and frequently terrible to themselves about it — half the family ends up in the kitchen for three hours while the other half entertains the guests. Our private chef booking flips that. A vetted Savri chef arrives at your sector address or your Greater Noida tower with their own knives, takes over the kitchen and plates 12 dishes exactly when you asked the food to be ready."
-        body="The Noida party booking is ₹8,398 — ₹6,399 base plus a flat ₹1,999 NCR travel surcharge. You get 4 snacks, 4 main course dishes, 2 sides of breads or rice, 2 desserts and a fresh salad. We have repeat hosts in Sector 50 high-rises, Sector 137 apartments, ATS One Hamlet and Jaypee Greens floors who book us for birthdays, anniversary dinners, in-law meals and small office gatherings. Tell us about dietary restrictions, Jain prep or particular family recipes on the WhatsApp thread and we will share the chef's plan back before the booking is locked in."
+        body="The Noida party booking is ₹7,998 — ₹5,999 base plus a flat ₹1,999 NCR travel surcharge. You get 4 snacks, 4 main course dishes, 2 sides of breads or rice, 2 desserts and a fresh salad. We have repeat hosts in Sector 50 high-rises, Sector 137 apartments, ATS One Hamlet and Jaypee Greens floors who book us for birthdays, anniversary dinners, in-law meals and small office gatherings. Tell us about dietary restrictions, Jain prep or particular family recipes on the WhatsApp thread and we will share the chef's plan back before the booking is locked in."
         occasions={[
           "Birthdays at home across Sector 50 and Sector 137",
           "In-law dinners in Jaypee Greens and ATS One Hamlet",
