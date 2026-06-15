@@ -28,10 +28,16 @@ export function Navbar() {
     return pathname === href
   }
 
+  const transparent = pathname === "/" && !scrolled
+
   return (
     <header
-      className={`fixed top-11 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? "border-white/10 bg-black/82 backdrop-blur-xl" : "border-transparent bg-dark/72 backdrop-blur-md"
+      className={`fixed top-11 left-0 right-0 z-50 transition-all duration-300 ${
+        transparent
+          ? "border-b border-transparent bg-transparent backdrop-blur-0"
+          : scrolled
+            ? "border-b border-white/10 bg-black/82 backdrop-blur-xl"
+            : "border-b border-transparent bg-dark/72 backdrop-blur-md"
       }`}
     >
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 md:px-6">
