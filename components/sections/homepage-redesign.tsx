@@ -13,12 +13,19 @@ const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=192
 const KITCHEN_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
 
 /**
- * Real cooking footage (autoplay loops). Sources are public stock video CDNs.
- * Each <video> falls back to its poster image if the video can't load —
- * so the page never has a blank frame.
+ * Cooking footage played as autoplay loops. Drop the .mp4 files at these
+ * paths under /public/ and they will be served at the URLs below. Until
+ * the files exist, each <video> falls back to its `poster` image, so the
+ * page never has a blank frame.
+ *
+ *   /public/videos/hero.mp4      — used on the hero
+ *   /public/videos/kitchen.mp4   — used on the Kitchen scroll moment
+ *
+ * Recommended source: pixabay.com or pexels.com — download the .mp4
+ * directly and place it at the path. Any clip under 15 MB will fly.
  */
-const HERO_VIDEO = "https://videos.pexels.com/video-files/3196274/3196274-hd_1920_1080_25fps.mp4"
-const KITCHEN_VIDEO = "https://videos.pexels.com/video-files/4252132/4252132-hd_1920_1080_30fps.mp4"
+const HERO_VIDEO = "/videos/hero.mp4"
+const KITCHEN_VIDEO = "/videos/kitchen.mp4"
 
 const DISHES = [
   { src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=80", alt: "Hyderabadi biryani" },
