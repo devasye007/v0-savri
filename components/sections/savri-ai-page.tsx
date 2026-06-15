@@ -264,7 +264,7 @@ export function SavriAiPage() {
                 <Sparkles className="h-4 w-4" />
                 Coming Soon
               </div>
-              <h1 className="max-w-xl font-serif text-5xl font-semibold leading-none text-dark md:text-6xl lg:text-7xl">
+              <h1 className="reveal-up max-w-xl font-serif text-5xl font-semibold leading-none text-dark md:text-6xl lg:text-7xl">
                 Meet Savri AI
               </h1>
               <p className="mt-6 max-w-xl text-xl text-dark/80 md:text-2xl">
@@ -354,7 +354,7 @@ export function SavriAiPage() {
         </div>
       </section>
 
-      <section className="bg-dark py-20 text-cream md:py-28">
+      <section className="reveal-up bg-dark py-20 text-cream md:py-28">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Features</p>
@@ -455,7 +455,7 @@ export function SavriAiPage() {
         </div>
       </section>
 
-      <section id="roadmap" className="bg-dark py-20 text-cream md:py-28">
+      <section id="roadmap" className="reveal-up bg-dark py-20 text-cream md:py-28">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Timeline</p>
@@ -541,7 +541,7 @@ export function SavriAiPage() {
         </div>
       </section>
 
-      <section id="notify" className="bg-[linear-gradient(180deg,#1a1a1a_0%,#261c1d_100%)] py-20 text-cream md:py-28">
+      <section id="notify" className="reveal-up bg-[linear-gradient(180deg,#1a1a1a_0%,#261c1d_100%)] py-20 text-cream md:py-28">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-5xl rounded-[2.5rem] border border-white/10 bg-white/6 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.2)] backdrop-blur-sm md:p-12">
             <div className="grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr]">

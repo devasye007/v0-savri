@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
 import { ComingSoonBanner } from '@/components/ui/coming-soon-banner'
+import { PageEffects } from '@/components/ui/page-effects'
 import './globals.css'
 
 const inter = Inter({ 
@@ -134,6 +135,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased bg-cream text-dark">
+        <PageEffects />
         <ComingSoonBanner />
         <IntroScreen />
         {children}

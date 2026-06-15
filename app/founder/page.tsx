@@ -57,11 +57,11 @@ export default function FounderPage() {
       <main className="bg-cream pt-32 text-dark">
 
         {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <section className="container mx-auto px-6 pb-20">
+        <section className="container mx-auto px-6 pb-20 reveal-up">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Our Story" }]} />
           <Reveal className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">The Story</p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold leading-tight md:text-6xl">
+            <h1 className="mt-4 font-serif text-5xl font-semibold leading-tight md:text-6xl reveal-up">
               Built from a Sunday with no cook and a dead Zomato feed.
             </h1>
             <p className="mt-6 text-xl font-serif text-dark/60 md:text-2xl">The real story behind Savri.</p>
@@ -69,12 +69,12 @@ export default function FounderPage() {
         </section>
 
         {/* ── The Person + The Idea intro ──────────────────────────────── */}
-        <section className="bg-[#fffaf4] py-20">
+        <section className="bg-[#fffaf4] py-20 reveal-up">
           <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1fr_1fr]">
             <Reveal>
               <div className="immersive-card rounded-[2rem] border border-dark/8 bg-white p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">The Person</p>
-                <h2 className="mt-4 font-serif text-4xl font-semibold">Who is Devasye</h2>
+                <h2 className="mt-4 font-serif text-4xl font-semibold reveal-left">Who is Devasye</h2>
                 <p className="mt-6 text-base leading-8 text-dark/68">
                   Devasye Sachdeva is a 22-year-old computer science student who specialised in AI and Machine
                   Learning at SRM University, Chennai.
@@ -88,7 +88,7 @@ export default function FounderPage() {
             <Reveal delayMs={120} variant="right">
               <div className="immersive-card rounded-[2rem] border border-dark/8 bg-white p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">The Idea</p>
-                <h2 className="mt-4 font-serif text-4xl font-semibold">Where it started</h2>
+                <h2 className="mt-4 font-serif text-4xl font-semibold reveal-right">Where it started</h2>
                 <p className="mt-6 text-base leading-8 text-dark/68">
                   Picture a Sunday morning in a Chennai apartment shared by four college guys.
                 </p>
@@ -105,11 +105,11 @@ export default function FounderPage() {
         </section>
 
         {/* ── The Full Idea ────────────────────────────────────────────── */}
-        <section className="py-20">
+        <section className="py-20 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">The Idea</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">
+              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl reveal-up">
                 There was nothing in between.
               </h2>
             </Reveal>
@@ -147,11 +147,11 @@ export default function FounderPage() {
         </section>
 
         {/* ── The Build ────────────────────────────────────────────────── */}
-        <section className="bg-[#fffaf4] py-20">
+        <section className="bg-[#fffaf4] py-20 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">The Build</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">
+              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl reveal-up">
                 Built in final year. Launched in Delhi.
               </h2>
               <p className="mt-6 text-base leading-8 text-dark/68">
@@ -176,7 +176,7 @@ export default function FounderPage() {
                 },
               ].map((item, index) => (
                 <Reveal key={item.title} delayMs={index * 80} variant="up">
-                  <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7 shadow-[0_16px_40px_rgba(26,26,26,0.05)]">
+                  <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7 shadow-[0_16px_40px_rgba(26,26,26,0.05)] reveal-up">
                     <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-rose/10 font-semibold text-rose text-sm">
                       {index + 1}
                     </div>
@@ -198,11 +198,11 @@ export default function FounderPage() {
         </section>
 
         {/* ── Who This Is For ──────────────────────────────────────────── */}
-        <section className="py-20">
+        <section className="py-20 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Who This Is For</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">
+              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl reveal-up">
                 Everyone who has been in that apartment.
               </h2>
             </Reveal>
@@ -210,13 +210,13 @@ export default function FounderPage() {
             <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {audienceItems.map((item, index) => (
                 <Reveal key={item} delayMs={index * 80}>
-                  <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7">
+                  <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7 reveal-up">
                     <p className="text-base leading-8 text-dark/68">{item}</p>
                   </article>
                 </Reveal>
               ))}
               <Reveal delayMs={audienceItems.length * 80}>
-                <article className="immersive-card interactive-spotlight rounded-[2rem] border border-rose/20 bg-rose/5 p-7 md:col-span-2 lg:col-span-1">
+                <article className="immersive-card interactive-spotlight rounded-[2rem] border border-rose/20 bg-rose/5 p-7 md:col-span-2 lg:col-span-1 reveal-up">
                   <p className="text-base leading-8 text-dark/68">
                     This is not a luxury product. This is the solution to a problem that millions of people in India
                     face every single week.
@@ -231,11 +231,11 @@ export default function FounderPage() {
         </section>
 
         {/* ── Timeline ─────────────────────────────────────────────────── */}
-        <section className="bg-dark py-20 text-cream md:py-28">
+        <section className="bg-dark py-20 text-cream md:py-28 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">The Journey</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">How Savri came to be.</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl reveal-up">How Savri came to be.</h2>
             </Reveal>
 
             <div className="mt-16 mx-auto max-w-2xl">
@@ -264,7 +264,7 @@ export default function FounderPage() {
         </section>
 
         {/* ── A Note from Devasye ──────────────────────────────────────── */}
-        <section className="bg-[#fffaf4] py-20 md:py-28">
+        <section className="bg-[#fffaf4] py-20 md:py-28 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="mx-auto max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">A Note</p>

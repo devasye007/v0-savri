@@ -42,18 +42,18 @@ export default function PricingPage() {
       <ScrollProgress />
       <Navbar />
       <main className="bg-cream pt-32 text-dark">
-        <section className="container mx-auto px-6 pb-20">
+        <section className="container mx-auto px-6 pb-20 reveal-up">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
           <Reveal className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Pricing</p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl">Affordable Enough to Make It a Habit.</h1>
+            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl reveal-up">Affordable Enough to Make It a Habit.</h1>
             <p className="mt-6 text-base leading-8 text-dark/68 md:text-lg">
               Clear base tiers, fixed add-ons, and a straightforward explanation of what is included in every Savri booking.
             </p>
           </Reveal>
         </section>
 
-        <section className="bg-[#fffaf4] py-20">
+        <section className="bg-[#fffaf4] py-20 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="overflow-hidden rounded-[2rem] border border-dark/8 bg-white shadow-[0_18px_50px_rgba(26,26,26,0.05)]">
               <div className="grid border-b border-dark/8 bg-dark px-6 py-5 text-sm font-semibold uppercase tracking-[0.18em] text-cream/80 md:grid-cols-3">
@@ -80,14 +80,14 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-20 reveal-up">
           <div className="container mx-auto px-6">
             <div className="grid gap-6 lg:grid-cols-3">
               {examples.map((example, index) => (
                 <Reveal key={example.title} delayMs={index * 80}>
-                <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7">
+                <article className="immersive-card interactive-spotlight rounded-[2rem] border border-dark/8 bg-white p-7 reveal-up">
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-rose">Pricing Example</p>
-                  <h2 className="mt-3 font-serif text-3xl font-semibold text-dark">{example.title}</h2>
+                  <h2 className="mt-3 font-serif text-3xl font-semibold text-dark reveal-up">{example.title}</h2>
                   <div className="mt-6 space-y-2 text-sm text-dark/70">
                     {example.lines.map((line) => (
                       <p key={line}>{line}</p>
@@ -102,12 +102,12 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="bg-dark py-20 text-cream">
+        <section className="bg-dark py-20 text-cream reveal-up">
           <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-2">
             <Reveal>
             <div className="immersive-card rounded-[2rem] border border-white/10 bg-white/6 p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Included</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold">What you are paying for</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold reveal-left">What you are paying for</h2>
               <div className="mt-8 grid gap-3">
                 {[
                   "Professional, trained chef",
@@ -129,7 +129,7 @@ export default function PricingPage() {
             <Reveal delayMs={120} variant="right">
             <div className="immersive-card rounded-[2rem] border border-white/10 bg-white/6 p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Not Included</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold">What sits outside base price</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold reveal-right">What sits outside base price</h2>
               <div className="mt-8 grid gap-3">
                 {[
                   "Ingredients, reimbursed separately",
@@ -147,7 +147,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-20 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="mx-auto max-w-4xl divide-y divide-dark/10 rounded-[2rem] border border-dark/8 bg-white">
               {pricingFaqs.map((faq) => (

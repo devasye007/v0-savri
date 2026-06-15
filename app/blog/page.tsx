@@ -68,7 +68,7 @@ export default function BlogIndexPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rose">
             Savri Blog
           </p>
-          <h1 className="mt-4 font-serif text-4xl font-semibold leading-tight text-dark md:text-5xl">
+          <h1 className="mt-4 font-serif text-4xl font-semibold leading-tight text-dark md:text-5xl reveal-up">
             Private chef tips, home dining guides & party planning in Delhi NCR.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-dark/65 md:text-lg">
@@ -91,7 +91,7 @@ export default function BlogIndexPage() {
                   })}{" "}
                   · {p.readingTimeMin} min read
                 </p>
-                <h2 className="mt-4 font-serif text-2xl font-semibold leading-snug text-dark">
+                <h2 className="mt-4 font-serif text-2xl font-semibold leading-snug text-dark reveal-up">
                   {p.title}
                 </h2>
                 <p className="mt-4 flex-1 text-sm leading-7 text-dark/68">{p.excerpt}</p>
@@ -106,7 +106,7 @@ export default function BlogIndexPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
               Party Bookings
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-cream md:text-4xl">
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-cream md:text-4xl reveal-up">
               Private chef for your next party. ₹5,999 in Delhi.
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-cream/70 md:text-base">

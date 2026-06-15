@@ -54,7 +54,7 @@ export default function Page() {
           party.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           Why a home party chef beats restaurant catering
         </h2>
         <p>
@@ -66,7 +66,7 @@ export default function Page() {
           evening, instead of something that happened in a banquet truck two hours away.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           What a Savri party booking actually includes
         </h2>
         <p>
@@ -78,7 +78,7 @@ export default function Page() {
           ₹7,998 — Delhi base plus a flat ₹1,999 NCR travel surcharge.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           How to plan the menu (and avoid common mistakes)
         </h2>
         <ul className="list-disc space-y-2 pl-6">
@@ -100,7 +100,7 @@ export default function Page() {
           </li>
         </ul>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           What to expect on the day
         </h2>
         <p>
@@ -113,7 +113,7 @@ export default function Page() {
           you&apos;re asked to arrange return transportation for the chef.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           Ready to book?
         </h2>
         <p>

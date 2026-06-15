@@ -48,7 +48,7 @@ export default function Page() {
           the things that actually matter — cost, freshness, control, and cleanup.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           1. Cost
         </h2>
         <p>
@@ -60,7 +60,7 @@ export default function Page() {
           cheaper or matches it, while delivering a meaningfully better experience.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           2. Freshness
         </h2>
         <p>
@@ -72,7 +72,7 @@ export default function Page() {
           That&apos;s a real, noticeable difference in how the meal lands.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           3. Control over the menu
         </h2>
         <p>
@@ -84,7 +84,7 @@ export default function Page() {
           ingredients are sourceable).
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           4. Cleanup
         </h2>
         <p>
@@ -95,7 +95,7 @@ export default function Page() {
           backsplash, this single difference is usually enough to switch services entirely.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           When catering still wins
         </h2>
         <p>
@@ -106,7 +106,7 @@ export default function Page() {
           every dimension that matters.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           Where to go next
         </h2>
         <p>

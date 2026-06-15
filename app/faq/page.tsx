@@ -26,23 +26,23 @@ export default function FaqPage() {
       <ScrollProgress />
       <Navbar />
       <main className="bg-cream pt-32 text-dark">
-        <section className="container mx-auto px-6 pb-20">
+        <section className="container mx-auto px-6 pb-20 reveal-up">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
           <Reveal className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">FAQ</p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl">Clear answers, upfront.</h1>
+            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl reveal-up">Clear answers, upfront.</h1>
             <p className="mt-6 text-base leading-8 text-dark/68 md:text-lg">
               The goal is clarity. If you are deciding whether Savri is right for your home, start here.
             </p>
           </Reveal>
         </section>
 
-        <section className="pb-20">
+        <section className="pb-20 reveal-up">
           <div className="container mx-auto grid gap-10 px-6">
             {sections.map((section) => (
               <Reveal key={section.title}>
               <div>
-                <h2 className="font-serif text-3xl font-semibold text-dark">{section.title}</h2>
+                <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">{section.title}</h2>
                 <div className="mt-6 divide-y divide-dark/10 rounded-[2rem] border border-dark/8 bg-white interactive-spotlight">
                   {section.items.map((faq) => (
                     <details key={faq.question} className="group px-6 py-2">

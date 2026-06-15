@@ -151,7 +151,7 @@ export function PartyClient() {
       <Navbar />
 
       {/* ============ HERO ============ */}
-      <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden pt-28">
+      <section className="reveal-up relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden pt-28">
         {/* Parallax background: CSS background-attachment: fixed, zero JS */}
         <div aria-hidden className="party-hero-parallax absolute inset-0 -z-10" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0A0A0A]/82 via-[#0A0A0A]/72 to-[#0A0A0A]" />
@@ -184,7 +184,7 @@ export function PartyClient() {
             Introducing
           </p>
 
-          <h1 className="party-title mt-6 font-serif text-[14vw] italic leading-[0.95] text-[#F5F0EB] sm:text-7xl md:text-8xl lg:text-[7.5rem]">
+          <h1 className="reveal-up party-title mt-6 font-serif text-[14vw] italic leading-[0.95] text-[#F5F0EB] sm:text-7xl md:text-8xl lg:text-[7.5rem]">
             <span className="party-shimmer-text">party bookings</span>
           </h1>
 
@@ -224,14 +224,14 @@ export function PartyClient() {
       </section>
 
       {/* ============ WHAT YOU GET ============ */}
-      <section id="whats-included" className="relative overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
+      <section id="whats-included" className="reveal-up relative overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
         <div aria-hidden className="ambient-orb left-[-10%] top-1/4 h-[420px] w-[420px] bg-[#B5636A]/30" />
         <div aria-hidden className="ambient-orb right-[-12%] bottom-1/4 h-[380px] w-[380px] bg-[#D4AF37]/25" />
 
         <div className="container relative mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
             <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">The Menu</p>
-            <h2 className="mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
               Everything Included.{" "}
               <em className="font-serif italic text-[#D4AF37]">Nothing Left Out.</em>
             </h2>
@@ -288,13 +288,13 @@ export function PartyClient() {
       </section>
 
       {/* ============ PRICING ============ */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#101010] to-[#0A0A0A] py-24 sm:py-32">
+      <section className="reveal-up relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#101010] to-[#0A0A0A] py-24 sm:py-32">
         <div aria-hidden className="absolute inset-0 ambient-grid opacity-40" />
 
         <div className="container relative mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
             <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">Pricing</p>
-            <h2 className="mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
               Simple,{" "}
               <em className="font-serif italic text-[#B5636A]">transparent</em> pricing
             </h2>
@@ -331,11 +331,11 @@ export function PartyClient() {
       </section>
 
       {/* ============ TERMS ============ */}
-      <section className="relative overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
+      <section className="reveal-up relative overflow-hidden bg-[#0A0A0A] py-24 sm:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
             <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">Fine Print</p>
-            <h2 className="mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
               Good to know{" "}
               <em className="font-serif italic text-[#D4AF37]">before you book.</em>
             </h2>
@@ -372,11 +372,11 @@ export function PartyClient() {
       </section>
 
       {/* ============ HOW IT WORKS ============ */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#111] to-[#0A0A0A] py-24 sm:py-32">
+      <section className="reveal-up relative overflow-hidden bg-gradient-to-b from-[#0A0A0A] via-[#111] to-[#0A0A0A] py-24 sm:py-32">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center js-reveal">
             <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">The Flow</p>
-            <h2 className="mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
+            <h2 className="reveal-up mt-5 font-serif text-4xl leading-tight text-[#F5F0EB] sm:text-5xl md:text-6xl">
               How it <em className="font-serif italic text-[#B5636A]">works</em>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#F5F0EB]/65">

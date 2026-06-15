@@ -1290,6 +1290,138 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   .party-hero-parallax { background-attachment: scroll !important; }
 }
 
+/* ========== GLOBAL ANIMATION SYSTEM (every page) ========== */
+
+/* Reveal-on-scroll classes — toggled via global IntersectionObserver */
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-fade {
+  opacity: 0;
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-up { transform: translate3d(0, 40px, 0); }
+.reveal-left { transform: translate3d(-40px, 0, 0); }
+.reveal-right { transform: translate3d(40px, 0, 0); }
+.reveal-up.visible,
+.reveal-left.visible,
+.reveal-right.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.reveal-fade.visible { opacity: 1; }
+
+/* Stagger delays applied alongside the reveal class */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+.stagger-7 { transition-delay: 0.7s; }
+.stagger-8 { transition-delay: 0.8s; }
+
+/* Global scroll progress bar (CSS scroll-driven on Chromium 115+, hidden elsewhere) */
+.savri-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #B5636A;
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 9999;
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .savri-scroll-progress {
+    animation: savriProgress linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes savriProgress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Cursor glow — desktop only, position via CSS vars set on <html> */
+.savri-cursor-glow {
+  position: fixed;
+  left: var(--cursor-x, -1000px);
+  top: var(--cursor-y, -1000px);
+  width: 360px;
+  height: 360px;
+  margin-left: -180px;
+  margin-top: -180px;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(181, 99, 106, 0.10) 0%, rgba(181, 99, 106, 0) 70%);
+  mix-blend-mode: screen;
+}
+@media (max-width: 1024px), (hover: none) {
+  .savri-cursor-glow { display: none; }
+}
+
+/* Ambient zoom — apply to any full-screen background image to make it breathe */
+.ambient-image {
+  animation: savriAmbientZoom 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes savriAmbientZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+
+/* Card hover lift — opt-in for blog cards etc. */
+.card-lift {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(10, 10, 10, 0.18);
+}
+
+/* CSS View Transitions — Chrome/Edge 111+, Safari 18+. Graceful no-op elsewhere. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) {
+  animation: savriPageOut 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+::view-transition-new(root) {
+  animation: savriPageIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes savriPageOut {
+  to { opacity: 0; transform: translateY(-12px); }
+}
+@keyframes savriPageIn {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .savri-scroll-progress,
+  .savri-cursor-glow,
+  .ambient-image,
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+  .savri-scroll-progress { transform: scaleX(0); }
+}
+
 /* ========== HOMEPAGE — TRAVELLING-THROUGH REDESIGN ========== */
 
 /* Travelling stack wrapper — clip horizontal overflow, allow vertical for sticky */

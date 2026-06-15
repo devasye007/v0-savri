@@ -71,7 +71,7 @@ export function CityLanding({
             <MapPin className="h-3.5 w-3.5" />
             {city} · Delhi NCR
           </p>
-          <h1 className="mt-6 font-serif text-5xl italic leading-[1.02] text-[#F5F0EB] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+          <h1 className="reveal-up mt-6 font-serif text-5xl italic leading-[1.02] text-[#F5F0EB] sm:text-6xl md:text-7xl lg:text-[5.5rem]">
             Private Chef at Home in {city}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#F5F0EB]/72 md:text-lg">
@@ -105,12 +105,12 @@ export function CityLanding({
       </section>
 
       {/* INTRO + BODY */}
-      <section className="relative bg-[#0A0A0A] py-20 sm:py-24">
+      <section className="reveal-up relative bg-[#0A0A0A] py-20 sm:py-24">
         <div className="container mx-auto max-w-3xl px-6 lg:px-8">
           <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
             Why Savri in {city}
           </p>
-          <h2 className="mt-5 font-serif text-3xl leading-tight text-[#F5F0EB] sm:text-4xl">
+          <h2 className="reveal-up mt-5 font-serif text-3xl leading-tight text-[#F5F0EB] sm:text-4xl">
             A private chef who shows up, cooks fresh, and cleans your kitchen.
           </h2>
           <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-[#F5F0EB]/72">
@@ -132,12 +132,12 @@ export function CityLanding({
       </section>
 
       {/* NEIGHBORHOODS */}
-      <section className="relative bg-gradient-to-b from-[#0A0A0A] via-[#101010] to-[#0A0A0A] py-20 sm:py-24">
+      <section className="reveal-up relative bg-gradient-to-b from-[#0A0A0A] via-[#101010] to-[#0A0A0A] py-20 sm:py-24">
         <div className="container mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
             Areas we serve
           </p>
-          <h2 className="mt-5 font-serif text-3xl leading-tight text-[#F5F0EB] sm:text-4xl">
+          <h2 className="reveal-up mt-5 font-serif text-3xl leading-tight text-[#F5F0EB] sm:text-4xl">
             We serve all areas of {city}
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-[#F5F0EB]/65">
@@ -158,10 +158,10 @@ export function CityLanding({
       </section>
 
       {/* OCCASIONS + WHAT'S INCLUDED */}
-      <section className="relative bg-[#0A0A0A] py-20 sm:py-24">
+      <section className="reveal-up relative bg-[#0A0A0A] py-20 sm:py-24">
         <div className="container mx-auto max-w-5xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
-            <div>
+            <div className="reveal-left">
               <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
                 Common bookings
               </p>
@@ -179,7 +179,7 @@ export function CityLanding({
                 ))}
               </ul>
             </div>
-            <div>
+            <div className="reveal-right">
               <p className="text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
                 Party menu
               </p>
@@ -216,7 +216,7 @@ export function CityLanding({
       </section>
 
       {/* CTA */}
-      <section className="relative isolate flex items-center justify-center overflow-hidden bg-[#0A0A0A] py-20 sm:py-24">
+      <section className="reveal-up relative isolate flex items-center justify-center overflow-hidden bg-[#0A0A0A] py-20 sm:py-24">
         <div aria-hidden className="absolute inset-0 -z-10">
           <Image
             src="/images/chef-cooking.jpg"
@@ -230,7 +230,7 @@ export function CityLanding({
         </div>
         <div className="container mx-auto max-w-3xl px-6 text-center lg:px-8">
           <PartyPopper className="mx-auto h-8 w-8 text-[#D4AF37]" />
-          <h2 className="mt-6 font-serif text-3xl leading-[1.05] text-[#F5F0EB] sm:text-4xl md:text-5xl">
+          <h2 className="reveal-up mt-6 font-serif text-3xl leading-[1.05] text-[#F5F0EB] sm:text-4xl md:text-5xl">
             Ready to book a private chef in {city}?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#F5F0EB]/65">

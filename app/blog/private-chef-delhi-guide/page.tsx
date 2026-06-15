@@ -52,7 +52,7 @@ export default function Page() {
           it costs, and how to actually book one.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           What does &ldquo;private chef at home&rdquo; actually mean?
         </h2>
         <p>
@@ -64,7 +64,7 @@ export default function Page() {
           just paying for a home cook, not a private chef booking Delhi NCR service.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           What should it cost in 2026?
         </h2>
         <p>
@@ -80,7 +80,7 @@ export default function Page() {
           start at ₹5,999 in Delhi, with a flat ₹1,999 surcharge across NCR.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           What to look for before you book
         </h2>
         <p>
@@ -101,7 +101,7 @@ export default function Page() {
           </li>
         </ul>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           How to actually book
         </h2>
         <ol className="list-decimal space-y-2 pl-6">
@@ -119,7 +119,7 @@ export default function Page() {
           </li>
         </ol>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           Where to go from here
         </h2>
         <p>

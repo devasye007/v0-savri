@@ -22,13 +22,13 @@ export default function ContactPage() {
       <ScrollProgress />
       <Navbar />
       <main className="bg-cream pt-32 text-dark">
-        <section className="container mx-auto px-6 pb-20">
+        <section className="container mx-auto px-6 pb-20 reveal-up">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <Reveal variant="left">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Contact</p>
-              <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl">Tell us what you need.</h1>
+              <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl reveal-left">Tell us what you need.</h1>
               <p className="mt-6 text-base leading-8 text-dark/68 md:text-lg">
                 Booking question, event enquiry, chef partnership, or just checking availability in your city. We&apos;ll route it properly.
               </p>

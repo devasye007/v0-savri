@@ -21,25 +21,25 @@ export default function HowItWorksPage() {
       <ScrollProgress />
       <Navbar />
       <main className="bg-cream pt-32 text-dark">
-        <section className="container mx-auto px-6 pb-20">
+        <section className="container mx-auto px-6 pb-20 reveal-up">
           <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "How It Works" }]} />
           <Reveal className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">How It Works</p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl">From booking to enjoying.</h1>
+            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl reveal-up">From booking to enjoying.</h1>
             <p className="mt-6 text-base leading-8 text-dark/68 md:text-lg">
               Savri is designed to feel premium without feeling complicated. Here is the full process, step by step.
             </p>
           </Reveal>
         </section>
 
-        <section className="bg-[#fffaf4] py-20">
+        <section className="bg-[#fffaf4] py-20 reveal-up">
           <div className="container mx-auto px-6">
             <div className="grid gap-6">
               {howItWorksSteps.map((step, index) => (
                 <Reveal key={step.step} delayMs={index * 70}>
                 <article
                   key={step.step}
-                  className="immersive-card interactive-spotlight grid gap-6 rounded-[2rem] border border-dark/8 bg-white p-7 shadow-[0_16px_40px_rgba(26,26,26,0.05)] md:grid-cols-[120px_1fr_220px]"
+                  className="immersive-card interactive-spotlight grid gap-6 rounded-[2rem] border border-dark/8 bg-white p-7 shadow-[0_16px_40px_rgba(26,26,26,0.05)] md:grid-cols-[120px_1fr_220px] reveal-up"
                 >
                   <div>
                     <p className="text-sm font-semibold uppercase tracking-[0.18em] text-rose">Step {step.step}</p>
@@ -48,7 +48,7 @@ export default function HowItWorksPage() {
                     </div>
                   </div>
                   <div>
-                    <h2 className="font-serif text-3xl font-semibold text-dark">{step.title}</h2>
+                    <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">{step.title}</h2>
                     <p className="mt-4 text-base leading-7 text-dark/68">{step.copy}</p>
                   </div>
                   <div className="rounded-[1.5rem] bg-[#fffaf4] px-5 py-5">
@@ -62,12 +62,12 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-20 reveal-up">
           <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-2">
             <Reveal>
             <div className="immersive-card rounded-[2rem] border border-dark/8 bg-white p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">What the Chef Does</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold">Service, cooking, plating, cleanup.</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold reveal-left">Service, cooking, plating, cleanup.</h2>
               <div className="mt-8 grid gap-3">
                 {[
                   "Arrives on time and sets up your kitchen",
@@ -88,7 +88,7 @@ export default function HowItWorksPage() {
             <Reveal delayMs={100}>
             <div className="immersive-card rounded-[2rem] border border-dark/8 bg-white p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">What You Provide</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold">The essentials from your side.</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold reveal-right">The essentials from your side.</h2>
               <div className="mt-8 grid gap-3">
                 {[
                   "Access to your kitchen at the scheduled time",
@@ -107,12 +107,12 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        <section className="bg-dark py-20 text-cream">
+        <section className="bg-dark py-20 text-cream reveal-up">
           <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr]">
             <Reveal>
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold">24-Hour Rule</p>
-              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl">Why 24 hours minimum?</h2>
+              <h2 className="mt-4 font-serif text-4xl font-semibold md:text-5xl reveal-left">Why 24 hours minimum?</h2>
               <p className="mt-6 text-base leading-8 text-cream/70 md:text-lg">
                 It protects quality. Your chef needs time for sourcing, route planning, and prep decisions. That lead time is what keeps the service professional instead of rushed.
               </p>
@@ -133,7 +133,7 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-20 reveal-up">
           <div className="container mx-auto px-6">
             <Reveal className="mx-auto max-w-4xl divide-y divide-dark/10 rounded-[2rem] border border-dark/8 bg-white">
               {processFaqs.map((faq) => (

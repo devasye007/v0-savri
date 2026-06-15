@@ -47,7 +47,7 @@ export default function Page() {
           this is happening.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           1. The math has flipped
         </h2>
         <p>
@@ -57,7 +57,7 @@ export default function Page() {
           ballpark as a casual dinner out, but the food is fresher and you control the menu.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           2. Hygiene is verifiable
         </h2>
         <p>
@@ -68,7 +68,7 @@ export default function Page() {
           transparency is the actual product.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           3. Menus get personal
         </h2>
         <p>
@@ -79,7 +79,7 @@ export default function Page() {
           restaurant can offer.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           4. No commute, no parking, no waiting
         </h2>
         <p>
@@ -89,7 +89,7 @@ export default function Page() {
           don&apos;t bend, this single advantage is decisive.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           5. It scales for parties
         </h2>
         <p>
@@ -100,7 +100,7 @@ export default function Page() {
           office dinners.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl">
+        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
           The takeaway
         </h2>
         <p>
