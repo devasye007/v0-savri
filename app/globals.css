@@ -1592,24 +1592,83 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Dishes — staggered slide-in via IO class */
-.savri-dish {
-  opacity: 0;
-  transform: translateX(100px);
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+/* Dishes — sticky pin with horizontal pan tied to vertical scroll.
+   User scrolls DOWN, the row of dishes flows HORIZONTALLY past the camera
+   like a tracking shot. This is the "you are inside the space" moment. */
+.savri-dishes-wrap {
+  position: relative;
+  z-index: 4;
+  height: 380vh;
+  background: #1A1A1A;
 }
-.savri-dish.is-on {
-  opacity: 1;
-  transform: translateX(0);
+.savri-dishes-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6vh 0;
 }
-.savri-dish-img {
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+.savri-dishes-track {
+  display: flex;
+  gap: 1.5rem;
+  flex-shrink: 0;
+  will-change: transform;
+  transform: translate3d(60vw, 0, 0);
 }
-.savri-dish:hover .savri-dish-img {
-  transform: scale(1.05);
+.savri-dish-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30vw;
+  aspect-ratio: 3 / 5;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .savri-dish-card {
+    width: 70vw;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .savri-dishes-wrap {
+    view-timeline-name: --savriDishesTL;
+    view-timeline-axis: block;
+  }
+  .savri-dishes-track {
+    animation: savriDishesPan linear both;
+    animation-timeline: --savriDishesTL;
+    animation-range: cover 18% cover 82%;
+  }
+}
+
+@keyframes savriDishesPan {
+  from { transform: translate3d(60vw, 0, 0); }
+  to   { transform: translate3d(-130vw, 0, 0); }
+}
+
+/* Fallback for browsers without view-timeline — let the user scroll the track
+   horizontally on touch and show first card visible. */
+@supports not (animation-timeline: view()) {
+  .savri-dishes-pin {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .savri-dishes-track {
+    transform: none;
+    padding: 0 1.5rem;
+  }
+  .savri-dish-card { scroll-snap-align: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .savri-dishes-track {
+    animation: none !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
 }
 
 /* Pricing — line draw separator (IO-triggered, used as fallback) */

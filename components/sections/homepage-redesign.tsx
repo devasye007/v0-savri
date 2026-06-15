@@ -254,42 +254,33 @@ function BleedSection() {
 }
 
 function DishesSection() {
-  const ref = useOnEnter<HTMLElement>(0.2)
   return (
-    <section
-      ref={ref}
-      className="relative z-[4] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]"
-    >
-      <div className="grid min-h-[100svh] grid-cols-1 items-center gap-12 px-6 py-24 md:grid-cols-[0.95fr_1.4fr] md:gap-16 md:px-16 md:py-32">
-        <div className="lg:sticky lg:top-1/3">
+    <section className="savri-dishes-wrap text-[#F5F0E8]">
+      <div className="savri-dishes-pin">
+        <div className="z-10 px-6 md:px-16">
           <p className="text-[11px] uppercase tracking-[0.42em] text-[#C9A84C]">The Menu</p>
           <h2
-            className="mt-6 font-serif italic leading-[0.92]"
-            style={{ fontSize: "clamp(48px, 6vw, 128px)" }}
+            className="mt-4 font-serif italic leading-[0.92]"
+            style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
           >
-            90+ dishes
-            <br />
-            to choose
-            <br />
-            from.
+            90+ dishes to choose from.
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-5 md:gap-4">
-          {DISHES.map((dish, idx) => (
-            <div
-              key={dish.src}
-              className="savri-dish relative aspect-[3/5] w-full overflow-hidden"
-              style={{ transitionDelay: `${idx * 150}ms` }}
-            >
+        <div className="savri-dishes-track mt-12">
+          {DISHES.map((dish) => (
+            <div key={dish.src} className="savri-dish-card">
               <Image
                 src={dish.src}
                 alt={dish.alt}
                 fill
                 loading="lazy"
-                sizes="(min-width: 768px) 18vw, 45vw"
-                className="savri-dish-img object-cover"
+                sizes="(min-width: 768px) 30vw, 70vw"
+                className="object-cover"
               />
+              <div className="absolute inset-x-0 bottom-0 flex items-end p-5">
+                <p className="font-serif italic text-[#F5F0E8] text-lg md:text-xl">{dish.alt}</p>
+              </div>
             </div>
           ))}
         </div>
