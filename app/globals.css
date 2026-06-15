@@ -1613,25 +1613,30 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
 }
 .savri-dishes-track {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2vw;
   flex-shrink: 0;
   will-change: transform;
-  transform: translate3d(60vw, 0, 0);
+  transform: translate3d(0, 0, 0);
+  padding: 0 1.5rem;
 }
 .savri-dish-card {
   position: relative;
   flex: 0 0 auto;
-  width: 30vw;
+  width: 40vw;
   aspect-ratio: 3 / 5;
   overflow: hidden;
 }
 @media (max-width: 768px) {
+  .savri-dishes-track { gap: 1rem; }
   .savri-dish-card {
-    width: 70vw;
+    width: 72vw;
     aspect-ratio: 3 / 4;
   }
 }
 
+/* Track width on desktop ≈ 5×40vw + 4×1.2vw = 204.8vw. Pan range keeps the
+   track right edge ≥ viewport right edge (no empty gap to the right of last
+   card) and the left edge ≤ 0 (no empty gap to the left of first card). */
 @supports (animation-timeline: view()) {
   .savri-dishes-wrap {
     view-timeline-name: --savriDishesTL;
@@ -1640,13 +1645,19 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   .savri-dishes-track {
     animation: savriDishesPan linear both;
     animation-timeline: --savriDishesTL;
-    animation-range: cover 18% cover 82%;
+    animation-range: cover 22% cover 78%;
   }
 }
 
 @keyframes savriDishesPan {
-  from { transform: translate3d(60vw, 0, 0); }
-  to   { transform: translate3d(-130vw, 0, 0); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-108vw, 0, 0); }
+}
+@media (max-width: 768px) {
+  @keyframes savriDishesPan {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-280vw, 0, 0); }
+  }
 }
 
 /* Fallback for browsers without view-timeline — let the user scroll the track
