@@ -12,6 +12,14 @@ const PARTY_IMG = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?
 const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
 const KITCHEN_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
 
+/**
+ * Real cooking footage (autoplay loops). Sources are public stock video CDNs.
+ * Each <video> falls back to its poster image if the video can't load —
+ * so the page never has a blank frame.
+ */
+const HERO_VIDEO = "https://videos.pexels.com/video-files/3196274/3196274-hd_1920_1080_25fps.mp4"
+const KITCHEN_VIDEO = "https://videos.pexels.com/video-files/4252132/4252132-hd_1920_1080_30fps.mp4"
+
 const DISHES = [
   { src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=80", alt: "Hyderabadi biryani" },
   { src: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900&q=80", alt: "Hand-rolled pasta" },
@@ -127,13 +135,16 @@ function HeroSection() {
     <div className="savri-hero-wrap">
       <section className="savri-hero-pin">
         <div className="absolute inset-0 savri-hero-img">
-          <Image
-            src={HERO_IMG}
-            alt="Indian feast plated for a private chef dinner at home"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
+          <video
+            src={HERO_VIDEO}
+            poster={HERO_IMG}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden="true"
           />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_14%,rgba(26,26,26,0.28)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
@@ -215,14 +226,17 @@ function WordsSection() {
 function KitchenScene() {
   return (
     <section className="relative z-[2] h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
-      {/* Real cooking photograph fills the screen */}
-      <Image
-        src={KITCHEN_IMG}
-        alt="Sizzling pan with food in a home kitchen"
-        fill
-        loading="lazy"
-        sizes="100vw"
-        className="object-cover"
+      {/* Real cooking footage plays in a loop */}
+      <video
+        src={KITCHEN_VIDEO}
+        poster={KITCHEN_IMG}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 h-full w-full object-cover"
+        aria-hidden="true"
       />
       {/* Edge-fade dark gradient — top and bottom blend into surrounding dark */}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.55)_18%,rgba(26,26,26,0.4)_50%,rgba(26,26,26,0.85)_82%,#1A1A1A_100%)]" />
