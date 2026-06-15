@@ -135,7 +135,7 @@ function HeroSection() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0.3)_42%,rgba(10,10,10,0.85)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_14%,rgba(26,26,26,0.28)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
 
         <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
           <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
@@ -225,7 +225,7 @@ function BleedSection() {
         />
       </div>
       <div className="savri-bleed-overlay absolute inset-0 bg-[#0A0A0A]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0)_30%,rgba(10,10,10,0.85)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.2)_50%,rgba(26,26,26,0.8)_82%,#1A1A1A_100%)]" />
 
       <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-16 md:px-20 md:pb-24">
         <div className="savri-bleed-text max-w-[1200px]">
@@ -383,7 +383,7 @@ function PartyTeaserSection() {
           className="object-cover"
         />
       </div>
-      <div className="absolute inset-0 bg-[#1A1A1A]/75" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.85)_16%,rgba(26,26,26,0.7)_50%,rgba(26,26,26,0.85)_84%,#1A1A1A_100%)]" />
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
         <p
@@ -432,7 +432,7 @@ function FinalCTASection() {
         sizes="100vw"
         className="object-cover opacity-40"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.55),rgba(10,10,10,0.9))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.6)_18%,rgba(26,26,26,0.75)_50%,rgba(26,26,26,0.92)_82%,#1A1A1A_100%)]" />
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
         <h2
