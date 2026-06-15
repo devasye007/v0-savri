@@ -1491,13 +1491,13 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
 }
 
 /* Words section — 420vh tall, sticky pin centers text, words activate one-by-one
-   via scroll-driven animations tied to root scroll. Gradient at top blends out
-   of the dark hero so there is no hard line at the seam. */
+   via scroll-driven animations. Same dark palette as the rest of the homepage
+   so there are no visible section boundaries — one continuous space. */
 .savri-words-wrap {
   position: relative;
   z-index: 2;
   height: 420vh;
-  background: linear-gradient(180deg, #1A1A1A 0%, #1A1A1A 1%, #F5F0E8 18%);
+  background: #1A1A1A;
 }
 .savri-words-pin {
   position: sticky;
@@ -1628,7 +1628,7 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   position: relative;
   z-index: 5;
   height: 300vh;
-  background: #F5F0E8;
+  background: #1A1A1A;
 }
 .savri-pricing-pin {
   position: sticky;

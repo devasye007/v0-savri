@@ -173,7 +173,7 @@ function HeroSection() {
 
 function WordsSection() {
   return (
-    <section className="savri-words-wrap text-[#1A1A1A]">
+    <section className="savri-words-wrap text-[#F5F0E8]">
       <div className="savri-words-pin">
         <div className="mx-auto w-full max-w-[1600px]">
           <p
@@ -315,7 +315,7 @@ function PricingSection() {
   ]
 
   return (
-    <section className="savri-pricing-wrap text-[#1A1A1A]">
+    <section className="savri-pricing-wrap text-[#F5F0E8]">
       <div className="savri-pricing-pin">
         <div className="mx-auto flex w-full max-w-[1600px] flex-col">
           <p
@@ -339,7 +339,7 @@ function PricingSection() {
                   {tier.amount}
                 </div>
                 <p
-                  className="savri-price-label mt-2 font-serif italic text-[#1A1A1A]"
+                  className="savri-price-label mt-2 font-serif italic text-[#F5F0E8]/85"
                   style={{
                     fontSize: "clamp(16px, 1.6vw, 30px)",
                     "--ws": tier.ws + 4,
