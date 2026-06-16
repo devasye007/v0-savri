@@ -1,6 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useRef, type CSSProperties } from "react"
 import {
   BadgeCheck,
   Calendar,
@@ -16,6 +18,10 @@ import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { BackToTop } from "@/components/ui/back-to-top"
 
 const APPLY_LINK = "https://forms.gle/ESCw7Zpt5vJNgJxa8"
+
+const HERO_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
+const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
+const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
 
 const benefits = [
   {
@@ -82,164 +88,375 @@ const cuisines = [
   "Baking & Desserts",
 ]
 
+/** Adds `is-on` to the section + descendants when it scrolls into view (first time). */
+function useOnEnter<T extends HTMLElement>(threshold = 0.25) {
+  const ref = useRef<T | null>(null)
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const root = entry.target as HTMLElement
+            root.classList.add("is-on")
+            root
+              .querySelectorAll<HTMLElement>(
+                ".savri-rise, .savri-from-left, .savri-from-right, .savri-line-draw",
+              )
+              .forEach((el) => el.classList.add("is-on"))
+            io.unobserve(root)
+          }
+        })
+      },
+      { threshold, rootMargin: "0px 0px -10% 0px" },
+    )
+    io.observe(node)
+    return () => io.disconnect()
+  }, [threshold])
+  return ref
+}
+
+/** Renders text as scroll-driven .savri-word spans (vh-based activation). */
+function WordStream({
+  text,
+  startVh,
+  endVh,
+  windowVh = 28,
+  className = "",
+}: {
+  text: string
+  startVh: number
+  endVh: number
+  windowVh?: number
+  className?: string
+}) {
+  const words = text.split(" ")
+  const span = endVh - startVh
+  const step = words.length > 1 ? span / (words.length - 1) : 0
+
+  return (
+    <span className={className}>
+      {words.map((w, i) => {
+        const ws = Math.round(startVh + i * step)
+        const we = Math.round(ws + windowVh)
+        return (
+          <span
+            key={`${w}-${i}`}
+            className="savri-word"
+            style={{ "--ws": ws, "--we": we } as CSSProperties}
+          >
+            {w}
+          </span>
+        )
+      })}
+    </span>
+  )
+}
+
 export default function CareersPage() {
+  const teaserRef = useOnEnter<HTMLElement>(0.3)
+  const ctaRef = useOnEnter<HTMLElement>(0.25)
+
   return (
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
-        {/* ─────────── 01 / HERO ─────────── */}
-        <section className="relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
-          <div className="savri-ai-orb" aria-hidden="true" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
+      <main className="savri-travel-stack overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+        {/* ─────────── 01 / HERO — image bg + stacked massive serif ─────────── */}
+        <div className="savri-hero-wrap">
+          <section className="savri-hero-pin">
+            <div className="absolute inset-0 savri-hero-img">
+              <Image
+                src={HERO_IMG}
+                alt="Savri chef cooking at home in Delhi NCR"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.5)_14%,rgba(26,26,26,0.3)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
 
-          <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
-            <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
-            <ChevronRight className="mx-2 inline h-3 w-3" />
-            <span className="text-[#C9A84C]">Careers</span>
-          </div>
+            <div className="absolute left-6 top-28 z-10 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+              <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
+              <ChevronRight className="mx-2 inline h-3 w-3" />
+              <span className="text-[#C9A84C]">Careers</span>
+            </div>
 
-          <p className="reveal-up relative z-10 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
-            01 — Careers at Savri
-          </p>
-          <h1
-            className="reveal-up relative z-10 mt-10 font-serif italic leading-[0.86] text-[#F5F0E8]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
-          >
-            Cook for Delhi NCR&apos;s most exciting homes.
-          </h1>
-          <p className="reveal-up relative z-10 mt-8 max-w-2xl font-serif italic text-xl text-[#F5F0E8]/82 md:text-2xl">
-            Join Savri&apos;s founding chef roster.
-          </p>
-          <p className="reveal-up relative z-10 mt-6 max-w-2xl text-base leading-8 text-[#F5F0E8]/68 md:text-lg">
-            Verified chefs. Flexible schedule. Real earnings from Day 1.
-          </p>
+            <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
+              <p className="text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+                01 — Careers at Savri
+              </p>
+              <h1 className="mt-10 flex flex-col items-center leading-[0.86] tracking-tight">
+                <span
+                  className="block font-serif font-semibold text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
+                >
+                  Cook for
+                </span>
+                <span
+                  className="block font-serif font-semibold text-[#B5636A]"
+                  style={{ fontSize: "clamp(72px, 14vw, 280px)", lineHeight: 0.82 }}
+                >
+                  Delhi NCR.
+                </span>
+                <span
+                  className="mt-6 block font-serif italic text-[#F5F0E8]/80"
+                  style={{ fontSize: "clamp(24px, 3.8vw, 64px)" }}
+                >
+                  The most exciting homes.
+                </span>
+              </h1>
+              <p className="mt-10 max-w-2xl font-serif italic text-xl text-[#F5F0E8]/82 md:text-2xl">
+                Join Savri&apos;s founding chef roster.
+              </p>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-[#F5F0E8]/68 md:text-lg">
+                Verified chefs. Flexible schedule. Real earnings from Day 1.
+              </p>
 
-          <div className="reveal-up relative z-10 mt-12 flex flex-col gap-4 sm:flex-row">
-            <a
-              href={APPLY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
-            >
-              Apply Now
-            </a>
-            <a
-              href="#benefits"
-              className="savri-ai-btn-secondary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
-            >
-              Learn More
-            </a>
-          </div>
+              <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+                <a
+                  href={APPLY_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+                >
+                  Apply Now
+                </a>
+                <a
+                  href="#benefits"
+                  className="savri-ai-btn-secondary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
 
-          <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.5em] text-[#F5F0E8]/55">
-            <span>↓ Scroll</span>
+            <div className="savri-hero-foot absolute inset-x-0 bottom-12 z-10 flex flex-col items-center gap-3 text-[#F5F0E8]">
+              <span className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/55">↓ Scroll</span>
+            </div>
+          </section>
+        </div>
+
+        {/* ─────────── 02 / WORD-REVEAL — manifesto ─────────── */}
+        <section className="savri-words-wrap text-[#F5F0E8]">
+          <div className="savri-words-pin">
+            <div className="mx-auto w-full max-w-[1600px]">
+              <p
+                className="font-serif leading-[1.06] tracking-tight"
+                style={{ fontSize: "clamp(34px, 5vw, 96px)" }}
+              >
+                <WordStream
+                  text="Real chefs."
+                  startVh={70}
+                  endVh={150}
+                  className="block"
+                />
+                <WordStream
+                  text="Real homes."
+                  startVh={150}
+                  endVh={230}
+                  className="mt-[0.35em] block"
+                />
+                <WordStream
+                  text="Real money."
+                  startVh={230}
+                  endVh={310}
+                  className="mt-[0.35em] block italic text-[#C9A84C]"
+                />
+                <WordStream
+                  text="From Day 1."
+                  startVh={310}
+                  endVh={370}
+                  className="mt-[0.35em] block italic text-[#B5636A]"
+                />
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* ─────────── 02 / BENEFITS ─────────── */}
-        <section id="benefits" className="relative w-full overflow-hidden py-32 md:py-48">
-          <div className="savri-ai-glow-rose" aria-hidden="true" />
-          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
-            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
-              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why Cook With Savri</p>
-              <h2
-                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
-                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
-              >
-                Built for chefs who take their craft seriously.
-              </h2>
-            </div>
+        {/* ─────────── 03 / EDGE-FADED IMAGE BLEED — chef in action ─────────── */}
+        <section id="benefits" className="savri-bleed-wrap text-[#F5F0E8]">
+          <div className="absolute inset-0 savri-bleed-img">
+            <Image
+              src={BLEED_IMG}
+              alt="Private chef cooking in a Delhi NCR home"
+              fill
+              loading="lazy"
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="savri-bleed-overlay absolute inset-0 bg-[#0A0A0A]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.25)_50%,rgba(26,26,26,0.85)_82%,#1A1A1A_100%)]" />
 
-            <div className="savri-ai-stagger mt-24 md:mt-32">
-              {benefits.map((benefit, i) => (
-                <div
-                  key={benefit.title}
-                  className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
-                >
-                  <div className="flex items-start gap-6 md:flex-col md:items-start md:gap-4">
-                    <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <benefit.icon className="h-9 w-9 text-[#B5636A]" />
-                  </div>
-                  <div>
-                    <h3
-                      className="font-serif italic leading-[0.95] text-[#F5F0E8]"
-                      style={{ fontSize: "clamp(28px, 4.2vw, 72px)" }}
+          <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-16 md:px-20 md:pb-24">
+            <div className="savri-bleed-text max-w-[1200px]">
+              <p className="text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why Cook With Savri</p>
+              <p
+                className="mt-6 block font-serif font-semibold"
+                style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
+              >
+                Built for chefs
+              </p>
+              <p
+                className="mt-1 block font-serif font-semibold text-[#B5636A]"
+                style={{ fontSize: "clamp(44px, 7.5vw, 136px)", lineHeight: 1 }}
+              >
+                who take their craft
+              </p>
+              <p
+                className="mt-1 block font-serif font-semibold text-[#F5F0E8]/85"
+                style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
+              >
+                seriously.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 04 / BENEFITS — sticky sequential reveal ─────────── */}
+        <section className="savri-pricing-wrap text-[#F5F0E8]">
+          <div className="savri-pricing-pin">
+            <div className="mx-auto flex w-full max-w-[1600px] flex-col">
+              <p
+                className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
+                style={{ "--ws": 6, "--we": 16 } as CSSProperties}
+              >
+                03 — The Deal
+              </p>
+
+              <div className="mt-8 flex flex-col gap-6 md:mt-12 md:gap-8">
+                {benefits.map((benefit, i) => {
+                  const stepCount = Math.max(1, benefits.length)
+                  const span = 65 / stepCount
+                  const ws = Math.round(18 + i * span)
+                  const we = ws + 8
+                  const Icon = benefit.icon
+                  return (
+                    <div key={benefit.title} className="w-full">
+                      <div className="flex items-baseline gap-6">
+                        <Icon
+                          className="savri-price-label h-7 w-7 shrink-0 text-[#B5636A]"
+                          style={{ "--ws": ws, "--we": we } as CSSProperties}
+                        />
+                        <div
+                          className="savri-price-amount font-serif font-semibold leading-[0.92] text-[#F5F0E8]"
+                          style={{
+                            fontSize: "clamp(32px, 5.5vw, 96px)",
+                            "--ws": ws,
+                            "--we": we,
+                          } as CSSProperties}
+                        >
+                          {benefit.title}
+                        </div>
+                      </div>
+                      <p
+                        className="savri-price-label mt-3 max-w-3xl font-sans font-medium tracking-wide text-[#F5F0E8]/75"
+                        style={{
+                          fontSize: "clamp(14px, 1.2vw, 22px)",
+                          "--ws": ws + 2,
+                          "--we": we + 2,
+                        } as CSSProperties}
+                      >
+                        {benefit.description}
+                      </p>
+                      {i < benefits.length - 1 ? (
+                        <div
+                          className="savri-price-line mt-5 h-px w-full bg-[#B5636A]/50"
+                          style={{
+                            "--ws": we,
+                            "--we": we + 6,
+                          } as CSSProperties}
+                        />
+                      ) : null}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 05 / CHEF JOURNEY — sticky sequential reveal ─────────── */}
+        <section className="savri-pricing-wrap text-[#F5F0E8]">
+          <div className="savri-pricing-pin">
+            <div className="mx-auto flex w-full max-w-[1600px] flex-col">
+              <p
+                className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#B5636A] md:text-[13px]"
+                style={{ "--ws": 6, "--we": 16 } as CSSProperties}
+              >
+                04 — Chef Journey · How It Works
+              </p>
+
+              <div className="mt-8 flex flex-col gap-4 md:mt-12 md:gap-6">
+                {steps.map((step, i) => {
+                  const stepCount = Math.max(1, steps.length)
+                  const span = 65 / stepCount
+                  const ws = Math.round(18 + i * span)
+                  const we = ws + 7
+                  return (
+                    <div
+                      key={step.number}
+                      className="grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 md:grid-cols-[auto_0.4fr_1fr] md:gap-x-10"
                     >
-                      {benefit.title}
-                    </h3>
-                    <p className="mt-6 max-w-3xl text-base leading-8 text-[#F5F0E8]/70 md:text-lg">
-                      {benefit.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                      <div
+                        className="savri-price-amount font-serif italic leading-none text-[#C9A84C]"
+                        style={{
+                          fontSize: "clamp(56px, 8vw, 160px)",
+                          "--ws": ws,
+                          "--we": we,
+                        } as CSSProperties}
+                      >
+                        {step.number}
+                      </div>
+                      <h3
+                        className="savri-price-label font-serif font-semibold leading-[0.95] text-[#F5F0E8]"
+                        style={{
+                          fontSize: "clamp(26px, 3.2vw, 56px)",
+                          "--ws": ws + 1,
+                          "--we": we + 1,
+                        } as CSSProperties}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        className="savri-price-label col-span-2 max-w-2xl text-base leading-7 text-[#F5F0E8]/72 md:col-span-1 md:text-lg"
+                        style={{
+                          "--ws": ws + 2,
+                          "--we": we + 2,
+                        } as CSSProperties}
+                      >
+                        {step.description}
+                      </p>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ─────────── 03 / CHEF JOURNEY ─────────── */}
-        <section className="relative w-full overflow-hidden py-32 md:py-48">
-          <div className="savri-ai-glow-gold" aria-hidden="true" />
+        {/* ─────────── 06 / CUISINES — bleed-style moment ─────────── */}
+        <section className="relative z-[3] w-full overflow-hidden bg-[#1A1A1A] py-32 md:py-48">
           <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
             <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
-              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">03 — Chef Journey</p>
+              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">05 — Cuisines</p>
               <h2
-                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
-                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
-              >
-                How It Works
-              </h2>
-            </div>
-
-            <div className="savri-ai-stagger mt-24 md:mt-32">
-              {steps.map((step) => (
-                <div
-                  key={step.number}
-                  className="savri-ai-row reveal-up grid grid-cols-1 items-baseline gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.18fr_0.3fr_1fr] md:gap-12 md:py-18"
-                >
-                  <div
-                    className="font-serif italic leading-none text-[#C9A84C]"
-                    style={{ fontSize: "clamp(72px, 9vw, 180px)" }}
-                  >
-                    {step.number}
-                  </div>
-                  <h3
-                    className="font-serif italic leading-[0.95] text-[#F5F0E8]"
-                    style={{ fontSize: "clamp(28px, 3.4vw, 56px)" }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
-                    {step.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─────────── 04 / CUISINES ─────────── */}
-        <section className="relative w-full overflow-hidden py-32 md:py-48">
-          <div className="savri-ai-glow-rose" aria-hidden="true" />
-          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
-            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
-              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">04 — Cuisines</p>
-              <h2
-                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                className="reveal-up font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
                 style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
               >
                 Whatever your speciality — there&apos;s a booking waiting for you.
               </h2>
             </div>
 
-            <div className="reveal-up mt-20 md:mt-28 flex flex-wrap gap-3">
+            <div className="reveal-up mt-20 flex flex-wrap gap-x-8 gap-y-4 md:mt-28 md:gap-x-12">
               {cuisines.map((cuisine) => (
                 <span
                   key={cuisine}
-                  className="px-5 py-2.5 text-sm uppercase tracking-[0.18em] text-[#F5F0E8]/82 border-b border-[#F5F0E8]/15"
+                  className="font-serif italic text-[#F5F0E8]/90"
+                  style={{ fontSize: "clamp(22px, 3vw, 52px)" }}
                 >
                   {cuisine}
                 </span>
@@ -248,63 +465,81 @@ export default function CareersPage() {
           </div>
         </section>
 
-        {/* ─────────── 05 / TESTIMONIAL ─────────── */}
-        <section className="relative w-full overflow-hidden py-32 md:py-48">
-          <div className="savri-ai-glow-gold" aria-hidden="true" />
-          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
-            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
-              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">05 — Voices</p>
-              <h2
-                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
-                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
-              >
-                From our founding chefs.
-              </h2>
-            </div>
-
-            <div className="reveal-up mt-20 md:mt-28">
-              <blockquote className="mx-auto max-w-3xl border-l-2 border-[#B5636A]/60 pl-8 md:pl-12">
-                <p className="font-serif italic text-xl leading-9 text-[#F5F0E8]/90 md:text-2xl">
-                  &ldquo;This section will feature reviews from our founding chefs after launch.&rdquo;
-                </p>
-                <footer className="mt-8 border-t border-[#F5F0E8]/15 pt-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#B5636A]">
-                    — Savri Founding Chefs, Delhi NCR · Coming soon
-                  </p>
-                </footer>
-              </blockquote>
-            </div>
+        {/* ─────────── 07 / TESTIMONIAL — quiet centered moment ─────────── */}
+        <section
+          ref={teaserRef}
+          className="relative z-[4] flex w-full flex-col items-center justify-center overflow-hidden bg-[#1A1A1A] px-6 py-32 text-center md:py-48"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(181,99,106,0.10),transparent_60%)]" />
+          <div className="relative z-10 mx-auto max-w-3xl">
+            <p
+              className="savri-rise text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]"
+            >
+              06 — Voices from our founding chefs
+            </p>
+            <blockquote
+              className="savri-from-left mt-12 font-serif italic leading-[1.05] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(32px, 5vw, 88px)" }}
+            >
+              &ldquo;This section will feature reviews from our founding chefs after launch.&rdquo;
+            </blockquote>
+            <p
+              className="savri-from-right mt-10 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#B5636A]"
+              style={{ transitionDelay: "150ms" }}
+            >
+              — Savri Founding Chefs, Delhi NCR · Coming soon
+            </p>
           </div>
         </section>
 
-        {/* ─────────── 06 / APPLY ─────────── */}
-        <section className="relative w-full overflow-hidden py-32 md:py-48">
-          <div className="savri-ai-glow-rose" aria-hidden="true" />
-          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
-            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
-              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">06 — Apply</p>
-              <div>
-                <h2
-                  className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
-                  style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
-                >
-                  Ready to cook for Delhi NCR&apos;s best homes?
-                </h2>
-                <p className="reveal-up mt-8 max-w-2xl font-serif italic text-xl text-[#F5F0E8]/82 md:text-2xl">
-                  <span className="font-semibold text-[#C9A84C]">15+</span> chefs already onboarded on Savri.
-                </p>
-                <div className="reveal-up mt-12">
-                  <a
-                    href={APPLY_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
-                  >
-                    Apply Now
-                  </a>
-                </div>
-              </div>
-            </div>
+        {/* ─────────── 08 / CINEMATIC APPLY CTA ─────────── */}
+        <section
+          ref={ctaRef}
+          className="relative z-[7] h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]"
+        >
+          <Image
+            src={CTA_IMG}
+            alt="Warm home dining moment"
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.6)_18%,rgba(26,26,26,0.75)_50%,rgba(26,26,26,0.92)_82%,#1A1A1A_100%)]" />
+
+          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+            <p
+              className="savri-rise text-[11px] uppercase tracking-[0.5em] text-[#B5636A]"
+            >
+              07 — Apply
+            </p>
+            <h2
+              className="savri-from-left mt-8 font-serif font-semibold leading-[0.85] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(80px, 14vw, 280px)" }}
+            >
+              Apply.
+            </h2>
+            <h2
+              className="savri-from-right font-serif font-semibold leading-[0.85] text-[#C9A84C]"
+              style={{ fontSize: "clamp(64px, 11vw, 220px)", transitionDelay: "150ms" }}
+            >
+              Cook. Earn.
+            </h2>
+            <p
+              className="savri-rise mt-10 max-w-2xl font-serif italic text-[#F5F0E8]/85"
+              style={{ fontSize: "clamp(20px, 2.6vw, 44px)", transitionDelay: "300ms" }}
+            >
+              <span className="font-semibold text-[#C9A84C]">15+</span> chefs already onboarded on Savri.
+            </p>
+            <a
+              href={APPLY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="savri-rise mt-12 inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
+              style={{ transitionDelay: "450ms" }}
+            >
+              Apply Now →
+            </a>
           </div>
         </section>
 
