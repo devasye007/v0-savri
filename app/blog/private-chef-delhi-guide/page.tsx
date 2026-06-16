@@ -39,9 +39,9 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(post)) }}
       />
       <BlogShell slug={post.slug} title={post.title} datePublished={post.datePublished} readingTimeMin={post.readingTimeMin}>
-        <p>
+        <p className="reveal-fade">
           If you are looking to book a{" "}
-          <Link href="/" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/" className="text-[#B5636A] underline-offset-4 hover:underline">
             private chef
           </Link>{" "}
           for your home in Delhi NCR in 2026, the experience has changed quite a bit from even a
@@ -52,10 +52,10 @@ export default function Page() {
           it costs, and how to actually book one.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           What does &ldquo;private chef at home&rdquo; actually mean?
         </h2>
-        <p>
+        <p className="reveal-fade">
           A proper private chef Delhi booking has four moving parts: the chef themselves, the menu,
           the ingredients and the post-meal cleanup. A solid home dining experience Delhi service
           handles all four — the chef arrives at the time you confirmed, with their own knives, a
@@ -64,14 +64,14 @@ export default function Page() {
           just paying for a home cook, not a private chef booking Delhi NCR service.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           What should it cost in 2026?
         </h2>
-        <p>
+        <p className="reveal-fade">
           Pricing across the personal chef Delhi market is wider than people realize. Most generic
           on-demand services charge ₹1,500 and up per session, often with hidden ingredient
           markups and overtime fees that nobody quotes upfront.{" "}
-          <Link href="/" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/" className="text-[#B5636A] underline-offset-4 hover:underline">
             Savri
           </Link>{" "}
           starts at ₹549 for a 1–3 guest table with 2 dishes, and ₹1,149 for a full table of 4–6
@@ -80,31 +80,31 @@ export default function Page() {
           start at ₹5,999 in Delhi, with a flat ₹1,999 surcharge across NCR.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           What to look for before you book
         </h2>
-        <p>
+        <p className="reveal-fade">
           Three things separate a great private chef Delhi booking from a mediocre one:
         </p>
-        <ul className="list-disc space-y-2 pl-6">
+        <ul className="reveal-fade list-disc space-y-3 pl-6 marker:text-[#C9A84C]">
           <li>
-            <strong>Verified chefs.</strong> Background-checked, trained on Indian regional
+            <strong className="text-[#F5F0E8]">Verified chefs.</strong> Background-checked, trained on Indian regional
             cuisine, and reviewed monthly by real households. Ask the service explicitly.
           </li>
           <li>
-            <strong>Clean pricing.</strong> One headline price for the session. Ingredients
+            <strong className="text-[#F5F0E8]">Clean pricing.</strong> One headline price for the session. Ingredients
             itemized. No &ldquo;convenience&rdquo; or &ldquo;packaging&rdquo; fees added at the end.
           </li>
           <li>
-            <strong>Cleanup included.</strong> The chef leaves your kitchen at least as clean as
+            <strong className="text-[#F5F0E8]">Cleanup included.</strong> The chef leaves your kitchen at least as clean as
             they found it. This sounds basic — many cheap personal chef Delhi services skip it.
           </li>
         </ul>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           How to actually book
         </h2>
-        <ol className="list-decimal space-y-2 pl-6">
+        <ol className="reveal-fade list-decimal space-y-3 pl-6 marker:text-[#C9A84C]">
           <li>
             Pick the date and time you want the food to be ready. Most chef at home Delhi
             services need at least 24 hours&apos; notice.
@@ -119,29 +119,29 @@ export default function Page() {
           </li>
         </ol>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           Where to go from here
         </h2>
-        <p>
+        <p className="reveal-fade">
           For the regular dinner-at-home experience, the{" "}
-          <Link href="/" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/" className="text-[#B5636A] underline-offset-4 hover:underline">
             Savri homepage
           </Link>{" "}
           has the booking flow and live availability. For 10–20 guest parties, the{" "}
-          <Link href="/party" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/party" className="text-[#B5636A] underline-offset-4 hover:underline">
             party bookings page
           </Link>{" "}
           has the full menu and pricing breakdown — and if you want to dig into specific
           neighborhoods, our{" "}
-          <Link href="/delhi" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/delhi" className="text-[#B5636A] underline-offset-4 hover:underline">
             Delhi
           </Link>
           ,{" "}
-          <Link href="/gurugram" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/gurugram" className="text-[#B5636A] underline-offset-4 hover:underline">
             Gurugram
           </Link>{" "}
           and{" "}
-          <Link href="/noida" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/noida" className="text-[#B5636A] underline-offset-4 hover:underline">
             Noida
           </Link>{" "}
           pages cover the areas we serve regularly.

@@ -39,7 +39,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(post)) }}
       />
       <BlogShell slug={post.slug} title={post.title} datePublished={post.datePublished} readingTimeMin={post.readingTimeMin}>
-        <p>
+        <p className="reveal-fade">
           The biggest shift in Delhi dining in 2026 is not a new restaurant — it&apos;s where
           people are choosing to eat. Home dining Delhi is replacing takeout and short-notice
           restaurant trips for a meaningful slice of weeknight and weekend meals, and the
@@ -47,20 +47,20 @@ export default function Page() {
           this is happening.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           1. The math has flipped
         </h2>
-        <p>
+        <p className="reveal-fade">
           A weeknight dinner-at-home with a chef at home Delhi NCR booking now starts at ₹549
           for 1–3 guests — cheaper than a midrange restaurant meal for two once you add cabs,
           drinks markup and tips. For 4–6 guests at ₹1,149, the per-head price is in the same
           ballpark as a casual dinner out, but the food is fresher and you control the menu.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           2. Hygiene is verifiable
         </h2>
-        <p>
+        <p className="reveal-fade">
           You can see the chef wash their hands. You can see your ingredients. You know how long
           the dish sat between the pan and the plate. With a personal chef Delhi booking, there
           is no opaque kitchen — the cooking is happening three feet from your dining table. For
@@ -68,10 +68,10 @@ export default function Page() {
           transparency is the actual product.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           3. Menus get personal
         </h2>
-        <p>
+        <p className="reveal-fade">
           Restaurant menus are designed for the median customer. A private chef service Delhi
           booking is designed for you specifically — your spice tolerance, your dal preference,
           your one allergy that your mother-in-law forgot about. After a few bookings the chef
@@ -79,20 +79,20 @@ export default function Page() {
           restaurant can offer.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           4. No commute, no parking, no waiting
         </h2>
-        <p>
+        <p className="reveal-fade">
           Delhi traffic between 7 PM and 10 PM does not respect your dinner plans. A home dining
           Delhi booking removes the round-trip cab problem entirely. The chef shows up; the food
           shows up; you don&apos;t move from the couch. For families with kids whose bedtimes
           don&apos;t bend, this single advantage is decisive.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           5. It scales for parties
         </h2>
-        <p>
+        <p className="reveal-fade">
           The same chef at home Delhi NCR pipeline that handles a weeknight dinner for 3 also
           handles a 12-dish party for 15. A Savri party booking is ₹5,999 in Delhi (₹7,998
           across NCR) — twelve dishes cooked live, full cleanup. For most households that means
@@ -100,21 +100,21 @@ export default function Page() {
           office dinners.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-dark md:text-3xl reveal-up">
+        <h2 className="reveal-up mt-14 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] md:text-4xl lg:text-5xl">
           The takeaway
         </h2>
-        <p>
+        <p className="reveal-fade">
           Home dining Delhi has stopped being &ldquo;the version when you can&apos;t go out&rdquo;
           and started being the default. If you want to try it, the{" "}
-          <Link href="/" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/" className="text-[#B5636A] underline-offset-4 hover:underline">
             Savri homepage
           </Link>{" "}
           has the everyday booking flow; for parties, the{" "}
-          <Link href="/party" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/party" className="text-[#B5636A] underline-offset-4 hover:underline">
             party bookings page
           </Link>{" "}
           has the full 12-dish menu. To see the differences vs traditional catering, read our{" "}
-          <Link href="/blog/private-chef-vs-catering" className="text-rose underline-offset-4 hover:underline">
+          <Link href="/blog/private-chef-vs-catering" className="text-[#B5636A] underline-offset-4 hover:underline">
             private chef vs catering comparison
           </Link>
           .

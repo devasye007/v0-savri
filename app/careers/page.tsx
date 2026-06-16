@@ -1,18 +1,16 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
 import Link from "next/link"
-import { useInView } from "@/hooks/use-in-view"
-import { useCounter } from "@/hooks/use-counter"
 import {
-  DollarSign,
-  Calendar,
   BadgeCheck,
-  ShieldCheck,
-  ChefHat,
+  Calendar,
+  ChevronRight,
+  DollarSign,
   Instagram,
   Mail,
+  ShieldCheck,
 } from "lucide-react"
+
 import { Navbar } from "@/components/sections/navbar"
 import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { BackToTop } from "@/components/ui/back-to-top"
@@ -51,31 +49,26 @@ const steps = [
     number: 1,
     title: "Apply",
     description: "Fill the application form in 5 minutes.",
-    active: true,
   },
   {
     number: 2,
     title: "Video Call",
     description: "Quick intro call with our team.",
-    active: false,
   },
   {
     number: 3,
     title: "Verification",
     description: "ID check and cooking test.",
-    active: false,
   },
   {
     number: 4,
     title: "Profile Live",
     description: "Go live on the Savri platform.",
-    active: false,
   },
   {
     number: 5,
     title: "Start Earning",
     description: "Receive bookings and get paid.",
-    active: false,
   },
 ]
 
@@ -89,600 +82,259 @@ const cuisines = [
   "Baking & Desserts",
 ]
 
-// ── Hero Section ─────────────────────────────────────────────────────────────
-
-function CareersHero() {
-  const [mounted, setMounted] = useState(false)
-  const magneticRef = useRef<HTMLAnchorElement>(null)
-
-  useEffect(() => {
-    // tiny delay so CSS transitions run on first paint
-    const t = setTimeout(() => setMounted(true), 50)
-    return () => clearTimeout(t)
-  }, [])
-
-  const handleMagneticMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const btn = magneticRef.current
-    if (!btn) return
-    const rect = btn.getBoundingClientRect()
-    const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.2
-    const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.2
-    btn.style.transition = "none"
-    btn.style.transform = `translate(${dx}px, ${dy}px) scale(1.03)`
-  }
-
-  const handleMagneticLeave = () => {
-    const btn = magneticRef.current
-    if (!btn) return
-    btn.style.transition = "transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)"
-    btn.style.transform = "translate(0,0) scale(1)"
-  }
-
-  return (
-    <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 relative overflow-hidden" style={{ backgroundColor: "#1A1A1A" }}>
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose/5 rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-3xl mx-auto">
-        {/* Label */}
-        <p
-          className="text-rose text-xs font-medium tracking-[0.2em] uppercase mb-6"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-            transitionDelay: "0ms",
-          }}
-        >
-          Careers at Savri
-        </p>
-
-        {/* Headline */}
-        <h1
-          className="font-serif text-cream text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-            transitionDelay: "150ms",
-          }}
-        >
-          Cook for Delhi NCR's most exciting homes.
-        </h1>
-
-        {/* Sub-headline */}
-        <p
-          className="text-rose text-xl md:text-2xl font-serif font-medium mb-4"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-            transitionDelay: "300ms",
-          }}
-        >
-          Join Savri's founding chef roster.
-        </p>
-
-        {/* Body text */}
-        <p
-          className="text-gray-400 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-            transitionDelay: "450ms",
-          }}
-        >
-          Verified chefs. Flexible schedule. Real earnings from Day 1.
-        </p>
-
-        {/* CTA Buttons */}
-        <div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          style={{
-            opacity: mounted ? 1 : 0,
-            transform: mounted ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-            transitionDelay: "600ms",
-          }}
-        >
-          <a
-            ref={magneticRef}
-            href={APPLY_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            onMouseMove={handleMagneticMove}
-            onMouseLeave={handleMagneticLeave}
-            className="bg-rose text-cream px-8 py-4 rounded-lg text-base font-medium shadow-lg shadow-rose/25 magnetic-btn btn-savri"
-          >
-            Apply Now
-          </a>
-          <a
-            href="#benefits"
-            className="border border-cream/30 text-cream px-8 py-4 rounded-lg text-base font-medium hover:border-rose hover:text-rose transition-all duration-300 btn-savri"
-          >
-            Learn More
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Benefits Section ──────────────────────────────────────────────────────────
-
-function BenefitsSection() {
-  const { ref, isInView } = useInView({ threshold: 0.15 })
-
-  return (
-    <section
-      id="benefits"
-      ref={ref as unknown as React.RefObject<HTMLElement>}
-      className="py-24 md:py-32"
-      style={{ backgroundColor: "#111111" }}
-    >
-      <div className="container mx-auto px-6">
-        {/* Section label */}
-        <p
-          className="text-rose text-xs font-medium tracking-[0.2em] uppercase text-center mb-4"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-          }}
-        >
-          Why Cook With Savri
-        </p>
-
-        <h2
-          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl text-center font-medium mb-16 md:mb-20"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 80ms",
-          }}
-        >
-          Built for chefs who take their craft seriously.
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {benefits.map((benefit, i) => (
-            <div
-              key={i}
-              className="card-hover rounded-2xl p-8 border border-cream/5"
-              style={{
-                backgroundColor: "#222222",
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? "translateY(0)" : "translateY(30px)",
-                transition: `all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) ${100 + i * 100}ms`,
-              }}
-            >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center mb-5 border border-rose/30 bg-rose/10">
-                <benefit.icon className="w-6 h-6 text-rose" strokeWidth={1.5} />
-              </div>
-              <h3 className="font-serif text-cream text-xl font-medium mb-3">
-                {benefit.title}
-              </h3>
-              <p className="text-cream/60 text-sm leading-relaxed">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── How It Works Timeline ─────────────────────────────────────────────────────
-
-function TimelineStep({
-  step,
-  index,
-  isInView,
-}: {
-  step: (typeof steps)[0]
-  index: number
-  isInView: boolean
-}) {
-  const [hovered, setHovered] = useState(false)
-  const filled = step.active || hovered
-
-  return (
-    <div
-      className="flex-1 flex flex-col items-center text-center cursor-default select-none"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView ? "translateY(0)" : "translateY(20px)",
-        transition: `opacity 0.5s ease ${index * 150}ms, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94) ${index * 150}ms`,
-      }}
-    >
-      {/* Circle — z-10 keeps it above the connector line */}
-      <div
-        className="relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-lg font-serif font-semibold border-2 mb-5 shrink-0"
-        style={{
-          backgroundColor: filled ? "#B5636A" : "#0A0A0A",
-          borderColor: "#B5636A",
-          color: "#F5F0EB",
-          boxShadow: filled ? "0 0 28px rgba(181,99,106,0.45)" : "none",
-          transition: "background-color 0.2s ease, box-shadow 0.2s ease",
-        }}
-      >
-        {step.number}
-      </div>
-
-      {/* Title */}
-      <h3
-        className="font-serif text-base font-semibold mb-2 leading-snug"
-        style={{
-          color: filled ? "#B5636A" : "#F5F0EB",
-          transition: "color 0.2s ease",
-        }}
-      >
-        {step.title}
-      </h3>
-
-      {/* Description */}
-      <p className="text-cream/50 text-xs leading-relaxed max-w-[110px]">
-        {step.description}
-      </p>
-    </div>
-  )
-}
-
-function MobileTimelineStep({
-  step,
-  index,
-  isInView,
-  isLast,
-}: {
-  step: (typeof steps)[0]
-  index: number
-  isInView: boolean
-  isLast: boolean
-}) {
-  const [hovered, setHovered] = useState(false)
-  const filled = step.active || hovered
-
-  return (
-    <div
-      className={`flex items-start gap-5 ${isLast ? "" : "mb-8"}`}
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView ? "translateY(0)" : "translateY(16px)",
-        transition: `opacity 0.5s ease ${index * 150}ms, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94) ${index * 150}ms`,
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Circle */}
-      <div
-        className="relative z-10 w-16 h-16 rounded-full flex items-center justify-center text-lg font-serif font-semibold border-2 shrink-0"
-        style={{
-          backgroundColor: filled ? "#B5636A" : "#0A0A0A",
-          borderColor: "#B5636A",
-          color: "#F5F0EB",
-          boxShadow: filled ? "0 0 24px rgba(181,99,106,0.45)" : "none",
-          transition: "background-color 0.2s ease, box-shadow 0.2s ease",
-        }}
-      >
-        {step.number}
-      </div>
-
-      {/* Text */}
-      <div className="pt-4">
-        <h3
-          className="font-serif text-base font-semibold mb-1"
-          style={{
-            color: filled ? "#B5636A" : "#F5F0EB",
-            transition: "color 0.2s ease",
-          }}
-        >
-          {step.title}
-        </h3>
-        <p className="text-cream/50 text-sm leading-relaxed">{step.description}</p>
-      </div>
-    </div>
-  )
-}
-
-function HowItWorksSection() {
-  const { ref, isInView } = useInView({ threshold: 0.25 })
-
-  return (
-    <section
-      ref={ref as unknown as React.RefObject<HTMLElement>}
-      className="py-16 md:py-24 bg-dark"
-    >
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <p
-          className="text-rose text-xs font-medium tracking-[0.2em] uppercase text-center mb-3"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-          }}
-        >
-          Chef Journey
-        </p>
-        <h2
-          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl text-center font-medium mb-12 md:mb-16"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 80ms",
-          }}
-        >
-          How It Works
-        </h2>
-
-        {/* ── DESKTOP: horizontal ──────────────────────────────────────── */}
-        {/*
-          5 flex-1 columns → each is exactly 20% wide.
-          First circle centre = 10%, last circle centre = 90%.
-          The connector line spans left-[10%] → right-[10%], perfectly centre-to-centre.
-        */}
-        <div className="hidden md:block max-w-5xl mx-auto">
-          <div className="relative">
-            {/* Track (always visible, very subtle) */}
-            <div className="absolute top-8 left-[10%] right-[10%] h-0.5 rounded-full bg-rose/20" />
-
-            {/* Animated rose fill — scaleX 0→1 from the left edge */}
-            <div
-              className="absolute top-8 left-[10%] right-[10%] h-0.5 rounded-full bg-rose origin-left"
-              style={{
-                transform: isInView ? "scaleX(1)" : "scaleX(0)",
-                transition: "transform 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 350ms",
-              }}
-            />
-
-            {/* Steps — flex so every column is exactly 1/5 of the width */}
-            <div className="flex">
-              {steps.map((step, i) => (
-                <TimelineStep key={i} step={step} index={i} isInView={isInView} />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ── MOBILE: vertical ─────────────────────────────────────────── */}
-        {/*
-          Left-side vertical line running behind the circles.
-          Circles sit at the left; text sits to the right.
-          Line is absolutely positioned at left-8 (32px = half of w-16 circle).
-        */}
-        <div className="md:hidden max-w-sm mx-auto">
-          <div className="relative">
-            {/* Vertical track */}
-            <div className="absolute left-8 top-8 bottom-8 w-0.5 -translate-x-px rounded-full bg-rose/20" />
-
-            {/* Animated vertical fill */}
-            <div
-              className="absolute left-8 top-8 w-0.5 -translate-x-px rounded-full bg-rose origin-top"
-              style={{
-                height: isInView ? "calc(100% - 4rem)" : "0%",
-                transition: "height 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 350ms",
-              }}
-            />
-
-            {steps.map((step, i) => (
-              <MobileTimelineStep
-                key={i}
-                step={step}
-                index={i}
-                isInView={isInView}
-                isLast={i === steps.length - 1}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Cuisine & Roles Section ───────────────────────────────────────────────────
-
-function CuisineSection() {
-  const { ref, isInView } = useInView({ threshold: 0.3 })
-
-  return (
-    <section
-      ref={ref as unknown as React.RefObject<HTMLElement>}
-      className="py-24 md:py-28"
-      style={{ backgroundColor: "#111111" }}
-    >
-      <div className="container mx-auto px-6 text-center max-w-3xl">
-        <h2
-          className="font-serif text-cream text-2xl md:text-3xl font-medium mb-10"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-          }}
-        >
-          Whatever your speciality — there's a booking waiting for you.
-        </h2>
-
-        <div
-          className="flex flex-wrap justify-center gap-3"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 100ms",
-          }}
-        >
-          {cuisines.map((cuisine) => (
-            <span
-              key={cuisine}
-              className="px-5 py-2.5 rounded-full border border-rose/40 text-cream text-sm font-medium hover:border-rose hover:bg-rose/10 transition-all duration-200 cursor-default"
-            >
-              {cuisine}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Testimonial Placeholder ───────────────────────────────────────────────────
-
-function TestimonialSection() {
-  const { ref, isInView } = useInView({ threshold: 0.3 })
-
-  return (
-    <section
-      ref={ref as unknown as React.RefObject<HTMLElement>}
-      className="py-24 md:py-32 bg-dark"
-    >
-      <div className="container mx-auto px-6 max-w-2xl text-center">
-        {/* Opening quote */}
-        <div
-          className="font-serif text-rose text-8xl md:text-9xl leading-none mb-4 select-none"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-            lineHeight: "0.7",
-          }}
-        >
-          "
-        </div>
-
-        <p
-          className="font-serif text-cream/80 text-xl md:text-2xl italic leading-relaxed mb-6"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 100ms",
-          }}
-        >
-          This section will feature reviews from our founding chefs after launch.
-        </p>
-
-        <p
-          className="text-cream/40 text-sm"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transition: "opacity 0.6s ease 200ms",
-          }}
-        >
-          — Savri Founding Chefs, Delhi NCR · Coming soon
-        </p>
-
-        {/* Closing quote */}
-        <div
-          className="font-serif text-rose text-8xl md:text-9xl leading-none mt-2 select-none"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 50ms",
-            lineHeight: "0.7",
-          }}
-        >
-          "
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Final CTA Section ─────────────────────────────────────────────────────────
-
-function FinalCTASection() {
-  const { ref, isInView } = useInView({ threshold: 0.3 })
-  const count = useCounter({ to: 15, duration: 1400, isActive: isInView })
-
-  return (
-    <section
-      ref={ref as unknown as React.RefObject<HTMLElement>}
-      className="py-24 md:py-32 text-center"
-      style={{ backgroundColor: "#B5636A" }}
-    >
-      <div className="container mx-auto px-6 max-w-2xl">
-        <h2
-          className="font-serif text-cream text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-          }}
-        >
-          Ready to cook for Delhi NCR's best homes?
-        </h2>
-
-        <p
-          className="text-cream text-xl md:text-2xl font-medium mb-10"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 100ms",
-          }}
-        >
-          <span className="font-bold">{count}+</span> chefs already onboarded on Savri.
-        </p>
-
-        <div
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.6s cubic-bezier(0.25,0.46,0.45,0.94) 200ms",
-          }}
-        >
-          <a
-            href={APPLY_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-dark text-cream px-10 py-5 rounded-lg text-lg font-semibold animate-pulse-cta hover:bg-dark-light transition-colors duration-200"
-          >
-            Apply Now
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Minimal Footer for Careers ────────────────────────────────────────────────
-
-function CareersFooter() {
-  return (
-    <footer className="bg-dark border-t border-cream/5 py-10">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <Link href="/" className="font-serif text-rose text-2xl font-semibold hover:opacity-80 transition-opacity">
-          Savri
-        </Link>
-        <div className="flex items-center gap-6">
-          <a href="https://www.instagram.com/savri.in/" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-cream transition-colors duration-200">
-            <Instagram className="w-5 h-5" strokeWidth={1.5} />
-          </a>
-          <a href="mailto:founder@savri.co.in" className="text-cream/50 hover:text-cream transition-colors duration-200">
-            <Mail className="w-5 h-5" strokeWidth={1.5} />
-          </a>
-        </div>
-        <p className="text-cream/40 text-sm">© 2026 Savri. Delhi NCR.</p>
-      </div>
-    </footer>
-  )
-}
-
-// ── Page ──────────────────────────────────────────────────────────────────────
-
 export default function CareersPage() {
   return (
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="overflow-x-hidden">
-        <CareersHero />
-        <BenefitsSection />
-        <HowItWorksSection />
-        <CuisineSection />
-        <TestimonialSection />
-        <FinalCTASection />
-        <CareersFooter />
+      <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+        {/* ─────────── 01 / HERO ─────────── */}
+        <section className="relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
+          <div className="savri-ai-orb" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
+
+          <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+            <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
+            <ChevronRight className="mx-2 inline h-3 w-3" />
+            <span className="text-[#C9A84C]">Careers</span>
+          </div>
+
+          <p className="reveal-up relative z-10 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+            01 — Careers at Savri
+          </p>
+          <h1
+            className="reveal-up relative z-10 mt-10 font-serif italic leading-[0.86] text-[#F5F0E8]"
+            style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
+          >
+            Cook for Delhi NCR&apos;s most exciting homes.
+          </h1>
+          <p className="reveal-up relative z-10 mt-8 max-w-2xl font-serif italic text-xl text-[#F5F0E8]/82 md:text-2xl">
+            Join Savri&apos;s founding chef roster.
+          </p>
+          <p className="reveal-up relative z-10 mt-6 max-w-2xl text-base leading-8 text-[#F5F0E8]/68 md:text-lg">
+            Verified chefs. Flexible schedule. Real earnings from Day 1.
+          </p>
+
+          <div className="reveal-up relative z-10 mt-12 flex flex-col gap-4 sm:flex-row">
+            <a
+              href={APPLY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+            >
+              Apply Now
+            </a>
+            <a
+              href="#benefits"
+              className="savri-ai-btn-secondary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+            >
+              Learn More
+            </a>
+          </div>
+
+          <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.5em] text-[#F5F0E8]/55">
+            <span>↓ Scroll</span>
+          </div>
+        </section>
+
+        {/* ─────────── 02 / BENEFITS ─────────── */}
+        <section id="benefits" className="relative w-full overflow-hidden py-32 md:py-48">
+          <div className="savri-ai-glow-rose" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why Cook With Savri</p>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                Built for chefs who take their craft seriously.
+              </h2>
+            </div>
+
+            <div className="savri-ai-stagger mt-24 md:mt-32">
+              {benefits.map((benefit, i) => (
+                <div
+                  key={benefit.title}
+                  className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                >
+                  <div className="flex items-start gap-6 md:flex-col md:items-start md:gap-4">
+                    <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <benefit.icon className="h-9 w-9 text-[#B5636A]" />
+                  </div>
+                  <div>
+                    <h3
+                      className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                      style={{ fontSize: "clamp(28px, 4.2vw, 72px)" }}
+                    >
+                      {benefit.title}
+                    </h3>
+                    <p className="mt-6 max-w-3xl text-base leading-8 text-[#F5F0E8]/70 md:text-lg">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 03 / CHEF JOURNEY ─────────── */}
+        <section className="relative w-full overflow-hidden py-32 md:py-48">
+          <div className="savri-ai-glow-gold" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">03 — Chef Journey</p>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                How It Works
+              </h2>
+            </div>
+
+            <div className="savri-ai-stagger mt-24 md:mt-32">
+              {steps.map((step) => (
+                <div
+                  key={step.number}
+                  className="savri-ai-row reveal-up grid grid-cols-1 items-baseline gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.18fr_0.3fr_1fr] md:gap-12 md:py-18"
+                >
+                  <div
+                    className="font-serif italic leading-none text-[#C9A84C]"
+                    style={{ fontSize: "clamp(72px, 9vw, 180px)" }}
+                  >
+                    {step.number}
+                  </div>
+                  <h3
+                    className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(28px, 3.4vw, 56px)" }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 04 / CUISINES ─────────── */}
+        <section className="relative w-full overflow-hidden py-32 md:py-48">
+          <div className="savri-ai-glow-rose" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">04 — Cuisines</p>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                Whatever your speciality — there&apos;s a booking waiting for you.
+              </h2>
+            </div>
+
+            <div className="reveal-up mt-20 md:mt-28 flex flex-wrap gap-3">
+              {cuisines.map((cuisine) => (
+                <span
+                  key={cuisine}
+                  className="px-5 py-2.5 text-sm uppercase tracking-[0.18em] text-[#F5F0E8]/82 border-b border-[#F5F0E8]/15"
+                >
+                  {cuisine}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 05 / TESTIMONIAL ─────────── */}
+        <section className="relative w-full overflow-hidden py-32 md:py-48">
+          <div className="savri-ai-glow-gold" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">05 — Voices</p>
+              <h2
+                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+              >
+                From our founding chefs.
+              </h2>
+            </div>
+
+            <div className="reveal-up mt-20 md:mt-28">
+              <blockquote className="mx-auto max-w-3xl border-l-2 border-[#B5636A]/60 pl-8 md:pl-12">
+                <p className="font-serif italic text-xl leading-9 text-[#F5F0E8]/90 md:text-2xl">
+                  &ldquo;This section will feature reviews from our founding chefs after launch.&rdquo;
+                </p>
+                <footer className="mt-8 border-t border-[#F5F0E8]/15 pt-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#B5636A]">
+                    — Savri Founding Chefs, Delhi NCR · Coming soon
+                  </p>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 06 / APPLY ─────────── */}
+        <section className="relative w-full overflow-hidden py-32 md:py-48">
+          <div className="savri-ai-glow-rose" aria-hidden="true" />
+          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+            <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+              <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">06 — Apply</p>
+              <div>
+                <h2
+                  className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+                >
+                  Ready to cook for Delhi NCR&apos;s best homes?
+                </h2>
+                <p className="reveal-up mt-8 max-w-2xl font-serif italic text-xl text-[#F5F0E8]/82 md:text-2xl">
+                  <span className="font-semibold text-[#C9A84C]">15+</span> chefs already onboarded on Savri.
+                </p>
+                <div className="reveal-up mt-12">
+                  <a
+                    href={APPLY_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+                  >
+                    Apply Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── Footer note ─────────── */}
+        <section className="relative w-full overflow-hidden border-t border-[#F5F0E8]/12 py-12">
+          <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-6 text-sm text-[#F5F0E8]/62 md:flex-row md:items-center md:justify-between md:px-16">
+            <Link href="/" className="font-serif italic text-2xl text-[#B5636A] hover:text-[#F5F0E8]">
+              Savri
+            </Link>
+            <div className="flex items-center gap-5">
+              <a
+                href="https://www.instagram.com/savri.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F5F0E8]/60 transition hover:text-[#F5F0E8]"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a
+                href="mailto:founder@savri.co.in"
+                className="text-[#F5F0E8]/60 transition hover:text-[#F5F0E8]"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+            </div>
+            <p className="text-[#F5F0E8]/50">© 2026 Savri. Delhi NCR.</p>
+          </div>
+        </section>
       </main>
 
       {/* WhatsApp floating button */}
@@ -691,7 +343,7 @@ export default function CareersPage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg animate-pulse-whatsapp hover:scale-110 transition-transform duration-200"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110"
         style={{ backgroundColor: "#25D366" }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28">

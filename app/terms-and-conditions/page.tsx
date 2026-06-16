@@ -11,70 +11,89 @@ export const metadata: Metadata = {
   description: "Read the Savri terms and conditions for bookings, cancellations, pricing, ingredients, and service expectations.",
 }
 
+const sections = [
+  {
+    heading: "1. Bookings",
+    body:
+      "Savri bookings are subject to chef availability, serviceable locality coverage, and the required 24-hour minimum advance notice.",
+  },
+  {
+    heading: "2. Pricing",
+    body:
+      "Base booking prices are listed on the website. Extra dishes, ingredients, and any agreed additions may increase the final amount. Customers are responsible for ingredient reimbursement unless explicitly stated otherwise.",
+  },
+  {
+    heading: "3. Customer Responsibilities",
+    body:
+      "Customers must provide accurate service details, kitchen access at the scheduled time, and relevant dietary or allergy information before service begins.",
+  },
+  {
+    heading: "4. Cancellations",
+    body:
+      "Cancellations are expected to be made more than 24 hours before service where possible. Short-notice cancellations may affect refund eligibility depending on chef preparation and sourcing already completed.",
+  },
+  {
+    heading: "5. Service Standards",
+    body:
+      "Savri aims to provide trained, vetted chefs and a high-quality home dining experience, but specific outcomes may also depend on kitchen conditions, timing, ingredient availability, and customer instructions.",
+  },
+  {
+    heading: "6. Contact",
+    body:
+      "Questions regarding these terms can be sent through the contact page.",
+  },
+]
+
 export default function TermsAndConditionsPage() {
   return (
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="bg-cream pt-32 text-dark">
-        <section className="container mx-auto px-6 pb-20 reveal-up">
-          <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Terms & Conditions" }]} />
-          <div className="max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rose">Legal</p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold md:text-6xl reveal-up">Terms & Conditions</h1>
-            <p className="mt-6 text-base leading-8 text-dark/68 md:text-lg">
+      <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+        {/* ─────────── HERO ─────────── */}
+        <section className="relative isolate flex min-h-[70svh] w-full flex-col items-center justify-center overflow-hidden px-6 pb-24 pt-40 text-center md:min-h-[78svh] md:pt-44">
+          <div className="savri-ai-glow-rose" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_22%,transparent_78%,#1A1A1A_100%)]" />
+
+          <div className="relative z-10 w-full max-w-[1100px]">
+            <div className="reveal-fade flex justify-center text-[11px] uppercase tracking-[0.4em] text-[#F5F0E8]/55">
+              <SiteBreadcrumb items={[{ label: "Home", href: "/" }, { label: "Terms & Conditions" }]} />
+            </div>
+
+            <p className="reveal-fade mt-10 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+              01 — Legal
+            </p>
+            <h1
+              className="reveal-fade mt-8 font-serif italic leading-[0.88] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
+            >
+              Terms & Conditions
+            </h1>
+            <p className="reveal-fade mx-auto mt-10 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
               These terms describe how Savri bookings work, what customers can expect, and the basic responsibilities attached to each service.
             </p>
           </div>
         </section>
 
-        <section className="pb-20 reveal-up">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl rounded-[2rem] border border-dark/8 bg-white p-8 shadow-[0_16px_40px_rgba(26,26,26,0.05)] md:p-10">
-              <div className="space-y-8 text-sm leading-7 text-dark/72 md:text-base">
-                <section>
-                  <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">1. Bookings</h2>
-                  <p className="mt-3">
-                    Savri bookings are subject to chef availability, serviceable locality coverage, and the required 24-hour minimum advance notice.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">2. Pricing</h2>
-                  <p className="mt-3">
-                    Base booking prices are listed on the website. Extra dishes, ingredients, and any agreed additions may increase the final amount. Customers are responsible for ingredient reimbursement unless explicitly stated otherwise.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">3. Customer Responsibilities</h2>
-                  <p className="mt-3">
-                    Customers must provide accurate service details, kitchen access at the scheduled time, and relevant dietary or allergy information before service begins.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">4. Cancellations</h2>
-                  <p className="mt-3">
-                    Cancellations are expected to be made more than 24 hours before service where possible. Short-notice cancellations may affect refund eligibility depending on chef preparation and sourcing already completed.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">5. Service Standards</h2>
-                  <p className="mt-3">
-                    Savri aims to provide trained, vetted chefs and a high-quality home dining experience, but specific outcomes may also depend on kitchen conditions, timing, ingredient availability, and customer instructions.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="font-serif text-3xl font-semibold text-dark reveal-up">6. Contact</h2>
-                  <p className="mt-3">
-                    Questions regarding these terms can be sent through the contact page.
-                  </p>
-                </section>
+        {/* ─────────── BODY ─────────── */}
+        <section className="relative w-full overflow-hidden pb-32 pt-10 md:pb-48">
+          <div className="relative mx-auto w-full max-w-[800px] px-6">
+            {sections.map((item, i) => (
+              <div
+                key={item.heading}
+                className={i === 0 ? "" : "mt-20 border-t border-[#F5F0E8]/12 pt-20"}
+              >
+                <h2
+                  className="reveal-fade font-serif italic leading-[1.05] text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(28px, 4vw, 56px)" }}
+                >
+                  {item.heading}
+                </h2>
+                <p className="reveal-fade mt-6 max-w-[700px] text-base leading-8 text-[#F5F0E8]/82 md:text-lg">
+                  {item.body}
+                </p>
               </div>
-            </div>
+            ))}
           </div>
         </section>
       </main>

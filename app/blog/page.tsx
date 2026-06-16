@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ChevronRight, Sparkles } from "lucide-react"
 
 import { Footer } from "@/components/sections/footer"
 import { Navbar } from "@/components/sections/navbar"
@@ -61,71 +61,113 @@ export default function BlogIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
       />
-      <div className="min-h-screen bg-[#1A1A1A] text-[#F5F0E8]">
+      <div className="min-h-screen overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
         <Navbar />
 
-        <main className="container mx-auto max-w-5xl px-6 pt-32 pb-20 lg:px-8 lg:pt-36">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#B5636A]">
-            Savri Blog
-          </p>
-          <h1
-            className="reveal-up mt-6 font-serif italic leading-[0.95] text-[#F5F0E8]"
-            style={{ fontSize: "clamp(48px, 9vw, 180px)" }}
-          >
-            Private chef tips, home dining guides & party planning in Delhi NCR.
-          </h1>
-          <p className="mt-8 max-w-2xl text-base leading-7 text-[#F5F0E8]/72 md:text-lg">
-            Practical, up-to-date writing from the Savri team on hiring private chefs in Delhi
-            NCR, planning home parties and getting the most out of a Savri booking.
-          </p>
+        <main>
+          {/* ─────────── 01 / HERO ─────────── */}
+          <section className="relative isolate flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 pt-32 pb-24 text-center md:pt-40">
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
 
-          <div className="mt-20 grid gap-14 md:grid-cols-2 md:gap-16">
-            {blogPosts.map((p) => (
-              <article key={p.slug} className="reveal-up">
-                <Link
-                  href={`/blog/${p.slug}`}
-                  className="group flex h-full flex-col border-transparent"
+            <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+              <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
+              <ChevronRight className="mx-2 inline h-3 w-3" />
+              <span className="text-[#C9A84C]">Blog</span>
+            </div>
+
+            <p className="reveal-up relative z-10 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+              <Sparkles className="h-3 w-3" /> 01 — The Blog
+            </p>
+            <h1
+              className="reveal-up relative z-10 mt-10 max-w-[1400px] font-serif italic leading-[0.9] text-[#F5F0E8]"
+              style={{ fontSize: "clamp(48px, 9vw, 180px)" }}
+            >
+              Private chef tips, home dining guides & party planning in Delhi NCR.
+            </h1>
+            <p className="reveal-up relative z-10 mt-10 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+              Practical, up-to-date writing from the Savri team on hiring private chefs in Delhi
+              NCR, planning home parties and getting the most out of a Savri booking.
+            </p>
+          </section>
+
+          {/* ─────────── 02 / POSTS ─────────── */}
+          <section className="relative w-full overflow-hidden py-32 md:py-48">
+            <div className="savri-ai-glow-rose" aria-hidden="true" />
+            <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+              <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+                <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Latest Writing</p>
+                <h2
+                  className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C9A84C]">
-                    {new Date(p.datePublished).toLocaleDateString("en-IN", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}{" "}
-                    · {p.readingTimeMin} min read
-                  </p>
-                  <h2 className="reveal-up mt-5 font-serif italic text-3xl leading-[1.05] text-[#F5F0E8] transition group-hover:text-[#B5636A] md:text-4xl lg:text-5xl">
-                    {p.title}
-                  </h2>
-                  <p className="mt-5 flex-1 text-sm leading-7 text-[#F5F0E8]/68">{p.excerpt}</p>
-                  <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#B5636A]">
-                    Read article <ArrowRight className="h-4 w-4" />
-                  </p>
-                </Link>
-              </article>
-            ))}
-          </div>
+                  Field notes from Savri.
+                </h2>
+              </div>
 
-          <div className="reveal-up mt-24 border-transparent p-0 md:p-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#C9A84C]">
-              Party Bookings
-            </p>
-            <h2
-              className="reveal-up mt-4 font-serif italic leading-[0.95] text-[#F5F0E8]"
-              style={{ fontSize: "clamp(40px, 7vw, 120px)" }}
-            >
-              Private chef for your next party. ₹5,999 in Delhi.
-            </h2>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-[#F5F0E8]/70 md:text-base">
-              12 dishes cooked live in your kitchen. Vetted chef. Cleanup included.
-            </p>
-            <Link
-              href="/party"
-              className="immersive-button mt-8 inline-flex min-h-12 items-center gap-2 rounded-2xl bg-[#C9A84C] px-6 py-3 text-sm font-semibold text-[#1A1A1A] hover:bg-gold-dark"
-            >
-              Book a Party Chef <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+              <div className="savri-ai-stagger mt-24 md:mt-32">
+                {blogPosts.map((p, i) => (
+                  <article key={p.slug} className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20">
+                    <div className="flex flex-col gap-4">
+                      <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#F5F0E8]/55">
+                        {new Date(p.datePublished).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}{" "}
+                        · {p.readingTimeMin} min read
+                      </p>
+                    </div>
+                    <div>
+                      <Link href={`/blog/${p.slug}`} className="group block">
+                        <h3
+                          className="font-serif italic leading-[0.95] text-[#F5F0E8] transition group-hover:text-[#B5636A]"
+                          style={{ fontSize: "clamp(28px, 4.2vw, 72px)" }}
+                        >
+                          {p.title}
+                        </h3>
+                        <p className="mt-6 max-w-3xl text-base leading-8 text-[#F5F0E8]/70 md:text-lg">
+                          {p.excerpt}
+                        </p>
+                        <p className="mt-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-[#B5636A] transition group-hover:text-[#C9A84C]">
+                          Read article <ArrowRight className="h-3 w-3" />
+                        </p>
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ─────────── 03 / PARTY CTA ─────────── */}
+          <section className="relative w-full overflow-hidden py-32 md:py-48">
+            <div className="savri-ai-glow-gold" aria-hidden="true" />
+            <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+              <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
+                <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">03 — Party Bookings</p>
+                <div>
+                  <h2
+                    className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                    style={{ fontSize: "clamp(40px, 7vw, 120px)" }}
+                  >
+                    Private chef for your next party. ₹5,999 in Delhi.
+                  </h2>
+                  <p className="reveal-up mt-8 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+                    12 dishes cooked live in your kitchen. Vetted chef. Cleanup included.
+                  </p>
+                  <Link
+                    href="/party"
+                    className="savri-ai-btn-primary mt-10 inline-flex min-h-12 items-center gap-2 px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+                  >
+                    Book a Party Chef <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
 
         <Footer />

@@ -320,6 +320,11 @@ const privacyHtml = `
 
 export default function PrivacyPage() {
   return (
-    <div className="privacy-root" dangerouslySetInnerHTML={{ __html: privacyHtml }} />
+    <main className="relative overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <div className="savri-ai-glow-rose" aria-hidden="true" />
+      <div className="relative z-10">
+        <div className="privacy-root" dangerouslySetInnerHTML={{ __html: privacyHtml }} />
+      </div>
+    </main>
   )
 }
