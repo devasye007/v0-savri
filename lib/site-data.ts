@@ -25,7 +25,6 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Party", href: "/party" },
-  { label: "Blog", href: "/blog" },
   { label: "Savri AI", href: "/ai" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },

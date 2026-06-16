@@ -74,7 +74,8 @@ function HeroMoment() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_14%,rgba(26,26,26,0.28)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.78)_14%,rgba(26,26,26,0.62)_46%,rgba(26,26,26,0.95)_88%,#1A1A1A_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0)_55%)]" />
 
         <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
           <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
@@ -172,7 +173,7 @@ function SequentialPricingMoment({ tiers }: { tiers: Tier[] }) {
                   {row.amount}
                 </div>
                 <p
-                  className="savri-price-label mt-3 font-sans font-medium tracking-wide text-[#F5F0E8]/90"
+                  className="savri-price-label mt-8 font-sans font-medium tracking-wide text-[#F5F0E8]/90 md:mt-10"
                   style={{
                     fontSize: "clamp(15px, 1.4vw, 24px)",
                     "--ws": row.ws + 4,

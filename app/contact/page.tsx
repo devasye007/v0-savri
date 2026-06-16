@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
-const FORM_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
+const FORM_IMG = "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1920&q=80"
 
 const contactDetails = [
   { icon: MapPin, label: "Savri HQ", value: "Delhi NCR" },

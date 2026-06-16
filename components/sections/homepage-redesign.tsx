@@ -10,7 +10,7 @@ const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
 const PARTY_IMG = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
 const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
-const KITCHEN_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
+const KITCHEN_IMG = "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1920&q=80"
 
 /**
  * Cooking footage played as autoplay loops. Drop the .mp4 files at these

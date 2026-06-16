@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Answers about Savri pricing, booking timelines, ingredients, allergies, cancellations, and what to expect from your private chef experience.",
 }
 
-const HERO_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
+const HERO_IMG = "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1920&q=80"
 const BLEED_IMG = "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=1920&q=80"
 const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
 

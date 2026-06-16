@@ -5,7 +5,7 @@ import { useEffect, useRef, type CSSProperties } from "react"
 import { ArrowRight } from "lucide-react"
 
 const HERO_IMG =
-  "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
+  "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1920&q=80"
 const BLEED_IMG =
   "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
 const CTA_IMG =
@@ -91,7 +91,8 @@ function HeroMoment() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_14%,rgba(26,26,26,0.28)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.78)_14%,rgba(26,26,26,0.62)_46%,rgba(26,26,26,0.95)_88%,#1A1A1A_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0)_55%)]" />
 
         <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
           <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
@@ -472,7 +473,6 @@ export function HowItWorksClient({
   return (
     <main className="savri-travel-stack overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
       <HeroMoment />
-      <StepsRevealMoment />
       <StepsDetailMoment steps={steps} />
       <KitchenBleed />
       <ChefDoesMoment chefDoes={chefDoes} youProvide={youProvide} />

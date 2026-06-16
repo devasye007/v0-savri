@@ -19,7 +19,7 @@ import { BackToTop } from "@/components/ui/back-to-top"
 
 const APPLY_LINK = "https://forms.gle/ESCw7Zpt5vJNgJxa8"
 
-const HERO_IMG = "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
+const HERO_IMG = "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1920&q=80"
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
 const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
 
@@ -176,7 +176,8 @@ export default function CareersPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.5)_14%,rgba(26,26,26,0.3)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.78)_14%,rgba(26,26,26,0.62)_46%,rgba(26,26,26,0.95)_88%,#1A1A1A_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0)_55%)]" />
 
             <div className="absolute left-6 top-28 z-10 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
               <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>

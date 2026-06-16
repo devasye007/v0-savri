@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect, useRef, type CSSProperties } from "react"
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import {
   ArrowRight,
   Brain,
@@ -75,7 +75,7 @@ const featureCards = [
       "Instead of random assignment, Savri AI matches you with chefs who specialize in your preferences. Love Bengali food? Get the chef who already understands your taste.",
     visual: "Your profile + chef strengths + occasion needs = stronger match",
     example: "Loves vegetarian, spicy, Bengali → Matches Neha, Bengali vegetarian specialist",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1600&q=80",
   },
   {
     icon: Salad,
@@ -400,6 +400,183 @@ function FeatureMoment({
   )
 }
 
+/* ─────────── FUTURE-FACING HELPERS ─────────── */
+
+/** Adds `.is-typed` on mount (delayed one frame so the keyframe's `from` state
+ * applies before the animation runs). Falls back to fully visible if JS off. */
+function useTypeOnEnter<T extends HTMLElement>(_threshold = 0.4) {
+  const ref = useRef<T | null>(null)
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const raf = window.requestAnimationFrame(() => node.classList.add("is-typed"))
+    return () => window.cancelAnimationFrame(raf)
+  }, [])
+  return ref
+}
+
+function TypedHeadline({
+  children,
+  className = "",
+  style,
+}: {
+  children: string
+  className?: string
+  style?: CSSProperties
+}) {
+  const ref = useTypeOnEnter<HTMLSpanElement>(0.4)
+  return (
+    <span ref={ref} className={`savri-ai-typing ${className}`} style={style}>
+      {children}
+    </span>
+  )
+}
+
+function LivingOrb() {
+  return (
+    <div className="savri-ai-orb-future" aria-hidden="true">
+      <span className="savri-ai-orb-core" />
+      <span className="savri-ai-orb-ring-1" />
+      <span className="savri-ai-orb-ring-2" />
+      <span className="savri-ai-orb-ring-3" />
+    </div>
+  )
+}
+
+function ParticleField({ count = 36 }: { count?: number }) {
+  // Deterministic-ish seed via index so SSR/CSR match. Each particle has its own
+  // drift vector and timing.
+  const particles = useMemo(
+    () =>
+      Array.from({ length: count }).map((_, i) => {
+        const seed = (n: number) => ((Math.sin((i + 1) * n) + 1) / 2)
+        return {
+          id: i,
+          left: seed(12.9898) * 100,
+          top: 40 + seed(78.233) * 55,
+          px: (seed(37.719) - 0.5) * 280,
+          py: -80 - seed(63.171) * 220,
+          delay: seed(91.421) * 8,
+          duration: 6 + seed(45.123) * 5,
+        }
+      }),
+    [count],
+  )
+  return (
+    <div className="savri-ai-particles" aria-hidden="true">
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          className="savri-ai-particle"
+          style={
+            {
+              left: `${p.left.toFixed(2)}%`,
+              top: `${p.top.toFixed(2)}%`,
+              "--px": `${p.px.toFixed(0)}px`,
+              "--py": `${p.py.toFixed(0)}px`,
+              animationDelay: `${p.delay.toFixed(2)}s`,
+              animationDuration: `${p.duration.toFixed(2)}s`,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  )
+}
+
+/** Animated number that counts from 0 → target over 1.4s when scrolled into view */
+function StatCounter({
+  target,
+  suffix = "",
+  prefix = "",
+  duration = 1400,
+}: {
+  target: number
+  suffix?: string
+  prefix?: string
+  duration?: number
+}) {
+  const ref = useRef<HTMLSpanElement | null>(null)
+  const [value, setValue] = useState(0)
+  const started = useRef(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !started.current) {
+            started.current = true
+            const start = performance.now()
+            const run = (now: number) => {
+              const t = Math.min(1, (now - start) / duration)
+              const eased = 1 - Math.pow(1 - t, 3)
+              setValue(Math.round(target * eased))
+              if (t < 1) requestAnimationFrame(run)
+            }
+            requestAnimationFrame(run)
+            io.unobserve(node)
+          }
+        })
+      },
+      { threshold: 0.5 },
+    )
+    io.observe(node)
+    return () => io.disconnect()
+  }, [target, duration])
+
+  return (
+    <span ref={ref} className="savri-ai-stat">
+      {prefix}
+      {value.toLocaleString("en-IN")}
+      {suffix}
+    </span>
+  )
+}
+
+/** Horizontal SVG pipeline — 5 nodes connected by a rail with a flowing data dot */
+function PipelineDiagram({
+  nodes,
+}: {
+  nodes: Array<{ number: string; label: string }>
+}) {
+  return (
+    <div className="relative w-full" aria-hidden="true">
+      {/* Rail with flowing dot */}
+      <div className="absolute left-0 right-0 top-[34px] h-1px md:top-[36px]">
+        <div className="savri-ai-pipeline-rail h-px w-full" />
+      </div>
+      {/* Nodes */}
+      <div className="relative grid gap-8 sm:grid-cols-5 sm:gap-6">
+        {nodes.map((n, i) => (
+          <div key={n.number} className="flex flex-col items-center text-center">
+            <div className="relative flex h-[72px] w-full items-center justify-center">
+              <div
+                className={
+                  i === 0
+                    ? "savri-ai-pipeline-node h-5 w-5"
+                    : "savri-ai-pipeline-node savri-ai-pipeline-node-mute h-5 w-5"
+                }
+                style={i > 0 ? { animationDelay: `${i * 0.45}s` } : undefined}
+              />
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.32em] text-[#C9A84C]">
+              Node {String(i + 1).padStart(2, "0")}
+            </p>
+            <p
+              className="mt-3 font-serif font-semibold leading-tight text-[#F5F0E8]"
+              style={{ fontSize: "clamp(18px, 1.6vw, 26px)" }}
+            >
+              {n.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function SavriAiPage() {
   const ctaRef = useOnEnter<HTMLElement>(0.25)
   const experienceRef = useOnEnter<HTMLElement>(0.2)
@@ -408,9 +585,74 @@ export function SavriAiPage() {
 
   return (
     <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
-      {/* ─────────── 01 / HERO — pulsing orb + truly massive headline ─────────── */}
-      <section className="relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
-        <div className="savri-ai-orb" aria-hidden="true" />
+      {/* ─────────── 01 / HERO — kitchen silhouettes + steam + typed headline ─────────── */}
+      <section className="savri-ai-dotgrid relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
+        {/* Warm food-kitchen ambient: rose+gold radial wash + steam wisps
+            drifting up the screen + faint kitchen cutlery silhouettes. No
+            circles, no photos. */}
+        <div className="savri-ai-foodbed" aria-hidden="true">
+          <span className="warm-wash" />
+          <span className="wisp wisp-1" />
+          <span className="wisp wisp-2" />
+          <span className="wisp wisp-3" />
+          <span className="wisp wisp-4" />
+          <span className="wisp wisp-5" />
+          <span className="wisp wisp-6" />
+        </div>
+
+        {/* Kitchen cutlery silhouettes — faded SVG line art in the corners.
+            Suggests "food" without using any photo or any circle. */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 80 240"
+          className="pointer-events-none absolute left-[6%] top-[14%] h-[36vh] w-auto opacity-[0.16] md:left-[8%]"
+          fill="#C9A84C"
+        >
+          {/* Fork — 4 prongs + tine bar + handle */}
+          <rect x="10" y="8"  width="6" height="62" rx="3" />
+          <rect x="22" y="8"  width="6" height="62" rx="3" />
+          <rect x="34" y="8"  width="6" height="62" rx="3" />
+          <rect x="46" y="8"  width="6" height="62" rx="3" />
+          <rect x="10" y="64" width="42" height="14" rx="7" />
+          <rect x="27" y="74" width="8"  height="158" rx="4" />
+        </svg>
+
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 80 240"
+          className="pointer-events-none absolute right-[6%] top-[16%] h-[34vh] w-auto opacity-[0.14] md:right-[8%]"
+          fill="#B5636A"
+        >
+          {/* Spoon — bowl + handle */}
+          <ellipse cx="40" cy="40" rx="28" ry="36" />
+          <rect x="36" y="72" width="8" height="162" rx="4" />
+        </svg>
+
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 80 240"
+          className="pointer-events-none absolute left-[12%] bottom-[10%] h-[28vh] w-auto opacity-[0.12]"
+          fill="#C9A84C"
+        >
+          {/* Knife — angled blade + handle */}
+          <path d="M40 4 L66 120 L36 132 Z" />
+          <rect x="32" y="128" width="14" height="100" rx="5" />
+        </svg>
+
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 120 140"
+          className="pointer-events-none absolute right-[10%] bottom-[12%] h-[22vh] w-auto opacity-[0.14]"
+          fill="#B5636A"
+        >
+          {/* Herb leaf — almond shape + center vein */}
+          <path d="M60 8 C20 28 20 100 60 132 C100 100 100 28 60 8 Z" />
+          <rect x="58" y="8" width="4" height="124" fill="rgba(26,26,26,0.5)" />
+          <path d="M60 35 L36 50 M60 35 L84 50 M60 60 L32 78 M60 60 L88 78 M60 88 L40 100 M60 88 L80 100"
+            stroke="rgba(26,26,26,0.5)" strokeWidth="2" fill="none" />
+        </svg>
+
+        <ParticleField count={36} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
 
         <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
@@ -423,18 +665,18 @@ export function SavriAiPage() {
           <Sparkles className="h-3 w-3" /> 01 — Coming Soon
         </p>
         <h1 className="reveal-up relative z-10 mt-10 flex flex-col items-center leading-[0.84] tracking-tight">
-          <span
+          <TypedHeadline
             className="block font-serif font-semibold text-[#F5F0E8]"
-            style={{ fontSize: "clamp(80px, 14vw, 280px)" }}
+            style={{ fontSize: "clamp(32px, 5.5vw, 92px)" }}
           >
             Meet
-          </span>
-          <span
+          </TypedHeadline>
+          <TypedHeadline
             className="block font-serif font-semibold text-[#B5636A]"
-            style={{ fontSize: "clamp(96px, 16vw, 320px)", lineHeight: 0.82 }}
+            style={{ fontSize: "clamp(40px, 7vw, 120px)", lineHeight: 0.92, animationDelay: "0.6s" }}
           >
             Savri AI.
-          </span>
+          </TypedHeadline>
         </h1>
         <p className="reveal-up relative z-10 mt-10 max-w-xl text-xl text-[#F5F0E8]/82 md:text-2xl">
           The future of private chef experiences. Coming soon.
@@ -464,47 +706,30 @@ export function SavriAiPage() {
       </section>
 
       {/* ─────────── 02 / WHY AI — sticky word-reveal moment ─────────── */}
-      <section className="savri-words-wrap text-[#F5F0E8]">
-        <div className="savri-words-pin">
-          <div className="mx-auto w-full max-w-[1600px]">
-            <p className="text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why AI</p>
-            <p
-              className="mt-10 font-serif leading-[1.06] tracking-tight"
-              style={{ fontSize: "clamp(34px, 5vw, 96px)" }}
-            >
-              <WordStream
-                text="Why Every Meal Should Be Personal"
-                startVh={60}
-                endVh={150}
-                className="block italic text-[#B5636A]"
-              />
-              <WordStream
-                text={problemCards[0].title}
-                startVh={160}
-                endVh={220}
-                className="mt-[0.35em] block"
-              />
-              <WordStream
-                text={problemCards[1].title}
-                startVh={230}
-                endVh={290}
-                className="mt-[0.35em] block"
-              />
-              <WordStream
-                text={problemCards[2].title}
-                startVh={300}
-                endVh={380}
-                className="mt-[0.35em] block text-[#C9A84C]"
-              />
-            </p>
-            <div className="mt-12 grid max-w-5xl gap-8 md:grid-cols-3">
-              {problemCards.map((card) => (
-                <div key={card.title} className="flex items-start gap-4">
-                  <card.icon className="mt-1 h-6 w-6 shrink-0 text-[#B5636A]" />
-                  <p className="text-sm leading-7 text-[#F5F0E8]/75 md:text-base">{card.copy}</p>
-                </div>
-              ))}
-            </div>
+      <section className="relative w-full overflow-hidden bg-[#1A1A1A] py-32 text-[#F5F0E8] md:py-48">
+        <div className="savri-ai-glow-rose" aria-hidden="true" />
+        <div className="relative mx-auto w-full max-w-[1600px] px-6 md:px-16">
+          <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">02 — Why AI</p>
+          <h2
+            className="reveal-up mt-10 font-serif font-semibold leading-[1.04] tracking-tight text-[#F5F0E8]"
+            style={{ fontSize: "clamp(32px, 4.5vw, 84px)" }}
+          >
+            Why Every Meal Should Be Personal
+          </h2>
+          <div className="mt-20 grid max-w-6xl gap-12 md:mt-28 md:grid-cols-3">
+            {problemCards.map((card, i) => (
+              <div
+                key={card.title}
+                className="reveal-up flex flex-col gap-5"
+                style={{ transitionDelay: `${i * 120}ms` }}
+              >
+                <card.icon className="h-7 w-7 shrink-0 text-[#B5636A]" />
+                <h3 className="font-serif font-semibold leading-[1.15] text-[#F5F0E8] text-xl md:text-[26px]">
+                  {card.title}
+                </h3>
+                <p className="text-sm leading-7 text-[#F5F0E8]/75 md:text-base">{card.copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -552,13 +777,13 @@ export function SavriAiPage() {
           <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">04 — Features</p>
           <h2
             className="reveal-up mt-6 font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
+            style={{ fontSize: "clamp(44px, 8.5vw, 160px)" }}
           >
             What Savri AI
           </h2>
           <h2
             className="reveal-up font-serif font-semibold leading-[0.9] text-[#B5636A]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
+            style={{ fontSize: "clamp(44px, 8.5vw, 160px)" }}
           >
             Can Do.
           </h2>
@@ -569,10 +794,10 @@ export function SavriAiPage() {
         ))}
       </section>
 
-      {/* ─────────── 05 / EXPERIENCE FLOW — step cards in a single bright moment ─────────── */}
+      {/* ─────────── 05 / EXPERIENCE FLOW — pipeline diagram + step cards ─────────── */}
       <section
         ref={experienceRef}
-        className="relative z-[5] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]"
+        className="savri-ai-dotgrid relative z-[5] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]"
       >
         <div className="absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_40%,rgba(201,168,76,0.18)_0%,transparent_70%)]" />
 
@@ -580,17 +805,25 @@ export function SavriAiPage() {
           <p className="savri-rise text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">05 — Flow</p>
           <h2
             className="savri-from-left mt-10 font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
+            style={{ fontSize: "clamp(44px, 8.5vw, 160px)" }}
           >
             Five steps.
           </h2>
           <h2
             className="savri-from-right font-serif font-semibold leading-[0.9] text-[#C9A84C]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)", transitionDelay: "150ms" }}
+            style={{ fontSize: "clamp(44px, 8.5vw, 160px)", transitionDelay: "150ms" }}
           >
             One better meal.
           </h2>
 
+          {/* Animated pipeline — visual representation of the AI flow */}
+          <div className="savri-rise mt-24 md:mt-32" style={{ transitionDelay: "350ms" }}>
+            <PipelineDiagram
+              nodes={steps.map((s) => ({ number: s.number, label: s.title }))}
+            />
+          </div>
+
+          {/* Detailed step copy below the diagram */}
           <div className="mt-20 grid gap-10 md:mt-28 md:grid-cols-5 md:gap-6">
             {steps.map((step, i) => (
               <div
@@ -599,13 +832,13 @@ export function SavriAiPage() {
                 style={{ transitionDelay: `${250 + i * 100}ms` }}
               >
                 <div
-                  className="font-serif italic leading-none text-[#C9A84C]"
+                  className="savri-ai-stat font-serif font-semibold leading-none"
                   style={{ fontSize: "clamp(56px, 6vw, 120px)" }}
                 >
                   {step.number}
                 </div>
                 <h3
-                  className="font-serif italic leading-[0.95] text-[#F5F0E8]"
+                  className="font-serif font-semibold leading-[0.95] text-[#F5F0E8]"
                   style={{ fontSize: "clamp(22px, 2.2vw, 36px)" }}
                 >
                   {step.title}
@@ -625,7 +858,7 @@ export function SavriAiPage() {
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">06 — Timeline</p>
             <div>
               <h2
-                className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+                className="reveal-up font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
                 style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
               >
                 When Is Savri AI Coming?
@@ -636,16 +869,26 @@ export function SavriAiPage() {
             </div>
           </div>
 
-          <div className="savri-ai-stagger mt-24 md:mt-32">
-            {roadmap.map((item) => (
+          {/* Vertical timeline rail — gold node for first phase, muted for future */}
+          <div className="savri-ai-timeline savri-ai-stagger mt-24 pl-10 md:mt-32 md:pl-14">
+            {roadmap.map((item, i) => (
               <div
                 key={item.month}
-                className="savri-ai-row reveal-up grid grid-cols-1 gap-8 border-t border-[#F5F0E8]/12 py-14 md:grid-cols-[0.3fr_1fr] md:gap-16 md:py-20"
+                className="reveal-up relative grid grid-cols-1 gap-6 pb-16 md:grid-cols-[0.3fr_1fr] md:gap-16 md:pb-24"
               >
+                <span
+                  className={
+                    i === 0
+                      ? "savri-ai-timeline-node"
+                      : "savri-ai-timeline-node savri-ai-timeline-node-future"
+                  }
+                  style={{ left: "-2.5rem", top: "0.6rem" }}
+                  aria-hidden="true"
+                />
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C]">{item.month}</p>
+                  <p className="savri-ai-stat text-[11px] uppercase tracking-[0.4em]">{item.month}</p>
                   <h3
-                    className="mt-4 font-serif italic leading-[0.95] text-[#F5F0E8]"
+                    className="mt-4 font-serif font-semibold leading-[0.95] text-[#F5F0E8]"
                     style={{ fontSize: "clamp(28px, 4vw, 64px)" }}
                   >
                     {item.phase}
@@ -675,13 +918,13 @@ export function SavriAiPage() {
           <p className="savri-rise text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">07 — Use Cases</p>
           <h2
             className="savri-from-left mt-10 font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)" }}
+            style={{ fontSize: "clamp(44px, 8.5vw, 160px)" }}
           >
             Savri AI in
           </h2>
           <h2
             className="savri-from-right font-serif font-semibold leading-[0.9] text-[#B5636A]"
-            style={{ fontSize: "clamp(56px, 11vw, 220px)", transitionDelay: "150ms" }}
+            style={{ fontSize: "clamp(44px, 8.5vw, 160px)", transitionDelay: "150ms" }}
           >
             real life.
           </h2>
@@ -697,8 +940,8 @@ export function SavriAiPage() {
                   Profile {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3
-                  className="font-serif italic leading-[1.05] text-[#F5F0E8]"
-                  style={{ fontSize: "clamp(24px, 2.6vw, 44px)" }}
+                  className="font-serif font-semibold leading-[1.15] text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(18px, 1.5vw, 28px)" }}
                 >
                   {story.profile}
                 </h3>
@@ -713,7 +956,7 @@ export function SavriAiPage() {
                   </p>
                   <p>
                     <span className="block text-[10px] uppercase tracking-[0.32em] text-[#C9A84C]">Outcome</span>
-                    <span className="mt-2 block font-serif italic text-[#F5F0E8]">{story.outcome}</span>
+                    <span className="mt-2 block font-serif font-semibold text-[#F5F0E8]">{story.outcome}</span>
                   </p>
                 </div>
               </article>
@@ -760,7 +1003,7 @@ export function SavriAiPage() {
                 style={{ transitionDelay: `${300 + i * 130}ms` }}
               >
                 <ShieldCheck className="h-7 w-7 text-[#C9A84C]" />
-                <h3 className="font-serif italic text-xl text-[#F5F0E8] md:text-2xl">{point.title}</h3>
+                <h3 className="font-serif font-semibold text-xl text-[#F5F0E8] md:text-2xl">{point.title}</h3>
                 <p className="text-sm leading-7 text-[#F5F0E8]/75 md:text-base">{point.copy}</p>
               </div>
             ))}
@@ -775,7 +1018,7 @@ export function SavriAiPage() {
           <div className="grid gap-12 md:grid-cols-[0.3fr_1fr]">
             <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">08 — FAQ</p>
             <h2
-              className="reveal-up font-serif italic leading-[0.9] text-[#F5F0E8]"
+              className="reveal-up font-serif font-semibold leading-[0.9] text-[#F5F0E8]"
               style={{ fontSize: "clamp(48px, 9vw, 170px)" }}
             >
               Questions About Savri AI
@@ -786,7 +1029,7 @@ export function SavriAiPage() {
             {faqs.map((faq) => (
               <details key={faq.question} className="group py-2">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 text-left marker:content-none">
-                  <span className="font-serif italic text-xl text-[#F5F0E8] md:text-2xl">{faq.question}</span>
+                  <span className="font-serif font-semibold text-xl text-[#F5F0E8] md:text-2xl">{faq.question}</span>
                   <span className="text-3xl text-[#B5636A] transition group-open:rotate-45">+</span>
                 </summary>
                 <p className="pb-6 pr-8 text-base leading-8 text-[#F5F0E8]/72 md:text-lg">{faq.answer}</p>

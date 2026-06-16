@@ -28,7 +28,10 @@ export function Navbar() {
     return pathname === href
   }
 
-  const transparent = pathname === "/" && !scrolled
+  // Every Savri page is now dark — make the navbar fully transparent at top
+  // on all routes so it reads as seamless with the hero. Becomes the dark
+  // backdrop-blur header only after the user scrolls past 10px.
+  const transparent = !scrolled
 
   return (
     <header
@@ -72,7 +75,7 @@ export function Navbar() {
           >
             Careers
           </Link>
-          <a href="/#plans-notify" className="text-sm text-cream/72 transition-colors duration-200 hover:text-cream">
+          <a href="/ai#notify" className="text-sm text-cream/72 transition-colors duration-200 hover:text-cream">
             Join Waitlist
           </a>
         </div>
@@ -124,7 +127,7 @@ export function Navbar() {
             >
               Careers
             </Link>
-            <a href="/#plans-notify" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
+            <a href="/ai#notify" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
               Join Waitlist
             </a>
             <Link href="/contact" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
