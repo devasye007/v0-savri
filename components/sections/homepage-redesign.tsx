@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
 
 import { BOOKING_URL } from "@/lib/site-data"
+import { FathersDaySection } from "@/components/sections/fathers-day-section"
 
 const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
@@ -515,6 +516,7 @@ export function HomepageRedesign() {
   return (
     <main className="savri-travel-stack">
       <HeroSection />
+      <FathersDaySection />
       <WordsSection />
       <KitchenScene />
       <BleedSection />

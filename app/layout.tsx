@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
 import { ComingSoonBanner } from '@/components/ui/coming-soon-banner'
+import { FathersDayBanner } from '@/components/ui/fathers-day-banner'
 import { PageEffects } from '@/components/ui/page-effects'
 import { FloatingWhatsApp } from '@/components/ui/floating-whatsapp'
 import './globals.css'
@@ -138,6 +139,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-cream text-dark">
         <PageEffects />
         <ComingSoonBanner />
+        <FathersDayBanner />
         <IntroScreen />
         {children}
         <FloatingWhatsApp />

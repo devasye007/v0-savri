@@ -1,9 +1,20 @@
 "use client"
 
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
 
+import { isFathersDayOfferActive } from "@/lib/fathers-day"
+
 export function ComingSoonBanner() {
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    setHidden(isFathersDayOfferActive())
+  }, [])
+
+  if (hidden) return null
+
   return (
     <div
       role="region"
