@@ -7,7 +7,8 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import { BOOKING_URL } from "@/lib/site-data"
 import { FathersDaySection } from "@/components/sections/fathers-day-section"
 
-const HERO_IMG = "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
+const HERO_IMG = "/images/7.png"
+const WORDS_BG_IMG = "/images/10.png"
 const BLEED_IMG = "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
 const PARTY_IMG = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
 const CTA_IMG = "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
@@ -29,10 +30,10 @@ const HERO_VIDEO = "/videos/hero.mp4"
 const KITCHEN_VIDEO = "/videos/kitchen.mp4"
 
 const DISHES = [
-  { src: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=900&q=80", alt: "Hyderabadi biryani" },
+  { src: "/images/15.png", alt: "Hyderabadi biryani lifted fresh from the copper pot" },
   { src: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900&q=80", alt: "Hand-rolled pasta" },
   { src: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=900&q=80", alt: "Indian thali" },
-  { src: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=900&q=80", alt: "Asian noodles" },
+  { src: "/images/11.png", alt: "Spices being sprinkled into a wok with rising steam" },
   { src: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=80", alt: "Wood-fired pizza" },
 ]
 
@@ -151,29 +152,32 @@ function HeroSection() {
             loop
             playsInline
             preload="auto"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-center"
             aria-hidden="true"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_14%,rgba(26,26,26,0.28)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
+        {/* Base vertical gradient */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.55)_14%,rgba(26,26,26,0.28)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
+        {/* Centered vignette — guarantees all three headline lines pop regardless of the photo behind them */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0)_75%)]" />
 
         <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
           <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
             <span
               className="block font-serif font-semibold text-[#F5F0E8]"
-              style={{ fontSize: "clamp(72px, 12vw, 220px)" }}
+              style={{ fontSize: "clamp(72px, 12vw, 220px)", textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
             >
               Private
             </span>
             <span
               className="block font-serif font-semibold text-[#B5636A]"
-              style={{ fontSize: "clamp(96px, 16vw, 300px)", lineHeight: 0.82 }}
+              style={{ fontSize: "clamp(96px, 16vw, 300px)", lineHeight: 0.82, textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
             >
               Chef.
             </span>
             <span
               className="block font-serif font-semibold text-[#F5F0E8]"
-              style={{ fontSize: "clamp(60px, 10vw, 184px)" }}
+              style={{ fontSize: "clamp(60px, 10vw, 184px)", textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
             >
               Ghar Pe.
             </span>
@@ -181,10 +185,18 @@ function HeroSection() {
         </div>
 
         <div className="savri-hero-foot absolute inset-x-0 bottom-12 z-10 flex flex-col items-center gap-3 text-[#F5F0E8]">
-          <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]">
+          <span
+            className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+          >
             Delhi NCR • Book Now
           </span>
-          <span className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/55">↓ Scroll</span>
+          <span
+            className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/85"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+          >
+            ↓ Scroll
+          </span>
         </div>
       </section>
     </div>
@@ -193,11 +205,30 @@ function HeroSection() {
 
 function WordsSection() {
   return (
-    <section className="savri-words-wrap text-[#F5F0E8]">
-      <div className="savri-words-pin">
-        <div className="reveal-up mx-auto w-full max-w-[1600px]">
+    <section className="savri-words-wrap relative overflow-hidden text-[#F5F0E8]">
+      <div className="savri-ambient-zoom absolute inset-0">
+        <Image
+          src={WORDS_BG_IMG}
+          alt="A Savri chef serving naan and dal makhani at home"
+          fill
+          loading="lazy"
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      {/* Heavier overlay so the four serif lines read against the food photo */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(10,10,10,0.85)_18%,rgba(10,10,10,0.78)_50%,rgba(10,10,10,0.88)_82%,#1A1A1A_100%)] md:hidden" />
+      <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(10,10,10,0.72)_18%,rgba(10,10,10,0.55)_50%,rgba(10,10,10,0.82)_82%,#1A1A1A_100%)] md:block" />
+      {/* Centered vignette + text-shadow ensure crisp white serif over any image */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_center,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0)_75%)]" />
+
+      <div className="savri-words-pin relative z-10">
+        <div
+          className="reveal-up mx-auto w-full max-w-[1600px]"
+          style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
+        >
           <p
-            className="font-serif leading-[1.06] tracking-tight"
+            className="font-serif leading-[1.06] tracking-tight text-[#F5F0E8]"
             style={{ fontSize: "clamp(34px, 5vw, 96px)" }}
           >
             <span className="block">A chef arrives at your door.</span>

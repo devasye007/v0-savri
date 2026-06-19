@@ -655,7 +655,7 @@ export function SavriAiPage() {
         <ParticleField count={36} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,transparent_18%,transparent_82%,#1A1A1A_100%)]" />
 
-        <div className="absolute left-6 top-28 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+        <div className="absolute left-6 top-32 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
           <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
           <ChevronRight className="mx-2 inline h-3 w-3" />
           <span className="text-[#C9A84C]">Savri AI</span>

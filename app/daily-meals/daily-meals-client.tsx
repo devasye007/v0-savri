@@ -6,8 +6,7 @@ import { ArrowRight, ChefHat, Leaf, Sparkles, UtensilsCrossed } from "lucide-rea
 import { ScrollReveal } from "@/components/ScrollReveal"
 import { BOOKING_URL } from "@/lib/site-data"
 
-const HERO_IMG =
-  "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1920&q=80"
+const HERO_IMG = "/images/10.png"
 
 const included = [
   {
@@ -41,26 +40,29 @@ export function DailyMealsClient() {
           <div className="absolute inset-0 savri-hero-img">
             <Image
               src={HERO_IMG}
-              alt="A freshly cooked Indian thali at home"
+              alt="A hand picking up freshly cooked naan over a bowl of dal makhani"
               fill
               priority
               sizes="100vw"
-              className="object-cover"
+              className="object-cover object-center"
             />
           </div>
+          {/* Vertical gradient — keeps top/bottom dark for chrome/breadcrumbs */}
           <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.55)_14%,rgba(26,26,26,0.4)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
+          {/* Centered dark vignette — behind the headline only, so apron branding stays visible */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0)_55%)]" />
 
           <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
             <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
               <span
                 className="block font-serif font-semibold text-[#F5F0E8]"
-                style={{ fontSize: "clamp(72px, 12vw, 220px)" }}
+                style={{ fontSize: "clamp(72px, 12vw, 220px)", textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
               >
                 Daily
               </span>
               <span
                 className="block font-serif font-semibold text-[#B5636A]"
-                style={{ fontSize: "clamp(96px, 16vw, 300px)", lineHeight: 0.82 }}
+                style={{ fontSize: "clamp(96px, 16vw, 300px)", lineHeight: 0.82, textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
               >
                 Meals.
               </span>

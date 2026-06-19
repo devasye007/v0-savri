@@ -49,7 +49,7 @@ export default function FaqPage() {
             </div>
             <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.55)_14%,rgba(26,26,26,0.35)_46%,rgba(26,26,26,0.92)_88%,#1A1A1A_100%)]" />
 
-            <div className="absolute left-6 top-28 z-10 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+            <div className="absolute left-6 top-32 z-10 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
               <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
               <ChevronRight className="mx-2 inline h-3 w-3" />
               <span className="text-[#C9A84C]">FAQ</span>

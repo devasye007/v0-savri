@@ -63,12 +63,12 @@ export function Navbar() {
           />
         </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-5 xl:flex xl:gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm transition-colors duration-200 ${
+              className={`text-[13px] transition-colors duration-200 xl:text-sm ${
                 isActive(link.href) ? "text-rose" : "text-cream/72 hover:text-cream"
               }`}
             >
@@ -77,7 +77,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <Link href="/contact" className="text-sm text-cream/68 transition hover:text-cream">
             Contact
           </Link>
@@ -94,7 +94,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setMobileOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-cream lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-cream xl:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
@@ -103,7 +103,7 @@ export function Navbar() {
       </nav>
 
       {mobileOpen ? (
-        <div className="border-t border-white/10 bg-black/92 px-4 py-4 lg:hidden">
+        <div className="border-t border-white/10 bg-black/92 px-4 py-4 xl:hidden">
           <div className="container mx-auto grid gap-3">
             {navLinks.map((link) => (
               <Link

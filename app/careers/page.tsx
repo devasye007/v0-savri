@@ -179,14 +179,17 @@ export default function CareersPage() {
             <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.78)_14%,rgba(26,26,26,0.62)_46%,rgba(26,26,26,0.95)_88%,#1A1A1A_100%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0)_55%)]" />
 
-            <div className="absolute left-6 top-28 z-10 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
+            <div className="absolute left-6 top-32 z-10 text-[11px] uppercase tracking-[0.5em] text-[#F5F0E8]/55 md:left-16 md:top-32">
               <Link href="/" className="hover:text-[#F5F0E8]">Home</Link>
               <ChevronRight className="mx-2 inline h-3 w-3" />
               <span className="text-[#C9A84C]">Careers</span>
             </div>
 
-            <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
-              <p className="text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+            <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 pt-40 pb-16 text-center text-[#F5F0E8] md:pt-44 md:pb-20">
+              <p
+                className="text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
+                style={{ textShadow: "0 2px 10px rgba(0,0,0,0.55)" }}
+              >
                 01 — Careers at Savri
               </p>
               <h1 className="mt-10 flex flex-col items-center leading-[0.86] tracking-tight">
@@ -462,6 +465,41 @@ export default function CareersPage() {
                   {cuisine}
                 </span>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────── 06.5 / WEAR OUR COLORS — text + chef portrait ─────────── */}
+        <section className="relative z-[3] w-full overflow-hidden bg-[#1A1A1A] py-32 text-[#F5F0E8] md:py-48">
+          <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+            <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
+              <div className="reveal-up relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-[#0A0A0A] shadow-[0_30px_80px_rgba(0,0,0,0.45)] md:aspect-[5/6] md:order-1 order-2">
+                <Image
+                  src="/images/12.png"
+                  alt="A chef in a Savri-branded t-shirt holding a fresh meal he just plated"
+                  fill
+                  loading="lazy"
+                  sizes="(min-width: 768px) 45vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+
+              <div className="md:order-2 order-1">
+                <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">06 — The Uniform</p>
+                <h2
+                  className="reveal-up mt-6 font-serif font-semibold leading-[0.92]"
+                  style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
+                >
+                  Wear our
+                  <br />
+                  <span className="text-[#B5636A]">colors.</span>
+                </h2>
+                <p className="reveal-up mt-10 max-w-xl text-base leading-8 text-[#F5F0E8]/85 md:text-lg">
+                  Every Savri chef shows up dressed for the part — apron, t-shirt, badge, and
+                  the standard of service that comes with it. When you join, you join a brand
+                  that homes already recognise at the door.
+                </p>
+              </div>
             </div>
           </div>
         </section>

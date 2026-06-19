@@ -18,8 +18,7 @@ const SITE_URL = "https://savri.co.in"
  * the cinematic full-bleed and horizontal pan moments.
  * ============================================================ */
 
-const HERO_IMG =
-  "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80"
+const HERO_IMG = "/images/7.png"
 const BLEED_IMG =
   "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
 const CTA_IMG =
@@ -38,7 +37,7 @@ type IncludedItem = {
 
 const included: IncludedItem[] = [
   { count: "4", title: "Snacks", blurb: "Crisp, crowd-favourite starters to open the evening.", img: "/images/party-snacks.jpg" },
-  { count: "4", title: "Main Course", blurb: "Slow-cooked curries and signature mains made fresh in your kitchen.", img: "/images/party-mains.jpg" },
+  { count: "4", title: "Main Course", blurb: "Slow-cooked curries and signature mains made fresh in your kitchen.", img: "/images/9.png" },
   { count: "2+1", title: "Sides & Salad", blurb: "Hand-rolled breads or fragrant rice, plus a fresh salad.", img: "/images/party-sides.jpg" },
   { count: "2", title: "Desserts", blurb: "Two indulgent finishers — because every party deserves a sweet ending.", img: "/images/party-desserts.jpg" },
 ]
@@ -509,6 +508,39 @@ function WhatsIncludedBleed() {
   )
 }
 
+function PartyGalleryBleed() {
+  return (
+    <section className="relative z-[5] h-[80svh] min-h-[480px] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8] md:h-[100svh]">
+      <div className="savri-ambient-zoom absolute inset-0">
+        <Image
+          src="/images/14.png"
+          alt="Savri buffet serving line at a private party"
+          fill
+          loading="lazy"
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.35)_18%,rgba(26,26,26,0.18)_50%,rgba(26,26,26,0.8)_85%,#1A1A1A_100%)]" />
+
+      <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-12 md:px-20 md:pb-20">
+        <p
+          className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}
+        >
+          On the night
+        </p>
+        <p
+          className="reveal-up mt-4 font-serif font-semibold leading-[0.92] text-[#F5F0E8]"
+          style={{ fontSize: "clamp(36px, 5.5vw, 96px)", textShadow: "0 2px 18px rgba(0,0,0,0.55)" }}
+        >
+          A full spread, served.
+        </p>
+      </div>
+    </section>
+  )
+}
+
 function FAQMoment() {
   const ref = useOnEnter<HTMLElement>(0.15)
   return (
@@ -715,6 +747,7 @@ export function PartyClient() {
       <IncludedHorizontalPan />
       <PricingMoment />
       <WhatsIncludedBleed />
+      <PartyGalleryBleed />
       <FAQMoment />
       <SEOCopyMoment />
       <CinematicCTA />

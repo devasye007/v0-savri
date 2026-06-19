@@ -4,10 +4,8 @@ import Image from "next/image"
 import { useEffect, useRef, type CSSProperties } from "react"
 import { ArrowRight } from "lucide-react"
 
-const HERO_IMG =
-  "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=1920&q=80"
-const BLEED_IMG =
-  "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1920&q=80"
+const HERO_IMG = "/images/6.png"
+const BLEED_IMG = "/images/13.png"
 const CTA_IMG =
   "https://images.unsplash.com/photo-1547592180-85f173990554?w=1920&q=80"
 
@@ -84,41 +82,53 @@ function HeroMoment() {
         <div className="absolute inset-0 savri-hero-img">
           <Image
             src={HERO_IMG}
-            alt="A chef setting up at a home kitchen"
+            alt="A Savri chef setting up at a home kitchen"
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-[70%_30%]"
           />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.78)_14%,rgba(26,26,26,0.62)_46%,rgba(26,26,26,0.95)_88%,#1A1A1A_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,10,10,0.55)_0%,rgba(10,10,10,0)_55%)]" />
+        {/* Strong centered vignette — guarantees the headline reads even if the apron logo sits behind it */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_center,rgba(10,10,10,0.72)_0%,rgba(10,10,10,0.35)_55%,rgba(10,10,10,0)_85%)]" />
 
         <div className="savri-hero-text relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-[#F5F0E8]">
           <h1 className="flex flex-col items-center leading-[0.86] tracking-tight">
             <span
               className="block font-serif font-semibold text-[#F5F0E8]"
-              style={{ fontSize: "clamp(60px, 11vw, 200px)" }}
+              style={{ fontSize: "clamp(60px, 11vw, 200px)", textShadow: "0 2px 24px rgba(0,0,0,0.65)" }}
             >
               How
             </span>
             <span
               className="block font-serif font-semibold text-[#B5636A]"
-              style={{ fontSize: "clamp(72px, 14vw, 260px)", lineHeight: 0.82 }}
+              style={{ fontSize: "clamp(72px, 14vw, 260px)", lineHeight: 0.82, textShadow: "0 2px 24px rgba(0,0,0,0.65)" }}
             >
               It Works.
             </span>
           </h1>
-          <p className="mt-10 max-w-2xl text-base leading-8 text-[#F5F0E8]/72 md:text-lg">
+          <p
+            className="mt-10 max-w-2xl text-base leading-8 text-[#F5F0E8] md:text-lg"
+            style={{ textShadow: "0 2px 12px rgba(0,0,0,0.55)" }}
+          >
             Savri is designed to feel premium without feeling complicated. Here is the full process, step by step.
           </p>
         </div>
 
         <div className="savri-hero-foot absolute inset-x-0 bottom-12 z-10 flex flex-col items-center gap-3 text-[#F5F0E8]">
-          <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]">
+          <span
+            className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+          >
             Six clean steps
           </span>
-          <span className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/55">↓ Scroll</span>
+          <span
+            className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/85"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+          >
+            ↓ Scroll
+          </span>
         </div>
       </section>
     </div>
@@ -257,6 +267,44 @@ function KitchenBleed() {
           >
             Your home.
           </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function MadeWithCareMoment() {
+  return (
+    <section className="relative z-[4] w-full overflow-hidden bg-[#1A1A1A] py-32 text-[#F5F0E8] md:py-48">
+      <div className="relative mx-auto max-w-[1600px] px-6 md:px-16">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
+          <div>
+            <p className="reveal-up text-[11px] uppercase tracking-[0.5em] text-[#C9A84C]">Our Promise</p>
+            <h2
+              className="reveal-up mt-6 font-serif font-semibold leading-[0.92]"
+              style={{ fontSize: "clamp(40px, 5.5vw, 110px)" }}
+            >
+              Made with care.
+              <br />
+              <span className="text-[#B5636A]">Served with care.</span>
+            </h2>
+            <p className="reveal-up mt-10 max-w-xl text-base leading-8 text-[#F5F0E8]/85 md:text-lg">
+              Every Savri chef cooks fresh in your kitchen, plates personally, and leaves the
+              space cleaner than they found it. The apron says it because we mean it — personal
+              chef service, in your home.
+            </p>
+          </div>
+
+          <div className="reveal-up relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-[#0A0A0A] shadow-[0_30px_80px_rgba(0,0,0,0.45)] md:aspect-[5/6]">
+            <Image
+              src="/images/8.png"
+              alt="A Savri chef plating samosas with the 'Food made with love' apron and card visible"
+              fill
+              loading="lazy"
+              sizes="(min-width: 768px) 45vw, 100vw"
+              className="object-cover object-center"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -475,6 +523,7 @@ export function HowItWorksClient({
       <HeroMoment />
       <StepsDetailMoment steps={steps} />
       <KitchenBleed />
+      <MadeWithCareMoment />
       <ChefDoesMoment chefDoes={chefDoes} youProvide={youProvide} />
       <TwentyFourHourRule />
       <FAQMoment faqs={faqs} bookingUrl={bookingUrl} />
