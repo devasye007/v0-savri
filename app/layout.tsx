@@ -5,8 +5,10 @@ import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
 import { ComingSoonBanner } from '@/components/ui/coming-soon-banner'
 import { FathersDayBanner } from '@/components/ui/fathers-day-banner'
+import { FathersDayFloatingAd } from '@/components/ui/fathers-day-floating-ad'
 import { PageEffects } from '@/components/ui/page-effects'
 import { FloatingWhatsApp } from '@/components/ui/floating-whatsapp'
+import { SmoothScroll } from '@/components/ui/smooth-scroll'
 import './globals.css'
 
 const inter = Inter({ 
@@ -137,11 +139,13 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased bg-cream text-dark">
+        <SmoothScroll />
         <PageEffects />
         <ComingSoonBanner />
         <FathersDayBanner />
         <IntroScreen />
         {children}
+        <FathersDayFloatingAd />
         <FloatingWhatsApp />
         <Analytics />
       </body>

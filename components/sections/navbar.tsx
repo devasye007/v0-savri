@@ -3,18 +3,31 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Menu, X } from "lucide-react"
 
 import { BOOKING_URL, navLinks } from "@/lib/site-data"
 
 export function Navbar() {
   const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const lastY = useRef(0)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10)
+    const onScroll = () => {
+      const y = window.scrollY
+      // Hide on scroll-down past 120px, reveal on scroll-up. Always show
+      // when at top, and never auto-hide while the mobile menu is open.
+      if (y < 120) {
+        setHidden(false)
+      } else if (y > lastY.current + 4) {
+        setHidden(true)
+      } else if (y < lastY.current - 4) {
+        setHidden(false)
+      }
+      lastY.current = y
+    }
     window.addEventListener("scroll", onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener("scroll", onScroll)
@@ -28,20 +41,15 @@ export function Navbar() {
     return pathname === href
   }
 
-  // Every Savri page is now dark — make the navbar fully transparent at top
-  // on all routes so it reads as seamless with the hero. Becomes the dark
-  // backdrop-blur header only after the user scrolls past 10px.
-  const transparent = !scrolled
+  // Every Savri page is now dark — keep the navbar fully transparent at all
+  // scroll positions so it stays seamless with the cinematic backdrop. The
+  // hide-on-scroll-down behavior still applies for clearance.
 
   return (
     <header
-      className={`fixed top-11 left-0 right-0 z-50 transition-all duration-300 ${
-        transparent
-          ? "border-b border-transparent bg-transparent backdrop-blur-0"
-          : scrolled
-            ? "border-b border-white/10 bg-black/82 backdrop-blur-xl"
-            : "border-b border-transparent bg-dark/72 backdrop-blur-md"
-      }`}
+      className={`fixed top-11 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        hidden && !mobileOpen ? "-translate-y-[calc(100%+44px)]" : "translate-y-0"
+      } border-b border-transparent bg-transparent backdrop-blur-0`}
     >
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 md:px-6">
         <Link href="/" className="hover:opacity-90 transition-opacity duration-200">
@@ -67,17 +75,6 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/careers"
-            className={`text-sm transition-colors duration-200 ${
-              isActive("/careers") ? "text-rose" : "text-cream/72 hover:text-cream"
-            }`}
-          >
-            Careers
-          </Link>
-          <a href="/ai#notify" className="text-sm text-cream/72 transition-colors duration-200 hover:text-cream">
-            Join Waitlist
-          </a>
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -119,17 +116,6 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/careers"
-              className={`rounded-2xl px-3 py-3 text-sm ${
-                isActive("/careers") ? "bg-rose/14 text-rose" : "text-cream/80 hover:bg-white/6"
-              }`}
-            >
-              Careers
-            </Link>
-            <a href="/ai#notify" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
-              Join Waitlist
-            </a>
             <Link href="/contact" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
               Contact
             </Link>

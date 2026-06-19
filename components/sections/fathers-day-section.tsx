@@ -10,8 +10,9 @@ import { FATHERS_DAY_VALIDITY_COPY, isFathersDayOfferActive } from "@/lib/father
 
 const INTIMATE_IMG =
   "https://images.unsplash.com/photo-1556910103925-9bb44e98f9ed?w=1920&q=80"
+// Indian family / celebration cake scene for the "larger celebration?" panel.
 const CELEBRATION_IMG =
-  "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1920&q=80"
+  "https://images.unsplash.com/photo-1530103862676-de2f6b6da465?w=1920&q=80"
 
 const FD_WHATSAPP =
   "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%27d%20like%20to%20book%20for%20Father%27s%20Day."
@@ -63,12 +64,21 @@ export function FathersDaySection() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={240}>
-            <p
-              className="mt-3 font-serif font-semibold text-[#B5636A]"
-              style={{ fontSize: "clamp(22px, 3vw, 52px)", letterSpacing: "0.04em" }}
-            >
-              with Savri
-            </p>
+            <div className="mt-3 flex items-center justify-center gap-3 md:gap-5">
+              <span
+                className="font-serif font-semibold text-[#B5636A]"
+                style={{ fontSize: "clamp(22px, 3vw, 52px)", letterSpacing: "0.04em" }}
+              >
+                with
+              </span>
+              <Image
+                src="/savri-logo-light.png"
+                alt="Savri"
+                width={200}
+                height={80}
+                className="h-20 w-auto -my-6 md:h-28 md:-my-9"
+              />
+            </div>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={420}>

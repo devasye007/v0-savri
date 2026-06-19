@@ -301,9 +301,23 @@ body {
   display: inline-block;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Lenis takes over smooth scrolling site-wide — native CSS smooth-scroll
+   must be off so it doesn't fight Lenis's interpolation. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Custom scrollbar for dark sections */
@@ -693,8 +707,12 @@ html {
 @keyframes page-enter {
   0% {
     opacity: 0;
-    transform: translateY(18px) scale(0.992);
-    filter: blur(10px);
+    transform: translateY(40px) scale(0.98);
+    filter: blur(24px);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(6px);
   }
   100% {
     opacity: 1;
@@ -704,14 +722,8 @@ html {
 }
 
 @keyframes veil-sweep {
-  0% {
-    transform: translateX(0%);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateX(104%);
-    opacity: 0;
-  }
+  0%   { transform: translateX(0%);   opacity: 1; }
+  100% { transform: translateX(110%); opacity: 0; }
 }
 
 .page-shell {
@@ -720,7 +732,7 @@ html {
 }
 
 .animate-page-enter {
-  animation: page-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-enter 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .page-transition-veil {
@@ -728,8 +740,12 @@ html {
   inset: 0;
   z-index: 90;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(245, 240, 235, 0.92), rgba(181, 99, 106, 0.24), rgba(10, 10, 10, 0));
-  animation: veil-sweep 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(90deg,
+    rgba(26, 26, 26, 0.98) 0%,
+    rgba(26, 26, 26, 0.92) 35%,
+    rgba(181, 99, 106, 0.5) 65%,
+    rgba(26, 26, 26, 0) 100%);
+  animation: veil-sweep 1.35s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 .reveal-block {
@@ -1702,6 +1718,30 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   box-shadow: none;
 }
 
+/* ========== MAGNETIC HOVER ==========
+   Elements marked [data-magnetic] glide toward the cursor on pointer
+   movement (handled by useMagneticHover in page-effects.tsx). The
+   transition makes the spring-back smooth when the pointer leaves. */
+[data-magnetic],
+.savri-ai-btn-primary,
+.savri-ai-btn-secondary,
+.immersive-button {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s,
+    box-shadow 0.3s;
+  will-change: transform;
+}
+@media (max-width: 1024px), (hover: none), (prefers-reduced-motion: reduce) {
+  [data-magnetic],
+  .savri-ai-btn-primary,
+  .savri-ai-btn-secondary,
+  .immersive-button {
+    transition: background-color 0.25s, box-shadow 0.3s;
+    transform: none !important;
+  }
+}
+
 /* ========== /AI PAGE — PREMIUM POLISH LAYER ==========
    Adds depth, ambient gradients, frosted row hover states, refined
    CTAs and stagger reveals — no content or colour changes. */
@@ -2082,18 +2122,16 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   to   { opacity: 0; transform: translateY(20px); }
 }
 
-/* Words section — 420vh tall, sticky pin centers text, words activate one-by-one
-   via scroll-driven animations. Same dark palette as the rest of the homepage
-   so there are no visible section boundaries — one continuous space. */
+/* Words section — single 100svh section, no sticky pin. Words fade in
+   together as the section enters the viewport (via .reveal-up on the wrap). */
 .savri-words-wrap {
   position: relative;
   z-index: 2;
-  height: 420vh;
+  height: 100svh;
   background: #1A1A1A;
 }
 .savri-words-pin {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100svh;
   display: flex;
   align-items: center;
@@ -2107,21 +2145,6 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   opacity: 1;
   display: inline-block;
   margin-right: 0.28em;
-  will-change: opacity;
-}
-
-@supports (animation-timeline: scroll()) {
-  .savri-word {
-    opacity: 0.12;
-    animation: savriWordReveal linear both;
-    animation-timeline: scroll();
-    animation-range: calc(var(--ws, 0) * 1vh) calc(var(--we, 100) * 1vh);
-  }
-}
-
-@keyframes savriWordReveal {
-  from { opacity: 0.12; }
-  to   { opacity: 1; }
 }
 
 /* Full-bleed image — image reverse-zooms in, overlay lightens, text rises */

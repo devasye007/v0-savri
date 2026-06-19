@@ -195,35 +195,15 @@ function WordsSection() {
   return (
     <section className="savri-words-wrap text-[#F5F0E8]">
       <div className="savri-words-pin">
-        <div className="mx-auto w-full max-w-[1600px]">
+        <div className="reveal-up mx-auto w-full max-w-[1600px]">
           <p
             className="font-serif leading-[1.06] tracking-tight"
             style={{ fontSize: "clamp(34px, 5vw, 96px)" }}
           >
-            <WordStream
-              text="A chef arrives at your door."
-              startVh={70}
-              endVh={170}
-              className="block"
-            />
-            <WordStream
-              text="Cooks what you love."
-              startVh={170}
-              endVh={240}
-              className="mt-[0.35em] block"
-            />
-            <WordStream
-              text="Cleans up after."
-              startVh={240}
-              endVh={300}
-              className="mt-[0.35em] block"
-            />
-            <WordStream
-              text="You just eat."
-              startVh={300}
-              endVh={360}
-              className="mt-[0.35em] block italic text-[#B5636A]"
-            />
+            <span className="block">A chef arrives at your door.</span>
+            <span className="mt-[0.35em] block">Cooks what you love.</span>
+            <span className="mt-[0.35em] block">Cleans up after.</span>
+            <span className="mt-[0.35em] block italic text-[#B5636A]">You just eat.</span>
           </p>
         </div>
       </div>

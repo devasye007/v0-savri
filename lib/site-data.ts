@@ -23,11 +23,13 @@ export const LINKEDIN_URL = "https://www.linkedin.com/company/savri"
 
 export const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Daily Meals", href: "/daily-meals" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Party", href: "/party" },
   { label: "Savri AI", href: "/ai" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
+  { label: "Careers", href: "/careers" },
 ]
 
 export const pricingTiers = [

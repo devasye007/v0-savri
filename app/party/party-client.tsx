@@ -1,12 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useRef, type CSSProperties } from "react"
-import { ArrowRight } from "lucide-react"
+import { useEffect, useRef, useState, type CSSProperties } from "react"
+import { ArrowRight, Cake, Gift } from "lucide-react"
 
 import { Footer } from "@/components/sections/footer"
 import { Navbar } from "@/components/sections/navbar"
 import { BackToTop } from "@/components/ui/back-to-top"
+import { isFathersDayOfferActive } from "@/lib/fathers-day"
 
 const WHATSAPP_URL =
   "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%20want%20to%20book%20a%20party%20for%20%E2%82%B95%2C999."
@@ -193,6 +194,57 @@ function HeroMoment() {
         </div>
       </section>
     </div>
+  )
+}
+
+function FathersDayBand() {
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    setActive(isFathersDayOfferActive())
+  }, [])
+
+  if (!active) return null
+
+  return (
+    <section className="relative z-[2] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(181,99,106,0.18),transparent_55%)]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-[#B5636A]/30" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-[#B5636A]/30" />
+
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-col gap-10 px-6 py-20 md:flex-row md:items-center md:gap-16 md:px-12 md:py-28">
+        <div className="flex shrink-0 items-center gap-4">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[#B5636A] text-white shadow-[0_18px_45px_rgba(181,99,106,0.35)]">
+            <Gift className="h-6 w-6" aria-hidden="true" />
+          </span>
+          <div className="flex flex-col leading-tight">
+            <span className="text-[10px] uppercase tracking-[0.5em] text-[#C9A84C]">
+              June 21 · 2026
+            </span>
+            <span className="mt-2 font-serif text-2xl font-semibold text-[#F5F0E8] md:text-3xl">
+              Father&apos;s Day Bonus
+            </span>
+          </div>
+        </div>
+
+        <div className="flex-1 border-t border-white/10 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0">
+          <p className="font-serif text-3xl font-semibold leading-tight text-[#F5F0E8] md:text-4xl lg:text-5xl">
+            Book a party of 15 or more and get a{" "}
+            <span className="text-[#B5636A]">complimentary celebration cake</span> on bills above ₹5,999.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[#F5F0E8]/72 md:text-[15px]">
+            <span className="inline-flex items-center gap-2">
+              <Cake className="h-4 w-4 text-[#B5636A]" aria-hidden="true" />
+              Cake on us — chosen to match your menu
+            </span>
+            <span className="text-[#F5F0E8]/30">·</span>
+            <span className="text-[11px] uppercase tracking-[0.32em] text-[#F5F0E8]/55">
+              Offer valid until June 21, 2026
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -657,6 +709,7 @@ export function PartyClient() {
     <main className="savri-travel-stack overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
       <Navbar />
       <HeroMoment />
+      <FathersDayBand />
       <MenuWordsMoment />
       <LiveKitchenBleed />
       <IncludedHorizontalPan />

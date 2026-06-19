@@ -18,11 +18,11 @@ const aboutLinks = [
 ]
 
 const serviceLinks = [
+  { label: "Daily Meals", href: "/daily-meals" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Party Bookings", href: "/party" },
   { label: "Pricing", href: "/pricing" },
   { label: "Savri AI", href: "/ai" },
-  { label: "Join Waitlist", href: "/ai#notify" },
   { label: "Careers", href: "/careers" },
   { label: "Book Now", href: BOOKING_URL },
 ]
@@ -46,7 +46,7 @@ export function Footer() {
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr_1fr] md:gap-8 items-start">
           <div>
-            <Image src="/savri-logo-light.png" alt="Savri" width={120} height={36} className="h-9 w-auto mb-3" />
+            <Image src="/savri-logo-light.png" alt="Savri" width={200} height={80} className="h-24 w-auto -my-7 mb-1" />
             <p className="text-cream/60 text-sm">Your chef. Your kitchen. Your table.</p>
             <p className="mt-4 max-w-xs text-sm leading-7 text-cream/48">
               Premium private dining for Indian homes. Freshly cooked, clearly priced, and designed to feel effortless.
