@@ -586,7 +586,7 @@ export function SavriAiPage() {
   return (
     <main className="overflow-x-hidden bg-[#1A1A1A] text-[#F5F0E8]">
       {/* ─────────── 01 / HERO — kitchen silhouettes + steam + typed headline ─────────── */}
-      <section className="savri-ai-dotgrid relative isolate flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 text-center">
+      <section className="savri-ai-dotgrid relative isolate flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-6 pt-40 pb-16 text-center md:pt-32 md:pb-20">
         {/* Warm food-kitchen ambient: rose+gold radial wash + steam wisps
             drifting up the screen + faint kitchen cutlery silhouettes. No
             circles, no photos. */}
@@ -748,12 +748,17 @@ export function SavriAiPage() {
         </div>
         <div className="savri-bleed-overlay absolute inset-0 bg-[#0A0A0A]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.22)_50%,rgba(26,26,26,0.8)_82%,#1A1A1A_100%)]" />
+        {/* Mobile-only stronger bottom gradient — guarantees text reads at small sizes */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_40%,rgba(10,10,10,0.55)_65%,rgba(10,10,10,0.88)_100%)] md:hidden" />
 
         <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-16 md:px-20 md:pb-24">
-          <div className="savri-bleed-text max-w-[1300px]">
+          <div
+            className="savri-bleed-text max-w-[1300px]"
+            style={{ textShadow: "0 2px 18px rgba(0,0,0,0.55)" }}
+          >
             <p className="text-[11px] uppercase tracking-[0.5em] text-[#B5636A]">03 — Experience</p>
             <p
-              className="mt-6 block font-serif font-semibold"
+              className="mt-6 block font-serif font-semibold text-[#F5F0E8]"
               style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
             >
               The Savri AI
@@ -764,7 +769,7 @@ export function SavriAiPage() {
             >
               Experience.
             </p>
-            <p className="mt-10 max-w-2xl text-base leading-8 text-[#F5F0E8]/82 md:text-lg">
+            <p className="mt-10 max-w-2xl text-base leading-8 text-[#F5F0E8] md:text-lg">
               From the first taste quiz to the next better meal, the flow stays simple. The intelligence works quietly in the background.
             </p>
           </div>

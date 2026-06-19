@@ -65,16 +65,27 @@ export function DailyMealsClient() {
                 Meals.
               </span>
             </h1>
-            <p className="mt-10 max-w-xl text-base leading-7 text-[#F5F0E8]/82 md:text-lg">
+            <p
+              className="mt-10 max-w-xl text-base leading-7 text-[#F5F0E8] md:text-lg"
+              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.55)" }}
+            >
               Restaurant quality. Every day. At home.
             </p>
           </div>
 
           <div className="savri-hero-foot absolute inset-x-0 bottom-12 z-10 flex flex-col items-center gap-3 text-[#F5F0E8]">
-            <span className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]">
+            <span
+              className="text-[11px] uppercase tracking-[0.4em] text-[#C9A84C] md:text-[12px]"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+            >
               Delhi NCR • From ₹549
             </span>
-            <span className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/55">↓ Scroll</span>
+            <span
+              className="text-[10px] uppercase tracking-[0.42em] text-[#F5F0E8]/85"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+            >
+              ↓ Scroll
+            </span>
           </div>
         </section>
       </div>

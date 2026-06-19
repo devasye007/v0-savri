@@ -264,17 +264,22 @@ function BleedSection() {
       </div>
       <div className="savri-bleed-overlay absolute inset-0 bg-[#0A0A0A]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.4)_18%,rgba(26,26,26,0.2)_50%,rgba(26,26,26,0.8)_82%,#1A1A1A_100%)]" />
+      {/* Mobile-only stronger bottom gradient — guarantees text reads at small sizes */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_40%,rgba(10,10,10,0.55)_65%,rgba(10,10,10,0.88)_100%)] md:hidden" />
 
       <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-16 md:px-20 md:pb-24">
-        <div className="savri-bleed-text max-w-[1200px]">
+        <div
+          className="savri-bleed-text max-w-[1200px]"
+          style={{ textShadow: "0 2px 18px rgba(0,0,0,0.55)" }}
+        >
           <p
-            className="block font-serif font-semibold"
+            className="block font-serif font-semibold text-[#F5F0E8]"
             style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
           >
             Your menu.
           </p>
           <p
-            className="mt-1 block font-serif font-semibold"
+            className="mt-1 block font-serif font-semibold text-[#F5F0E8]"
             style={{ fontSize: "clamp(40px, 7vw, 128px)", lineHeight: 1 }}
           >
             Your kitchen.
