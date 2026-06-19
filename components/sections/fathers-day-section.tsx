@@ -10,9 +10,11 @@ import { FATHERS_DAY_VALIDITY_COPY, isFathersDayOfferActive } from "@/lib/father
 
 const INTIMATE_IMG =
   "https://images.unsplash.com/photo-1556910103925-9bb44e98f9ed?w=1920&q=80"
-// Indian family / celebration cake scene for the "larger celebration?" panel.
+// Indian family / cake-cutting scene for the "larger celebration?" panel.
+// Pexels photo 17435473 — elderly Indian couple in traditional attire cutting
+// a celebration cake adorned with flower garlands (warm indoor setting).
 const CELEBRATION_IMG =
-  "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1920&q=80"
+  "https://images.pexels.com/photos/17435473/pexels-photo-17435473.jpeg?auto=compress&cs=tinysrgb&w=1920"
 
 const FD_WHATSAPP =
   "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%27d%20like%20to%20book%20for%20Father%27s%20Day."
