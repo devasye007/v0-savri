@@ -2308,16 +2308,16 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
   transform: scaleX(1);
 }
 
-/* Pricing — view-timeline driven sequential reveal (same feel as Words section) */
+/* Pricing — single 100svh section, no sticky pin. Prices stay solid; the
+   reveal-up class on the wrap handles a clean entry animation. */
 .savri-pricing-wrap {
   position: relative;
   z-index: 5;
-  height: 300vh;
+  height: 100svh;
   background: #1A1A1A;
 }
 .savri-pricing-pin {
-  position: sticky;
-  top: 0;
+  position: relative;
   height: 100svh;
   display: flex;
   flex-direction: column;
@@ -2332,51 +2332,10 @@ details[open] .party-accordion-chevron { transform: rotate(180deg); }
 .savri-price-label,
 .savri-price-eyebrow {
   opacity: 1;
-  will-change: opacity;
 }
 .savri-price-line {
   transform: scaleX(1);
   transform-origin: left center;
-  will-change: transform;
-}
-
-@supports (animation-timeline: view()) {
-  .savri-pricing-wrap {
-    view-timeline-name: --savriPricingTL;
-    view-timeline-axis: block;
-  }
-  .savri-price-eyebrow,
-  .savri-price-amount,
-  .savri-price-label {
-    opacity: 0.12;
-    animation: savriWordReveal linear both;
-    animation-timeline: --savriPricingTL;
-    animation-range: cover calc(var(--ws, 0) * 1%) cover calc(var(--we, 100) * 1%);
-  }
-  .savri-price-line {
-    transform: scaleX(0);
-    animation: savriDrawLine linear both;
-    animation-timeline: --savriPricingTL;
-    animation-range: cover calc(var(--ws, 0) * 1%) cover calc(var(--we, 100) * 1%);
-  }
-}
-
-@keyframes savriDrawLine {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .savri-price-amount,
-  .savri-price-label,
-  .savri-price-eyebrow {
-    opacity: 1 !important;
-    animation: none !important;
-  }
-  .savri-price-line {
-    transform: scaleX(1) !important;
-    animation: none !important;
-  }
 }
 
 /* Party teaser — words come in from opposite sides, bg ambient zoom */

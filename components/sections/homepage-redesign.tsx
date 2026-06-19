@@ -346,7 +346,7 @@ function PricingSection() {
   return (
     <section className="savri-pricing-wrap text-[#F5F0E8]">
       <div className="savri-pricing-pin">
-        <div className="mx-auto flex w-full max-w-[1600px] flex-col">
+        <div className="reveal-up mx-auto flex w-full max-w-[1600px] flex-col">
           <p
             className="savri-price-eyebrow text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]"
             style={{ "--ws": 8, "--we": 18 } as CSSProperties}
