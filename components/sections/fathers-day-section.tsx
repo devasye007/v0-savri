@@ -12,7 +12,7 @@ const INTIMATE_IMG =
   "https://images.unsplash.com/photo-1556910103925-9bb44e98f9ed?w=1920&q=80"
 // Indian family / celebration cake scene for the "larger celebration?" panel.
 const CELEBRATION_IMG =
-  "https://images.unsplash.com/photo-1530103862676-de2f6b6da465?w=1920&q=80"
+  "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1920&q=80"
 
 const FD_WHATSAPP =
   "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%27d%20like%20to%20book%20for%20Father%27s%20Day."
