@@ -10,11 +10,8 @@ import { FATHERS_DAY_VALIDITY_COPY, isFathersDayOfferActive } from "@/lib/father
 
 const INTIMATE_IMG =
   "https://images.unsplash.com/photo-1556910103925-9bb44e98f9ed?w=1920&q=80"
-// Indian family / cake-cutting scene for the "larger celebration?" panel.
-// Pexels photo 17435473 — elderly Indian couple in traditional attire cutting
-// a celebration cake adorned with flower garlands (warm indoor setting).
-const CELEBRATION_IMG =
-  "https://images.pexels.com/photos/17435473/pexels-photo-17435473.jpeg?auto=compress&cs=tinysrgb&w=1920"
+// Local asset — Indian family Father's Day celebration scene.
+const CELEBRATION_IMG = "/images/fathers-day-family.png"
 
 const FD_WHATSAPP =
   "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%27d%20like%20to%20book%20for%20Father%27s%20Day."
@@ -131,7 +128,7 @@ export function FathersDaySection() {
         <div className="savri-ambient-zoom absolute inset-0">
           <Image
             src={CELEBRATION_IMG}
-            alt="A celebration cake on a warmly lit family table"
+            alt="An Indian family celebrating Father's Day with a cake"
             fill
             loading="lazy"
             sizes="100vw"
