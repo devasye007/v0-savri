@@ -30,18 +30,21 @@ export function FathersDaySection() {
   return (
     <div id="fathers-day" className="relative z-[2]">
       {/* — Section 1: intimate dining — */}
-      <section className="relative h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <section className="relative h-[100svh] min-h-[100dvh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
         <div className="savri-ambient-zoom absolute inset-0">
           <Image
             src={INTIMATE_IMG}
             alt="A warm, intimate father-and-son dinner at home"
             fill
-            loading="lazy"
-            sizes="100vw"
-            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 100vw"
+            className="object-cover object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.72)_18%,rgba(26,26,26,0.6)_50%,rgba(26,26,26,0.88)_84%,#1A1A1A_100%)]" />
+        {/* Mobile overlay — lighter so the image reads. */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_18%,rgba(26,26,26,0.3)_50%,rgba(26,26,26,0.68)_85%,#1A1A1A_100%)] md:hidden" />
+        {/* Desktop overlay — original, heavier so big serif type reads. */}
+        <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.72)_18%,rgba(26,26,26,0.6)_50%,rgba(26,26,26,0.88)_84%,#1A1A1A_100%)] md:block" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <ScrollReveal direction="up" delay={0}>
@@ -124,18 +127,21 @@ export function FathersDaySection() {
       </section>
 
       {/* — Section 2: larger celebration — */}
-      <section className="relative h-[100svh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
+      <section className="relative h-[100svh] min-h-[100dvh] w-full overflow-hidden bg-[#1A1A1A] text-[#F5F0E8]">
         <div className="savri-ambient-zoom absolute inset-0">
           <Image
             src={CELEBRATION_IMG}
             alt="An Indian family celebrating Father's Day with a cake"
             fill
-            loading="lazy"
-            sizes="100vw"
-            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 100vw"
+            className="object-cover object-center"
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.7)_18%,rgba(26,26,26,0.58)_50%,rgba(26,26,26,0.9)_84%,#1A1A1A_100%)]" />
+        {/* Mobile overlay — lighter so the image reads. */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.45)_18%,rgba(26,26,26,0.3)_50%,rgba(26,26,26,0.7)_85%,#1A1A1A_100%)] md:hidden" />
+        {/* Desktop overlay — original, heavier so big serif type reads. */}
+        <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,#1A1A1A_0%,rgba(26,26,26,0.7)_18%,rgba(26,26,26,0.58)_50%,rgba(26,26,26,0.9)_84%,#1A1A1A_100%)] md:block" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <ScrollReveal direction="up" delay={0}>
