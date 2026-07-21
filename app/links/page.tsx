@@ -79,7 +79,7 @@ export default function LinksPage() {
           className="h-16 w-auto sm:h-20"
         />
         <p className="mt-4 text-center font-serif text-xl font-semibold text-dark sm:text-2xl">
-          Ghar Ka Khana, Ghar Pe.
+          Private chef, ghar pe.
         </p>
         <p className="mt-2 text-center text-sm text-dark/60">
           Private chefs at your home across Delhi NCR.
