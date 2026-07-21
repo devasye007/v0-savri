@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
 
@@ -8,11 +9,14 @@ import { isFathersDayOfferActive } from "@/lib/fathers-day"
 
 export function ComingSoonBanner() {
   const [hidden, setHidden] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     setHidden(isFathersDayOfferActive())
   }, [])
 
+  // Hidden on the standalone QR links page.
+  if (pathname === "/links") return null
   if (hidden) return null
 
   return (

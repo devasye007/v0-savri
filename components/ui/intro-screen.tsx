@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
 
@@ -20,10 +21,12 @@ export function IntroScreen() {
   const [dismissing, setDismissing] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isFathersDay, setIsFathersDay] = useState(false)
+  const pathname = usePathname()
 
   // First-paint gate: only show once per session, never if reduced-motion
   useEffect(() => {
     try {
+      if (pathname === "/links") return // standalone hub page — no intro sequence
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
       if (sessionStorage.getItem(SESSION_KEY)) return
       sessionStorage.setItem(SESSION_KEY, "1")
@@ -33,7 +36,7 @@ export function IntroScreen() {
     } catch {
       // browser APIs unavailable — skip splash
     }
-  }, [])
+  }, [pathname])
 
   // Auto-dismiss after the variant's duration (FD splash holds a touch longer)
   useEffect(() => {

@@ -1,5 +1,6 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { BOOKING_URL } from "@/lib/site-data"
@@ -11,11 +12,15 @@ import { BOOKING_URL } from "@/lib/site-data"
  */
 export function FloatingWhatsApp() {
   const [show, setShow] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const t = window.setTimeout(() => setShow(true), 900)
     return () => window.clearTimeout(t)
   }, [])
+
+  // Hidden on the standalone QR links page (it already lists WhatsApp).
+  if (pathname === "/links") return null
 
   return (
     <a
