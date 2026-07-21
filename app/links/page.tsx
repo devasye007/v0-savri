@@ -73,10 +73,10 @@ export default function LinksPage() {
         <Image
           src="/savri-logo-dark.png"
           alt="Savri"
-          width={200}
-          height={80}
+          width={320}
+          height={128}
           priority
-          className="h-16 w-auto sm:h-20"
+          className="h-28 w-auto sm:h-32"
         />
         <p className="mt-4 text-center font-serif text-xl font-semibold text-dark sm:text-2xl">
           Private chef, ghar pe.
@@ -122,42 +122,7 @@ export default function LinksPage() {
           ))}
         </nav>
 
-        {/* QR card */}
-        <div className="mt-10 flex w-full flex-col items-center rounded-2xl border border-dark/10 bg-white/70 px-6 py-7 shadow-[0_2px_16px_rgba(10,10,10,0.04)] backdrop-blur-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-rose">
-            Scan to share
-          </p>
-          <div className="mt-4 rounded-xl bg-white p-3 shadow-[0_2px_10px_rgba(10,10,10,0.05)]">
-            <Image
-              src="/savri-links-qr.svg"
-              alt="QR code linking to savri.co.in/links"
-              width={180}
-              height={180}
-              className="h-44 w-44"
-            />
-          </div>
-          <a
-            href="/savri-links-qr.png"
-            download="savri-links-qr.png"
-            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-rose px-7 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(181,99,106,0.28)] transition-colors duration-300 hover:bg-rose-dark"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-              className="h-4 w-4"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
-            </svg>
-            Download QR code
-          </a>
-        </div>
-
-        <p className="mt-10 text-center text-xs text-dark/40">
+        <p className="mt-12 text-center text-xs text-dark/40">
           © {new Date().getFullYear()} Savri · Delhi NCR
         </p>
       </div>
