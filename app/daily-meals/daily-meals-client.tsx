@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, ChefHat, Leaf, Sparkles, UtensilsCrossed } from "lucide-react"
 
 import { ScrollReveal } from "@/components/ScrollReveal"
@@ -222,19 +223,27 @@ export function DailyMealsClient() {
               className="mt-8 text-[#C9A84C]"
               style={{ fontSize: "clamp(18px, 2vw, 36px)" }}
             >
-              Book your chef on WhatsApp.
+              Book your chef in minutes.
             </p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={360}>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group mt-14 inline-flex items-center justify-center gap-2 bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
-            >
-              Book Now
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+            <div className="mt-14 flex flex-col items-center gap-5">
+              <Link
+                href="/book/daily"
+                className="group inline-flex items-center justify-center gap-2 bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
+              >
+                Book Now
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#F5F0E8]/60 underline-offset-4 transition hover:text-[#F5F0E8] hover:underline"
+              >
+                Questions? Chat with us on WhatsApp
+              </a>
+            </div>
           </ScrollReveal>
         </div>
       </section>

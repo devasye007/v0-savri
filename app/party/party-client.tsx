@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
 import { ArrowRight, Cake, Gift } from "lucide-react"
 
@@ -620,20 +621,20 @@ function CinematicCTA() {
           className="savri-rise mt-12 flex flex-col gap-4 sm:flex-row"
           style={{ transitionDelay: "400ms" }}
         >
+          <Link
+            href="/book/party"
+            className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center gap-2 px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
+          >
+            Book Now
+            <ArrowRight className="h-4 w-4" />
+          </Link>
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="savri-ai-btn-primary inline-flex min-h-12 items-center justify-center gap-2 px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
-          >
-            Book on WhatsApp
-            <ArrowRight className="h-4 w-4" />
-          </a>
-          <a
-            href={SITE_URL}
             className="savri-ai-btn-secondary inline-flex min-h-12 items-center justify-center px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] md:text-[15px]"
           >
-            Learn More
+            Questions? Chat with us
           </a>
         </div>
       </div>

@@ -514,15 +514,25 @@ function FinalCTASection() {
         >
           Book your private chef.
         </p>
-        <a
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="savri-rise mt-14 inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
+        <div
+          className="savri-rise mt-14 flex flex-col items-center gap-5"
           style={{ transitionDelay: "400ms" }}
         >
-          Book on WhatsApp →
-        </a>
+          <Link
+            href="/book"
+            className="inline-flex items-center justify-center bg-[#B5636A] px-10 py-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#F5F0E8] transition-colors duration-300 hover:bg-[#9A5158] md:text-base"
+          >
+            Book Now →
+          </Link>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-[#F5F0E8]/60 underline-offset-4 transition hover:text-[#F5F0E8] hover:underline"
+          >
+            Questions? Chat with us on WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   )

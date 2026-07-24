@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { Menu, X } from "lucide-react"
 
-import { BOOKING_URL, navLinks } from "@/lib/site-data"
+import { navLinks } from "@/lib/site-data"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -81,14 +81,12 @@ export function Navbar() {
           <Link href="/contact" className="text-sm text-cream/68 transition hover:text-cream">
             Contact
           </Link>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/book"
             className="inline-flex min-h-11 items-center justify-center rounded-full bg-rose px-5 py-2.5 text-sm font-semibold text-cream transition hover:bg-rose-dark"
           >
             Book Now
-          </a>
+          </Link>
         </div>
 
         <button
@@ -122,14 +120,12 @@ export function Navbar() {
             <Link href="/about" className="rounded-2xl px-3 py-3 text-sm text-cream/80 hover:bg-white/6">
               About
             </Link>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/book"
               className="mt-2 inline-flex min-h-12 items-center justify-center rounded-2xl bg-rose px-5 py-3 text-sm font-semibold text-cream"
             >
               Book Now
-            </a>
+            </Link>
           </div>
         </div>
       ) : null}
