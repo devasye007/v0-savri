@@ -14,6 +14,13 @@ export const BOOKING_URL = "https://wa.me/919310590819?text=Hi%20Savri%2C%20I%20
 export const CHEF_APPLY_URL = "https://forms.gle/ESCw7Zpt5vJNgJxa8"
 export const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreyaowo"
 
+// App Store launch — single source of truth. Replace the placeholder below with
+// the real App Store listing URL and it updates the announcement strip, the
+// homepage "Better on the app" section, and the footer everywhere at once.
+export const APP_STORE_URL = "https://apps.apple.com/in/app/savri-private-chef/id6787255322"
+export const APP_STORE_COUPON = "SAVRI200"
+export const APP_STORE_DISCOUNT = "₹200"
+
 export const CONTACT_EMAIL = "hello@savri.co.in"
 export const FOUNDER_EMAIL = "founder@savri.co.in"
 export const CONTACT_PHONE = "+91-93105-90819"

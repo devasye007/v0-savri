@@ -4,12 +4,14 @@ import Image from "next/image"
 import { Instagram, Linkedin, Mail, Twitter } from "lucide-react"
 
 import {
+  APP_STORE_URL,
   BOOKING_URL,
   CONTACT_EMAIL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
   TWITTER_URL,
 } from "@/lib/site-data"
+import { AppStoreBadge } from "@/components/ui/app-store-badge"
 
 const aboutLinks = [
   { label: "About Savri", href: "/about" },
@@ -51,6 +53,24 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-sm leading-7 text-cream/48">
               Premium private dining for Indian homes. Freshly cooked, clearly priced, and designed to feel effortless.
             </p>
+
+            <div className="mt-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/40">Get the App</p>
+              {/* App Store URL placeholder — see APP_STORE_URL in lib/site-data.ts */}
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener"
+                aria-label="Download Savri on the App Store"
+                className="mt-4 inline-block transition-transform duration-200 hover:scale-[1.03]"
+              >
+                <AppStoreBadge className="h-11 w-auto" />
+              </a>
+              <p className="mt-3 text-sm text-cream/60">
+                <span className="font-semibold text-cream/80">₹200 off</span> with code{" "}
+                <span className="font-semibold text-cream/80">SAVRI200</span>
+              </p>
+            </div>
           </div>
 
           <div>

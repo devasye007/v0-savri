@@ -3,7 +3,7 @@ import { Inter, Cormorant_Garamond } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import { IntroScreen } from '@/components/ui/intro-screen'
-import { ComingSoonBanner } from '@/components/ui/coming-soon-banner'
+import { AppStoreBanner } from '@/components/ui/app-store-banner'
 import { FathersDayBanner } from '@/components/ui/fathers-day-banner'
 import { FathersDayFloatingAd } from '@/components/ui/fathers-day-floating-ad'
 import { PageEffects } from '@/components/ui/page-effects'
@@ -141,7 +141,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-cream text-dark">
         <SmoothScroll />
         <PageEffects />
-        <ComingSoonBanner />
+        <AppStoreBanner />
         <FathersDayBanner />
         <IntroScreen />
         {children}

@@ -4,8 +4,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react"
 
-import { BOOKING_URL } from "@/lib/site-data"
+import { APP_STORE_URL, BOOKING_URL } from "@/lib/site-data"
 import { FathersDaySection } from "@/components/sections/fathers-day-section"
+import { AppStoreBadge } from "@/components/ui/app-store-badge"
 
 const HERO_IMG = "/images/7.png"
 const WORDS_BG_IMG = "/images/10.png"
@@ -484,6 +485,58 @@ function PartyTeaserSection() {
   )
 }
 
+function AppSection() {
+  const ref = useOnEnter<HTMLElement>(0.25)
+  return (
+    <section
+      ref={ref}
+      className="relative z-[7] w-full overflow-hidden bg-[#1A1A1A] py-24 text-[#F5F0E8] md:py-32"
+    >
+      <div className="mx-auto flex max-w-5xl flex-col items-center px-6 text-center">
+        <p className="savri-rise text-[11px] uppercase tracking-[0.5em] text-[#C9A84C] md:text-[13px]">
+          Now on iOS
+        </p>
+        <h2
+          className="savri-rise mt-6 whitespace-nowrap font-serif font-semibold leading-[0.92] text-[#F5F0E8]"
+          style={{ fontSize: "clamp(22px, 5.5vw, 74px)", transitionDelay: "80ms" }}
+        >
+          Book faster on the <span className="text-[#B5636A]">Savri app</span>
+        </h2>
+        <p
+          className="savri-rise mt-8 max-w-2xl text-base leading-8 text-[#F5F0E8]/80 md:text-lg"
+          style={{ transitionDelay: "200ms" }}
+        >
+          Real-time booking, track your chef on the way, and manage every order in one place —
+          plus <span className="text-[#F5F0E8]">₹200 off</span> your first booking with code SAVRI200.
+        </p>
+
+        <div
+          className="savri-rise mt-10 inline-flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 rounded-full border border-[#C9A84C]/40 bg-[#C9A84C]/10 px-6 py-3"
+          style={{ transitionDelay: "300ms" }}
+        >
+          <span className="text-sm text-[#F5F0E8]/80 md:text-base">Use code</span>
+          <span className="font-sans text-base font-bold tracking-[0.2em] text-[#C9A84C] md:text-lg">
+            SAVRI200
+          </span>
+          <span className="text-sm text-[#F5F0E8]/80 md:text-base">at checkout for ₹200 off</span>
+        </div>
+
+        {/* App Store URL placeholder — see APP_STORE_URL in lib/site-data.ts */}
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener"
+          aria-label="Download Savri on the App Store"
+          className="savri-rise mt-12 inline-block transition-transform duration-300 hover:scale-[1.03]"
+          style={{ transitionDelay: "420ms" }}
+        >
+          <AppStoreBadge className="h-14 w-auto md:h-16" />
+        </a>
+      </div>
+    </section>
+  )
+}
+
 function FinalCTASection() {
   const ref = useOnEnter<HTMLElement>(0.25)
   return (
@@ -549,6 +602,7 @@ export function HomepageRedesign() {
       <DishesSection />
       <PricingSection />
       <PartyTeaserSection />
+      <AppSection />
       <FinalCTASection />
     </main>
   )
